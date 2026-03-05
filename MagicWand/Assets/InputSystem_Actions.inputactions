@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -990,6 +991,12 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Wand",
+            "id": "77863717-c85b-4782-933f-1f0c6e7ec285",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [
