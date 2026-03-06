@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,15 +13,43 @@ public class WandController : MonoBehaviour
     [Tooltip("杖(動かす対象)")] [SerializeField]
     Transform _wand;
 
+    [Tooltip("リセットにかかる時間")] [SerializeField]
+    float _resetDuration = 1f;
+
     Quaternion _originJoyconOrientation = Quaternion.identity;
 
     Quaternion _currentRot=Quaternion.identity;
 
-    public void ResetPos(InputAction.CallbackContext context)//回転をリセット
+    bool _isResetting = false;
+
+    public void ResetAiming(InputAction.CallbackContext context)//照準をリセット
     {
         if (!context.performed) return;
 
-        _originJoyconOrientation= _movingAveragedJoyconOrientation.SmoothedOrientation * Quaternion.AngleAxis(90f,Vector3.right);
+        if (_isResetting) return;
+
+        var newOriginJoyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation * Quaternion.AngleAxis(90f,Vector3.right);
+
+        StartCoroutine(ResetAimingCoroutine(newOriginJoyconOrientation));
+    }
+
+    IEnumerator ResetAimingCoroutine(Quaternion newOriginJoyconOrientation)
+    {
+        _isResetting = true;
+        Quaternion preOriginJoyconOrientation = _originJoyconOrientation;
+
+        float elapsed_s= 0f;
+
+        while (elapsed_s < _resetDuration)
+        {
+            elapsed_s += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed_s / _resetDuration);
+            _originJoyconOrientation = Quaternion.Slerp(preOriginJoyconOrientation, newOriginJoyconOrientation, t);
+            yield return null;
+        }
+
+        _originJoyconOrientation = newOriginJoyconOrientation;
+        _isResetting = false;
     }
 
     private void Awake()

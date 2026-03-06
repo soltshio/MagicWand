@@ -1017,6 +1017,17 @@
                     "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "93d3ca4d-e3e9-4a93-ae7e-66cddc670b52",
+                    "path": "<HID::Nintendo Wireless Gamepad>/hat/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
