@@ -995,8 +995,30 @@
         {
             "name": "Wand",
             "id": "77863717-c85b-4782-933f-1f0c6e7ec285",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "9ed4932f-3b23-4772-91ca-69b5bac0917a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "882a92c5-82d1-4d48-8222-df3faeefeef1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
