@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//クォータニオンの移動平均を取るクラス
+
 public class QuaternionMovingAverage
 {
     Queue<Quaternion> buffer = new Queue<Quaternion>();
