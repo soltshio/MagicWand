@@ -814,6 +814,7 @@ GameObject:
   - component: {fileID: 2021340721}
   - component: {fileID: 2021340722}
   - component: {fileID: 2021340724}
+  - component: {fileID: 2021340725}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -996,6 +997,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d597bb097096854689e15f5183e5af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingAveragedJoyconOrientation
+  _movingAverageWindowSize: 45
+  _joyconInputManager: {fileID: 2021340722}
+--- !u!114 &2021340725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021340719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f103718d344c4428d803319ce2a14e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovingAveragedJoyconAccel
   _movingAverageWindowSize: 45
   _joyconInputManager: {fileID: 2021340722}
 --- !u!1 &2126937071

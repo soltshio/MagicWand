@@ -59,6 +59,11 @@ public class WandController : MonoBehaviour
 
     private void Update()
     {
+        UpdateOrientation();
+    }
+
+    void UpdateOrientation()
+    {
         Quaternion newRot;
 
         var joyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation;

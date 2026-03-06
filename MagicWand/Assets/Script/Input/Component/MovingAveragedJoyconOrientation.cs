@@ -6,7 +6,7 @@ using UnityEngine;
 public class MovingAveragedJoyconOrientation : MonoBehaviour
 {
     [Tooltip("移動平均のウィンドウサイズ")] [SerializeField]
-    int _movingAverageWindowSize = 20;
+    int _movingAverageWindowSize = 45;
 
     [SerializeField]
     JoyconInputManager _joyconInputManager;
