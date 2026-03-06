@@ -6,14 +6,11 @@ using UnityEngine.InputSystem;
 
 public class WandController : MonoBehaviour
 {
-    [SerializeField] 
-    JoyconInputManager _joyconInputManager;
+    [SerializeField]
+    MovingAveragedJoyconOrientation _movingAveragedJoyconOrientation;
 
     [Tooltip("杖(動かす対象)")] [SerializeField]
     Transform _wand;
-
-    const int _movingAverageWindowSize = 20;//移動平均のウィンドウサイズ
-    QuaternionMovingAverage _movingAverage;//移動平均を取るクラス
 
     Quaternion _originJoyconOrientation = Quaternion.identity;
 
@@ -23,13 +20,11 @@ public class WandController : MonoBehaviour
     {
         if (!context.performed) return;
 
-        _originJoyconOrientation= _joyconInputManager.Orientation * Quaternion.AngleAxis(90f,Vector3.right);
+        _originJoyconOrientation= _movingAveragedJoyconOrientation.SmoothedOrientation * Quaternion.AngleAxis(90f,Vector3.right);
     }
 
     private void Awake()
     {
-        _movingAverage = new QuaternionMovingAverage(_movingAverageWindowSize);
-
         _currentRot = Quaternion.identity;
     }
 
@@ -37,7 +32,7 @@ public class WandController : MonoBehaviour
     {
         Quaternion newRot;
 
-        var joyconOrientation = _joyconInputManager.Orientation;
+        var joyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation;
 
         //基準の回転との計算
         joyconOrientation = Quaternion.Inverse(_originJoyconOrientation) * joyconOrientation;
@@ -47,10 +42,9 @@ public class WandController : MonoBehaviour
 
         newRot = c * joyconOrientation * Quaternion.Inverse(c);
 
-        //移動平均処理
-        _currentRot = _movingAverage.AddValue(newRot);
-
         //杖を回転させる
+        _currentRot = newRot;
+
         _wand.localRotation = _currentRot;
     }
 }
