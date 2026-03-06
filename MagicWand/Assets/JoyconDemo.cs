@@ -72,6 +72,8 @@ public class JoyconDemo : MonoBehaviour {
             // Accel values:  x, y, z axis values (in Gs)
             accel = j.GetAccel();
 
+			Debug.Log(accel.x.ToString("0.0") + "  :  " + accel.y.ToString("0.0") + "  :  " + accel.z.ToString("0.0"));
+
             orientation = j.GetVector();
 			if (j.GetButton(Joycon.Button.DPAD_UP)){
 				gameObject.GetComponent<Renderer>().material.color = Color.red;
