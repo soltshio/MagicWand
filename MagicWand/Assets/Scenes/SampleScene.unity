@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WandController
   _movingAveragedJoyconOrientation: {fileID: 2021340724}
   _wand: {fileID: 42325024}
+  _resetDuration: 0.15
 --- !u!1 &316005211
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +967,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 42325025}
         m_TargetAssemblyTypeName: WandController, Assembly-CSharp
-        m_MethodName: ResetPos
+        m_MethodName: ResetAiming
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
