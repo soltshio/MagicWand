@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 42325024}
   - component: {fileID: 42325025}
   - component: {fileID: 42325026}
+  - component: {fileID: 42325027}
   m_Layer: 0
   m_Name: WandCenter
   m_TagString: Untagged
@@ -165,7 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29253b85cdcb0b43b482464ddc42e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WandController
-  _movingAveragedJoyconOrientation: {fileID: 2021340724}
+  _joyconInputManager: {fileID: 2021340722}
+  _keyWandController: {fileID: 42325027}
   _joyconWandController: {fileID: 42325026}
   _wand: {fileID: 42325024}
   _resetDuration: 0.15
@@ -182,6 +184,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JoyconWandController
   _movingAveragedJoyconOrientation: {fileID: 2021340724}
+--- !u!114 &42325027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42325023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83046f41ec08a91488e78050042281b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyWandController
+  _yRotSpeed: 90
+  _xRotSpeed: 90
+  _rotOffsetTrs: {fileID: 1736187399}
 --- !u!1 &316005211
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1012,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9ed4932f-3b23-4772-91ca-69b5bac0917a
     m_ActionName: 'Wand/Reset[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 42325027}
+        m_TargetAssemblyTypeName: KeyWandController, Assembly-CSharp
+        m_MethodName: CatchInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f11ab091-ca8f-4aa7-8eca-484d36903782
+    m_ActionName: 'Wand/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/Nintendo
+      Wireless Gamepad/stick]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Wand

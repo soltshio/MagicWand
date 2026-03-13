@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//作成者:杉山
 //ジョイコンでの杖の操作
 
 public class JoyconWandController : MonoBehaviour
@@ -7,11 +8,13 @@ public class JoyconWandController : MonoBehaviour
     [SerializeField]
     MovingAveragedJoyconOrientation _movingAveragedJoyconOrientation;
 
-    public Quaternion UpdateWandOrientation(WandController wandController)
+    public void NewWandRot(WandController wandController,Transform wand)
     {
         var joyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation;
 
-        return JoyconOrientationToWandRotation(joyconOrientation);
+        var wandRot = JoyconOrientationToWandRotation(joyconOrientation);
+
+        wand.localRotation = wandRot * wandController.OriginRot;
     }
 
     //ジョイコンの回転から杖の回転に変換する

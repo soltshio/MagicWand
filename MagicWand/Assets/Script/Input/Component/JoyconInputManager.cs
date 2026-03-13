@@ -22,6 +22,8 @@ public class JoyconInputManager : MonoBehaviour
     public Vector3 Accel => _accel;//‰Á‘¬“x
     public Quaternion Orientation => _orientation;//ŒX‚«
 
+    public bool IsConnected => _joycon != null;//Ú‘±‚³‚ê‚Ä‚¢‚é‚©
+
 
     private void Start()
     {

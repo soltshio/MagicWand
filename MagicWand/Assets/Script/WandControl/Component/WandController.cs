@@ -12,7 +12,10 @@ using UnityEngine.InputSystem;
 public class WandController : MonoBehaviour
 {
     [SerializeField]
-    MovingAveragedJoyconOrientation _movingAveragedJoyconOrientation;
+    JoyconInputManager _joyconInputManager;
+
+    [SerializeField]
+    KeyWandController _keyWandController;
 
     [SerializeField]
     JoyconWandController _joyconWandController;
@@ -25,6 +28,8 @@ public class WandController : MonoBehaviour
 
     Quaternion _originRot= Quaternion.identity;
     bool _isResetting = false;
+
+    public Quaternion OriginRot => _originRot;
 
     //Œ»İ‚Ìâ‘Î“I‚È‰ñ“]‚Ì’l
     public Quaternion CurrentAbsoluteRot()
@@ -70,9 +75,15 @@ public class WandController : MonoBehaviour
 
     void UpdateOrientation()
     {
-        Quaternion wandRot = _joyconWandController.UpdateWandOrientation(this);
+        bool isConnectedJoycon = _joyconInputManager != null && _joyconInputManager.IsConnected;
 
-        //ñ‚ğ‰ñ“]‚³‚¹‚é
-        _wand.localRotation = wandRot * _originRot;
+        if (isConnectedJoycon)
+        {
+            _joyconWandController.NewWandRot(this,_wand);
+        }
+        else
+        {
+            _keyWandController.NewWandRot(this, _wand);
+        }
     }
 }
