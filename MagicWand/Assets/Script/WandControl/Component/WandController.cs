@@ -5,10 +5,17 @@ using UnityEngine.InputSystem;
 //作成者:杉山
 //杖を制御するクラス
 
+//初期化は諦め(後にゲーム開始してから数秒後に自動的にリセットさせるようにする)
+
+
+
 public class WandController : MonoBehaviour
 {
     [SerializeField]
     MovingAveragedJoyconOrientation _movingAveragedJoyconOrientation;
+
+    [SerializeField]
+    JoyconWandController _joyconWandController;
 
     [Tooltip("杖(動かす対象)")] [SerializeField]
     Transform _wand;
@@ -16,45 +23,44 @@ public class WandController : MonoBehaviour
     [Tooltip("リセットにかかる時間")] [SerializeField]
     float _resetDuration = 1f;
 
-    Quaternion _originJoyconOrientation = Quaternion.identity;
-
-    Quaternion _currentRot=Quaternion.identity;
-
+    Quaternion _originRot= Quaternion.identity;
     bool _isResetting = false;
+
+    //現在の絶対的な回転の値
+    public Quaternion CurrentAbsoluteRot()
+    {
+        return _wand.localRotation * Quaternion.Inverse(_originRot);
+    }
 
     public void ResetAiming(InputAction.CallbackContext context)//照準をリセット
     {
         if (!context.performed) return;
 
-        if (_isResetting) return;
+        if (_isResetting) return;//リセット中は無視
 
-        var newOriginJoyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation * Quaternion.AngleAxis(90f,Vector3.right);
+        Quaternion currentRot = CurrentAbsoluteRot();
 
-        StartCoroutine(ResetAimingCoroutine(newOriginJoyconOrientation));
+        //今の絶対的な回転の逆回転を基準の回転として保存することで、今の向きを基準の向きとして扱う
+        StartCoroutine(ResetAimingCoroutine(Quaternion.Inverse(currentRot)));
     }
 
-    IEnumerator ResetAimingCoroutine(Quaternion newOriginJoyconOrientation)
+    IEnumerator ResetAimingCoroutine(Quaternion newOriginRot)
     {
         _isResetting = true;
-        Quaternion preOriginJoyconOrientation = _originJoyconOrientation;
+        Quaternion preOriginRot = _originRot;
 
-        float elapsed_s= 0f;
+        float elapsed_s = 0f;
 
         while (elapsed_s < _resetDuration)
         {
             elapsed_s += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed_s / _resetDuration);
-            _originJoyconOrientation = Quaternion.Slerp(preOriginJoyconOrientation, newOriginJoyconOrientation, t);
+            _originRot = Quaternion.Slerp(preOriginRot, newOriginRot, t);
             yield return null;
         }
 
-        _originJoyconOrientation = newOriginJoyconOrientation;
+        _originRot = newOriginRot;
         _isResetting = false;
-    }
-
-    private void Awake()
-    {
-        _currentRot = Quaternion.identity;
     }
 
     private void Update()
@@ -64,21 +70,9 @@ public class WandController : MonoBehaviour
 
     void UpdateOrientation()
     {
-        Quaternion newRot;
-
-        var joyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation;
-
-        //基準の回転との計算
-        joyconOrientation = Quaternion.Inverse(_originJoyconOrientation) * joyconOrientation;
-
-        //y軸回転とz軸回転を入れ替える
-        Quaternion c = Quaternion.AngleAxis(90f, Vector3.right);
-
-        newRot = c * joyconOrientation * Quaternion.Inverse(c);
+        Quaternion wandRot = _joyconWandController.UpdateWandOrientation(this);
 
         //杖を回転させる
-        _currentRot = newRot;
-
-        _wand.localRotation = _currentRot;
+        _wand.localRotation = wandRot * _originRot;
     }
 }
