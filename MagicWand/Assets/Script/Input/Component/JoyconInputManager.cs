@@ -8,6 +8,9 @@ using UnityEngine;
 //左、右のジョイコンどちらか片方のみを使用(両方あれば右を優先)
 //加速度、ジャイロ、傾きを取得可能
 
+//使用しているライブラリ
+//
+
 public class JoyconInputManager : MonoBehaviour
 {
     private Joycon _joycon;
@@ -23,6 +26,29 @@ public class JoyconInputManager : MonoBehaviour
     public Quaternion Orientation => _orientation;//傾き
 
     public bool IsConnected => _joycon != null;//接続されているか
+
+    //ボタン入力情報
+
+    public bool GetButton(Joycon.Button button)//入力中か
+    {
+        if (_joycon == null) return false;
+
+        return _joycon.GetButton(button);
+    }
+
+    public bool GetButtonDown(Joycon.Button button)//押した瞬間か
+    {
+        if (_joycon == null) return false;
+
+        return _joycon.GetButtonDown(button);
+    }
+
+    public bool GetButtonUp(Joycon.Button button)//離した瞬間か
+    {
+        if (_joycon == null) return false;
+     
+        return _joycon.GetButtonUp(button);
+    }
 
 
     private void Start()
