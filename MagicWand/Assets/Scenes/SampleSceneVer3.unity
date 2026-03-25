@@ -161,12 +161,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 42325023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4698184da5cfb0c4ea5978b42b19d941, type: 3}
+  m_Script: {fileID: 11500000, guid: 4168a5e83176fea4caaf61451831e02c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WandControllerVer2
-  _wand: {fileID: 42325024}
-  _movingAveragedJoyconOrientation: {fileID: 2021340724}
+  m_EditorClassIdentifier: Assembly-CSharp::WandControllerVer3
   _joyconInputManager: {fileID: 2021340722}
+  _rotationSpeed: {x: 100, y: 100}
+  _wand: {fileID: 42325024}
+  _resetDuration: 0.1
 --- !u!1 &305296926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,7 +1560,19 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 42325025}
+        m_TargetAssemblyTypeName: WandControllerVer3, Assembly-CSharp
+        m_MethodName: ResetAiming
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9ed4932f-3b23-4772-91ca-69b5bac0917a
     m_ActionName: 'Wand/Reset[/Keyboard/r]'
   - m_PersistentCalls:
