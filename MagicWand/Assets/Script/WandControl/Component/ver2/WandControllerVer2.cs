@@ -2,6 +2,9 @@ using UnityEngine;
 
 //作成者:杉山
 //杖を動かすクラス(バージョン2)
+//ボタンを押している間だけジャイロオン
+//ひっくり返っているかは考慮する
+//回転速度は調整不可
 
 public class WandControllerVer2 : MonoBehaviour
 {
