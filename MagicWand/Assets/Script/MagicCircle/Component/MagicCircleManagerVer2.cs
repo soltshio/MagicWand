@@ -8,4 +8,7 @@ public class MagicCircleManagerVer2 : MonoBehaviour
 {
     [Tooltip("12‚Ì•ûŒü‚©‚çŒv‰ñ‚è‚É“ü‚ê‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢")] [SerializeField]
     MagicSphere[] _magicSpheres; //–‚–@wã‚Ì‹…‚Ì”z—ñ
+
+    [SerializeField]
+    Magic[] _magics;
 }
