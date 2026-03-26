@@ -38,7 +38,7 @@ public class MagicSphere : MonoBehaviour
         SwitchActive(false);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(TagNameList.Wand)) return;
         if(!_isActive) return;
