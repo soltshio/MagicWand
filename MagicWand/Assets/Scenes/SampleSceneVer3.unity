@@ -168,6 +168,147 @@ MonoBehaviour:
   _rotationSpeed: {x: 100, y: 100}
   _wand: {fileID: 42325024}
   _resetDuration: 0.1
+--- !u!1 &48966827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48966828}
+  - component: {fileID: 48966829}
+  m_Layer: 0
+  m_Name: Time
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48966828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48966827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398445200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &48966829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48966827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic
+  _activeOrderIndexs: 0400000001000000030000000200000004000000
+  _magicLog: Time!
+  _magicSphereMaterial: {fileID: 2100000, guid: d4d7938abcf7e3f4690e545bf9a5b437, type: 2}
+--- !u!1 &93466261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 93466262}
+  - component: {fileID: 93466263}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93466262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93466261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398445200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &93466263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93466261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic
+  _activeOrderIndexs: 02000000000000000300000002000000
+  _magicLog: Water!
+  _magicSphereMaterial: {fileID: 2100000, guid: 9559c9182dadb3840b37ce8619460cc4, type: 2}
+--- !u!1 &277803289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277803290}
+  - component: {fileID: 277803291}
+  m_Layer: 0
+  m_Name: Star
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277803290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277803289}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398445200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &277803291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277803289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic
+  _activeOrderIndexs: 030000000000000002000000040000000100000003000000
+  _magicLog: Star!
+  _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
 --- !u!1 &305296926
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +321,7 @@ GameObject:
   - component: {fileID: 305296930}
   - component: {fileID: 305296928}
   - component: {fileID: 305296929}
-  - component: {fileID: 305296927}
+  - component: {fileID: 305296932}
   m_Layer: 0
   m_Name: Sphere (4)
   m_TagString: Untagged
@@ -188,21 +329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &305296927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305296926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
-  _renderer: {fileID: 305296928}
-  _activeMat: {fileID: 2100000, guid: 7fdb2d0576a71234b992303d8221e2e7, type: 2}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!23 &305296928
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -295,6 +421,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &305296932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305296926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 305296928}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &316005211
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +856,7 @@ GameObject:
   - component: {fileID: 549293273}
   - component: {fileID: 549293271}
   - component: {fileID: 549293272}
-  - component: {fileID: 549293270}
+  - component: {fileID: 549293275}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -724,21 +864,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &549293270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549293269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
-  _renderer: {fileID: 549293271}
-  _activeMat: {fileID: 2100000, guid: 7fdb2d0576a71234b992303d8221e2e7, type: 2}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!23 &549293271
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -831,6 +956,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &549293275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549293269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 549293271}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &741445573
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 741445575}
-  - component: {fileID: 741445574}
+  - component: {fileID: 741445576}
   m_Layer: 0
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -848,27 +987,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &741445574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe218d935d8cc44289a38e5b6422b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManager
-  _magicSpheres:
-  - {fileID: 305296927}
-  - {fileID: 1579516460}
-  - {fileID: 2118804865}
-  - {fileID: 993358636}
-  - {fileID: 549293270}
-  _isRandom: 1
-  _activeCount: 30
-  _activeOrderIndexList: 
 --- !u!4 &741445575
 Transform:
   m_ObjectHideFlags: 0
@@ -889,6 +1007,30 @@ Transform:
   - {fileID: 305296931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &741445576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741445573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3837f63c91310747a7899085a6e69a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer2
+  _magicSpheres:
+  - {fileID: 305296932}
+  - {fileID: 1579516465}
+  - {fileID: 2118804870}
+  - {fileID: 993358641}
+  - {fileID: 549293275}
+  _magics:
+  - {fileID: 1411464324}
+  - {fileID: 93466263}
+  - {fileID: 48966829}
+  - {fileID: 277803291}
+  - {fileID: 2007292119}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +1092,7 @@ GameObject:
   - component: {fileID: 993358639}
   - component: {fileID: 993358637}
   - component: {fileID: 993358638}
-  - component: {fileID: 993358636}
+  - component: {fileID: 993358641}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Untagged
@@ -958,21 +1100,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &993358636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993358635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
-  _renderer: {fileID: 993358637}
-  _activeMat: {fileID: 2100000, guid: 7fdb2d0576a71234b992303d8221e2e7, type: 2}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!23 &993358637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1065,6 +1192,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &993358641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993358635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 993358637}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &1142188836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,6 +1239,89 @@ Transform:
   - {fileID: 2126937072}
   m_Father: {fileID: 42325024}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1398445199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398445200}
+  m_Layer: 0
+  m_Name: Magics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1398445200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398445199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.3025, y: -73.37621, z: 77.93626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1411464323}
+  - {fileID: 93466262}
+  - {fileID: 48966828}
+  - {fileID: 277803290}
+  - {fileID: 2007292118}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1411464322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411464323}
+  - component: {fileID: 1411464324}
+  m_Layer: 0
+  m_Name: Thunder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1411464323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411464322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398445200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1411464324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411464322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic
+  _activeOrderIndexs: 0100000002000000000000000300000004000000
+  _magicLog: Thunder!
+  _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
 --- !u!1 &1579516459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1334,7 @@ GameObject:
   - component: {fileID: 1579516463}
   - component: {fileID: 1579516461}
   - component: {fileID: 1579516462}
-  - component: {fileID: 1579516460}
+  - component: {fileID: 1579516465}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1118,21 +1342,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1579516460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579516459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
-  _renderer: {fileID: 1579516461}
-  _activeMat: {fileID: 2100000, guid: 7fdb2d0576a71234b992303d8221e2e7, type: 2}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!23 &1579516461
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1225,6 +1434,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579516465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579516459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 1579516461}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &1736187397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,6 +1619,53 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &2007292117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007292118}
+  - component: {fileID: 2007292119}
+  m_Layer: 0
+  m_Name: Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2007292118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007292117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398445200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007292119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007292117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic
+  _activeOrderIndexs: 000000000100000002000000030000000400000000000000
+  _magicLog: Fire!
+  _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1895,7 @@ GameObject:
   - component: {fileID: 2118804868}
   - component: {fileID: 2118804866}
   - component: {fileID: 2118804867}
-  - component: {fileID: 2118804865}
+  - component: {fileID: 2118804870}
   m_Layer: 0
   m_Name: Sphere (3)
   m_TagString: Untagged
@@ -1633,21 +1903,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2118804865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118804864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
-  _renderer: {fileID: 2118804866}
-  _activeMat: {fileID: 2100000, guid: 7fdb2d0576a71234b992303d8221e2e7, type: 2}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!23 &2118804866
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1740,6 +1995,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118804870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118804864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 2118804866}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &2126937071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,3 +2131,4 @@ SceneRoots:
   - {fileID: 537828264}
   - {fileID: 1736187399}
   - {fileID: 741445575}
+  - {fileID: 1398445200}
