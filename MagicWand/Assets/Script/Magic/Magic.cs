@@ -18,6 +18,7 @@ public class Magic : MonoBehaviour
     bool _spellIsValid=true;
     int _currentIndex=0;
     
+    public bool SpellIsValid { get { return _spellIsValid; } }
     public bool IsSpellCasted { get { return _currentIndex >= _activeOrderIndexs.Length; } }//魔法が発動したか
     public Material MagicSphereMaterial { get { return _magicSphereMaterial; } }//魔法球のマテリアル
     
@@ -44,7 +45,7 @@ public class Magic : MonoBehaviour
     //なぞった場所が正しかったらtrueを返す、間違っていたらfalseを返す
     public bool CallSpell(int magicSphereIndex)
     {
-        if(IsSpellCasted) return false;
+        if (IsSpellCasted) return false;
         if (!_spellIsValid) return false;
 
         //番号が間違えていたら、魔法が発動しないようにする
