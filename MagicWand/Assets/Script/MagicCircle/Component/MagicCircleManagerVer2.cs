@@ -11,6 +11,9 @@ public class MagicCircleManagerVer2 : MonoBehaviour
     [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
     MagicSphereVer2[] _magicSpheres; //魔法陣上の球の配列
 
+    [Tooltip("魔法陣のなぞった線を描画する機能")] [SerializeField]
+    MagicSphereTrail _magicSphereTrail;
+
     [SerializeField]
     Magic[] _magics;
 
@@ -27,6 +30,9 @@ public class MagicCircleManagerVer2 : MonoBehaviour
     {
         while (true)
         {
+            //魔法陣の線を消す
+            _magicSphereTrail.Clear();
+
             //魔法の初期化(同時に現在発動の可能性がある魔法リストも作成)
             InitAllMagic();
 
@@ -74,6 +80,9 @@ public class MagicCircleManagerVer2 : MonoBehaviour
             {
                 magicSphere.ToDeactive();
             }
+
+            //なぞった球の位置を魔法陣の線の描画機能に伝える
+            _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
 
             //リストの中に発動した魔法があるか確認
             if (IsExistCasted(castableMagicList)) break;
