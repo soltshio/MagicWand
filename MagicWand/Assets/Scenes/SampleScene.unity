@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 305296930}
   - component: {fileID: 305296928}
   - component: {fileID: 305296929}
-  - component: {fileID: 305296927}
   - component: {fileID: 305296932}
   m_Layer: 0
   m_Name: Sphere (4)
@@ -314,18 +313,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &305296927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305296926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
 --- !u!23 &305296928
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -412,8 +399,8 @@ Transform:
   m_GameObject: {fileID: 305296926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 17.7, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
@@ -460,8 +447,8 @@ Transform:
   m_GameObject: {fileID: 316005211}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 0.5, y: 15, z: 0.5}
+  m_LocalPosition: {x: 0, y: -1.44, z: 0}
+  m_LocalScale: {x: 0.1, y: 2, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1142188837}
@@ -632,7 +619,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08906813, y: 0, z: 0, w: 0.99602556}
-  m_LocalPosition: {x: 0, y: 7.5, z: -29.36}
+  m_LocalPosition: {x: 0, y: 1.13, z: 5.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -889,7 +876,6 @@ GameObject:
   - component: {fileID: 549293273}
   - component: {fileID: 549293271}
   - component: {fileID: 549293272}
-  - component: {fileID: 549293270}
   - component: {fileID: 549293275}
   m_Layer: 0
   m_Name: Sphere (1)
@@ -898,18 +884,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &549293270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549293269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
 --- !u!23 &549293271
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -996,8 +970,8 @@ Transform:
   m_GameObject: {fileID: 549293269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: -3.5, y: -0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
@@ -1114,7 +1088,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.6114273
+        value: 0.13904572
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1264,7 +1238,6 @@ GameObject:
   - component: {fileID: 993358639}
   - component: {fileID: 993358637}
   - component: {fileID: 993358638}
-  - component: {fileID: 993358636}
   - component: {fileID: 993358641}
   m_Layer: 0
   m_Name: Sphere (2)
@@ -1273,18 +1246,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &993358636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993358635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
 --- !u!23 &993358637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1371,8 +1332,8 @@ Transform:
   m_GameObject: {fileID: 993358635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.3, y: -18, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: -2, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
@@ -1510,7 +1471,7 @@ Transform:
   m_GameObject: {fileID: 1142188836}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 7.67}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1530,7 +1491,6 @@ GameObject:
   - component: {fileID: 1579516463}
   - component: {fileID: 1579516461}
   - component: {fileID: 1579516462}
-  - component: {fileID: 1579516460}
   - component: {fileID: 1579516465}
   m_Layer: 0
   m_Name: Sphere
@@ -1539,18 +1499,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1579516460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579516459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
 --- !u!23 &1579516461
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1637,8 +1585,8 @@ Transform:
   m_GameObject: {fileID: 1579516459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 3.5, y: -0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
@@ -1682,7 +1630,7 @@ Transform:
   m_GameObject: {fileID: 1736187397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.47651}
+  m_LocalPosition: {x: 0, y: 0, z: 9.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2116,7 +2064,6 @@ GameObject:
   - component: {fileID: 2118804868}
   - component: {fileID: 2118804866}
   - component: {fileID: 2118804867}
-  - component: {fileID: 2118804865}
   - component: {fileID: 2118804870}
   m_Layer: 0
   m_Name: Sphere (3)
@@ -2125,18 +2072,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2118804865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118804864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8844dce424ea96544acf10029f49ee9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphere
 --- !u!23 &2118804866
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2223,8 +2158,8 @@ Transform:
   m_GameObject: {fileID: 2118804864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.3, y: -18, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 2, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
@@ -2271,8 +2206,8 @@ Transform:
   m_GameObject: {fileID: 2126937071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15.06, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: -3.51, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1754368534}
