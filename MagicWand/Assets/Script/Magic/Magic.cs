@@ -12,6 +12,9 @@ public class Magic : MonoBehaviour
     [SerializeField]
     string _magicLog;
 
+    [Tooltip("–‚–@“à—e")] [SerializeField]
+    MagicContentTypeBase _magicContent;
+
     [SerializeField]
     Material _magicSphereMaterial;
 
@@ -60,6 +63,7 @@ public class Magic : MonoBehaviour
         if(_spellIsValid && IsSpellCasted)
         {
             Debug.Log(_magicLog);
+            _magicContent.Activate();
         }
 
         return true;
