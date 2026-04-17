@@ -13,7 +13,7 @@ using UnityEngine.InputSystem;
 
 
 
-public class WandController : MonoBehaviour
+public class WandControllerVer1 : MonoBehaviour
 {
     [SerializeField]
     JoyconInputManager _joyconInputManager;
