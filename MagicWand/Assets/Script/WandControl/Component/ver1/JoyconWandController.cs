@@ -8,7 +8,7 @@ public class JoyconWandController : MonoBehaviour
     [SerializeField]
     MovingAveragedJoyconOrientation _movingAveragedJoyconOrientation;
 
-    public void NewWandRot(WandController wandController,Transform wand)
+    public void NewWandRot(WandControllerVer1 wandController,Transform wand)
     {
         var joyconOrientation = _movingAveragedJoyconOrientation.SmoothedOrientation;
 

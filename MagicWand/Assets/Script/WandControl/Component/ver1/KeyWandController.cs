@@ -22,7 +22,7 @@ public class KeyWandController : MonoBehaviour
         _getVec = context.ReadValue<Vector2>();
     }
 
-    public void NewWandRot(WandController wandController, Transform wand)
+    public void NewWandRot(WandControllerVer1 wandController, Transform wand)
     {
         //yŽ²‰ñ“]
         Quaternion yRot = Quaternion.AngleAxis(_getVec.x * _yRotSpeed * Time.deltaTime, _rotOffsetTrs.up);
