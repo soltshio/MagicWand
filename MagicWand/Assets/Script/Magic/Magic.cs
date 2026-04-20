@@ -63,7 +63,7 @@ public class Magic : MonoBehaviour
         if(_spellIsValid && IsSpellCasted)
         {
             Debug.Log(_magicLog);
-            _magicContent.Activate();
+            if(_magicContent!=null) _magicContent.Activate();
         }
 
         return true;
