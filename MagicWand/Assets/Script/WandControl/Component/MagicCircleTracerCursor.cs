@@ -17,7 +17,11 @@ public class MagicCircleTracerCursor : MonoBehaviour
 
         if (!Physics.Raycast(ray, out hit)) return;
 
+        Debug.Log("何かに当たった");
+
         if (!hit.collider.CompareTag(TagNameList.MagicSphere)) return;
+
+        Debug.Log("魔法陣の球");
 
         var magicSphere = hit.collider.GetComponent<MagicSphereVer3>();
         magicSphere.ToDeactive();

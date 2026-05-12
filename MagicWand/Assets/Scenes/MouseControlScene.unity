@@ -291,9 +291,10 @@ GameObject:
   - component: {fileID: 305296928}
   - component: {fileID: 305296929}
   - component: {fileID: 305296932}
+  - component: {fileID: 305296933}
   m_Layer: 0
   m_Name: Sphere (4)
-  m_TagString: Untagged
+  m_TagString: MagicSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,6 +403,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 305296928}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+--- !u!114 &305296933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305296926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 305296928}
   _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &316005211
@@ -863,9 +878,10 @@ GameObject:
   - component: {fileID: 549293271}
   - component: {fileID: 549293272}
   - component: {fileID: 549293275}
+  - component: {fileID: 549293276}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: MagicSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -974,6 +990,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 549293271}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+--- !u!114 &549293276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549293269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 549293271}
   _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &741445573
@@ -1148,15 +1178,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 741445573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3837f63c91310747a7899085a6e69a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6176893d13ff5da4cb5d7f0ec36c6dbd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer2
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer3
   _magicSpheres:
-  - {fileID: 305296932}
-  - {fileID: 1579516465}
-  - {fileID: 2118804870}
-  - {fileID: 993358641}
-  - {fileID: 549293275}
+  - {fileID: 305296933}
+  - {fileID: 1579516466}
+  - {fileID: 2118804871}
+  - {fileID: 993358642}
+  - {fileID: 549293276}
   _magicSphereTrail: {fileID: 741445577}
   _magics:
   - {fileID: 1138852479}
@@ -1226,9 +1256,10 @@ GameObject:
   - component: {fileID: 993358637}
   - component: {fileID: 993358638}
   - component: {fileID: 993358641}
+  - component: {fileID: 993358642}
   m_Layer: 0
   m_Name: Sphere (2)
-  m_TagString: Untagged
+  m_TagString: MagicSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1337,6 +1368,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 993358637}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+--- !u!114 &993358642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993358635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 993358637}
   _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &1040190897
@@ -1732,9 +1777,10 @@ GameObject:
   - component: {fileID: 1579516461}
   - component: {fileID: 1579516462}
   - component: {fileID: 1579516465}
+  - component: {fileID: 1579516466}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: MagicSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1843,6 +1889,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 1579516461}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+--- !u!114 &1579516466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579516459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 1579516461}
   _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &1736187397
@@ -2351,9 +2411,10 @@ GameObject:
   - component: {fileID: 2118804866}
   - component: {fileID: 2118804867}
   - component: {fileID: 2118804870}
+  - component: {fileID: 2118804871}
   m_Layer: 0
   m_Name: Sphere (3)
-  m_TagString: Untagged
+  m_TagString: MagicSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2462,6 +2523,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
+  _renderer: {fileID: 2118804866}
+  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+--- !u!114 &2118804871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118804864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 2118804866}
   _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!1 &2126937071
