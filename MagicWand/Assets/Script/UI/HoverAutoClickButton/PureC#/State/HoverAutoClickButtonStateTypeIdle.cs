@@ -6,17 +6,17 @@ using UnityEngine.EventSystems;
 
 public class HoverAutoClickButtonStateTypeIdle : HoverAutoClickButtonStateTypeBase, IPointerEnterHandler
 {
-   public override void OnEnter(HoverAutoClickButtonStateMachine stateMachine)
+   public void OnEnter(HoverAutoClickButtonStateMachine stateMachine)
    {
        
    }
 
-   public override void OnUpdate(HoverAutoClickButtonStateMachine stateMachine)
+   public void OnUpdate(HoverAutoClickButtonStateMachine stateMachine)
    {
       
    }
 
-   public override void OnExit(HoverAutoClickButtonStateMachine stateMachine)
+   public void OnExit(HoverAutoClickButtonStateMachine stateMachine)
    {
 
    }
