@@ -15,14 +15,14 @@ public class HoverAutoClickButton_Test : MonoBehaviour, IPointerEnterHandler,IPo
     [SerializeField]
     private float _pressDuration = 0.1f;
 
-    private bool _isHovering=false;
-    private bool _hasClicked=false;
+    private bool _isHovering=false;//マウスカーソルがボタンに合わさっているか
+    private bool _hasClicked=false;//クリックされたか
     private float _timer=0f;
 
     private void Update()
     {
-        if (!_isHovering || _hasClicked)
-            return;
+        if (!_isHovering || _hasClicked) return;
+
 
         _timer += Time.deltaTime;
 
