@@ -70,6 +70,8 @@ public class HoverAutoClickButton_Test : MonoBehaviour, IPointerEnterHandler,IPo
             gameObject,
             eventData,
             ExecuteEvents.pointerClickHandler);
+
+        OnAutoClick?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
