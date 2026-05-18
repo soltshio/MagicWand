@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public interface HoverAutoClickButtonStateTypeBase
 {
-    public void OnEnter(HoverAutoClickButtonStateMachine stateMachine);//ステートに入ったときの処理
-    public void OnUpdate(HoverAutoClickButtonStateMachine stateMachine);//ステートにいるときの処理
-    public void OnExit(HoverAutoClickButtonStateMachine stateMachine);//ステートから出るときの処理
+    public void OnEnter(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter);//ステートに入ったときの処理
+    public void OnUpdate(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter);//ステートにいるときの処理
+    public void OnExit(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter);//ステートから出るときの処理
 }
