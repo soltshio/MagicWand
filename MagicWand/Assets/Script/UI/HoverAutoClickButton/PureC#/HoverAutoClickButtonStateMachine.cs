@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,26 +11,69 @@ public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerEx
 {
     HoverAutoClickButtonStateTypeBase _currentState;
     HoverAutoClickButtonEState _currentEState;
+    HoverAutoClickButtonParameter _parameter;
 
     Dictionary<HoverAutoClickButtonEState,HoverAutoClickButtonStateTypeBase> _stateDic;
 
+    public event Action<HoverAutoClickButtonEState> OnStateChanged; // 状態が変化したときのイベント
+
     public HoverAutoClickButtonEState CurrentState { get => _currentEState; }
-
-    public HoverAutoClickButtonStateMachine()
+    public float HoveringTime//カーソルが合わさっている時間
     {
-            //_stateDic = new Dictionary<HoverAutoClickButtonEState, HoverAutoClickButtonStateTypeBase>()
-            //{
-            //    { HoverAutoClickButtonEState.Idle, new HoverAutoClickButtonStateTypeIdle() },
-            //    { HoverAutoClickButtonEState.Hovering, new HoverAutoClickButtonStateTypeHovering() },
-            //    { HoverAutoClickButtonEState.Clicked, new HoverAutoClickButtonStateTypeClicked() },
-            //};
-
-        _currentEState = HoverAutoClickButtonEState.Idle;
+        get
+        {
+            if (_currentState is HoverAutoClickButtonStateTypeHovering hoveringState)
+            {
+                return hoveringState.HoveringTime;
+            }
+            else
+            {
+                return 0f;
+            }
+        }
     }
 
+
+    public HoverAutoClickButtonStateMachine(HoverAutoClickButtonParameter parameter)
+    {
+        _parameter = parameter;
+
+        _stateDic = new Dictionary<HoverAutoClickButtonEState, HoverAutoClickButtonStateTypeBase>()
+        {
+             { HoverAutoClickButtonEState.Idle, new HoverAutoClickButtonStateTypeIdle() },
+             { HoverAutoClickButtonEState.Hovering, new HoverAutoClickButtonStateTypeHovering() },
+             { HoverAutoClickButtonEState.Clicked, new HoverAutoClickButtonStateTypeClicked() },
+        };
+
+        //ステートマシンのセット処理
+        foreach (var state in _stateDic.Values)
+        {
+            state.SetStateMachine(this);
+        }
+
+        _currentEState = HoverAutoClickButtonEState.Idle;
+        ChangeState(_currentEState);
+    }
+
+    //毎フレーム処理
+    public void Update()
+    {
+        _currentState.OnUpdate(_parameter);
+    }
+
+    //ステート変更
     public void ChangeState(HoverAutoClickButtonEState newState)
     {
+        if (!_stateDic.TryGetValue(newState, out var newStateInstance)) return;
+
+        if(_currentState != null) _currentState.OnExit(_parameter);
+
+        //状態を変更
         _currentEState = newState;
+        _currentState = newStateInstance;
+        OnStateChanged?.Invoke(newState);
+
+        if (_currentState != null) _currentState.OnEnter(_parameter);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
