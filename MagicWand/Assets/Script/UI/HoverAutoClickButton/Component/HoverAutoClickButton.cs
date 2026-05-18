@@ -14,6 +14,8 @@ public class HoverAutoClickButton : MonoBehaviour, IPointerExitHandler, IPointer
 
     public event Action<HoverAutoClickButtonEState> OnStateChanged;// 状態が変化したときのイベント
 
+    public HoverAutoClickButtonParameter Parameter { get => _parameter; }//パラメーター
+    public HoverAutoClickButtonEState CurrentState { get => _stateMachine.CurrentState; }//現在の状態
     public float HoveringTime { get => _stateMachine.HoveringTime; }//カーソルが合わさっている時間
 
     void Awake()

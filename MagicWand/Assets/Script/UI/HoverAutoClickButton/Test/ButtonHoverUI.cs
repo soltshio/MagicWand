@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ButtonHoverUI : MonoBehaviour
 {
     [SerializeField]
-    HoverAutoClickButton_Test _hoverAutoClickButton;
+    HoverAutoClickButton _hoverAutoClickButton;
 
     [SerializeField]
     Image _hoverProgressGauge;
@@ -16,34 +16,32 @@ public class ButtonHoverUI : MonoBehaviour
 
     void OnEnable()
     {
-        _hoverAutoClickButton.OnAutoClick += HideGauge;
-        _hoverAutoClickButton.OnCursorExit += HideGauge;
-        _hoverAutoClickButton.OnCursorEnter += ShowGauge;
+        _hoverAutoClickButton.OnStateChanged += OnButtonStateChanged;
     }
 
     void OnDisable()
     {
-        _hoverAutoClickButton.OnAutoClick -= HideGauge;
-        _hoverAutoClickButton.OnCursorExit -= HideGauge;
-        _hoverAutoClickButton.OnCursorEnter -= ShowGauge;
+        _hoverAutoClickButton.OnStateChanged -= OnButtonStateChanged;
     }
 
     void Update()
     {
         if (!_hoverProgressGauge.enabled) return;
 
-        float gaugeAmount = _hoverAutoClickButton.HoveringTime / _hoverAutoClickButton.HoverDurationToClick;
+        float gaugeAmount = _hoverAutoClickButton.HoveringTime / _hoverAutoClickButton.Parameter.HoverDurationToClick;
 
         _hoverProgressGauge.fillAmount = gaugeAmount;
     }
 
-    void ShowGauge()
+    void OnButtonStateChanged(HoverAutoClickButtonEState state)
     {
-        _hoverProgressGauge.enabled = true;
-    }
-
-    void HideGauge()
-    {
-        _hoverProgressGauge.enabled = false;
+        if(state == HoverAutoClickButtonEState.Hovering)
+        {
+            _hoverProgressGauge.enabled = true;
+        }
+        else
+        {
+            _hoverProgressGauge.enabled = false;
+        }
     }
 }
