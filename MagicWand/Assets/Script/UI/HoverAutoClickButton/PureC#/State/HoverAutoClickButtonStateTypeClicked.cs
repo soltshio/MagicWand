@@ -37,8 +37,7 @@ public class HoverAutoClickButtonStateTypeClicked : HoverAutoClickButtonStateTyp
 
     private async UniTask AutoClickAsync(HoverAutoClickButtonParameter parameter)
     {
-        PointerEventData eventData =
-            new PointerEventData(EventSystem.current);
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
 
         eventData.pointerEnter = parameter.ButtonUIObject;
         eventData.pointerPress = parameter.ButtonUIObject;
@@ -49,11 +48,10 @@ public class HoverAutoClickButtonStateTypeClicked : HoverAutoClickButtonStateTyp
             eventData,
             ExecuteEvents.pointerDownHandler);
 
-        // 押されている時間
-        await UniTask.Delay(
-            TimeSpan.FromSeconds(parameter.PressDuration));
+        var token = parameter.ButtonUIObject.GetCancellationTokenOnDestroy();
 
-        if (parameter.ButtonUIObject == null) return;//待ってる間にシーン遷移などによりオブジェクトが消えてしまった時にエラーにならないように
+        // 押されている時間
+        await UniTask.Delay(TimeSpan.FromSeconds(parameter.PressDuration), cancellationToken: token);
 
         // 離す
         ExecuteEvents.Execute(
