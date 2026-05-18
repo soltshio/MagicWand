@@ -6,28 +6,29 @@ using UnityEngine.EventSystems;
 
 public class HoverAutoClickButtonStateTypeIdle : HoverAutoClickButtonStateTypeBase, IPointerEnterHandler
 {
-    bool _finished = false;
+    HoverAutoClickButtonStateMachine _stateMachine;
 
-    public void OnEnter(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void SetStateMachine(HoverAutoClickButtonStateMachine stateMachine)
+    {
+        _stateMachine = stateMachine;
+    }
+
+    public void OnEnter(HoverAutoClickButtonParameter parameter)
    {
        
    }
 
-   public void OnUpdate(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+   public void OnUpdate(HoverAutoClickButtonParameter parameter)
    {
-        if (_finished)
-        {
-            stateMachine.ChangeState(HoverAutoClickButtonEState.Hovering);
-        }
     }
 
-   public void OnExit(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+   public void OnExit(HoverAutoClickButtonParameter parameter)
    {
 
    }
 
    public void OnPointerEnter(PointerEventData eventData)
    {
-        _finished = true;
+        _stateMachine.ChangeState(HoverAutoClickButtonEState.Hovering);
     }
 }

@@ -11,23 +11,27 @@ public class HoverAutoClickButtonStateTypeHovering : HoverAutoClickButtonStateTy
 
     public float HoveringTime { get => _hoveringTime; }//カーソルが合わさっている時間
 
-    public void OnEnter(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void SetStateMachine(HoverAutoClickButtonStateMachine stateMachine)
     {
         _stateMachine = stateMachine;
+    }
+
+    public void OnEnter(HoverAutoClickButtonParameter parameter)
+    {
         _hoveringTime = 0f;
     }
 
-    public void OnUpdate(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void OnUpdate(HoverAutoClickButtonParameter parameter)
     {
         //数秒間カーソルが合っていたら、クリック状態に遷移
         _hoveringTime += Time.deltaTime;
 
         if (_hoveringTime < parameter.HoverDurationToClick) return;
         
-        stateMachine.ChangeState(HoverAutoClickButtonEState.Clicked);
+        _stateMachine.ChangeState(HoverAutoClickButtonEState.Clicked);
     }
 
-    public void OnExit(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void OnExit(HoverAutoClickButtonParameter parameter)
     {
 
     }

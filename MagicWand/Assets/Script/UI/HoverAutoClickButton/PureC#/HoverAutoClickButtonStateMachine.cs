@@ -45,6 +45,12 @@ public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerEx
              { HoverAutoClickButtonEState.Clicked, new HoverAutoClickButtonStateTypeClicked() },
         };
 
+        //ステートマシンのセット処理
+        foreach (var state in _stateDic.Values)
+        {
+            state.SetStateMachine(this);
+        }
+
         _currentEState = HoverAutoClickButtonEState.Idle;
         ChangeState(_currentEState);
     }
@@ -52,7 +58,7 @@ public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerEx
     //毎フレーム処理
     public void Update()
     {
-        _currentState.OnUpdate(this,_parameter);
+        _currentState.OnUpdate(_parameter);
     }
 
     //ステート変更
@@ -60,14 +66,14 @@ public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerEx
     {
         if (!_stateDic.TryGetValue(newState, out var newStateInstance)) return;
 
-        if(_currentState != null) _currentState.OnExit(this,_parameter);
+        if(_currentState != null) _currentState.OnExit(_parameter);
 
         //状態を変更
         _currentEState = newState;
         _currentState = newStateInstance;
         OnStateChanged?.Invoke(newState);
 
-        if (_currentState != null) _currentState.OnEnter(this,_parameter);
+        if (_currentState != null) _currentState.OnEnter(_parameter);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

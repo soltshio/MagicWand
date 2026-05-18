@@ -8,30 +8,31 @@ using UnityEngine.EventSystems;
 
 public class HoverAutoClickButtonStateTypeClicked : HoverAutoClickButtonStateTypeBase, IPointerExitHandler
 {
-    bool _finished = false;
+    HoverAutoClickButtonStateMachine _stateMachine;
 
-    public void OnEnter(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void SetStateMachine(HoverAutoClickButtonStateMachine stateMachine)
     {
-        _finished = false;
+        _stateMachine = stateMachine;
+    }
+
+    public void OnEnter(HoverAutoClickButtonParameter parameter)
+    {
         AutoClickAsync(parameter).Forget();
     }
 
-    public void OnUpdate(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void OnUpdate(HoverAutoClickButtonParameter parameter)
     {
-        if(_finished)
-        {
-            stateMachine.ChangeState(HoverAutoClickButtonEState.Idle);
-        }
+
     }
 
-    public void OnExit(HoverAutoClickButtonStateMachine stateMachine, HoverAutoClickButtonParameter parameter)
+    public void OnExit(HoverAutoClickButtonParameter parameter)
     {
 
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _finished = true;
+        _stateMachine.ChangeState(HoverAutoClickButtonEState.Idle);
     }
 
     private async UniTask AutoClickAsync(HoverAutoClickButtonParameter parameter)
