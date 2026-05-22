@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonHoverUI : MonoBehaviour
+//作成者:杉山
+//数秒間カーソルを合わせていると、自動クリックするボタンがホバー中(カーソルが合わせられている時)にホバー時間の割合をゲージで表示する
+
+public class ButtonHoveringViewUI : MonoBehaviour
 {
     [SerializeField]
     HoverAutoClickButton _hoverAutoClickButton;
