@@ -2614,6 +2614,7 @@ GameObject:
   - component: {fileID: 2309549961051584316}
   - component: {fileID: 3221410279629732915}
   - component: {fileID: 5293460268352624328}
+  - component: {fileID: 5293460268352624329}
   m_Layer: 5
   m_Name: TestCursor
   m_TagString: Untagged
@@ -2630,7 +2631,7 @@ Transform:
   m_GameObject: {fileID: 1672022908410668030}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 0.34, y: 0.34, z: 0.34}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7467,6 +7468,18 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &5293460268352624329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672022908410668030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcac9a4ee4f33e3488c5d7036293b9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChaseCursorUIObject
 --- !u!1001 &7331841867847899471
 PrefabInstance:
   m_ObjectHideFlags: 0
