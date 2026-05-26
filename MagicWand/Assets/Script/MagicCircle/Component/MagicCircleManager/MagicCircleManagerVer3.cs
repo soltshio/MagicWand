@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using System;
 
 public class MagicCircleManagerVer3 : MonoBehaviour
 {
@@ -11,15 +12,14 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("魔法陣のなぞった線を描画する機能")] [SerializeField]
     MagicSphereTrail _magicSphereTrail;
 
-    [SerializeField]
-    Magic[] _magics;
-
-    [SerializeField]
+    [Tooltip("魔法一覧")] [SerializeField]
     SerializableDictionary<EMagic, Magic> _magicsDictionary;
 
     float _magicCoolTime = 2f;
 
     Coroutine castMagicCoroutine = null;
+
+    public event Action<EMagic> OnMagicActived;//魔法が発動した時のイベント
 
     private void Start()
     {
@@ -36,10 +36,10 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //魔法の初期化(同時に現在発動の可能性がある魔法リストも作成)
             InitAllMagic();
 
-            List<Magic> castableMagicList = MakeCastableMagicList();
+            Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
 
             //魔法陣をなぞった時の処理
-            castMagicCoroutine = StartCoroutine(CastMagicCoroutine(castableMagicList));
+            castMagicCoroutine = StartCoroutine(CastMagicCoroutine(castableMagicDic));
 
             //魔法が発動するまで待つ
             yield return new WaitUntil(() => castMagicCoroutine == null);
@@ -49,31 +49,39 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         }
     }
 
-    IEnumerator CastMagicCoroutine(List<Magic> castableMagicList)
+    IEnumerator CastMagicCoroutine(Dictionary<EMagic, Magic> castableMagicDic)
     {
         while (true)
         {
+            bool isAnyMagicActived = false;//いずれかの魔法が発動したか
+
             //発動可能性のある魔法から、次になぞるべき球をアクティブにする
             List<int> activeMagicSphereIndexList = new();
 
-            foreach (var magic in castableMagicList)
+            foreach (var magicPair in castableMagicDic)
             {
-                int nextIndex = magic.NextMagicSphereIndex;
+                int nextIndex = magicPair.Value.NextMagicSphereIndex;
 
                 if (nextIndex == -1) continue;
 
-                _magicSpheres[nextIndex].ToActive(magic.MagicSphereMaterial);
+                _magicSpheres[nextIndex].ToActive(magicPair.Value.MagicSphereMaterial);
                 activeMagicSphereIndexList.Add(nextIndex);
             }
 
-            //杖がどれかの球に触れるまで待つ&触れた球のインデックスを取得
+            //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             int touchedMagicSphereindex = -1;
             yield return new WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex));
 
             //杖に触れた球のインデックスを伝える
-            foreach (var magic in castableMagicList)
+            foreach (var magicPair in castableMagicDic)
             {
-                magic.CallSpell(touchedMagicSphereindex);
+                bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
+
+                if (magicIsActived)
+                {
+                    OnMagicActived?.Invoke(magicPair.Key);
+                    isAnyMagicActived = true;
+                }
             }
 
             //球を全て非アクティブにする
@@ -85,11 +93,17 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
 
-            //リストの中に発動した魔法があるか確認
-            if (IsExistCasted(castableMagicList)) break;
+            //既に発動した魔法があれば、一旦魔法陣をなぞる処理を終える
+            if (isAnyMagicActived) break;
 
             //発動可能性のない魔法をリストから消す
-            castableMagicList.RemoveAll(magic => !magic.SpellIsValid);
+            foreach (var magicPair in _magicsDictionary)
+            {
+                if(!magicPair.Value.SpellIsValid)
+                {
+                    castableMagicDic.Remove(magicPair.Key);
+                }
+            }
         }
 
         castMagicCoroutine = null;
@@ -113,34 +127,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         return false;
     }
 
-    bool IsExistCasted(List<Magic> castableMagicList)
-    {
-        foreach (var magic in castableMagicList)
-        {
-            if (magic.IsSpellCasted)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    List<Magic> MakeCastableMagicList()
-    {
-        List<Magic> castableMagicList = new List<Magic>();
-
-        foreach (var magic in _magics)
-        {
-            castableMagicList.Add(magic);
-        }
-
-        return castableMagicList;
-    }
-
     void InitAllMagic()
     {
-        foreach (var magic in _magics)
+        foreach (var magic in _magicsDictionary.Values)
         {
             magic.Initialize();
         }
