@@ -12,17 +12,32 @@ public class GamePhaseStateMachine : MonoBehaviour
     EGamePhaseState _initialState=EGamePhaseState.None;
 
     GamePhaseStateTypeBase _currentState;
+    EGamePhaseState _currentEState=EGamePhaseState.None;
+
+    public EGamePhaseState CurrentState => _currentEState;//現在のステートを取得
 
     void Awake()
     {
-
+        ChangeState(_initialState);
     }
 
+    void Update()
+    {
+        if (_currentState != null) _currentState.OnUpdate(this);
+    }
+
+    //ステートの変更
     public void ChangeState(EGamePhaseState nextState)
     {
-        if(_currentState != null) _currentState.OnExit(this);
+        //存在しないステートが指定された場合は、処理を行わない
+        if (nextState == EGamePhaseState.None) return;
+        if (!_stateDictionary.TryGetValue(nextState, out var nextStateInstance)) return;
 
-        _currentState = _stateDictionary[nextState];
+
+        if (_currentState != null) _currentState.OnExit(this);
+
+        _currentState = nextStateInstance;
+        _currentEState = nextState;
 
         if(_currentState != null) _currentState.OnEnter(this);
     }
