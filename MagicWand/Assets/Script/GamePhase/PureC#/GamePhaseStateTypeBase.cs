@@ -1,7 +1,7 @@
-﻿//作成者:杉山
-//ゲームフェーズの状態の基底クラス
+﻿using UnityEngine;
 
-using UnityEngine;
+//作成者:杉山
+//ゲームフェーズの状態の基底クラス
 
 public abstract class GamePhaseStateTypeBase : MonoBehaviour
 {
