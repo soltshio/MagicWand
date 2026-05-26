@@ -550,6 +550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395197796}
+  - component: {fileID: 395197797}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -572,6 +573,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1015091474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &395197797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395197795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cf720ae4a88184282eb1a79ae7ec3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
+  _clearCount: 3
+  _magicCircleManager: {fileID: 741445578}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 613696710}
+  - component: {fileID: 613696711}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Untagged
@@ -942,6 +958,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1015091474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &613696711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613696709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f5361e83cf1c2448e345d540ecefc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeFinish_InGameScene
 --- !u!1 &741445573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,12 +1152,6 @@ MonoBehaviour:
   - {fileID: 993358642}
   - {fileID: 549293276}
   _magicSphereTrail: {fileID: 741445577}
-  _magics:
-  - {fileID: 1138852479}
-  - {fileID: 52057999}
-  - {fileID: 1910504419}
-  - {fileID: 1040190899}
-  - {fileID: 525951}
   _magicsDictionary:
     _list:
     - key: 0
@@ -1383,11 +1405,11 @@ MonoBehaviour:
   _stateDictionary:
     _list:
     - key: 0
-      value: {fileID: 0}
+      value: {fileID: 1394882909}
     - key: 2
-      value: {fileID: 0}
+      value: {fileID: 395197797}
     - key: 1
-      value: {fileID: 0}
+      value: {fileID: 613696711}
   _initialState: 0
 --- !u!1 &1028528762
 GameObject:
@@ -1952,6 +1974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1394882908}
+  - component: {fileID: 1394882909}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -1974,6 +1997,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1015091474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394882909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394882907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d49b65e7c5a027a4a8234741271eb708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeStart_InGameScene
 --- !u!1 &1579516459
 GameObject:
   m_ObjectHideFlags: 0

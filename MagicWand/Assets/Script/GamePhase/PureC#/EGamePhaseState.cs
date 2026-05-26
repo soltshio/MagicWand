@@ -10,5 +10,5 @@ public enum EGamePhaseState
     Finish,//終了時
 
     //☆インゲームシーン限定
-    Game_MainGameScene,//ゲーム中
+    Game_InGameScene,//ゲーム中
 }

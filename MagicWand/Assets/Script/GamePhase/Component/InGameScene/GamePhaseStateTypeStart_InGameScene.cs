@@ -7,6 +7,7 @@ public class GamePhaseStateTypeStart_InGameScene : GamePhaseStateTypeBase
 {
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
+        stateMachine.ChangeState(EGamePhaseState.Game_InGameScene);
         Debug.Log("Start!");
     }
 
