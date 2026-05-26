@@ -1130,6 +1130,18 @@ MonoBehaviour:
   - {fileID: 1910504419}
   - {fileID: 1040190899}
   - {fileID: 525951}
+  _magicsDictionary:
+    _list:
+    - key: 0
+      value: {fileID: 1138852479}
+    - key: 1
+      value: {fileID: 52057999}
+    - key: 2
+      value: {fileID: 1910504419}
+    - key: 3
+      value: {fileID: 1040190899}
+    - key: 4
+      value: {fileID: 525951}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

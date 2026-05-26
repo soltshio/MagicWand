@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MagicCircleManagerVer3 : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
     [SerializeField]
     Magic[] _magics;
+
+    [SerializeField]
+    SerializableDictionary<EMagic, Magic> _magicsDictionary;
 
     float _magicCoolTime = 2f;
 
@@ -37,6 +41,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //魔法陣をなぞった時の処理
             castMagicCoroutine = StartCoroutine(CastMagicCoroutine(castableMagicList));
 
+            //魔法が発動するまで待つ
             yield return new WaitUntil(() => castMagicCoroutine == null);
 
             //少し待ってから魔法陣をまたなぞれるようにする
