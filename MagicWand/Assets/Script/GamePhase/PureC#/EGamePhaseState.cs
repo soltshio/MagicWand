@@ -5,10 +5,10 @@ public enum EGamePhaseState
 {
     None = -1,//エラー
 
-    //☆インゲームのシーン
-    Start_MainGameScene,//開始
+    //☆どのシーンでも共通に使用可能
+    Start,//開始
+    Finish,//終了時
+
+    //☆インゲームシーン限定
     Game_MainGameScene,//ゲーム中
-    Finish_MainGameScene,//終了時
-
-
 }

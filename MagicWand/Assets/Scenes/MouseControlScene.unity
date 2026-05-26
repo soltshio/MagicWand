@@ -1372,9 +1372,9 @@ MonoBehaviour:
     _list:
     - key: 0
       value: {fileID: 0}
-    - key: 1
-      value: {fileID: 0}
     - key: 2
+      value: {fileID: 0}
+    - key: 1
       value: {fileID: 0}
   _initialState: 0
 --- !u!1 &1028528762
