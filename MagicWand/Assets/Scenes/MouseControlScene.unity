@@ -970,6 +970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f5361e83cf1c2448e345d540ecefc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeFinish_InGameScene
+  _renderers:
+  - {fileID: 1579516461}
+  - {fileID: 549293271}
+  - {fileID: 993358637}
+  - {fileID: 2118804866}
+  - {fileID: 305296928}
+  - {fileID: 1118699961}
 --- !u!1 &673321265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,6 +2060,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49b65e7c5a027a4a8234741271eb708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeStart_InGameScene
+  _renderers:
+  - {fileID: 1579516461}
+  - {fileID: 549293271}
+  - {fileID: 993358637}
+  - {fileID: 2118804866}
+  - {fileID: 305296928}
+  - {fileID: 1118699961}
 --- !u!1 &1579516459
 GameObject:
   m_ObjectHideFlags: 0
@@ -7703,7 +7717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1611580340408796832, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8056475812027139527, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_Pivot.x

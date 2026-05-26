@@ -16,7 +16,7 @@ public class GamePhaseStateMachine : MonoBehaviour
 
     public EGamePhaseState CurrentState => _currentEState;//現在のステートを取得
 
-    void Awake()
+    void Start()
     {
         ChangeState(_initialState);
     }
