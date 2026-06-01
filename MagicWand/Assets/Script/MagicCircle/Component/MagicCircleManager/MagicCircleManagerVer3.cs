@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 using System;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class MagicCircleManagerVer3 : MonoBehaviour
 {
@@ -17,16 +18,14 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
     float _magicCoolTime = 2f;
 
-    Coroutine castMagicCoroutine = null;
-
     public event Action<EMagic> OnMagicActived;//魔法が発動した時のイベント
 
     private void Start()
     {
-        StartCoroutine(MagicCircleCoroutine());
+        MagicCircleAsync(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
-    IEnumerator MagicCircleCoroutine()
+    async UniTask MagicCircleAsync(CancellationToken token)
     {
         while (true)
         {
@@ -39,17 +38,15 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
 
             //魔法陣をなぞった時の処理
-            castMagicCoroutine = StartCoroutine(CastMagicCoroutine(castableMagicDic));
-
             //魔法が発動するまで待つ
-            yield return new WaitUntil(() => castMagicCoroutine == null);
+            await CastMagicAsync(castableMagicDic, token);
 
             //少し待ってから魔法陣をまたなぞれるようにする
-            yield return new WaitForSeconds(_magicCoolTime);
+            await UniTask.Delay(TimeSpan.FromSeconds(_magicCoolTime), cancellationToken: token);
         }
     }
 
-    IEnumerator CastMagicCoroutine(Dictionary<EMagic, Magic> castableMagicDic)
+    async UniTask CastMagicAsync(Dictionary<EMagic, Magic> castableMagicDic, CancellationToken token)
     {
         while (true)
         {
@@ -70,7 +67,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             int touchedMagicSphereindex = -1;
-            yield return new WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex));
+            await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
 
             //杖に触れた球のインデックスを伝える
             foreach (var magicPair in castableMagicDic)
@@ -99,14 +96,12 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //発動可能性のない魔法をリストから消す
             foreach (var magicPair in _magicsDictionary)
             {
-                if(!magicPair.Value.SpellIsValid)
+                if (!magicPair.Value.SpellIsValid)
                 {
                     castableMagicDic.Remove(magicPair.Key);
                 }
             }
         }
-
-        castMagicCoroutine = null;
     }
 
     bool IsTouchedAnyMagicSphere(List<int> activeMagicSphereIndexList, out int touchedMagicSphereindex)
