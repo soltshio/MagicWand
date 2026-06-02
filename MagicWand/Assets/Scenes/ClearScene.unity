@@ -664,7 +664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4883176651519479009, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 194.65
+      value: 259.4
       objectReference: {fileID: 0}
     - target: {fileID: 4883176651519479009, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_SizeDelta.y
@@ -672,7 +672,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5359313180939316376, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_text
-      value: ToTitle
+      value: "\u30BF\u30A4\u30C8\u30EB\u3078"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359313180939316376, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
+      propertyPath: m_fontSize
+      value: 52.24
       objectReference: {fileID: 0}
     - target: {fileID: 5359313180939316376, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_fontColor.b
@@ -685,6 +689,10 @@ PrefabInstance:
     - target: {fileID: 5359313180939316376, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_fontColor.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359313180939316376, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 52.24
       objectReference: {fileID: 0}
     - target: {fileID: 5359313180939316376, guid: c49a7b9c1fd554e45a67795f1c84cf38, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -1006,15 +1014,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Clear!!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 189a0bec511e88c4192b5b7fb02e6faa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281990134
-  m_fontColor: {r: 0.96547186, g: 0.9843137, b: 0.222, a: 1}
+    rgba: 4285530107
+  m_fontColor: {r: 0.98546004, g: 1, b: 0.435849, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1037,7 +1045,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
