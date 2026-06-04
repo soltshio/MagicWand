@@ -12,6 +12,6 @@ public class FadeInOutTest : MonoBehaviour
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.4f));
 
-        _fadeInOutPanel.FadeTrigger(true);
+        _fadeInOutPanel.FadeTrigger(FadeInOutPanel.FadeEType.FadeIn);
     }
 }

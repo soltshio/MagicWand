@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/TitleScene.unity
+    guid: 4893f2aae4545314d9c32880763f6d59
+  - enabled: 1
+    path: Assets/Scenes/MouseControlScene.unity
+    guid: b631021dc66ab914ca4c68e77e461bde
+  - enabled: 1
+    path: Assets/Scenes/ClearScene.unity
+    guid: fd31d723a2ec7284f8b6191a7b00a085
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
