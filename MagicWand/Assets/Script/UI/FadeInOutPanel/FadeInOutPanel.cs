@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 //作成者:杉山
 //フェードイン・アウトするパネル
+//フェードイン...徐々に映像がはっきりと見えてくる手法
+//フェードアウト...徐々に映像が見えなくなる手法
 
 [RequireComponent(typeof(Image))]
 public class FadeInOutPanel : MonoBehaviour
@@ -25,6 +27,18 @@ public class FadeInOutPanel : MonoBehaviour
 
     public event Action <FadeInOutEState> OnChangeState;
 
+    public FadeInOutEState FadeState
+    {
+        get { return _fadeState; }
+        private set
+        {
+            if (_fadeState == value) return;
+
+            _fadeState = value;
+            OnChangeState?.Invoke(_fadeState);
+        }
+    }
+
     public float FadeInOutDuration
     {
         get { return _fadeInOutDuration; }
@@ -36,12 +50,12 @@ public class FadeInOutPanel : MonoBehaviour
     public void FadeTrigger(bool isFadeIn)
     {
         //既に完了していた場合は弾く
-        if(_fadeState == FadeInOutEState.CompleteFadeIn && isFadeIn) return;//フェードインが完了しているのにフェードインをしようとしたとき
+        if(FadeState == FadeInOutEState.CompleteFadeIn && isFadeIn) return;//フェードインが完了しているのにフェードインをしようとしたとき
 
-        if (_fadeState == FadeInOutEState.CompleteFadeOut && !isFadeIn) return;//フェードアウトが完了しているのにフェードアウトをしようとしたとき
+        if (FadeState == FadeInOutEState.CompleteFadeOut && !isFadeIn) return;//フェードアウトが完了しているのにフェードアウトをしようとしたとき
 
         //フェードイン・アウトの最中であれば今行っているフェード処理を中断して新しくフェード処理を開始する
-        if (_fadeState == FadeInOutEState.FadingIn || _fadeState == FadeInOutEState.FadingOut)
+        if (FadeState == FadeInOutEState.FadingIn || FadeState == FadeInOutEState.FadingOut)
         {
             _cts?.Cancel();
             _cts?.Dispose();
@@ -60,9 +74,12 @@ public class FadeInOutPanel : MonoBehaviour
         Color currentMyPanelColor = _myPanelImage.color;
 
         currentMyPanelColor.a = _isInitHide ? 1f : 0f;
-        _fadeState = _isInitHide ? FadeInOutEState.CompleteFadeOut : FadeInOutEState.CompleteFadeIn;
+        _fadeState = _isInitHide ? FadeInOutEState.CompleteFadeOut : FadeInOutEState.CompleteFadeIn;//イベントを発行する必要がないため、変数を直接書き換える
 
         _myPanelImage.color = currentMyPanelColor;
+
+        //さらにパネルのアクティブ状態も変更(パネルの当たり判定のため)
+        _myPanelImage.enabled=_isInitHide;
     }
 
     private void OnDestroy()
@@ -80,7 +97,10 @@ public class FadeInOutPanel : MonoBehaviour
         try
         {
             //フェード状態の更新
-            _fadeState = isFadeIn ? FadeInOutEState.FadingIn : FadeInOutEState.FadingOut;
+            FadeState = isFadeIn ? FadeInOutEState.FadingIn : FadeInOutEState.FadingOut;
+
+            //パネルをアクティブに
+            if(!_myPanelImage.enabled) _myPanelImage.enabled = true;
 
             //透明度の更新に必要な変数の準備
             float targetAlpha = isFadeIn ? 0f : 1f;
@@ -105,7 +125,10 @@ public class FadeInOutPanel : MonoBehaviour
             SetPanelAlpha(targetAlpha);
 
             //フェード状態の更新
-            _fadeState = isFadeIn ? FadeInOutEState.CompleteFadeIn : FadeInOutEState.CompleteFadeOut;
+            FadeState = isFadeIn ? FadeInOutEState.CompleteFadeIn : FadeInOutEState.CompleteFadeOut;
+
+            //フェードアウトが完了したならパネルを非アクティブにする(パネルの当たり判定を無くすため)
+            if (isFadeIn) _myPanelImage.enabled = false;
         }
         catch(OperationCanceledException)
         {
