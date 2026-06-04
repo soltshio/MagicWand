@@ -12,6 +12,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class FadeInOutPanel : MonoBehaviour
 {
+    public enum FadeEType
+    {
+        FadeIn,//フェードイン
+        FadeOut//フェードアウト
+    }
+
+
     [Tooltip("シーン開始時点でパネルで隠しておくか")] [SerializeField] 
     bool _isInitHide = false;
 
@@ -47,12 +54,12 @@ public class FadeInOutPanel : MonoBehaviour
 
     //フェードイン・アウトを開始する
     //引数isFadeInがtrueのときはフェードイン、falseのときはフェードアウト
-    public void FadeTrigger(bool isFadeIn)
+    public void FadeTrigger(FadeEType fadeType)
     {
         //既に完了していた場合は弾く
-        if(FadeState == FadeInOutEState.CompleteFadeIn && isFadeIn) return;//フェードインが完了しているのにフェードインをしようとしたとき
+        if(FadeState == FadeInOutEState.CompleteFadeIn && fadeType == FadeEType.FadeIn) return;//フェードインが完了しているのにフェードインをしようとしたとき
 
-        if (FadeState == FadeInOutEState.CompleteFadeOut && !isFadeIn) return;//フェードアウトが完了しているのにフェードアウトをしようとしたとき
+        if (FadeState == FadeInOutEState.CompleteFadeOut && fadeType == FadeEType.FadeOut) return;//フェードアウトが完了しているのにフェードアウトをしようとしたとき
 
         //フェードイン・アウトの最中であれば今行っているフェード処理を中断して新しくフェード処理を開始する
         if (FadeState == FadeInOutEState.FadingIn || FadeState == FadeInOutEState.FadingOut)
@@ -65,7 +72,7 @@ public class FadeInOutPanel : MonoBehaviour
         _cts = new CancellationTokenSource();
 
         //フェード処理開始
-        FadeAsync(isFadeIn, _cts.Token).Forget();
+        FadeAsync(fadeType, _cts.Token).Forget();
     }
 
     void Awake()
@@ -89,13 +96,15 @@ public class FadeInOutPanel : MonoBehaviour
     }
 
     //フェード処理
-    async UniTask FadeAsync(bool isFadeIn, CancellationToken ct)
+    async UniTask FadeAsync(FadeEType fadeType, CancellationToken ct)
     {
         //トークンの生成
         using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct, this.GetCancellationTokenOnDestroy());
 
         try
         {
+            bool isFadeIn = (fadeType == FadeEType.FadeIn);
+
             //フェード状態の更新
             FadeState = isFadeIn ? FadeInOutEState.FadingIn : FadeInOutEState.FadingOut;
 
