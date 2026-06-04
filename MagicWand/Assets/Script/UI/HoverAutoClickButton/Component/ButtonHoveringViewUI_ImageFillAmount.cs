@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 //作成者:杉山
 //数秒間カーソルを合わせていると、自動クリックするボタンがホバー中(カーソルが合わせられている時)にホバー時間の割合をゲージで表示する
+//ImageのfillAmountを操作するタイプ
 
-public class ButtonHoveringViewUI : MonoBehaviour
+public class ButtonHoveringViewUI_ImageFillAmount : MonoBehaviour
 {
     [SerializeField]
     HoverAutoClickButton _hoverAutoClickButton;
