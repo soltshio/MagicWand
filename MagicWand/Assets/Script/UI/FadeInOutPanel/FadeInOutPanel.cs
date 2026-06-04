@@ -23,6 +23,8 @@ public class FadeInOutPanel : MonoBehaviour
 
     FadeInOutEState _fadeState;
 
+    public event Action <FadeInOutEState> OnChangeState;
+
     public float FadeInOutDuration
     {
         get { return _fadeInOutDuration; }

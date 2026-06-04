@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-//作成者:杉山
+﻿//作成者:杉山
 //フェードイン・アウトの状態(enum)
 
 public enum FadeInOutEState
