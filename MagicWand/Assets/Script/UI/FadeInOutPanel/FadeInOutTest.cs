@@ -10,7 +10,7 @@ public class FadeInOutTest : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.4f));
 
         _fadeInOutPanel.FadeTrigger(true);
     }

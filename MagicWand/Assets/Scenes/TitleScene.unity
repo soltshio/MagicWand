@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeInOutPanel
   _isInitHide: 1
-  _fadeInOutDuration: 1.5
+  _fadeInOutDuration: 2
   _myPanelImage: {fileID: 1107573934}
 --- !u!114 &1107573934
 MonoBehaviour:

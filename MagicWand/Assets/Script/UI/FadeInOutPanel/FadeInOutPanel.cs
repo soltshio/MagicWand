@@ -63,23 +63,23 @@ public class FadeInOutPanel : MonoBehaviour
 
         //トークンを生成
         _cts = new CancellationTokenSource();
-        
-        //フェード処理開始(後で呼び出す処理を作成予定)
+
+        //フェード処理開始
         FadeAsync(isFadeIn, _cts.Token).Forget();
     }
 
-    void Start()
+    void Awake()
     {
+        //イベントを発行する必要がないため、変数を直接書き換える
+        _fadeState = _isInitHide ? FadeInOutEState.CompleteFadeOut : FadeInOutEState.CompleteFadeIn;
+
         //開始時にパネルの色の透明度をあらかじめ変えておく
         Color currentMyPanelColor = _myPanelImage.color;
-
         currentMyPanelColor.a = _isInitHide ? 1f : 0f;
-        _fadeState = _isInitHide ? FadeInOutEState.CompleteFadeOut : FadeInOutEState.CompleteFadeIn;//イベントを発行する必要がないため、変数を直接書き換える
-
         _myPanelImage.color = currentMyPanelColor;
 
         //さらにパネルのアクティブ状態も変更(パネルの当たり判定のため)
-        _myPanelImage.enabled=_isInitHide;
+        _myPanelImage.enabled = _isInitHide;
     }
 
     private void OnDestroy()
@@ -132,7 +132,7 @@ public class FadeInOutPanel : MonoBehaviour
         }
         catch(OperationCanceledException)
         {
-
+            Debug.Log("フェードが中断されました");
         }
     }
 
