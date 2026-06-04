@@ -11,8 +11,14 @@ public class GamePhaseStateTypeStart_InGameScene : GamePhaseStateTypeBase
     [SerializeField]
     Renderer[] _renderers;
 
+    [SerializeField]
+    FadeInOutPanel _fadeInOutPanel;
+
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
+        _fadeInOutPanel.FadeTrigger(FadeInOutPanel.FadeEType.FadeIn);
+
+
         foreach (var renderer in _renderers)
         {
             renderer.enabled = false;
