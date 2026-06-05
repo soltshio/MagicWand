@@ -19,7 +19,9 @@ public class HoverAutoClickButtonStateTypeHovering : HoverAutoClickButtonStateTy
     public void OnEnter(HoverAutoClickButtonParameter parameter)
     {
         _hoveringTime = 0f;
-        parameter.HoveringAudioSource.Play();
+
+        var hoveringAudioSource = parameter.HoveringAudioSource;
+        if(hoveringAudioSource != null) hoveringAudioSource.Play();
     }
 
     public void OnUpdate(HoverAutoClickButtonParameter parameter)
@@ -34,7 +36,8 @@ public class HoverAutoClickButtonStateTypeHovering : HoverAutoClickButtonStateTy
 
     public void OnExit(HoverAutoClickButtonParameter parameter)
     {
-        parameter.HoveringAudioSource.Stop();
+        var hoveringAudioSource = parameter.HoveringAudioSource;
+        if (hoveringAudioSource != null) hoveringAudioSource.Stop();
     }
 
     public void OnPointerExit(PointerEventData eventData)
