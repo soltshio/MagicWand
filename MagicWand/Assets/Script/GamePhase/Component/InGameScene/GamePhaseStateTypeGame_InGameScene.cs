@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,25 +15,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     [SerializeField]
     MagicCircleManagerVer3 _magicCircleManager;
 
-    int _currentCount = 0;
-
-    GamePhaseStateMachine _stateMachine;
-
-    void OnMagicActived(EMagic magic)
-    {
-        _currentCount++;
-
-        if (_currentCount >= _clearCount)
-        {
-            _stateMachine.ChangeState(EGamePhaseState.Finish);
-        }
-    }   
-
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
-        _magicCircleManager.OnMagicActived += OnMagicActived;
-        _currentCount = 0;
-        _stateMachine = stateMachine;
+        GameStateAsync(stateMachine, this.GetCancellationTokenOnDestroy()).Forget();
     }
 
     public override void OnUpdate(GamePhaseStateMachine stateMachine)
@@ -41,6 +27,23 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
 
     public override void OnExit(GamePhaseStateMachine stateMachine)
     {
-        _magicCircleManager.OnMagicActived -= OnMagicActived;
+        
+    }
+
+    async UniTask GameStateAsync(GamePhaseStateMachine stateMachine,CancellationToken ct)
+    {
+        for(int i=0; i<_clearCount ;i++)
+        {
+            //魔法陣を起動
+            _magicCircleManager.ActivateMagicCircle();
+
+            //魔法陣が非アクティブになる(魔法が発動する)まで待つ
+            await UniTask.WaitUntil(() => !_magicCircleManager.IsActiveMagicCircle);
+
+            //数秒待つ
+            await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        }
+
+        stateMachine.ChangeState(EGamePhaseState.Finish);
     }
 }

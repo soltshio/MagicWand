@@ -1380,13 +1380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f5361e83cf1c2448e345d540ecefc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeFinish_InGameScene
-  _renderers:
-  - {fileID: 1579516461}
-  - {fileID: 549293271}
-  - {fileID: 993358637}
-  - {fileID: 2118804866}
-  - {fileID: 305296928}
-  - {fileID: 1118699961}
   _fadeInOutPanel: {fileID: 1124889694}
 --- !u!1 &625254239
 GameObject:
@@ -1535,6 +1528,7 @@ GameObject:
   - component: {fileID: 741445578}
   - component: {fileID: 741445577}
   - component: {fileID: 741445576}
+  - component: {fileID: 741445579}
   m_Layer: 0
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -1717,6 +1711,31 @@ MonoBehaviour:
       value: {fileID: 1040190899}
     - key: 4
       value: {fileID: 525951}
+  _magicCircleActiveHandler: {fileID: 741445579}
+--- !u!114 &741445579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741445573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1cb5804913bf24b9224480269d5b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleActiveHandler
+  _isInitShow: 0
+  _fadeDuration: 1
+  _magicCircleRenderer: {fileID: 1118699961}
+  _magicCircleAlpha_Active: 0.3
+  _magicSpheres:
+  - {fileID: 1579516459}
+  - {fileID: 549293269}
+  - {fileID: 993358635}
+  - {fileID: 2118804864}
+  - {fileID: 305296926}
+  _magicCircleTrailRenderer: {fileID: 741445576}
+  _magicCircleTrailAlpha_Active: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2306,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: ed6ca3347d9ebfc4d9ef1af597bd744c, type: 3}
-  m_Color: {r: 1, g: 0.9321854, b: 0, a: 0.30588236}
+  m_Color: {r: 1, g: 0.9321854, b: 0, a: 0.29803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3119,13 +3138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49b65e7c5a027a4a8234741271eb708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeStart_InGameScene
-  _renderers:
-  - {fileID: 1579516461}
-  - {fileID: 549293271}
-  - {fileID: 993358637}
-  - {fileID: 2118804866}
-  - {fileID: 305296928}
-  - {fileID: 1118699961}
   _fadeInOutPanel: {fileID: 1124889694}
 --- !u!1 &1395527865
 GameObject:

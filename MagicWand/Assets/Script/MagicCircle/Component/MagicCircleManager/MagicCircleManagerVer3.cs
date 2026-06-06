@@ -5,6 +5,10 @@ using System;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
+//作成者:杉山
+//魔法陣を起動させると、魔法が発動するまで魔法陣をなぞらせる処理をする
+//魔法が発動すると、発動した魔法の内容を通知すると共に魔法陣を非アクティブにする
+
 public class MagicCircleManagerVer3 : MonoBehaviour
 {
     [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
@@ -16,94 +20,129 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("魔法一覧")] [SerializeField]
     SerializableDictionary<EMagic, Magic> _magicsDictionary;
 
-    float _magicCoolTime = 2f;
+    [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
+    MagicCircleActiveHandler _magicCircleActiveHandler;
 
     public event Action<EMagic> OnMagicActived;//魔法が発動した時のイベント
 
-    private void Start()
+    bool _isActiveMagicCircle = false;//魔法陣が起動しているか
+
+    public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
+
+    //魔法陣を起動
+    public void ActivateMagicCircle()
     {
-        MagicCircleAsync(this.GetCancellationTokenOnDestroy()).Forget();
+        if (_isActiveMagicCircle) return;
+
+        MagicCircleAsync2(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
-    async UniTask MagicCircleAsync(CancellationToken token)
+    async UniTask MagicCircleAsync2(CancellationToken token)
     {
-        while (true)
-        {
-            //魔法陣の線を消す
-            _magicSphereTrail.Clear();
+        _isActiveMagicCircle = true;
 
-            //魔法の初期化(同時に現在発動の可能性がある魔法リストも作成)
-            InitAllMagic();
+        //魔法陣の線を消す
+        _magicSphereTrail.Clear();
 
-            Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
+        //魔法の初期化
+        InitAllMagic();
 
-            //魔法陣をなぞった時の処理
-            //魔法が発動するまで待つ
-            await CastMagicAsync(castableMagicDic, token);
+        //魔法陣を表示する
+        await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
 
-            //少し待ってから魔法陣をまたなぞれるようにする
-            await UniTask.Delay(TimeSpan.FromSeconds(_magicCoolTime), cancellationToken: token);
-        }
+        //魔法陣をなぞった時の処理
+        //魔法が発動するまで待つ
+        await CastMagicAsync(token);
+
+        //魔法陣と魔法陣の線を非表示にする
+        await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
+
+        _isActiveMagicCircle = false;
     }
 
-    async UniTask CastMagicAsync(Dictionary<EMagic, Magic> castableMagicDic, CancellationToken token)
+    async UniTask CastMagicAsync(CancellationToken token)
     {
+        //現在発動の可能性がある魔法リストの作成
+        Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
+
         while (true)
         {
-            bool isAnyMagicActived = false;//いずれかの魔法が発動したか
-
             //発動可能性のある魔法から、次になぞるべき球をアクティブにする
-            List<int> activeMagicSphereIndexList = new();
-
-            foreach (var magicPair in castableMagicDic)
-            {
-                int nextIndex = magicPair.Value.NextMagicSphereIndex;
-
-                if (nextIndex == -1) continue;
-
-                _magicSpheres[nextIndex].ToActive(magicPair.Value.MagicSphereMaterial);
-                activeMagicSphereIndexList.Add(nextIndex);
-            }
+            List<int> activeMagicSphereIndexList = ActivateNextTraceMagicSphere(castableMagicDic);
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             int touchedMagicSphereindex = -1;
             await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
 
-            //杖に触れた球のインデックスを伝える
-            foreach (var magicPair in castableMagicDic)
-            {
-                bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
-
-                if (magicIsActived)
-                {
-                    OnMagicActived?.Invoke(magicPair.Key);
-                    isAnyMagicActived = true;
-                }
-            }
+            //杖が触れた球のインデックスを魔法に伝える
+            bool isAnyMagicActived = CallTouchedIndexToMagics(castableMagicDic,touchedMagicSphereindex);//いずれかの魔法が発動したか
 
             //球を全て非アクティブにする
-            foreach (var magicSphere in _magicSpheres)
-            {
-                magicSphere.ToDeactive();
-            }
+            AllMagicSpheresToDeactive();
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
 
-            //既に発動した魔法があれば、一旦魔法陣をなぞる処理を終える
+            //既に発動した魔法があれば、魔法陣をなぞる処理を終える
             if (isAnyMagicActived) break;
 
             //発動可能性のない魔法をリストから消す
-            foreach (var magicPair in _magicsDictionary)
+            RemoveIncastableMagic(castableMagicDic);
+        }
+    }
+
+    //発動可能性の無い魔法を発動可能性のある魔法リストから消す
+    void RemoveIncastableMagic(Dictionary<EMagic, Magic> castableMagicDic)
+    {
+        foreach (var magicPair in _magicsDictionary)
+        {
+            if (!magicPair.Value.SpellIsValid)
             {
-                if (!magicPair.Value.SpellIsValid)
-                {
-                    castableMagicDic.Remove(magicPair.Key);
-                }
+                castableMagicDic.Remove(magicPair.Key);
             }
         }
     }
 
+    //杖が触れた球のインデックスを魔法に伝える(それにより次になぞる球の番号の更新、魔法の発動処理を行う)
+    //いずれかの魔法が発動すればtrueを返す
+    bool CallTouchedIndexToMagics(Dictionary<EMagic, Magic> castableMagicDic,int touchedMagicSphereindex)
+    {
+        bool isAnyMagicActived = false;//いずれかの魔法が発動したか
+
+        foreach (var magicPair in castableMagicDic)
+        {
+            bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
+
+            if (magicIsActived)
+            {
+                OnMagicActived?.Invoke(magicPair.Key);
+                isAnyMagicActived = true;
+            }
+        }
+
+        return isAnyMagicActived;
+    }
+
+    //発動可能性のある魔法から、次になぞるべき球をアクティブにする
+    //アクティブにした球のインデックスリストを返す
+    List<int> ActivateNextTraceMagicSphere(Dictionary<EMagic, Magic> castableMagicDic)
+    {
+        List<int> activeMagicSphereIndexList = new();
+
+        foreach (var magicPair in castableMagicDic)
+        {
+            int nextIndex = magicPair.Value.NextMagicSphereIndex;
+
+            if (nextIndex == -1) continue;
+
+            _magicSpheres[nextIndex].ToActive(magicPair.Value.MagicSphereMaterial);
+            activeMagicSphereIndexList.Add(nextIndex);
+        }
+
+        return activeMagicSphereIndexList;
+    }
+
+    //いずれかの球に杖がタッチしたか
     bool IsTouchedAnyMagicSphere(List<int> activeMagicSphereIndexList, out int touchedMagicSphereindex)
     {
         touchedMagicSphereindex = -1;
@@ -122,11 +161,21 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         return false;
     }
 
+    //魔法の初期化
     void InitAllMagic()
     {
         foreach (var magic in _magicsDictionary.Values)
         {
             magic.Initialize();
+        }
+    }
+
+    //球を全て非アクティブにする
+    void AllMagicSpheresToDeactive()
+    {
+        foreach (var magicSphere in _magicSpheres)
+        {
+            magicSphere.ToDeactive();
         }
     }
 }

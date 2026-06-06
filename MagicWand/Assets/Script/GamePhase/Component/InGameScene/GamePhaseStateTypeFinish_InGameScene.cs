@@ -9,18 +9,10 @@ using UnityEngine.SceneManagement;
 public class GamePhaseStateTypeFinish_InGameScene : GamePhaseStateTypeBase
 {
     [SerializeField]
-    Renderer[] _renderers;
-
-    [SerializeField]
     FadeInOutPanel _fadeInOutPanel;
 
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
-        foreach (var renderer in _renderers)
-        {
-            renderer.enabled = false;
-        }
-
         ClearSceneLoadAsync(this.GetCancellationTokenOnDestroy()).Forget();
 
         Debug.Log("Finish!");
