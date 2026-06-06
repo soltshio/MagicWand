@@ -5,6 +5,10 @@ using System;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
+//作成者:杉山
+//魔法陣を起動させると、魔法が発動するまで魔法陣をなぞらせる処理をする
+//魔法が発動すると、発動した魔法の内容を通知すると共に魔法陣を非アクティブにする
+
 public class MagicCircleManagerVer3 : MonoBehaviour
 {
     [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
@@ -16,38 +20,42 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("魔法一覧")] [SerializeField]
     SerializableDictionary<EMagic, Magic> _magicsDictionary;
 
-    float _magicCoolTime = 2f;
-
     public event Action<EMagic> OnMagicActived;//魔法が発動した時のイベント
 
-    private void Start()
+    bool _isActiveMagicCircle = false;//魔法陣が起動しているか
+
+    public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
+
+    //魔法陣を起動
+    public void ActivateMagicCircle()
     {
-        MagicCircleAsync(this.GetCancellationTokenOnDestroy()).Forget();
+        if (_isActiveMagicCircle) return;
+
+        MagicCircleAsync2(this.GetCancellationTokenOnDestroy()).Forget();
     }
 
-    async UniTask MagicCircleAsync(CancellationToken token)
+    async UniTask MagicCircleAsync2(CancellationToken token)
     {
-        while (true)
-        {
-            //魔法陣の線を消す
-            _magicSphereTrail.Clear();
+        _isActiveMagicCircle = true;
 
-            //魔法の初期化(同時に現在発動の可能性がある魔法リストも作成)
-            InitAllMagic();
+        //魔法陣の線を消す
+        _magicSphereTrail.Clear();
 
-            Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
+        //魔法の初期化
+        InitAllMagic();
 
-            //魔法陣をなぞった時の処理
-            //魔法が発動するまで待つ
-            await CastMagicAsync(castableMagicDic, token);
+        //魔法陣をなぞった時の処理
+        //魔法が発動するまで待つ
+        await CastMagicAsync(token);
 
-            //少し待ってから魔法陣をまたなぞれるようにする
-            await UniTask.Delay(TimeSpan.FromSeconds(_magicCoolTime), cancellationToken: token);
-        }
+        _isActiveMagicCircle = false;
     }
 
-    async UniTask CastMagicAsync(Dictionary<EMagic, Magic> castableMagicDic, CancellationToken token)
+    async UniTask CastMagicAsync(CancellationToken token)
     {
+        //現在発動の可能性がある魔法リストの作成
+        Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
+
         while (true)
         {
             bool isAnyMagicActived = false;//いずれかの魔法が発動したか
@@ -69,7 +77,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             int touchedMagicSphereindex = -1;
             await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
 
-            //杖に触れた球のインデックスを伝える
+            //杖が触れた球のインデックスを魔法に伝える
             foreach (var magicPair in castableMagicDic)
             {
                 bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
@@ -90,7 +98,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
 
-            //既に発動した魔法があれば、一旦魔法陣をなぞる処理を終える
+            //既に発動した魔法があれば、魔法陣をなぞる処理を終える
             if (isAnyMagicActived) break;
 
             //発動可能性のない魔法をリストから消す
