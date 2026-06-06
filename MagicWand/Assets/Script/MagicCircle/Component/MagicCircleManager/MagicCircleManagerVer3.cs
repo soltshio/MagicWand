@@ -20,6 +20,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("魔法一覧")] [SerializeField]
     SerializableDictionary<EMagic, Magic> _magicsDictionary;
 
+    [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
+    MagicCircleActiveHandler _magicCircleActiveHandler;
+
     public event Action<EMagic> OnMagicActived;//魔法が発動した時のイベント
 
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
@@ -44,9 +47,15 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //魔法の初期化
         InitAllMagic();
 
+        //魔法陣を表示する
+        await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
+
         //魔法陣をなぞった時の処理
         //魔法が発動するまで待つ
         await CastMagicAsync(token);
+
+        //魔法陣と魔法陣の線を非表示にする
+        await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
 
         _isActiveMagicCircle = false;
     }

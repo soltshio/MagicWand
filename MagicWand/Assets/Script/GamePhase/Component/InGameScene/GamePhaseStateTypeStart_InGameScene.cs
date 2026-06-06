@@ -9,56 +9,23 @@ using Cysharp.Threading.Tasks;
 public class GamePhaseStateTypeStart_InGameScene : GamePhaseStateTypeBase
 {
     [SerializeField]
-    Renderer[] _renderers;
-
-    [SerializeField]
     FadeInOutPanel _fadeInOutPanel;
 
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
         _fadeInOutPanel.FadeTrigger(FadeInOutPanel.FadeEType.FadeIn);
-
-
-        foreach (var renderer in _renderers)
-        {
-            renderer.enabled = false;
-        }
-
-        WaitForMouseMoveAsync(stateMachine).Forget();
     }
 
     public override void OnUpdate(GamePhaseStateMachine stateMachine)
     {
-        
-    }
-
-    async UniTask WaitForMouseMoveAsync(GamePhaseStateMachine stateMachine)
-    {
-        await UniTask.Yield();
-        await UniTask.Yield();
-        await UniTask.Yield();
-
-        while (true)
+        if(_fadeInOutPanel.FadeState == FadeInOutEState.CompleteFadeIn)
         {
-            Vector2 delta = Mouse.current.delta.ReadValue();
-
-            if (delta != Vector2.zero)
-            {
-                Debug.Log(delta);
-                stateMachine.ChangeState(EGamePhaseState.Game_InGameScene);
-                Debug.Log("Start!");
-                break;
-            }
-
-            await UniTask.Yield();
+            stateMachine.ChangeState(EGamePhaseState.Game_InGameScene);
         }
     }
 
     public override void OnExit(GamePhaseStateMachine stateMachine)
     {
-        foreach (var renderer in _renderers)
-        {
-            renderer.enabled = true;
-        }
+       
     }
 }
