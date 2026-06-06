@@ -58,42 +58,18 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         while (true)
         {
-            bool isAnyMagicActived = false;//いずれかの魔法が発動したか
-
             //発動可能性のある魔法から、次になぞるべき球をアクティブにする
-            List<int> activeMagicSphereIndexList = new();
-
-            foreach (var magicPair in castableMagicDic)
-            {
-                int nextIndex = magicPair.Value.NextMagicSphereIndex;
-
-                if (nextIndex == -1) continue;
-
-                _magicSpheres[nextIndex].ToActive(magicPair.Value.MagicSphereMaterial);
-                activeMagicSphereIndexList.Add(nextIndex);
-            }
+            List<int> activeMagicSphereIndexList = ActivateNextTraceMagicSphere(castableMagicDic);
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             int touchedMagicSphereindex = -1;
             await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
 
             //杖が触れた球のインデックスを魔法に伝える
-            foreach (var magicPair in castableMagicDic)
-            {
-                bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
-
-                if (magicIsActived)
-                {
-                    OnMagicActived?.Invoke(magicPair.Key);
-                    isAnyMagicActived = true;
-                }
-            }
+            bool isAnyMagicActived = CallTouchedIndexToMagics(castableMagicDic,touchedMagicSphereindex);//いずれかの魔法が発動したか
 
             //球を全て非アクティブにする
-            foreach (var magicSphere in _magicSpheres)
-            {
-                magicSphere.ToDeactive();
-            }
+            AllMagicSpheresToDeactive();
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
@@ -102,16 +78,62 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             if (isAnyMagicActived) break;
 
             //発動可能性のない魔法をリストから消す
-            foreach (var magicPair in _magicsDictionary)
+            RemoveIncastableMagic(castableMagicDic);
+        }
+    }
+
+    //発動可能性の無い魔法を発動可能性のある魔法リストから消す
+    void RemoveIncastableMagic(Dictionary<EMagic, Magic> castableMagicDic)
+    {
+        foreach (var magicPair in _magicsDictionary)
+        {
+            if (!magicPair.Value.SpellIsValid)
             {
-                if (!magicPair.Value.SpellIsValid)
-                {
-                    castableMagicDic.Remove(magicPair.Key);
-                }
+                castableMagicDic.Remove(magicPair.Key);
             }
         }
     }
 
+    //杖が触れた球のインデックスを魔法に伝える(それにより次になぞる球の番号の更新、魔法の発動処理を行う)
+    //いずれかの魔法が発動すればtrueを返す
+    bool CallTouchedIndexToMagics(Dictionary<EMagic, Magic> castableMagicDic,int touchedMagicSphereindex)
+    {
+        bool isAnyMagicActived = false;//いずれかの魔法が発動したか
+
+        foreach (var magicPair in castableMagicDic)
+        {
+            bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
+
+            if (magicIsActived)
+            {
+                OnMagicActived?.Invoke(magicPair.Key);
+                isAnyMagicActived = true;
+            }
+        }
+
+        return isAnyMagicActived;
+    }
+
+    //発動可能性のある魔法から、次になぞるべき球をアクティブにする
+    //アクティブにした球のインデックスリストを返す
+    List<int> ActivateNextTraceMagicSphere(Dictionary<EMagic, Magic> castableMagicDic)
+    {
+        List<int> activeMagicSphereIndexList = new();
+
+        foreach (var magicPair in castableMagicDic)
+        {
+            int nextIndex = magicPair.Value.NextMagicSphereIndex;
+
+            if (nextIndex == -1) continue;
+
+            _magicSpheres[nextIndex].ToActive(magicPair.Value.MagicSphereMaterial);
+            activeMagicSphereIndexList.Add(nextIndex);
+        }
+
+        return activeMagicSphereIndexList;
+    }
+
+    //いずれかの球に杖がタッチしたか
     bool IsTouchedAnyMagicSphere(List<int> activeMagicSphereIndexList, out int touchedMagicSphereindex)
     {
         touchedMagicSphereindex = -1;
@@ -130,11 +152,21 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         return false;
     }
 
+    //魔法の初期化
     void InitAllMagic()
     {
         foreach (var magic in _magicsDictionary.Values)
         {
             magic.Initialize();
+        }
+    }
+
+    //球を全て非アクティブにする
+    void AllMagicSpheresToDeactive()
+    {
+        foreach (var magicSphere in _magicSpheres)
+        {
+            magicSphere.ToDeactive();
         }
     }
 }
