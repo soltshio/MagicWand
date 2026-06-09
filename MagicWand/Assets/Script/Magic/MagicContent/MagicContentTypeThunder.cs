@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ using UnityEngine;
 
 public class MagicContentTypeThunder : MagicContentTypeBase
 {
+    [SerializeField]
+    BigCreature _bigCreature;
+
     [Tooltip("雷エフェクトプレハブ")] [SerializeField]
     GameObject _thunderEffectPrefab;
 
@@ -31,6 +35,11 @@ public class MagicContentTypeThunder : MagicContentTypeBase
         //雷エフェクトの効果音を鳴らす
         _audioSource.PlayOneShot(_thunderSE);
 
-        await UniTask.Yield(token);
+        List<UniTask> runningTasks = new();
+
+        //でか生物に雷魔法を当てる
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+
+        await UniTask.WhenAll(runningTasks);
     }
 }
