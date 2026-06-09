@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 //作成者:杉山
@@ -14,6 +15,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
 
     [SerializeField]
     MagicCircleManagerVer3 _magicCircleManager;
+
+    [SerializeField]
+    MagicInvoker _magicInvoker;
 
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
@@ -35,12 +39,13 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
         for(int i=0; i<_clearCount ;i++)
         {
             //魔法陣を起動
-            await _magicCircleManager.MagicCircleAsync();
+            var invokableMagics = await _magicCircleManager.MagicCircleAsync();
 
             //魔法を発動
+            await _magicInvoker.InvokeMagicAsync(invokableMagics);
 
             //数秒待つ
-            await UniTask.Delay(TimeSpan.FromSeconds(2f));
+            await UniTask.Delay(TimeSpan.FromSeconds(2f),cancellationToken: ct);
         }
 
         stateMachine.ChangeState(EGamePhaseState.Finish);

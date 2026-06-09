@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 525950}
-  - component: {fileID: 525951}
   - component: {fileID: 525952}
   m_Layer: 0
   m_Name: Fire
@@ -152,22 +151,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446498115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &525951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic
-  _activeOrderIndexs: 000000000100000002000000030000000400000000000000
-  _magicLog: Fire!
-  _magicContent: {fileID: 0}
-  _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
 --- !u!114 &525952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 52057998}
-  - component: {fileID: 52057999}
   - component: {fileID: 52058000}
   - component: {fileID: 52058001}
   m_Layer: 0
@@ -217,22 +199,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446498115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &52057999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52057997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic
-  _activeOrderIndexs: 02000000000000000300000002000000
-  _magicLog: Water!
-  _magicContent: {fileID: 52058000}
-  _magicSphereMaterial: {fileID: 2100000, guid: 9559c9182dadb3840b37ce8619460cc4, type: 2}
 --- !u!114 &52058000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,6 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
   _clearCount: 3
   _magicCircleManager: {fileID: 741445578}
+  _magicInvoker: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 446498115}
+  - component: {fileID: 446498116}
   m_Layer: 0
   m_Name: Magics
   m_TagString: Untagged
@@ -965,6 +933,22 @@ Transform:
   - {fileID: 525950}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446498116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446498114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defd261f18abd394d9acda6eb784be8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicInvoker
+  _magicContents:
+    _list:
+    - key: 0
+      value: {fileID: 1138852481}
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,7 +2201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1040190898}
-  - component: {fileID: 1040190899}
   - component: {fileID: 1040190900}
   m_Layer: 0
   m_Name: Star
@@ -2241,22 +2224,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446498115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1040190899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040190897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic
-  _activeOrderIndexs: 030000000000000002000000040000000100000003000000
-  _magicLog: Star!
-  _magicContent: {fileID: 0}
-  _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
 --- !u!114 &1040190900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,7 +2430,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1138852478}
-  - component: {fileID: 1138852479}
   - component: {fileID: 1138852481}
   - component: {fileID: 1138852480}
   - component: {fileID: 1138852482}
@@ -2490,22 +2456,6 @@ Transform:
   - {fileID: 1789627147}
   m_Father: {fileID: 446498115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1138852479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138852477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic
-  _activeOrderIndexs: 0100000002000000000000000300000004000000
-  _magicLog: Thunder!
-  _magicContent: {fileID: 1138852481}
-  _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
 --- !u!82 &1138852480
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3898,7 +3848,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1910504418}
-  - component: {fileID: 1910504419}
   - component: {fileID: 1910504420}
   - component: {fileID: 1910504421}
   m_Layer: 0
@@ -3923,22 +3872,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446498115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1910504419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910504417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed5a0e2c56003340b68ecba7831b6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic
-  _activeOrderIndexs: 0400000001000000030000000200000004000000
-  _magicLog: Time!
-  _magicContent: {fileID: 1910504420}
-  _magicSphereMaterial: {fileID: 2100000, guid: d4d7938abcf7e3f4690e545bf9a5b437, type: 2}
 --- !u!114 &1910504420
 MonoBehaviour:
   m_ObjectHideFlags: 0

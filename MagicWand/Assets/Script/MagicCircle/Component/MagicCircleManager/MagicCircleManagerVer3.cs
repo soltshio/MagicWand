@@ -46,8 +46,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
 
-        //魔法陣をなぞった時の処理
-        //魔法が発動するまで待つ
+        //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
         var invokableMagics = await CastMagicAsync(token);
 
