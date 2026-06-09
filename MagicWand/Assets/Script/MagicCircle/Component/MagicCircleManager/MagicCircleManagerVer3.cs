@@ -18,52 +18,50 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     MagicSphereTrail _magicSphereTrail;
 
     [Tooltip("魔法一覧")] [SerializeField]
-    SerializableDictionary<EMagic, Magic> _magicsDictionary;
+    SerializableDictionary<EMagic, SpellCast> _spellCastsDictionary;
 
     [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
     MagicCircleActiveHandler _magicCircleActiveHandler;
-
-    public event Action<EMagic> OnMagicActived;//魔法が発動した時のイベント
 
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
 
     public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
 
-    //魔法陣を起動
-    public void ActivateMagicCircle()
+    //魔法陣の処理、処理が終わったら魔法の内容を返す
+    //そもそも処理途中なのを無理やり呼び出したらNoneを
+    public async UniTask<EMagic[]> MagicCircleAsync()
     {
-        if (_isActiveMagicCircle) return;
+        if (_isActiveMagicCircle) return null;
 
-        MagicCircleAsync2(this.GetCancellationTokenOnDestroy()).Forget();
-    }
+        var token = this.GetCancellationTokenOnDestroy();
 
-    async UniTask MagicCircleAsync2(CancellationToken token)
-    {
         _isActiveMagicCircle = true;
 
         //魔法陣の線を消す
         _magicSphereTrail.Clear();
 
         //魔法の初期化
-        InitAllMagic();
+        InitAllSpellCast();
 
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
 
-        //魔法陣をなぞった時の処理
-        //魔法が発動するまで待つ
-        await CastMagicAsync(token);
+        //何かしらの魔法が発動可能になるまで待つ
+        //発動可能魔法を受け取る
+        var invokableMagics = await CastMagicAsync(token);
 
         //魔法陣と魔法陣の線を非表示にする
         await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
 
         _isActiveMagicCircle = false;
+
+        return invokableMagics;
     }
 
-    async UniTask CastMagicAsync(CancellationToken token)
+    async UniTask<EMagic[]> CastMagicAsync(CancellationToken token)
     {
         //現在発動の可能性がある魔法リストの作成
-        Dictionary<EMagic, Magic> castableMagicDic = new Dictionary<EMagic, Magic>(_magicsDictionary);
+        Dictionary<EMagic, SpellCast> castableMagicDic = new Dictionary<EMagic, SpellCast>(_spellCastsDictionary);
 
         while (true)
         {
@@ -75,7 +73,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
 
             //杖が触れた球のインデックスを魔法に伝える
-            bool isAnyMagicActived = CallTouchedIndexToMagics(castableMagicDic,touchedMagicSphereindex);//いずれかの魔法が発動したか
+            var invokableMagics = CastTouchedIndexToMagics(castableMagicDic, touchedMagicSphereindex);//いずれかの魔法が発動したか
 
             //球を全て非アクティブにする
             AllMagicSpheresToDeactive();
@@ -83,8 +81,11 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
 
-            //既に発動した魔法があれば、魔法陣をなぞる処理を終える
-            if (isAnyMagicActived) break;
+            //発動可能な魔法があれば、それ返して魔法陣をなぞる処理を終える
+            if (invokableMagics.Length > 0)
+            {
+                return invokableMagics;
+            }
 
             //発動可能性のない魔法をリストから消す
             RemoveIncastableMagic(castableMagicDic);
@@ -92,50 +93,49 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     }
 
     //発動可能性の無い魔法を発動可能性のある魔法リストから消す
-    void RemoveIncastableMagic(Dictionary<EMagic, Magic> castableMagicDic)
+    void RemoveIncastableMagic(Dictionary<EMagic, SpellCast> castableMagicDic)
     {
-        foreach (var magicPair in _magicsDictionary)
+        foreach (var spellCastPair in _spellCastsDictionary)
         {
-            if (!magicPair.Value.SpellIsValid)
+            if (!spellCastPair.Value.SpellIsValid)
             {
-                castableMagicDic.Remove(magicPair.Key);
+                castableMagicDic.Remove(spellCastPair.Key);
             }
         }
     }
 
     //杖が触れた球のインデックスを魔法に伝える(それにより次になぞる球の番号の更新、魔法の発動処理を行う)
-    //いずれかの魔法が発動すればtrueを返す
-    bool CallTouchedIndexToMagics(Dictionary<EMagic, Magic> castableMagicDic,int touchedMagicSphereindex)
+    //発動可能な魔法を伝える
+    EMagic[] CastTouchedIndexToMagics(Dictionary<EMagic, SpellCast> castableMagicDic,int touchedMagicSphereindex)
     {
-        bool isAnyMagicActived = false;//いずれかの魔法が発動したか
+        List<EMagic> invokableMagicsList = new ();
 
-        foreach (var magicPair in castableMagicDic)
+        foreach (var spellCastPair in castableMagicDic)
         {
-            bool magicIsActived = magicPair.Value.CallSpell(touchedMagicSphereindex);//魔法が発動したか
+            spellCastPair.Value.Cast(touchedMagicSphereindex);//触れた球のインデックスを魔法に伝える
 
-            if (magicIsActived)
+            if (spellCastPair.Value.IsReadyToInvoke)
             {
-                OnMagicActived?.Invoke(magicPair.Key);
-                isAnyMagicActived = true;
+                invokableMagicsList.Add(spellCastPair.Key);
             }
         }
 
-        return isAnyMagicActived;
+        return invokableMagicsList.ToArray();
     }
 
     //発動可能性のある魔法から、次になぞるべき球をアクティブにする
     //アクティブにした球のインデックスリストを返す
-    List<int> ActivateNextTraceMagicSphere(Dictionary<EMagic, Magic> castableMagicDic)
+    List<int> ActivateNextTraceMagicSphere(Dictionary<EMagic, SpellCast> castableMagicDic)
     {
         List<int> activeMagicSphereIndexList = new();
 
-        foreach (var magicPair in castableMagicDic)
+        foreach (var spellCastPair in castableMagicDic)
         {
-            int nextIndex = magicPair.Value.NextMagicSphereIndex;
+            int nextIndex = spellCastPair.Value.NextMagicSphereIndex;
 
             if (nextIndex == -1) continue;
 
-            _magicSpheres[nextIndex].ToActive(magicPair.Value.MagicSphereMaterial);
+            _magicSpheres[nextIndex].ToActive(spellCastPair.Value.MagicSphereMaterial);
             activeMagicSphereIndexList.Add(nextIndex);
         }
 
@@ -162,11 +162,11 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     }
 
     //魔法の初期化
-    void InitAllMagic()
+    void InitAllSpellCast()
     {
-        foreach (var magic in _magicsDictionary.Values)
+        foreach (var spellCast in _spellCastsDictionary.Values)
         {
-            magic.Initialize();
+            spellCast.Initialize();
         }
     }
 
