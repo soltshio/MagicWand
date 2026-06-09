@@ -677,7 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
   _clearCount: 3
   _magicCircleManager: {fileID: 741445578}
-  _magicInvoker: {fileID: 0}
+  _magicInvoker: {fileID: 446498116}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,15 +1811,15 @@ MonoBehaviour:
   _spellCastsDictionary:
     _list:
     - key: 0
-      value: {fileID: 0}
-    - key: 0
-      value: {fileID: 0}
-    - key: 0
-      value: {fileID: 0}
-    - key: 0
-      value: {fileID: 0}
-    - key: 0
-      value: {fileID: 0}
+      value: {fileID: 1138852482}
+    - key: 1
+      value: {fileID: 52058001}
+    - key: 2
+      value: {fileID: 1910504421}
+    - key: 3
+      value: {fileID: 1040190900}
+    - key: 4
+      value: {fileID: 525952}
   _magicCircleActiveHandler: {fileID: 741445579}
 --- !u!114 &741445579
 MonoBehaviour:
