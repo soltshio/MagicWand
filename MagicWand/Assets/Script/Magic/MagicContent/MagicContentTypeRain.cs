@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -7,8 +8,16 @@ using UnityEngine;
 
 public class MagicContentTypeRain : MagicContentTypeBase
 {
+    [SerializeField]
+    BigCreature _bigCreature;
+
     public override async UniTask ActivateAsync(CancellationToken token)
     {
-        await UniTask.Yield(token);
+        List<UniTask> runningTasks = new();
+
+        //でか生物に雷魔法を当てる
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+
+        await UniTask.WhenAll(runningTasks);
     }
 }
