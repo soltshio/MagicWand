@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 525950}
   - component: {fileID: 525951}
+  - component: {fileID: 525952}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -167,6 +168,21 @@ MonoBehaviour:
   _magicLog: Fire!
   _magicContent: {fileID: 0}
   _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
+--- !u!114 &525952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _activeOrderIndexs: 000000000100000002000000030000000400000000000000
+  _magicLog: Fire!
+  _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
 --- !u!1 &52057997
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +194,7 @@ GameObject:
   - component: {fileID: 52057998}
   - component: {fileID: 52057999}
   - component: {fileID: 52058000}
+  - component: {fileID: 52058001}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -228,6 +245,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb67a5a52ce8acf45bd72882b7abe72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeRain
+--- !u!114 &52058001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52057997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _activeOrderIndexs: 02000000000000000300000002000000
+  _magicLog: Water!
+  _magicSphereMaterial: {fileID: 2100000, guid: 9559c9182dadb3840b37ce8619460cc4, type: 2}
 --- !u!1 &73961155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,18 +1731,18 @@ MonoBehaviour:
   - {fileID: 993358642}
   - {fileID: 549293276}
   _magicSphereTrail: {fileID: 741445577}
-  _magicsDictionary:
+  _spellCastsDictionary:
     _list:
     - key: 0
-      value: {fileID: 1138852479}
-    - key: 1
-      value: {fileID: 52057999}
-    - key: 2
-      value: {fileID: 1910504419}
-    - key: 3
-      value: {fileID: 1040190899}
-    - key: 4
-      value: {fileID: 525951}
+      value: {fileID: 0}
+    - key: 0
+      value: {fileID: 0}
+    - key: 0
+      value: {fileID: 0}
+    - key: 0
+      value: {fileID: 0}
+    - key: 0
+      value: {fileID: 0}
   _magicCircleActiveHandler: {fileID: 741445579}
 --- !u!114 &741445579
 MonoBehaviour:
@@ -2186,6 +2218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040190898}
   - component: {fileID: 1040190899}
+  - component: {fileID: 1040190900}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -2223,6 +2256,21 @@ MonoBehaviour:
   _activeOrderIndexs: 030000000000000002000000040000000100000003000000
   _magicLog: Star!
   _magicContent: {fileID: 0}
+  _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
+--- !u!114 &1040190900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040190897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _activeOrderIndexs: 030000000000000002000000040000000100000003000000
+  _magicLog: Star!
   _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
 --- !u!1 &1118699959
 GameObject:
@@ -2418,6 +2466,7 @@ GameObject:
   - component: {fileID: 1138852479}
   - component: {fileID: 1138852481}
   - component: {fileID: 1138852480}
+  - component: {fileID: 1138852482}
   m_Layer: 0
   m_Name: Thunder
   m_TagString: Untagged
@@ -2571,6 +2620,21 @@ MonoBehaviour:
   _spawnThunderPoint: {fileID: 1789627147}
   _thunderSE: {fileID: 8300000, guid: c6a3a87bb5a4eb24ba6e3facc3ebde25, type: 3}
   _audioSource: {fileID: 1138852480}
+--- !u!114 &1138852482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _activeOrderIndexs: 0100000002000000000000000300000004000000
+  _magicLog: Thunder!
+  _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
 --- !u!1 &1174364085
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,6 +3900,7 @@ GameObject:
   - component: {fileID: 1910504418}
   - component: {fileID: 1910504419}
   - component: {fileID: 1910504420}
+  - component: {fileID: 1910504421}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -3886,6 +3951,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3f4d9ba3d7fe40ba02228ba5c249b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
+--- !u!114 &1910504421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _activeOrderIndexs: 0400000001000000030000000200000004000000
+  _magicLog: Time!
+  _magicSphereMaterial: {fileID: 2100000, guid: d4d7938abcf7e3f4690e545bf9a5b437, type: 2}
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0

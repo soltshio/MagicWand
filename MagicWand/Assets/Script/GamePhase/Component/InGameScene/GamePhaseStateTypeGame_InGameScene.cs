@@ -35,10 +35,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
         for(int i=0; i<_clearCount ;i++)
         {
             //魔法陣を起動
-            _magicCircleManager.ActivateMagicCircle();
+            await _magicCircleManager.MagicCircleAsync();
 
-            //魔法陣が非アクティブになる(魔法が発動する)まで待つ
-            await UniTask.WaitUntil(() => !_magicCircleManager.IsActiveMagicCircle);
+            //魔法を発動
 
             //数秒待つ
             await UniTask.Delay(TimeSpan.FromSeconds(2f));
