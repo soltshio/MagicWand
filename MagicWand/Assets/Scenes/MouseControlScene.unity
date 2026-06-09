@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb67a5a52ce8acf45bd72882b7abe72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeRain
+  _bigCreature: {fileID: 1564245243}
 --- !u!114 &52058001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,6 +1093,8 @@ MonoBehaviour:
     _list:
     - key: 0
       value: {fileID: 1138852481}
+    - key: 1
+      value: {fileID: 52058000}
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
