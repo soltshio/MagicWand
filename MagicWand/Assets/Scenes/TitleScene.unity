@@ -357,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5163555855531483130, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_Name
-      value: HoverAutoClickButton_TypeMaskImage
+      value: ToGameButton
       objectReference: {fileID: 0}
     - target: {fileID: 5497042574897224380, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_AnchoredPosition.y
