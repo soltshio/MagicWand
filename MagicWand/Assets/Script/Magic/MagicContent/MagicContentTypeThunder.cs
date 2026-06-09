@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class MagicContentTypeThunder : MagicContentTypeBase
 {
+    [SerializeField]
+    BigCreature _bigCreature;
+
     [Tooltip("雷エフェクトプレハブ")] [SerializeField]
     GameObject _thunderEffectPrefab;
 

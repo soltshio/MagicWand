@@ -2749,6 +2749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18de4face29370e4c965276fc8d5e4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeThunder
+  _bigCreature: {fileID: 0}
   _thunderEffectPrefab: {fileID: 8352559688436039051, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
   _thunderEffectLifeDuration: 5
   _spawnThunderPoint: {fileID: 1789627147}
@@ -3441,7 +3442,7 @@ GameObject:
   - component: {fileID: 1564245240}
   - component: {fileID: 1564245239}
   m_Layer: 0
-  m_Name: Creature
+  m_Name: BigCreature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
