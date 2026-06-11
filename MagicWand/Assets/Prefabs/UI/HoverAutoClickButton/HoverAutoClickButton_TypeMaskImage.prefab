@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5497042574897224380}
   - component: {fileID: 1801623432275807798}
-  - component: {fileID: 6685452905846352289}
   - component: {fileID: 3690706192768552341}
   - component: {fileID: 77262839780901254}
   m_Layer: 5
@@ -47,36 +46,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138193983696216201}
   m_CullTransparentMesh: 1
---- !u!114 &6685452905846352289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138193983696216201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.7037692, g: 0.9924528, b: 0.64228547, a: 1}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 3
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 1
-  m_FillAmount: 0
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!82 &3690706192768552341
 AudioSource:
   m_ObjectHideFlags: 0
@@ -187,9 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoveringViewUI_MaskImagePos
   _hoverAutoClickButton: {fileID: 3002791503309243488}
-  _colorImagePos: {fileID: 5497042574897224380}
-  _upPos: -92
-  _downPos: -147.5
+  _buttonText: {fileID: 6810866614219046878}
+  _fillColor: {r: 0.111320674, g: 1, b: 0.2690583, a: 0}
 --- !u!1001 &4907893380634446709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,29 +293,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3509413174796636948, guid: 444207049d095f945b78327286379821, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5497042574897224380}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5912943009848315261, guid: 444207049d095f945b78327286379821, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 686761414237798597}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 444207049d095f945b78327286379821, type: 3}
---- !u!1 &1590519779797911048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5912943009848315261, guid: 444207049d095f945b78327286379821, type: 3}
-  m_PrefabInstance: {fileID: 4907893380634446709}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &686761414237798597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590519779797911048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
-  m_ShowMaskGraphic: 1
 --- !u!114 &3002791503309243488 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7903916236406918933, guid: 444207049d095f945b78327286379821, type: 3}
@@ -359,6 +306,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76985033a915aa64aa25648017718d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoverAutoClickButton
+--- !u!114 &6810866614219046878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1916660008421094571, guid: 444207049d095f945b78327286379821, type: 3}
+  m_PrefabInstance: {fileID: 4907893380634446709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &8408123432031574113 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3509413174796636948, guid: 444207049d095f945b78327286379821, type: 3}

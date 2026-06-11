@@ -1,4 +1,4 @@
-﻿using Unity.VisualScripting;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,21 +11,41 @@ public class ButtonHoveringViewUI_MaskImagePos : MonoBehaviour
     [SerializeField]
     HoverAutoClickButton _hoverAutoClickButton;
 
-    [Tooltip("色のImageの位置情報")] [SerializeField]
-    RectTransform _colorImagePos;
+    [SerializeField]
+    TextMeshProUGUI _buttonText;
 
-    [Tooltip("色が完全に変わった時の色のImageの位置")] [SerializeField]
-    float _upPos;
-
-    [Tooltip("色が全く染まっていない時の色のImageの位置")] [SerializeField]
-    float _downPos;
+    [SerializeField]
+    Color _fillColor;
 
     bool _isHovering = false;
 
+    Material _material;
+
+    static readonly int FillAmountID = Shader.PropertyToID("_FillAmount");
+
+    static readonly int FillColorID = Shader.PropertyToID("_FillColor");
+
+    void Awake()
+    {
+        // インスタンス化されたマテリアルを取得
+        _material = _buttonText.fontMaterial;
+    }
+
     void Start()
     {
-        //色の位置を一番下にしておく
-        _colorImagePos.localPosition = new Vector3(_colorImagePos.localPosition.x, _downPos, _colorImagePos.localPosition.z);
+        //色を変えておく
+        _material.SetColor(FillColorID, _fillColor);
+    }
+
+    void OnValidate()
+    {
+        //実行時以外は無視
+        if (!Application.isPlaying) return;
+        
+        if (_buttonText == null) return;
+        if (_material == null) return;
+
+        _material.SetColor(FillColorID, _fillColor);
     }
 
     void OnEnable()
@@ -44,7 +64,7 @@ public class ButtonHoveringViewUI_MaskImagePos : MonoBehaviour
 
         float colorImageRate = _hoverAutoClickButton.HoveringTime / _hoverAutoClickButton.Parameter.HoverDurationToClick;
 
-        _colorImagePos.localPosition = new Vector3(_colorImagePos.localPosition.x, Mathf.Lerp(_downPos, _upPos, colorImageRate), _colorImagePos.localPosition.z);
+        _material.SetFloat(FillAmountID, colorImageRate);
     }
 
     void OnButtonStateChanged(HoverAutoClickButtonEState state)
@@ -57,7 +77,7 @@ public class ButtonHoveringViewUI_MaskImagePos : MonoBehaviour
         {
             _isHovering = false;
             //色の位置を一番下に戻しておく
-            _colorImagePos.localPosition = new Vector3(_colorImagePos.localPosition.x, _downPos, _colorImagePos.localPosition.z);
+            _material.SetFloat(FillAmountID, 0f);
         }
     }
 }

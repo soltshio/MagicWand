@@ -1,4 +1,4 @@
-﻿Shader "TextMeshPro/Custom/TMP_DistanceField" {
+﻿Shader "TextMeshPro/Custom/VerticalFillTextShader" {
 
 Properties {
 	_FaceTex			("Face Texture", 2D) = "white" {}
