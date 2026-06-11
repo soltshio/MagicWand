@@ -672,7 +672,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -715,8 +715,7 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras:
-  - {fileID: 1858455713}
+  m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -2398,7 +2397,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1858455713}
+  m_Camera: {fileID: 330585545}
   m_PlaneDistance: 0.301
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3140,7 +3139,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1858455713}
+  m_Camera: {fileID: 330585545}
   m_PlaneDistance: 0.301
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3425,7 +3424,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1858455713}
+  m_Camera: {fileID: 0}
   m_PlaneDistance: 2.44
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4049,7 +4048,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1858455715}
   - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4175,16 +4173,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!20 &1858455713 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6199533108961418876, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-  m_PrefabInstance: {fileID: 2282791180381459069}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1858455715 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-  m_PrefabInstance: {fileID: 2282791180381459069}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1910504417
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,63 +4752,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &2282791180381459069
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1771542477}
-    m_Modifications:
-    - target: {fileID: 982149836719386287, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_Name
-      value: UICamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390603889689967987, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
 --- !u!4 &2309549961051584316
 Transform:
   m_ObjectHideFlags: 0
@@ -9708,7 +9639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.VisualEffectGraph.Runtime::UnityEngine.VFX.Utility.VFXPropertyBinder
   m_ExecuteInEditor: 1
-  m_Bindings: []
+  m_Bindings:
+  - {fileID: 5293460268352624330}
   m_VisualEffect: {fileID: 5293460268352624333}
 --- !u!73398921 &5293460268352624332
 VFXRenderer:
