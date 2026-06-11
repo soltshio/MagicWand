@@ -5,9 +5,9 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 //作成者:杉山
-//シーンが変わるごとにキャンバスのrenderCameraを更新する
+//シーンが変わるごとに3Dオブジェクトをキャンバス上に表示するためのUIカメラとキャンバスを更新する機能
 
-public class PersistentCursorCanvas : MonoBehaviour
+public class PersistentUICameraAndCanvas : MonoBehaviour
 {
     [SerializeField]
     Canvas _canvas;
@@ -42,7 +42,9 @@ public class PersistentCursorCanvas : MonoBehaviour
 
         if (uiCameraObj == null)
         {
+#if UNITY_EDITOR
             Debug.Log("UICameraタグのオブジェクトが見つかりませんでした");
+#endif
             return MakeUICamera();
         }
 
@@ -50,7 +52,9 @@ public class PersistentCursorCanvas : MonoBehaviour
 
         if (uiCamera == null)
         {
+#if UNITY_EDITOR
             Debug.Log("UICameraタグのオブジェクトにCameraが付いていません");
+#endif
             return MakeUICamera();
         }
 
@@ -63,7 +67,9 @@ public class PersistentCursorCanvas : MonoBehaviour
 
         if (mainCamera == null)
         {
+#if UNITY_EDITOR
             Debug.LogError("Main Cameraが見つかりません");
+#endif
             return null;
         }
 
