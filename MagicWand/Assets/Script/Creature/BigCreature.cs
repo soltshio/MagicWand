@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -35,6 +36,9 @@ public class BigCreature : MonoBehaviour
     [SerializeField]
     AudioClip _walkSE;
 
+    [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
+    ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
+
     int _hp;
 
     public bool _isWakeUp { get { return _hp <= 0; } }//起きたか
@@ -44,24 +48,32 @@ public class BigCreature : MonoBehaviour
         _hp = _maxHp;
     }
 
+    void Start()
+    {
+        _shifterBigCreatureSoil.Start();
+    }
+
     public async UniTask TakeMagicAsync(EMagic magic)
     {
         var token = this.GetCancellationTokenOnDestroy();
 
-        //ダメージ処理
-        if(magic == EMagic.Rain || magic == EMagic.Thunder)
+        if(magic == EMagic.Rain || magic == EMagic.Thunder)//正解の魔法が来た場合
         {
             _hp--;
 
             //ダメージ音
             PlayAudio(_damageSE);
 
+            _shifterBigCreatureSoil.RemoveSoil(this.GetCancellationTokenOnDestroy());
+
             await UniTask.Delay(TimeSpan.FromSeconds(_damageEventDuration), cancellationToken: token);
         }
-        else
+        else//不正解の魔法が来た場合
         {
             //zzz音
             PlayAudio(_zzzSE);
+
+            _shifterBigCreatureSoil.AddSoil(this.GetCancellationTokenOnDestroy());
 
             await UniTask.Delay(TimeSpan.FromSeconds(_sleepEventDuration), cancellationToken: token);
         }

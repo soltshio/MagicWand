@@ -4057,8 +4057,17 @@ MonoBehaviour:
   _damageSE: {fileID: 8300000, guid: 2a25587379fb41740a039a624ac5264b, type: 3}
   _damageEventDuration: 0.8
   _zzzSE: {fileID: 8300000, guid: 44293a735b00efa4293b52bf28703f39, type: 3}
-  _sleepEventDuration: 5
+  _sleepEventDuration: 4
   _walkSE: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
+  _shifterBigCreatureSoil:
+    _bigCreatureBodyMeshRenderers:
+    - {fileID: 1564245240}
+    - {fileID: 289667385}
+    _minValue: 0.358
+    _range: 0.642
+    _defaultValue: 0.5
+    _delta: 0.2
+    _shiftDuration: 1.3
 --- !u!82 &1564245244
 AudioSource:
   m_ObjectHideFlags: 0

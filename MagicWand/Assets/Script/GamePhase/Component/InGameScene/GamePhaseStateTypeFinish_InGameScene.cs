@@ -29,12 +29,8 @@ public class GamePhaseStateTypeFinish_InGameScene : GamePhaseStateTypeBase
 
     async UniTask ClearSceneLoadAsync(CancellationToken ct)
     {
-        Debug.Log(_fadeInOutPanel.FadeState);
-
         //フェードアウトをしきってから、シーンのロードを始める
         _fadeInOutPanel.FadeTrigger(FadeInOutPanel.FadeEType.FadeOut);
-
-        Debug.Log(_fadeInOutPanel.FadeState);
 
         await UniTask.WaitUntil(() => (_fadeInOutPanel.FadeState == FadeInOutEState.CompleteFadeOut), cancellationToken: ct);
 
