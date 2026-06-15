@@ -46,11 +46,14 @@ public class BigCreature : MonoBehaviour
         if(magic == EMagic.Water || magic == EMagic.Thunder)
         {
             _hp--;
+
             //ダメージ音
+            _audioSource.PlayOneShot(_damageSE);
         }
         else
         {
             //zzz音
+            _audioSource.PlayOneShot(_zzzSE);
         }
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
@@ -59,6 +62,7 @@ public class BigCreature : MonoBehaviour
         if (!_isWakeUp) return;
 
         //起きた効果音
+
         //移動
         Vector3 beforeMovePos = transform.position;
 
