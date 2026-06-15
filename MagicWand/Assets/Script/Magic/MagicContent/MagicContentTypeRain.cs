@@ -12,6 +12,9 @@ public class MagicContentTypeRain : MagicContentTypeBase
     [SerializeField]
     BigCreature _bigCreature;
 
+    [SerializeField]
+    ParticleSystem _rainParticle;
+
     [Tooltip("雨の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _audioRainSource;
 
@@ -20,6 +23,9 @@ public class MagicContentTypeRain : MagicContentTypeBase
 
     public override async UniTask ActivateAsync(CancellationToken token)
     {
+        //雨のエフェクトを表示する
+        _rainParticle.Play();
+
         //雨の効果音を鳴らし始める
         _audioRainSource.Play();
 
@@ -32,6 +38,9 @@ public class MagicContentTypeRain : MagicContentTypeBase
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Rain));
 
         await UniTask.WhenAll(runningTasks);
+
+        //雨のエフェクトを非表示にする
+        _rainParticle.Stop();
 
         //雨の効果音をストップする
         _audioRainSource.Stop();
