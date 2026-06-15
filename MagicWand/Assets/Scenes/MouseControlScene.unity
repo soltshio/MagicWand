@@ -3837,8 +3837,10 @@ MonoBehaviour:
   _destination: {fileID: 349517872}
   _audioSource: {fileID: 1564245244}
   _damageSE: {fileID: 8300000, guid: 2a25587379fb41740a039a624ac5264b, type: 3}
+  _damageEventDuration: 0.8
   _zzzSE: {fileID: 8300000, guid: 44293a735b00efa4293b52bf28703f39, type: 3}
-  _wakeUpSE: {fileID: 0}
+  _sleepEventDuration: 1
+  _walkSE: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
 --- !u!82 &1564245244
 AudioSource:
   m_ObjectHideFlags: 0
