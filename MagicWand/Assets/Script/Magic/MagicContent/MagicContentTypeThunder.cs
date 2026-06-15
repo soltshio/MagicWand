@@ -24,7 +24,7 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     [Tooltip("雷エフェクトの効果音")][SerializeField]
     AudioClip _thunderSE;
 
-    [Tooltip("雷の影響を与えるまでに遅らせる時間")][SerializeField]
+    [Tooltip("魔法の影響を与えるまでに遅らせる時間")][SerializeField]
     float _delayDurationAffection = 0.8f;
 
     [SerializeField]
@@ -45,7 +45,7 @@ public class MagicContentTypeThunder : MagicContentTypeBase
         //雷エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
 
-        //でか生物に雷魔法を当てる
+        //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
 
         await UniTask.WhenAll(runningTasks);

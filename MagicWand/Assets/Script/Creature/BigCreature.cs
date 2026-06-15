@@ -49,7 +49,7 @@ public class BigCreature : MonoBehaviour
         var token = this.GetCancellationTokenOnDestroy();
 
         //ダメージ処理
-        if(magic == EMagic.Water || magic == EMagic.Thunder)
+        if(magic == EMagic.Rain || magic == EMagic.Thunder)
         {
             _hp--;
 

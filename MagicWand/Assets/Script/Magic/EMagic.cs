@@ -6,7 +6,7 @@ public enum EMagic
     None = -1,//エラー
 
     Thunder,//サンダー
-    Water,//ウォーター
+    Rain,//レイン(雨)
     Time,//タイム
     Star,//スター
     Fire,//ファイア
