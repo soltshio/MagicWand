@@ -65,7 +65,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _slider: 0.513
+    - _SoilFillAmount: 0.358
+    - _slider: 0.497
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

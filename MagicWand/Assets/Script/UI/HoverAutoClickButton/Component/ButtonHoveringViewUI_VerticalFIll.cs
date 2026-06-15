@@ -21,9 +21,9 @@ public class ButtonHoveringViewUI_VerticalFIll : MonoBehaviour
 
     Material _material;
 
-    static readonly int FillAmountID = Shader.PropertyToID("_FillAmount");
+    static readonly int _fillAmountID = Shader.PropertyToID("_FillAmount");
 
-    static readonly int FillColorID = Shader.PropertyToID("_FillColor");
+    static readonly int _fillColorID = Shader.PropertyToID("_FillColor");
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class ButtonHoveringViewUI_VerticalFIll : MonoBehaviour
     void Start()
     {
         //色を変えておく
-        _material.SetColor(FillColorID, _fillColor);
+        _material.SetColor(_fillColorID, _fillColor);
     }
 
     void OnValidate()
@@ -45,7 +45,7 @@ public class ButtonHoveringViewUI_VerticalFIll : MonoBehaviour
         if (_buttonText == null) return;
         if (_material == null) return;
 
-        _material.SetColor(FillColorID, _fillColor);
+        _material.SetColor(_fillColorID, _fillColor);
     }
 
     void OnEnable()
@@ -64,7 +64,7 @@ public class ButtonHoveringViewUI_VerticalFIll : MonoBehaviour
 
         float colorImageRate = _hoverAutoClickButton.HoveringTime / _hoverAutoClickButton.Parameter.HoverDurationToClick;
 
-        _material.SetFloat(FillAmountID, colorImageRate);
+        _material.SetFloat(_fillAmountID, colorImageRate);
     }
 
     void OnButtonStateChanged(HoverAutoClickButtonEState state)
@@ -77,7 +77,7 @@ public class ButtonHoveringViewUI_VerticalFIll : MonoBehaviour
         {
             _isHovering = false;
             //色の位置を一番下に戻しておく
-            _material.SetFloat(FillAmountID, 0f);
+            _material.SetFloat(_fillAmountID, 0f);
         }
     }
 }
