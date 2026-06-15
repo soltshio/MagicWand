@@ -23,11 +23,17 @@ public class BigCreature : MonoBehaviour
     [SerializeField]
     AudioClip _damageSE;
 
+    [Tooltip("ダメージのイベントの時間")] [SerializeField]
+    float _damageEventDuration=1f;
+
     [SerializeField]
     AudioClip _zzzSE;
 
+    [Tooltip("ノーダメージ(睡眠)のイベントの時間")] [SerializeField]
+    float _sleepEventDuration = 1f;
+
     [SerializeField]
-    AudioClip _wakeUpSE;
+    AudioClip _walkSE;
 
     int _hp;
 
@@ -43,22 +49,31 @@ public class BigCreature : MonoBehaviour
         var token = this.GetCancellationTokenOnDestroy();
 
         //ダメージ処理
-        if(magic == EMagic.Water || magic == EMagic.Thunder)
+        if(magic == EMagic.Rain || magic == EMagic.Thunder)
         {
             _hp--;
+
             //ダメージ音
+            PlayAudio(_damageSE);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(_damageEventDuration), cancellationToken: token);
         }
         else
         {
             //zzz音
+            PlayAudio(_zzzSE);
+
+            await UniTask.Delay(TimeSpan.FromSeconds(_sleepEventDuration), cancellationToken: token);
         }
 
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        _audioSource.Stop();
 
         //体力が0になったら起きて道を譲る演出を入れる
         if (!_isWakeUp) return;
 
-        //起きた効果音
+        //歩く効果音
+        PlayAudio(_walkSE);
+
         //移動
         Vector3 beforeMovePos = transform.position;
 
@@ -82,6 +97,14 @@ public class BigCreature : MonoBehaviour
             await UniTask.Yield(PlayerLoopTiming.Update,cancellationToken:token);
         }
 
+        //移動を終了
         transform.position = _destination.position;
+        _audioSource.Stop();
+    }
+
+    void PlayAudio(AudioClip clip)
+    {
+        _audioSource.clip = clip;
+        _audioSource.Play();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -23,6 +24,9 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     [Tooltip("雷エフェクトの効果音")][SerializeField]
     AudioClip _thunderSE;
 
+    [Tooltip("魔法の影響を与えるまでに遅らせる時間")][SerializeField]
+    float _delayDurationAffection = 0.8f;
+
     [SerializeField]
     AudioSource _audioSource;
 
@@ -35,9 +39,13 @@ public class MagicContentTypeThunder : MagicContentTypeBase
         //雷エフェクトの効果音を鳴らす
         _audioSource.PlayOneShot(_thunderSE);
 
+
         List<UniTask> runningTasks = new();
 
-        //でか生物に雷魔法を当てる
+        //雷エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
+        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
+
+        //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
 
         await UniTask.WhenAll(runningTasks);
