@@ -15,6 +15,9 @@ public class MagicContentTypeFire : MagicContentTypeBase
     [Tooltip("日向の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _audioSunSource;
 
+    [SerializeField]
+    SunLensActivator _sunLensActivator;
+
     [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
     float _delayDurationAffection = 2f;
 
@@ -22,6 +25,9 @@ public class MagicContentTypeFire : MagicContentTypeBase
     {
         //日向の効果音を鳴らし始める
         _audioSunSource.Play();
+
+        //日光エフェクトをだんだん光らせ始める
+        _sunLensActivator.ActivateAsync().Forget();
 
         List<UniTask> runningTasks = new();
 
@@ -33,6 +39,10 @@ public class MagicContentTypeFire : MagicContentTypeBase
 
         await UniTask.WhenAll(runningTasks);
 
+        //日光エフェクトをだんだん消していく
+        _sunLensActivator.DeactivateAsync().Forget();
+
+        //日航の効果音を止める
         _audioSunSource.Stop();
     }
 }
