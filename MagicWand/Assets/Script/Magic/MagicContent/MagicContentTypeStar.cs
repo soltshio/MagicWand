@@ -14,6 +14,9 @@ public class MagicContentTypeStar : MagicContentTypeBase
     [SerializeField]
     BigCreature _bigCreature;
 
+    [SerializeField]
+    AudioSource _starAudioSource;
+
     [Tooltip("流れ星のエフェクト")] [SerializeField]
     ParticleSystem _shootingStarParticle;
 
@@ -25,10 +28,10 @@ public class MagicContentTypeStar : MagicContentTypeBase
 
     public override async UniTask ActivateAsync(CancellationToken token)
     {
-        //流れ星エフェクトを表示
         _shootingStarParticle.Play();
 
-        //カメラを見上げる視点に
+        _starAudioSource.Play();
+
         SwitchToLookUpCamera();
 
         List<UniTask> runningTasks = new();
@@ -38,19 +41,21 @@ public class MagicContentTypeStar : MagicContentTypeBase
 
         await UniTask.WhenAll(runningTasks);
 
-        //カメラを元に戻す
         SwitchToDefaultCamera();
 
-        //流れ星エフェクトを停止
+        _starAudioSource.Stop();
+
         _shootingStarParticle.Stop();
     }
 
+    //カメラを見上げる視点に
     void SwitchToLookUpCamera()
     {
         _defaultCamera.enabled = false;
         _lookUpCamera.enabled = true;
     }
 
+    //カメラを元に戻す
     void SwitchToDefaultCamera()
     {
         _defaultCamera.enabled = true;
