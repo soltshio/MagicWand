@@ -18,13 +18,17 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
     float _delayDurationAffection = 2f;
 
+    [SerializeField]
+    ClockEffectActivator _clockEffectActivator;
+
     public override async UniTask ActivateAsync(CancellationToken token)
     {
         _clockAudioSource.Play();
 
         List<UniTask> runningTasks = new();
 
-        //後にここに時計のエフェクトの発動処理を入れる予定
+        //時計のエフェクトを表示させる
+        _clockEffectActivator.ActivateAsync().Forget();
 
         //エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
@@ -34,7 +38,8 @@ public class MagicContentTypeTime : MagicContentTypeBase
 
         await UniTask.WhenAll(runningTasks);
 
-        //後にここに時計のエフェクトの停止処理を入れる予定
+        //時計のエフェクトを非表示にさせる
+        _clockEffectActivator.DeactivateAsync().Forget();
 
         _clockAudioSource.Stop();
     }
