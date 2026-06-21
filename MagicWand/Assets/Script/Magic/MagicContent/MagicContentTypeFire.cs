@@ -13,7 +13,7 @@ public class MagicContentTypeFire : MagicContentTypeBase
     BigCreature _bigCreature;
 
     [Tooltip("日向の効果音が入ったAudioSource")] [SerializeField]
-    AudioSource _audioSunSource;
+    AudioSource _sunAudioSource;
 
     [SerializeField]
     SunLensActivator _sunLensActivator;
@@ -24,7 +24,7 @@ public class MagicContentTypeFire : MagicContentTypeBase
     public override async UniTask ActivateAsync(CancellationToken token)
     {
         //日向の効果音を鳴らし始める
-        _audioSunSource.Play();
+        _sunAudioSource.Play();
 
         //日光エフェクトをだんだん光らせ始める
         _sunLensActivator.ActivateAsync().Forget();
@@ -43,6 +43,6 @@ public class MagicContentTypeFire : MagicContentTypeBase
         _sunLensActivator.DeactivateAsync().Forget();
 
         //日航の効果音を止める
-        _audioSunSource.Stop();
+        _sunAudioSource.Stop();
     }
 }
