@@ -4016,9 +4016,9 @@ MonoBehaviour:
   _directThunderEvent: {fileID: 1138852484}
   _defaultCamera: {fileID: 684725215}
   _lookUpCamera: {fileID: 667172822}
-  _delayDurationFromMoveCameraToThunderCloud: 2
-  _delayDurationFromThunderCloudToDirectThunder: 1
-  _delayDurationAffection: 1
+  _delayDurationFromMoveCameraToThunderCloud: 1.5
+  _delayDurationFromThunderCloudToDirectThunder: 3
+  _delayDurationAffection: 2
   _audioSource: {fileID: 1138852480}
 --- !u!114 &1138852482
 MonoBehaviour:
@@ -4388,7 +4388,7 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 100
     PropagationSpeed: 343
-  DefaultVelocity: {x: 0, y: -2, z: 0}
+  DefaultVelocity: {x: 0, y: -3, z: 0}
 --- !u!1 &1148722369
 GameObject:
   m_ObjectHideFlags: 0
@@ -5088,7 +5088,7 @@ MonoBehaviour:
   _destination: {fileID: 349517872}
   _audioSource: {fileID: 1564245244}
   _damageSE: {fileID: 8300000, guid: 2a25587379fb41740a039a624ac5264b, type: 3}
-  _damageEventDuration: 0.8
+  _damageEventDuration: 1.5
   _zzzSE: {fileID: 8300000, guid: d8677e929f470364b92475b54b32af08, type: 3}
   _sleepEventDuration: 2.5
   _walkSE: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
