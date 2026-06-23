@@ -56,15 +56,15 @@ public class MagicContentTypeThunder : MagicContentTypeBase
 
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
 
+        //カメラを元に戻す
+        SwitchActiveCamera(false);
+
         //ここから魔法の影響を近くの物に与える
 
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
 
         await UniTask.WhenAll(runningTasks);
-
-        //カメラを元に戻す
-        SwitchActiveCamera(false);
     }
 
     //カメラを切り替える

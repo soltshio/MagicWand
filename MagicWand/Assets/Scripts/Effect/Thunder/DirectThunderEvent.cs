@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 //作成者:杉山
@@ -19,6 +20,9 @@ public class DirectThunderEvent : MonoBehaviour
     [Tooltip("目の前に落ちる雷の効果音")] [SerializeField]
     AudioClip _directThunderSE;
 
+    [Tooltip("カメラの揺れ")] [SerializeField]
+    CinemachineImpulseSource _impulseSource;
+
     public void CauseDirectThunder()
     {
         CauseDirectThunderAsync().Forget();
@@ -34,5 +38,6 @@ public class DirectThunderEvent : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationToLightningStrike), cancellationToken: ct);
 
         _audioSource.PlayOneShot(_directThunderSE);
+        _impulseSource.GenerateImpulse();
     }
 }
