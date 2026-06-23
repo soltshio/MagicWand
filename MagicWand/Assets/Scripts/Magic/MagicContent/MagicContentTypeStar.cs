@@ -17,6 +17,9 @@ public class MagicContentTypeStar : MagicContentTypeBase
     [SerializeField]
     AudioSource _starAudioSource;
 
+    [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
+    float _delayDurationAffection = 0.8f;
+
     [Tooltip("流れ星のエフェクト")] [SerializeField]
     ParticleSystem _shootingStarParticle;
 
@@ -32,7 +35,13 @@ public class MagicContentTypeStar : MagicContentTypeBase
 
         _starAudioSource.Play();
 
-        SwitchToLookUpCamera();
+        SwitchActiveCamera(true);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
+
+        SwitchActiveCamera(false);
+
+        _starAudioSource.Stop();
 
         List<UniTask> runningTasks = new();
 
@@ -41,24 +50,13 @@ public class MagicContentTypeStar : MagicContentTypeBase
 
         await UniTask.WhenAll(runningTasks);
 
-        SwitchToDefaultCamera();
-
-        _starAudioSource.Stop();
-
         _shootingStarParticle.Stop();
     }
 
-    //カメラを見上げる視点に
-    void SwitchToLookUpCamera()
+    //カメラを切り替える
+    void SwitchActiveCamera(bool isToLookUp)
     {
-        _defaultCamera.enabled = false;
-        _lookUpCamera.enabled = true;
-    }
-
-    //カメラを元に戻す
-    void SwitchToDefaultCamera()
-    {
-        _defaultCamera.enabled = true;
-        _lookUpCamera.enabled = false;
+        _defaultCamera.enabled = !isToLookUp;
+        _lookUpCamera.enabled = isToLookUp;
     }
 }

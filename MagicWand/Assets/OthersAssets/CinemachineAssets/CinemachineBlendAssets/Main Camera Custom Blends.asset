@@ -17,7 +17,7 @@ MonoBehaviour:
     To: LookUpCamera
     Blend:
       Style: 1
-      Time: 1
+      Time: 0.8
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -28,7 +28,7 @@ MonoBehaviour:
     To: DefaultCamera
     Blend:
       Style: 1
-      Time: 1
+      Time: 0.8
       CustomCurve:
         serializedVersion: 2
         m_Curve: []
