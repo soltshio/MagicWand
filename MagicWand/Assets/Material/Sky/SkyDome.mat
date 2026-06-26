@@ -97,7 +97,7 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
-    - _AlphaOffset: 1
+    - _AlphaOffset: 0.58
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -105,9 +105,9 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _CloudDensity: 1.09
-    - _CloudScale: 49.3
+    - _CloudScale: 31.41
     - _ColorLerp: 1
-    - _Contrast: 1.61
+    - _Contrast: 0.93
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
