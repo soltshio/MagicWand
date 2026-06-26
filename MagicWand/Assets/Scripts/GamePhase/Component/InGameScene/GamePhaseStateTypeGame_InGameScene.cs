@@ -19,6 +19,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     [SerializeField]
     BigCreature _bigCreature;
 
+    [SerializeField]
+    float _delayDuration=0.5f;
+
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
         GameStateAsync(stateMachine,this.GetCancellationTokenOnDestroy()).Forget();
@@ -45,7 +48,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             await _magicInvoker.InvokeMagicAsync(invokableMagics);
 
             //一応少しだけ待つ
-            await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: token);
+            await UniTask.Delay(TimeSpan.FromSeconds(_delayDuration), cancellationToken: token);
 
             //でか生物がどいたらゲーム終了
             if (_bigCreature._isWakeUp) break;

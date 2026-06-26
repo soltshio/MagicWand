@@ -1460,11 +1460,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4959409054966819145, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.8
+      value: 48.98
       objectReference: {fileID: 0}
     - target: {fileID: 4959409054966819145, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.4
+      value: 26.6
       objectReference: {fileID: 0}
     - target: {fileID: 4959409054966819145, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1696,7 +1696,6 @@ MonoBehaviour:
   _magicCircleManager: {fileID: 741445578}
   _magicInvoker: {fileID: 446498116}
   _bigCreature: {fileID: 1564245243}
-  _delayDuration: 0.5
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,7 +1896,6 @@ GameObject:
   - component: {fileID: 447535809}
   - component: {fileID: 447535808}
   - component: {fileID: 447535807}
-  - component: {fileID: 447535811}
   m_Layer: 0
   m_Name: SkyCloudDome
   m_TagString: Untagged
@@ -1998,22 +1996,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -68.64, y: 0, z: 0}
---- !u!114 &447535811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447535806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c4110d5d9ebff04ca442d55f7802634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FadeThunderCloud
-  _shiftDuration: 4
-  _offAlphaOffset: -1
-  _onAlphaOffset: 0.56
-  _cloudMeshRenderer: {fileID: 447535808}
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4006,6 +3988,7 @@ GameObject:
   - component: {fileID: 1138852481}
   - component: {fileID: 1138852480}
   - component: {fileID: 1138852482}
+  - component: {fileID: 1138852484}
   - component: {fileID: 1138852483}
   - component: {fileID: 1138852485}
   m_Layer: 0
@@ -4141,8 +4124,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeThunder
   _bigCreature: {fileID: 1564245243}
-  _thunderEventPlayer: {fileID: 1138852483}
-  _delayDurationMagicAffection: 1
+  _thunderCloudEvent: {fileID: 1138852483}
+  _directThunderEvent: {fileID: 1138852484}
+  _defaultCamera: {fileID: 684725215}
+  _lookUpCamera: {fileID: 667172822}
+  _delayDurationFromMoveCameraToThunderCloud: 1.5
+  _delayDurationFromThunderCloudToDirectThunder: 3
+  _delayDurationAffection: 2
+  _audioSource: {fileID: 1138852480}
 --- !u!114 &1138852482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4170,17 +4159,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a20a55a38a0dc468d5591007615199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThunderCloudEvent
-  _thunderEffect: {fileID: 350216448}
-  _cloudFadeController: {fileID: 447535811}
   _audioSource: {fileID: 1138852480}
   _distantThunderSE: {fileID: 8300000, guid: 740a484031a590c438fa0e105f6e4703, type: 3}
+--- !u!114 &1138852484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9456ab89d18cd4e8a68f5772b1caf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DirectThunderEvent
+  _delayDurationToLightningStrike: 0.5
+  _thunderEffect: {fileID: 350216448}
+  _audioSource: {fileID: 1138852480}
   _directThunderSE: {fileID: 8300000, guid: 0ddded5363c40bc4fa1944247fd55009, type: 3}
-  _defaultCamera: {fileID: 684725215}
-  _lookUpCamera: {fileID: 667172822}
   _impulseSource: {fileID: 1138852485}
-  _delayDurationFromLookUpCameraToCauseThunderCloud: 0.7
-  _delayDurationFromEffectPlayToLightningStrike: 0.5
-  _delayDurationFromLightningStrikeToDefault: 1
 --- !u!114 &1138852485
 MonoBehaviour:
   m_ObjectHideFlags: 0
