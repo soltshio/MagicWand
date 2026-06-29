@@ -65,7 +65,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SoilFillAmount: 0.358
+    - _SoilFillAmount: 0.347
     - _slider: 0.497
     m_Colors: []
   m_BuildTextureStacks: []
