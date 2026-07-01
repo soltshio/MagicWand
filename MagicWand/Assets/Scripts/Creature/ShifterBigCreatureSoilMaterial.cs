@@ -13,13 +13,13 @@ public class ShifterBigCreatureSoilMaterial
     MeshRenderer[] _bigCreatureBodyMeshRenderers;
 
     [SerializeField]
-    float _minValue;
+    float _minValue_SoilBoundaryHeight;
 
     [SerializeField] [Min(0)]
-    float _range;
+    float _range_SoilBoundaryHeight;
 
     [SerializeField]
-    float _defaultValue;
+    float _defaultValue_SoilBoundaryHeight;
 
     [SerializeField]
     float _delta;
@@ -32,9 +32,9 @@ public class ShifterBigCreatureSoilMaterial
 
     CancellationTokenSource _cts;
 
-    static readonly int _soilFillAmountID = Shader.PropertyToID("_SoilFillAmount");
+    static readonly int _soilBoundaryHeightID = Shader.PropertyToID("_SoilBoundaryHeight");
 
-    private float MaxValue { get { return _minValue + _range; } }
+    private float MaxValue { get { return _minValue_SoilBoundaryHeight + _range_SoilBoundaryHeight; } }
 
     public void Start()
     {
@@ -45,7 +45,7 @@ public class ShifterBigCreatureSoilMaterial
             _materials[i] = _bigCreatureBodyMeshRenderers[i].material;
         }
 
-        float value = ClampValue(_defaultValue);
+        float value = ClampValue(_defaultValue_SoilBoundaryHeight);
 
         SetSoilFillAmount(value);
 
@@ -120,14 +120,14 @@ public class ShifterBigCreatureSoilMaterial
 
     float ClampValue(float value)
     {
-        return Mathf.Clamp(value, _minValue, MaxValue);
+        return Mathf.Clamp(value, _minValue_SoilBoundaryHeight, MaxValue);
     }
 
     void SetSoilFillAmount(float value)
     {
         for (int i = 0; i < _materials.Length; i++)
         {
-            _materials[i].SetFloat(_soilFillAmountID, value);
+            _materials[i].SetFloat(_soilBoundaryHeightID, value);
         }
     }
 }
