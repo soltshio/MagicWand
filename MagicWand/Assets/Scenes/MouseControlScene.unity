@@ -827,6 +827,62 @@ PrefabInstance:
       propertyPath: _destination
       value: 
       objectReference: {fileID: 349517872}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _sleepZZZReaction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _sleepZZZReaction._sleepSE
+      value: 
+      objectReference: {fileID: 8300000, guid: d8677e929f470364b92475b54b32af08, type: 3}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _bigCreatureWalking._walkSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _sleepZZZReaction._audioSource
+      value: 
+      objectReference: {fileID: 139955386}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _sleepZZZReaction._showInterval
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _bigCreatureWalking._audioSource
+      value: 
+      objectReference: {fileID: 139955386}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _bigCreatureWalking._destination
+      value: 
+      objectReference: {fileID: 349517872}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _bigCreatureWalking._bigCreatureTrs
+      value: 
+      objectReference: {fileID: 1747125427}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _sleepZZZReaction._zzzTexts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: '_sleepZZZReaction._zzzTexts.Array.data[0]'
+      value: 
+      objectReference: {fileID: 97870382}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: '_sleepZZZReaction._zzzTexts.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1385307458}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: '_sleepZZZReaction._zzzTexts.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1888029711}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: '_sleepZZZReaction._zzzTexts.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1888029711}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _sleepZZZReaction._waitDurationFromAllShowToAllHide
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8632605048032759493, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.32
@@ -876,6 +932,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+--- !u!82 &139955386 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8693114283366238589, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+  m_PrefabInstance: {fileID: 139955385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &139955388 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
@@ -5889,6 +5950,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1747125427 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8632605048032759493, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+  m_PrefabInstance: {fileID: 139955385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1763767049
 GameObject:
   m_ObjectHideFlags: 0

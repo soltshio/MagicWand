@@ -1,7 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 //作成者:杉山
@@ -13,12 +15,6 @@ public class BigCreature : MonoBehaviour
     int _maxHp;
 
     [SerializeField]
-    float _moveDuration;
-
-    [SerializeField]
-    Transform _destination;
-
-    [SerializeField]
     AudioSource _audioSource;
 
     [SerializeField]
@@ -27,14 +23,14 @@ public class BigCreature : MonoBehaviour
     [Tooltip("ダメージのイベントの時間")] [SerializeField]
     float _damageEventDuration=1f;
 
-    [SerializeField]
-    AudioClip _zzzSE;
-
     [Tooltip("ノーダメージ(睡眠)のイベントの時間")] [SerializeField]
     float _sleepEventDuration = 1f;
 
-    [SerializeField]
-    AudioClip _walkSE;
+    [Tooltip("でかい生き物の歩行演出")] [SerializeField]
+    BigCreatureWalking _bigCreatureWalking;
+
+    [Tooltip("でかい生き物の睡眠演出")] [SerializeField]
+    SleepReaction _sleepZZZReaction;
 
     [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
     ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
@@ -50,6 +46,7 @@ public class BigCreature : MonoBehaviour
 
     void Start()
     {
+        _sleepZZZReaction.Start();
         _shifterBigCreatureSoil.Start();
     }
 
@@ -70,9 +67,6 @@ public class BigCreature : MonoBehaviour
         }
         else//不正解の魔法が来た場合
         {
-            //zzz音
-            PlayAudio(_zzzSE);
-
             _shifterBigCreatureSoil.AddSoil(this.GetCancellationTokenOnDestroy());
 
             await UniTask.Delay(TimeSpan.FromSeconds(_sleepEventDuration), cancellationToken: token);
@@ -80,38 +74,17 @@ public class BigCreature : MonoBehaviour
 
         _audioSource.Stop();
 
-        //体力が0になったら起きて道を譲る演出を入れる
-        if (!_isWakeUp) return;
-
-        //歩く効果音
-        PlayAudio(_walkSE);
-
-        //移動
-        Vector3 beforeMovePos = transform.position;
-
-        float elapsed = 0f;
-
-        //進行方向に向かせとく
-        Vector3 moveDirection = _destination.position - beforeMovePos;
-        Quaternion lookRot = Quaternion.LookRotation(moveDirection, Vector3.up);
-        transform.rotation = lookRot;
-
-        while(true)
+        
+        if (!_isWakeUp)
         {
-            elapsed += Time.deltaTime;
-
-            float rate = elapsed / _moveDuration;
-
-            transform.position = Vector3.Lerp(beforeMovePos, _destination.position, rate);
-
-            if (elapsed >= _moveDuration) break;
-
-            await UniTask.Yield(PlayerLoopTiming.Update,cancellationToken:token);
+            //体力が0じゃない間は眠る演出
+            await _sleepZZZReaction.SleepReactionAsunc(_hp,token);
         }
-
-        //移動を終了
-        transform.position = _destination.position;
-        _audioSource.Stop();
+        else
+        {
+            //体力が0になったら起きて道を譲る演出を入れる
+            await _bigCreatureWalking.WalkAsync(token);
+        }
     }
 
     void PlayAudio(AudioClip clip)
