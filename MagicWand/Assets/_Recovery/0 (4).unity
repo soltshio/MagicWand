@@ -861,7 +861,7 @@ PrefabInstance:
       objectReference: {fileID: 1747125427}
     - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: _sleepZZZReaction._zzzTexts.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: '_sleepZZZReaction._zzzTexts.Array.data[0]'
@@ -5126,14 +5126,13 @@ GameObject:
   - component: {fileID: 1381235191}
   - component: {fileID: 1381235193}
   - component: {fileID: 1381235192}
-  - component: {fileID: 1381235194}
   m_Layer: 5
   m_Name: BigCreatureSurpriseMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1381235191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5255,28 +5254,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381235190}
   m_CullTransparentMesh: 1
---- !u!95 &1381235194
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381235190}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c64670d55b1f9754ca917f977853dcb6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1385307456
 GameObject:
   m_ObjectHideFlags: 0
