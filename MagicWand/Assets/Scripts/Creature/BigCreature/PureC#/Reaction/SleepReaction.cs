@@ -26,7 +26,7 @@ public class SleepReaction
     AudioClip _sleepSE;
 
     //睡眠のリアクションを行う、showZCountは表示するZの数
-    public async UniTask SleepReactionAsunc(int showZCount,CancellationToken ct)
+    public async UniTask TakeSleepReactionAsunc(int showZCount,CancellationToken ct)
     {
         if(!MathfExtension.IsInRange(showZCount,0,_zzzTexts.Length))
         {

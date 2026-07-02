@@ -14,17 +14,11 @@ public class BigCreature : MonoBehaviour
     [Tooltip("最大体力(起きるまでに対象の魔法を撃たないといけない回数)")] [SerializeField]
     int _maxHp;
 
-    [SerializeField]
-    AudioSource _audioSource;
+    [Tooltip("でかい生き物の無視(沈黙)演出")] [SerializeField]
+    IgnoreReaction _ignoreReaction;
 
-    [SerializeField]
-    AudioClip _damageSE;
-
-    [Tooltip("ダメージのイベントの時間")] [SerializeField]
-    float _damageEventDuration=1f;
-
-    [Tooltip("ノーダメージ(睡眠)のイベントの時間")] [SerializeField]
-    float _sleepEventDuration = 1f;
+    [Tooltip("でかい生き物の驚き演出")] [SerializeField]
+    SurpriseReaction _surpriseReaction;
 
     [Tooltip("でかい生き物の歩行演出")] [SerializeField]
     BigCreatureWalking _bigCreatureWalking;
@@ -46,6 +40,8 @@ public class BigCreature : MonoBehaviour
 
     void Start()
     {
+        _ignoreReaction.Start();
+        _surpriseReaction.Start();
         _sleepZZZReaction.Start();
         _shifterBigCreatureSoil.Start();
     }
@@ -54,31 +50,28 @@ public class BigCreature : MonoBehaviour
     {
         var token = this.GetCancellationTokenOnDestroy();
 
-        if(magic == EMagic.Rain || magic == EMagic.Thunder)//正解の魔法が来た場合
+        if(IsCorrectMagic(magic))//正解の魔法が来た場合
         {
             _hp--;
 
-            //ダメージ音
-            PlayAudio(_damageSE);
-
             _shifterBigCreatureSoil.RemoveSoil(this.GetCancellationTokenOnDestroy());
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_damageEventDuration), cancellationToken: token);
+            //驚き演出
+            await _surpriseReaction.TakeSurpriseReactionAsync(token);
         }
         else//不正解の魔法が来た場合
         {
             _shifterBigCreatureSoil.AddSoil(this.GetCancellationTokenOnDestroy());
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_sleepEventDuration), cancellationToken: token);
+            //無視(沈黙)演出
+            await _ignoreReaction.TakeIgnoreReactionAsync(token);
         }
-
-        _audioSource.Stop();
 
         
         if (!_isWakeUp)
         {
             //体力が0じゃない間は眠る演出
-            await _sleepZZZReaction.SleepReactionAsunc(_hp,token);
+            await _sleepZZZReaction.TakeSleepReactionAsunc(_hp,token);
         }
         else
         {
@@ -87,9 +80,8 @@ public class BigCreature : MonoBehaviour
         }
     }
 
-    void PlayAudio(AudioClip clip)
+    bool IsCorrectMagic(EMagic magic)
     {
-        _audioSource.clip = clip;
-        _audioSource.Play();
+        return magic == EMagic.Rain || magic == EMagic.Thunder;
     }
 }
