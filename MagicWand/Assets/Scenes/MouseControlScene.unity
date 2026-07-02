@@ -832,6 +832,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _ignoreReaction._ignoreSE
+      value: 
+      objectReference: {fileID: 8300000, guid: f0277081d65e6234aa46ee346b9caaa6, type: 3}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: _sleepZZZReaction._sleepSE
       value: 
       objectReference: {fileID: 8300000, guid: d8677e929f470364b92475b54b32af08, type: 3}
@@ -839,6 +843,14 @@ PrefabInstance:
       propertyPath: _bigCreatureWalking._walkSE
       value: 
       objectReference: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _ignoreReaction._ignoreText
+      value: 
+      objectReference: {fileID: 1647558154}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _ignoreReaction._audioSource
+      value: 
+      objectReference: {fileID: 139955386}
     - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: _surpriseReaction._surpriseSE
       value: 
@@ -868,6 +880,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 349517872}
     - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _ignoreReaction._intervalAddPoint
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: _bigCreatureWalking._bigCreatureTrs
       value: 
       objectReference: {fileID: 1747125427}
@@ -895,6 +911,10 @@ PrefabInstance:
       propertyPath: '_sleepZZZReaction._zzzTexts.Array.data[3]'
       value: 
       objectReference: {fileID: 1888029711}
+    - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
+      propertyPath: _ignoreReaction._waitDurationFromAllShowToAllHide
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5016627266442348192, guid: e2cbfce047853294283ce3c5bfcdf794, type: 3}
       propertyPath: _sleepZZZReaction._waitDurationFromAllShowToAllHide
       value: 1.3
@@ -4361,7 +4381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeThunder
   _bigCreature: {fileID: 139955388}
   _thunderEventPlayer: {fileID: 1138852483}
-  _delayDurationMagicAffection: 1
+  _delayDurationMagicAffection: 0.5
 --- !u!114 &1138852482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5838,7 +5858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1647558153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5865,7 +5885,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647558152}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

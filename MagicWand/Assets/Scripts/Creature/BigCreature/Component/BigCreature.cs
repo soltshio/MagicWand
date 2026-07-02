@@ -14,8 +14,8 @@ public class BigCreature : MonoBehaviour
     [Tooltip("最大体力(起きるまでに対象の魔法を撃たないといけない回数)")] [SerializeField]
     int _maxHp;
 
-    [Tooltip("ノーダメージ(睡眠)のイベントの時間")] [SerializeField]
-    float _sleepEventDuration = 1f;
+    [Tooltip("でかい生き物の無視(沈黙)演出")] [SerializeField]
+    IgnoreReaction _ignoreReaction;
 
     [Tooltip("でかい生き物の驚き演出")] [SerializeField]
     SurpriseReaction _surpriseReaction;
@@ -40,6 +40,7 @@ public class BigCreature : MonoBehaviour
 
     void Start()
     {
+        _ignoreReaction.Start();
         _surpriseReaction.Start();
         _sleepZZZReaction.Start();
         _shifterBigCreatureSoil.Start();
@@ -49,7 +50,7 @@ public class BigCreature : MonoBehaviour
     {
         var token = this.GetCancellationTokenOnDestroy();
 
-        if(magic == EMagic.Rain || magic == EMagic.Thunder)//正解の魔法が来た場合
+        if(IsCorrectMagic(magic))//正解の魔法が来た場合
         {
             _hp--;
 
@@ -62,7 +63,8 @@ public class BigCreature : MonoBehaviour
         {
             _shifterBigCreatureSoil.AddSoil(this.GetCancellationTokenOnDestroy());
 
-            await UniTask.Delay(TimeSpan.FromSeconds(_sleepEventDuration), cancellationToken: token);
+            //無視(沈黙)演出
+            await _ignoreReaction.TakeIgnoreReactionAsync(token);
         }
 
         
@@ -76,5 +78,10 @@ public class BigCreature : MonoBehaviour
             //体力が0になったら起きて道を譲る演出を入れる
             await _bigCreatureWalking.WalkAsync(token);
         }
+    }
+
+    bool IsCorrectMagic(EMagic magic)
+    {
+        return magic == EMagic.Rain || magic == EMagic.Thunder;
     }
 }
