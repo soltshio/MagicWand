@@ -11,10 +11,10 @@ public class GroundGrassAlphaController : MonoBehaviour
     [SerializeField]
     MeshRenderer _groundRenderer;
 
-    [SerializeField]
+    [SerializeField] [Min(0)]
     float _minAlpha;
 
-    [SerializeField]
+    [SerializeField] [Min(0)]
     float _rangeAlpha;
 
     [SerializeField]

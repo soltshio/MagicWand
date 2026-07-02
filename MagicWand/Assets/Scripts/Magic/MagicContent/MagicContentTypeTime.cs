@@ -9,8 +9,23 @@ using UnityEngine;
 
 public class MagicContentTypeTime : MagicContentTypeBase
 {
+    [Header("地面関係")]
+    
+    [SerializeField]
+    GroundGrassAlphaController _groundGrassAlphaController;
+
+    [SerializeField]
+    float _alphaDelta;
+
+    [SerializeField]
+    float _shiftGrassAmountDuration;
+
+    [Header("でか生き物関係")]
+
     [SerializeField]
     BigCreature _bigCreature;
+
+    [Header("魔法のエフェクト関係")]
 
     [Tooltip("時計の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _clockAudioSource;
@@ -36,11 +51,22 @@ public class MagicContentTypeTime : MagicContentTypeBase
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Time));
 
+        //地面に草を生やす
+        float newAlpha = CalcNewGrassAlpha();
+        runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlpha, _shiftGrassAmountDuration));
+
         await UniTask.WhenAll(runningTasks);
 
         //時計のエフェクトを非表示にさせる
         _clockEffectActivator.DeactivateAsync().Forget();
 
         _clockAudioSource.Stop();
+    }
+
+    float CalcNewGrassAlpha()
+    {
+        float newAlpha = _groundGrassAlphaController.CurrentAlpha + _alphaDelta;
+
+        return Mathf.Clamp(newAlpha, _groundGrassAlphaController.MinAlpha, _groundGrassAlphaController.MaxAlpha);
     }
 }

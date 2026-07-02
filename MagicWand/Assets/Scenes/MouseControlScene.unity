@@ -5508,6 +5508,7 @@ GameObject:
   - component: {fileID: 1531092907}
   - component: {fileID: 1531092906}
   - component: {fileID: 1531092905}
+  - component: {fileID: 1531092908}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -5609,6 +5610,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531092903}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1531092908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531092903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938ef0d1b21d5264680c83cfae936307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundGrassAlphaController
+  _groundRenderer: {fileID: 1531092906}
+  _minAlpha: 0.1
+  _rangeAlpha: 0.613
+  _defaultAlpha: 0
 --- !u!1 &1579516459
 GameObject:
   m_ObjectHideFlags: 0
@@ -6543,6 +6560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3f4d9ba3d7fe40ba02228ba5c249b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
+  _groundGrassAlphaController: {fileID: 1531092908}
+  _alphaDelta: 0.25
+  _shiftGrassAmountDuration: 1.5
   _bigCreature: {fileID: 139955388}
   _clockAudioSource: {fileID: 1910504422}
   _delayDurationAffection: 2
