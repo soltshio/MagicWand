@@ -14,8 +14,8 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [SerializeField]
     GroundGrassAlphaController _groundGrassAlphaController;
 
-    [SerializeField]
-    float _alphaDelta;
+    [Tooltip("草の量の変化量(0を最低値、1を最大値として設定する)")] [SerializeField] [Range(0, 1)]
+    float _alphaDeltaRate;
 
     [SerializeField]
     float _shiftGrassAmountDuration;
@@ -40,22 +40,13 @@ public class MagicContentTypeTime : MagicContentTypeBase
     {
         _clockAudioSource.Play();
 
-        List<UniTask> runningTasks = new();
-
         //時計のエフェクトを表示させる
         _clockEffectActivator.ActivateAsync().Forget();
 
         //エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
 
-        //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Time));
-
-        //地面に草を生やす
-        float newAlpha = CalcNewGrassAlpha();
-        runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlpha, _shiftGrassAmountDuration));
-
-        await UniTask.WhenAll(runningTasks);
+        await AffectToAround();
 
         //時計のエフェクトを非表示にさせる
         _clockEffectActivator.DeactivateAsync().Forget();
@@ -63,10 +54,24 @@ public class MagicContentTypeTime : MagicContentTypeBase
         _clockAudioSource.Stop();
     }
 
+    async UniTask AffectToAround()
+    {
+        List<UniTask> runningTasks = new();
+
+        //でか生物に魔法を当てる
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Time));
+
+        //地面に草を生やす
+        float newAlphaRate = CalcNewGrassAlpha();
+        runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlphaRate, _shiftGrassAmountDuration));
+
+        await UniTask.WhenAll(runningTasks);
+    }
+
     float CalcNewGrassAlpha()
     {
-        float newAlpha = _groundGrassAlphaController.CurrentAlpha + _alphaDelta;
+        float newAlphaRate = _groundGrassAlphaController.CurrentAlphaRate + _alphaDeltaRate;
 
-        return Mathf.Clamp(newAlpha, _groundGrassAlphaController.MinAlpha, _groundGrassAlphaController.MaxAlpha);
+        return Mathf.Clamp01(newAlphaRate);
     }
 }

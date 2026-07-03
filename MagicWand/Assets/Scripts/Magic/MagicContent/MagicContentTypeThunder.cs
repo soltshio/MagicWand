@@ -26,9 +26,13 @@ public class MagicContentTypeThunder : MagicContentTypeBase
 
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationMagicAffection), cancellationToken: token);
 
-        List<UniTask> runningTasks = new();
-
         //ここから魔法の影響を近くの物に与える
+        await AffectToAround();
+    }
+
+    async UniTask AffectToAround()
+    {
+        List<UniTask> runningTasks = new();
 
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
