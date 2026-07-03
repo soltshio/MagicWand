@@ -14,8 +14,8 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [SerializeField]
     GroundGrassAlphaController _groundGrassAlphaController;
 
-    [SerializeField]
-    float _alphaDelta;
+    [Tooltip("草の量の変化量(0を最低値、1を最大値として設定する)")] [SerializeField] [Range(0, 1)]
+    float _alphaDeltaRate;
 
     [SerializeField]
     float _shiftGrassAmountDuration;
@@ -62,16 +62,16 @@ public class MagicContentTypeTime : MagicContentTypeBase
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Time));
 
         //地面に草を生やす
-        float newAlpha = CalcNewGrassAlpha();
-        runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlpha, _shiftGrassAmountDuration));
+        float newAlphaRate = CalcNewGrassAlpha();
+        runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlphaRate, _shiftGrassAmountDuration));
 
         await UniTask.WhenAll(runningTasks);
     }
 
     float CalcNewGrassAlpha()
     {
-        float newAlpha = _groundGrassAlphaController.CurrentAlpha + _alphaDelta;
+        float newAlphaRate = _groundGrassAlphaController.CurrentAlphaRate + _alphaDeltaRate;
 
-        return Mathf.Clamp(newAlpha, _groundGrassAlphaController.MinAlpha, _groundGrassAlphaController.MaxAlpha);
+        return Mathf.Clamp01(newAlphaRate);
     }
 }

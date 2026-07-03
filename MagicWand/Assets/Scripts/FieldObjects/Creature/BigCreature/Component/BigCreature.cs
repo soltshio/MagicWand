@@ -43,7 +43,6 @@ public class BigCreature : MonoBehaviour
         _ignoreReaction.Start();
         _surpriseReaction.Start();
         _sleepZZZReaction.Start();
-        _shifterBigCreatureSoil.Start();
     }
 
     public async UniTask TakeMagicAsync(EMagic magic)
@@ -54,14 +53,14 @@ public class BigCreature : MonoBehaviour
         {
             _hp--;
 
-            _shifterBigCreatureSoil.RemoveSoil(this.GetCancellationTokenOnDestroy());
+            _shifterBigCreatureSoil.RemoveSoil();
 
             //驚き演出
             await _surpriseReaction.TakeSurpriseReactionAsync(token);
         }
         else//不正解の魔法が来た場合
         {
-            _shifterBigCreatureSoil.AddSoil(this.GetCancellationTokenOnDestroy());
+            _shifterBigCreatureSoil.AddSoil();
 
             //無視(沈黙)演出
             await _ignoreReaction.TakeIgnoreReactionAsync(token);

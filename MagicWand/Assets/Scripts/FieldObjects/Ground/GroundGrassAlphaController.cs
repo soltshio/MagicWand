@@ -17,8 +17,8 @@ public class GroundGrassAlphaController : MonoBehaviour
     [SerializeField] [Min(0)]
     float _rangeAlpha;
 
-    [SerializeField]
-    float _defaultAlpha;
+    [Tooltip("草の量の初期値(0を最低値、1を最大値として設定する)")] [SerializeField] [Range(0,1)]
+    float _defaultAlphaRate;
 
     Material _groundMat;
 
@@ -26,19 +26,21 @@ public class GroundGrassAlphaController : MonoBehaviour
 
     static readonly int _grassAlphaID = Shader.PropertyToID("_GrassAlpha");
 
-    public float MinAlpha { get { return _minAlpha; } }
-    public float MaxAlpha { get { return _minAlpha + _rangeAlpha; } }
-    public float CurrentAlpha { get { return _groundMat.GetFloat(_grassAlphaID); } }
+    float MaxAlpha { get { return _minAlpha + _rangeAlpha; } }
 
-    //草の量を変更する(今のalphaからtoAlphaまで、duration秒かけて変わっていく。)
-    public async UniTask SetGrassAlphaAsync(float toAlpha,float duration)
+    public float CurrentAlphaRate { get { return FromAlphaToRate(_groundMat.GetFloat(_grassAlphaID)); } }
+
+    //草の量を変化させる(duration秒かけてtoAlphaRateまで草の量が変わっていく。)
+    //toAlphaRateは0を最低値、1を最大値として設定する
+    public async UniTask SetGrassAlphaAsync(float toAlphaRate,float duration)
     {
-        toAlpha = ClampAlpha(toAlpha);
+        toAlphaRate = Mathf.Clamp01(toAlphaRate);
 
         CancelRunningUniTask();
 
         var ct = CreateLinkedToken(this.GetCancellationTokenOnDestroy());
 
+        float toAlpha = FromRateToAlpha(toAlphaRate);
         await _groundMat.DOFloat(toAlpha, _grassAlphaID, duration).ToUniTask(cancellationToken: ct);
     }
 
@@ -49,14 +51,19 @@ public class GroundGrassAlphaController : MonoBehaviour
 
     void Start()
     {
-        float newGrassAlpha = ClampAlpha(_defaultAlpha);
+        float newGrassAlpha = FromRateToAlpha(_defaultAlphaRate);
 
         _groundMat.SetFloat(_grassAlphaID, newGrassAlpha);
     }
 
-    float ClampAlpha(float value)
+    float FromRateToAlpha(float rate)
     {
-        return Mathf.Clamp(value, MinAlpha, MaxAlpha);
+        return Mathf.Lerp(_minAlpha, MaxAlpha, rate);
+    }
+
+    float FromAlphaToRate(float alpha)
+    {
+        return Mathf.InverseLerp(_minAlpha, MaxAlpha, alpha);
     }
 
     void CancelRunningUniTask()

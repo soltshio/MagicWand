@@ -10,124 +10,33 @@ using UnityEngine;
 public class ShifterBigCreatureSoilMaterial
 {
     [SerializeField]
-    MeshRenderer[] _bigCreatureBodyMeshRenderers;
+    BigCreatureSoilController _bigCreatureSoilController;
 
-    [SerializeField]
-    float _minValue_SoilBoundaryHeight;
-
-    [SerializeField] [Min(0)]
-    float _range_SoilBoundaryHeight;
-
-    [SerializeField]
-    float _defaultValue_SoilBoundaryHeight;
-
-    [SerializeField]
-    float _delta;
+    [SerializeField] [Range(0,1)]
+    float _deltaRate = 0.17f;
 
     [SerializeField]
     float _shiftDuration;
 
-    Material[] _materials;
-    float _currentValue;
-
-    CancellationTokenSource _cts;
-
-    static readonly int _soilBoundaryHeightID = Shader.PropertyToID("_SoilBoundaryHeight");
-
-    private float MaxValue { get { return _minValue_SoilBoundaryHeight + _range_SoilBoundaryHeight; } }
-
-    public void Start()
+    public void AddSoil()
     {
-        _materials = new Material[_bigCreatureBodyMeshRenderers.Length];
-        
-        for(int i=0; i<_materials.Length ;i++)
-        {
-            _materials[i] = _bigCreatureBodyMeshRenderers[i].material;
-        }
+        float newSoilValueRate = _bigCreatureSoilController.CurrentSoilValueRate - _deltaRate;
 
-        float value = ClampValue(_defaultValue_SoilBoundaryHeight);
+        newSoilValueRate = Mathf.Clamp01(newSoilValueRate);
 
-        SetSoilFillAmount(value);
-
-        _currentValue = value;
+        _bigCreatureSoilController.SetSoilValueAsync(newSoilValueRate, _shiftDuration).Forget();
     }
 
-    public void AddSoil(CancellationToken ct)
+    public void RemoveSoil()
     {
-        float targetValue = ClampValue(_currentValue - _delta);
+        float newSoilValueRate = _bigCreatureSoilController.CurrentSoilValueRate + _deltaRate;
 
-        CancelRunningUniTask();
+        newSoilValueRate = Mathf.Clamp01(newSoilValueRate);
 
-        var token = CreateLinkedToken(ct);
-
-        ShiftAsync(token, _shiftDuration,_currentValue,targetValue).Forget();
+        _bigCreatureSoilController.SetSoilValueAsync(newSoilValueRate, _shiftDuration).Forget();
     }
 
-    public void RemoveSoil(CancellationToken ct)
-    {
-        float targetValue = ClampValue(_currentValue + _delta);
+    
 
-        CancelRunningUniTask();
-
-        var token = CreateLinkedToken(ct);
-
-        ShiftAsync(token, _shiftDuration, _currentValue, targetValue).Forget();
-    }
-
-    void CancelRunningUniTask()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-    }
-
-    CancellationToken CreateLinkedToken(CancellationToken ct)
-    {
-        _cts = new CancellationTokenSource();
-
-        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, ct);
-
-        return linkedCts.Token;
-    }
-
-    async UniTask ShiftAsync(CancellationToken ct,float duration,float from,float to)
-    {
-        _currentValue = to;
-
-        try
-        {
-            float elapsed = 0;
-
-            while (true)
-            {
-                elapsed += Time.deltaTime;
-
-                float rate = elapsed / duration;
-
-                float value = Mathf.Lerp(from, to, rate);
-
-                SetSoilFillAmount(value);
-
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
-
-                if (elapsed > duration) break;
-            }
-        }
-        catch
-        {
-
-        }
-    }
-
-    float ClampValue(float value)
-    {
-        return Mathf.Clamp(value, _minValue_SoilBoundaryHeight, MaxValue);
-    }
-
-    void SetSoilFillAmount(float value)
-    {
-        for (int i = 0; i < _materials.Length; i++)
-        {
-            _materials[i].SetFloat(_soilBoundaryHeightID, value);
-        }
-    }
+    
 }
