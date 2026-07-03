@@ -29,20 +29,25 @@ public class MagicContentTypeFire : MagicContentTypeBase
         //日光エフェクトをだんだん光らせ始める
         _sunLensActivator.ActivateAsync().Forget();
 
-        List<UniTask> runningTasks = new();
-
         //エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
 
-        //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Fire));
-
-        await UniTask.WhenAll(runningTasks);
+        await AffectToAround();
 
         //日光エフェクトをだんだん消していく
         _sunLensActivator.DeactivateAsync().Forget();
 
         //日航の効果音を止める
         _sunAudioSource.Stop();
+    }
+
+    async UniTask AffectToAround()
+    {
+        List<UniTask> runningTasks = new();
+
+        //でか生物に魔法を当てる
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Fire));
+
+        await UniTask.WhenAll(runningTasks);
     }
 }

@@ -43,14 +43,19 @@ public class MagicContentTypeStar : MagicContentTypeBase
 
         _starAudioSource.Stop();
 
+        await AffectToAround();
+
+        _shootingStarParticle.Stop();
+    }
+
+    async UniTask AffectToAround()
+    {
         List<UniTask> runningTasks = new();
 
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Star));
 
         await UniTask.WhenAll(runningTasks);
-
-        _shootingStarParticle.Stop();
     }
 
     //カメラを切り替える

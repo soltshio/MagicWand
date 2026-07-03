@@ -40,13 +40,23 @@ public class MagicContentTypeTime : MagicContentTypeBase
     {
         _clockAudioSource.Play();
 
-        List<UniTask> runningTasks = new();
-
         //時計のエフェクトを表示させる
         _clockEffectActivator.ActivateAsync().Forget();
 
         //エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
+
+        await AffectToAround();
+
+        //時計のエフェクトを非表示にさせる
+        _clockEffectActivator.DeactivateAsync().Forget();
+
+        _clockAudioSource.Stop();
+    }
+
+    async UniTask AffectToAround()
+    {
+        List<UniTask> runningTasks = new();
 
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Time));
@@ -56,11 +66,6 @@ public class MagicContentTypeTime : MagicContentTypeBase
         runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlpha, _shiftGrassAmountDuration));
 
         await UniTask.WhenAll(runningTasks);
-
-        //時計のエフェクトを非表示にさせる
-        _clockEffectActivator.DeactivateAsync().Forget();
-
-        _clockAudioSource.Stop();
     }
 
     float CalcNewGrassAlpha()

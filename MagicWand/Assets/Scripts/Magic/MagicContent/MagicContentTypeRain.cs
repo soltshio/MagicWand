@@ -29,20 +29,25 @@ public class MagicContentTypeRain : MagicContentTypeBase
         //雨の効果音を鳴らし始める
         _audioRainSource.Play();
 
-        List<UniTask> runningTasks = new();
-
         //雨エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
 
-        //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Rain));
-
-        await UniTask.WhenAll(runningTasks);
+        await AffectToAround();
 
         //雨のエフェクトを非表示にする
         _rainParticle.Stop();
 
         //雨の効果音をストップする
         _audioRainSource.Stop();
+    }
+
+    async UniTask AffectToAround()
+    {
+        List<UniTask> runningTasks = new();
+
+        //でか生物に魔法を当てる
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Rain));
+
+        await UniTask.WhenAll(runningTasks);
     }
 }
