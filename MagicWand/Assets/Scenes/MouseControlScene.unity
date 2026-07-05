@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _activeOrderIndexs: 000000000100000002000000030000000400000000000000
   _magicLog: Fire!
   _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
 --- !u!82 &525953
@@ -361,7 +360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _activeOrderIndexs: 02000000000000000300000002000000
   _magicLog: Rain!
   _magicSphereMaterial: {fileID: 2100000, guid: 9559c9182dadb3840b37ce8619460cc4, type: 2}
 --- !u!82 &52058002
@@ -3035,6 +3033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741445575}
   - component: {fileID: 741445578}
+  - component: {fileID: 741445580}
   - component: {fileID: 741445577}
   - component: {fileID: 741445576}
   - component: {fileID: 741445579}
@@ -3207,6 +3206,7 @@ MonoBehaviour:
   - {fileID: 2118804871}
   - {fileID: 993358642}
   - {fileID: 549293276}
+  _castPatternManager: {fileID: 741445580}
   _magicSphereTrail: {fileID: 741445577}
   _spellCastsDictionary:
     _list:
@@ -3245,6 +3245,32 @@ MonoBehaviour:
   - {fileID: 305296926}
   _magicCircleTrailRenderer: {fileID: 741445576}
   _magicCircleTrailAlpha_Active: 0
+--- !u!114 &741445580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741445573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ac74fe2483044f9daaad67203fb99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastPattern
+  _castPatternsArray:
+  - _list:
+    - key: 0
+      value: 0100000002000000000000000300000004000000
+    - key: 1
+      value: 02000000000000000300000002000000
+    - key: 2
+      value: 0400000001000000030000000200000004000000
+    - key: 3
+      value: 030000000000000002000000040000000100000003000000
+    - key: 4
+      value: 000000000100000002000000030000000400000000000000
+  _castPatternDecideMode: 1
+  _magicSphereNum: 5
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,7 +3890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _activeOrderIndexs: 030000000000000002000000040000000100000003000000
   _magicLog: Star!
   _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
 --- !u!114 &1040190901
@@ -4415,7 +4440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _activeOrderIndexs: 0100000002000000000000000300000004000000
   _magicLog: Thunder!
   _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
 --- !u!114 &1138852483
@@ -6617,7 +6641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _activeOrderIndexs: 0400000001000000030000000200000004000000
   _magicLog: Time!
   _magicSphereMaterial: {fileID: 2100000, guid: d4d7938abcf7e3f4690e545bf9a5b437, type: 2}
 --- !u!82 &1910504422

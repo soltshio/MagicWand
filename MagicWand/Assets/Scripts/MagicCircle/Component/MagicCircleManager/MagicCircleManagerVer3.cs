@@ -15,6 +15,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
     MagicSphereVer3[] _magicSpheres; //魔法陣上の球の配列
 
+    [SerializeField]
+    CastPatternManager _castPatternManager;
+
     [Tooltip("魔法陣のなぞった線を描画する機能")] [SerializeField]
     MagicSphereTrail _magicSphereTrail;
 
@@ -41,7 +44,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //魔法陣の線を消す
         _magicSphereTrail.Clear();
 
-        //魔法の初期化
+        //魔法発動の初期化
         InitAllSpellCast();
 
         //魔法陣を表示する
@@ -112,12 +115,22 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         return false;
     }
 
-    //魔法の初期化
+    //魔法発動の初期化
     void InitAllSpellCast()
     {
-        foreach (var spellCast in _spellCastsDictionary.Values)
+        //TODO:発動パターンの代入処理を後に追加
+        //発動パターンを決定
+        var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
+
+        foreach (var spellCast in _spellCastsDictionary)
         {
-            spellCast.Initialize();
+            if(!castPatterns.TryGetValue(spellCast.Key,out var orderIndexs))
+            {
+                Debug.Log("発動パターンの取得に失敗！");
+                continue;
+            }
+
+            spellCast.Value.Initialize(orderIndexs);
         }
     }
 
