@@ -5,7 +5,6 @@
 
 public class SpellCast : MonoBehaviour
 {
-    [Tooltip("球のアクティブ化の順番\nMagicSpheresの要素番号(0～配列の要素数-1)を入力してください")] [SerializeField]
     int[] _activeOrderIndexs;
 
     [SerializeField]
@@ -23,8 +22,9 @@ public class SpellCast : MonoBehaviour
     public Material MagicSphereMaterial { get { return _magicSphereMaterial; } }//魔法球のマテリアル
 
     //初期化
-    public void Initialize()
+    public void Initialize(int[] activeOrderIndexs)
     {
+        _activeOrderIndexs = activeOrderIndexs;
         _spellIsValid = true;
         _currentIndex = 0;
     }

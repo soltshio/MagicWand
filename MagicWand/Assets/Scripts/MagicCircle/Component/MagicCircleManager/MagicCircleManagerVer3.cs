@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using System.Linq;
 
 //作成者:杉山
 //魔法陣を起動させると、魔法が発動するまで魔法陣をなぞらせる処理をする
@@ -13,6 +14,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 {
     [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
     MagicSphereVer3[] _magicSpheres; //魔法陣上の球の配列
+
+    [SerializeField]
+    CastPatternManager _castPatternManager;
 
     [Tooltip("魔法陣のなぞった線を描画する機能")] [SerializeField]
     MagicSphereTrail _magicSphereTrail;
@@ -40,7 +44,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //魔法陣の線を消す
         _magicSphereTrail.Clear();
 
-        //魔法の初期化
+        //魔法発動の初期化
         InitAllSpellCast();
 
         //魔法陣を表示する
@@ -61,19 +65,19 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     async UniTask<EMagic[]> CastMagicAsync(CancellationToken token)
     {
         //現在発動の可能性がある魔法リストの作成
-        Dictionary<EMagic, SpellCast> castableMagicDic = new Dictionary<EMagic, SpellCast>(_spellCastsDictionary);
+        CastableMagics castableMagics = new(_spellCastsDictionary);
 
         while (true)
         {
             //発動可能性のある魔法から、次になぞるべき球をアクティブにする
-            List<int> activeMagicSphereIndexList = ActivateNextTraceMagicSphere(castableMagicDic);
+            List<int> activeMagicSphereIndexList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheres);
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             int touchedMagicSphereindex = -1;
             await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
 
             //杖が触れた球のインデックスを魔法に伝える
-            var invokableMagics = CastTouchedIndexToMagics(castableMagicDic, touchedMagicSphereindex);//いずれかの魔法が発動したか
+            var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
             //球を全て非アクティブにする
             AllMagicSpheresToDeactive();
@@ -88,58 +92,8 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             }
 
             //発動可能性のない魔法をリストから消す
-            RemoveIncastableMagic(castableMagicDic);
+            castableMagics.RemoveIncastableMagic();
         }
-    }
-
-    //発動可能性の無い魔法を発動可能性のある魔法リストから消す
-    void RemoveIncastableMagic(Dictionary<EMagic, SpellCast> castableMagicDic)
-    {
-        foreach (var spellCastPair in _spellCastsDictionary)
-        {
-            if (!spellCastPair.Value.SpellIsValid)
-            {
-                castableMagicDic.Remove(spellCastPair.Key);
-            }
-        }
-    }
-
-    //杖が触れた球のインデックスを魔法に伝える(それにより次になぞる球の番号の更新、魔法の発動処理を行う)
-    //発動可能な魔法を伝える
-    EMagic[] CastTouchedIndexToMagics(Dictionary<EMagic, SpellCast> castableMagicDic,int touchedMagicSphereindex)
-    {
-        List<EMagic> invokableMagicsList = new ();
-
-        foreach (var spellCastPair in castableMagicDic)
-        {
-            spellCastPair.Value.Cast(touchedMagicSphereindex);//触れた球のインデックスを魔法に伝える
-
-            if (spellCastPair.Value.IsReadyToInvoke)
-            {
-                invokableMagicsList.Add(spellCastPair.Key);
-            }
-        }
-
-        return invokableMagicsList.ToArray();
-    }
-
-    //発動可能性のある魔法から、次になぞるべき球をアクティブにする
-    //アクティブにした球のインデックスリストを返す
-    List<int> ActivateNextTraceMagicSphere(Dictionary<EMagic, SpellCast> castableMagicDic)
-    {
-        List<int> activeMagicSphereIndexList = new();
-
-        foreach (var spellCastPair in castableMagicDic)
-        {
-            int nextIndex = spellCastPair.Value.NextMagicSphereIndex;
-
-            if (nextIndex == -1) continue;
-
-            _magicSpheres[nextIndex].ToActive(spellCastPair.Value.MagicSphereMaterial);
-            activeMagicSphereIndexList.Add(nextIndex);
-        }
-
-        return activeMagicSphereIndexList;
     }
 
     //いずれかの球に杖がタッチしたか
@@ -161,12 +115,22 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         return false;
     }
 
-    //魔法の初期化
+    //魔法発動の初期化
     void InitAllSpellCast()
     {
-        foreach (var spellCast in _spellCastsDictionary.Values)
+        //TODO:発動パターンの代入処理を後に追加
+        //発動パターンを決定
+        var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
+
+        foreach (var spellCast in _spellCastsDictionary)
         {
-            spellCast.Initialize();
+            if(!castPatterns.TryGetValue(spellCast.Key,out var orderIndexs))
+            {
+                Debug.Log("発動パターンの取得に失敗！");
+                continue;
+            }
+
+            spellCast.Value.Initialize(orderIndexs);
         }
     }
 
