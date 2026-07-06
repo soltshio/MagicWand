@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicLog: Fire!
   _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
 --- !u!82 &525953
 AudioSource:
@@ -360,7 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicLog: Rain!
   _magicSphereMaterial: {fileID: 2100000, guid: 9559c9182dadb3840b37ce8619460cc4, type: 2}
 --- !u!82 &52058002
 AudioSource:
@@ -3038,6 +3036,7 @@ GameObject:
   - component: {fileID: 741445576}
   - component: {fileID: 741445579}
   - component: {fileID: 741445581}
+  - component: {fileID: 741445582}
   m_Layer: 0
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -3285,6 +3284,19 @@ MonoBehaviour:
   - {fileID: 2118804871}
   - {fileID: 993358642}
   - {fileID: 549293276}
+--- !u!114 &741445582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741445573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3945061a2874c374498ffbb7643470a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestLog_OnSuccessToCast
+  _magicCircleManager: {fileID: 741445578}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3904,7 +3916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicLog: Star!
   _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
 --- !u!114 &1040190901
 MonoBehaviour:
@@ -4454,7 +4465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicLog: Thunder!
   _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
 --- !u!114 &1138852483
 MonoBehaviour:
@@ -6655,7 +6665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicLog: Time!
   _magicSphereMaterial: {fileID: 2100000, guid: d4d7938abcf7e3f4690e545bf9a5b437, type: 2}
 --- !u!82 &1910504422
 AudioSource:

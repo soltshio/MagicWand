@@ -36,7 +36,7 @@ public class CastPatternManager : MonoBehaviour
 
         int shiftNum = Random.Range(0,magicSpheresLength);
 
-        if (shiftNum == 0) return;//ずらさなくていい
+        if (shiftNum == 0) return;//ずらさなくていい場合
 
         foreach(var orderIndexs in castPatterns.Values)
         {

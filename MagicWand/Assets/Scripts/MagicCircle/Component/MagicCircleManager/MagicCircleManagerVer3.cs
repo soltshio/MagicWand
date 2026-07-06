@@ -29,6 +29,8 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
 
+    public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
+
     public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
 
     //魔法陣の処理、処理が終わったら魔法の内容を返す
@@ -66,6 +68,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     {
         //現在発動の可能性がある魔法リストの作成
         CastableMagics castableMagics = new(_spellCastsDictionary);
+        castableMagics.OnSuccessToCast += OnSuccessToCast;
 
         while (true)
         {
@@ -85,7 +88,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList[touchedMagicSphereindex].transform.localPosition);
 
-            //発動可能な魔法があれば、それ返して魔法陣をなぞる処理を終える
+            //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
             if (invokableMagics.Length > 0)
             {
                 return invokableMagics;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 //作成者:杉山
@@ -7,6 +8,8 @@ using System.Linq;
 public class CastableMagics
 {
     Dictionary<EMagic, SpellCast> _castableMagicDic;
+
+    public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
 
     public CastableMagics(Dictionary<EMagic, SpellCast> spellCastsDictionary)
     {
@@ -33,16 +36,21 @@ public class CastableMagics
     }
 
     //杖が触れた球のインデックスを魔法に伝える(それにより次になぞる球の番号の更新、魔法の発動処理を行う)
-    //発動可能な魔法を伝える
+    //発動可能な魔法を返す
     public EMagic[] CastTouchedIndexToMagics(int touchedMagicSphereindex)
     {
         List<EMagic> invokableMagicsList = new();
 
         foreach (var spellCastPair in _castableMagicDic)
         {
-            spellCastPair.Value.Cast(touchedMagicSphereindex);//触れた球のインデックスを魔法に伝える
+            bool castResult = spellCastPair.Value.Cast(touchedMagicSphereindex);//触れた球のインデックスを魔法に伝える
 
-            if (spellCastPair.Value.IsReadyToInvoke)
+            if(castResult)//発動番号が合っていれば通知
+            {
+                OnSuccessToCast?.Invoke(spellCastPair.Key, touchedMagicSphereindex);
+            }
+
+            if (spellCastPair.Value.IsReadyToInvoke)//発動可能な魔法を追加
             {
                 invokableMagicsList.Add(spellCastPair.Key);
             }
