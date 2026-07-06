@@ -3037,6 +3037,7 @@ GameObject:
   - component: {fileID: 741445577}
   - component: {fileID: 741445576}
   - component: {fileID: 741445579}
+  - component: {fileID: 741445581}
   m_Layer: 0
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -3200,12 +3201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176893d13ff5da4cb5d7f0ec36c6dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer3
-  _magicSpheres:
-  - {fileID: 305296933}
-  - {fileID: 1579516466}
-  - {fileID: 2118804871}
-  - {fileID: 993358642}
-  - {fileID: 549293276}
+  _magicSpheresList: {fileID: 741445581}
   _castPatternManager: {fileID: 741445580}
   _magicSphereTrail: {fileID: 741445577}
   _spellCastsDictionary:
@@ -3270,7 +3266,25 @@ MonoBehaviour:
     - key: 4
       value: 000000000100000002000000030000000400000000000000
   _castPatternDecideMode: 1
-  _magicSphereNum: 5
+  _magicSpheresList: {fileID: 741445581}
+--- !u!114 &741445581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741445573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23b01c7bdcca5f46a9ba6671761dcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSpheresList
+  _magicSpheres:
+  - {fileID: 305296933}
+  - {fileID: 1579516466}
+  - {fileID: 2118804871}
+  - {fileID: 993358642}
+  - {fileID: 549293276}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

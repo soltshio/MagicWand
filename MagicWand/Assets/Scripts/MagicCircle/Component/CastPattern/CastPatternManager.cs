@@ -13,7 +13,7 @@ public class CastPatternManager : MonoBehaviour
     ECastPatternDecideMode _castPatternDecideMode;
 
     [SerializeField]
-    int _magicSphereNum;
+    MagicSpheresList _magicSpheresList;
 
     //魔法の発動手順を決定(選択)して返す
     public Dictionary<EMagic, int[]> DecideActiveOrderIndexs()
@@ -32,7 +32,9 @@ public class CastPatternManager : MonoBehaviour
 
     void ShiftIndex(ref Dictionary<EMagic, int[]> castPatterns)
     {
-        int shiftNum = Random.Range(0, _magicSphereNum);
+        int magicSpheresLength = _magicSpheresList.MagicSpheres.Length;
+
+        int shiftNum = Random.Range(0,magicSpheresLength);
 
         if (shiftNum == 0) return;//ずらさなくていい
 
@@ -41,7 +43,7 @@ public class CastPatternManager : MonoBehaviour
             for(int i=0; i<orderIndexs.Length; i++)
             {
                 orderIndexs[i] += shiftNum;
-                orderIndexs[i] %= _magicSphereNum;
+                orderIndexs[i] %= magicSpheresLength;
             }
         }
     }

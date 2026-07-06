@@ -12,8 +12,8 @@ using System.Linq;
 
 public class MagicCircleManagerVer3 : MonoBehaviour
 {
-    [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
-    MagicSphereVer3[] _magicSpheres; //魔法陣上の球の配列
+    [SerializeField]
+    MagicSpheresList _magicSpheresList;
 
     [SerializeField]
     CastPatternManager _castPatternManager;
@@ -70,7 +70,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         while (true)
         {
             //発動可能性のある魔法から、次になぞるべき球をアクティブにする
-            List<int> activeMagicSphereIndexList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheres);
+            List<int> activeMagicSphereIndexList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             int touchedMagicSphereindex = -1;
@@ -80,10 +80,10 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
             //球を全て非アクティブにする
-            AllMagicSpheresToDeactive();
+            _magicSpheresList.AllMagicSpheresToDeactive();
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
-            _magicSphereTrail.Add(_magicSpheres[touchedMagicSphereindex].transform.localPosition);
+            _magicSphereTrail.Add(_magicSpheresList[touchedMagicSphereindex].transform.localPosition);
 
             //発動可能な魔法があれば、それ返して魔法陣をなぞる処理を終える
             if (invokableMagics.Length > 0)
@@ -103,9 +103,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         foreach (var i in activeMagicSphereIndexList)
         {
-            if (!MathfExtension.IsInRange(i, 0, _magicSpheres.Length - 1)) continue;
+            if (!MathfExtension.IsInRange(i, 0, _magicSpheresList.MagicSpheres.Length - 1)) continue;
 
-            if (!_magicSpheres[i].IsActive)
+            if (!_magicSpheresList[i].IsActive)
             {
                 touchedMagicSphereindex = i;
                 return true;
@@ -118,7 +118,6 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     //魔法発動の初期化
     void InitAllSpellCast()
     {
-        //TODO:発動パターンの代入処理を後に追加
         //発動パターンを決定
         var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
 
@@ -131,15 +130,6 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             }
 
             spellCast.Value.Initialize(orderIndexs);
-        }
-    }
-
-    //球を全て非アクティブにする
-    void AllMagicSpheresToDeactive()
-    {
-        foreach (var magicSphere in _magicSpheres)
-        {
-            magicSphere.ToDeactive();
         }
     }
 }
