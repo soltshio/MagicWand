@@ -6,15 +6,19 @@ public class EffectOnSuccessToCast : MonoBehaviour
     [SerializeField]
     MagicCircleManagerVer3 _magicCircleManager;
 
-    
+    [SerializeField]
+    AudioSource _audioSource;
+
+    [SerializeField]
+    AudioClip _castSE;
 
     void Awake()
     {
-        _magicCircleManager.OnSuccessToCast += TestLog;
+        _magicCircleManager.OnSuccessToCast += CastEffect;
     }
 
-    void TestLog(EMagic castMagic,int touchedMagicSphereindex)
+    void CastEffect(EMagic castMagic,int touchedMagicSphereindex)
     {
-        Debug.Log(castMagic);
+        _audioSource.PlayOneShot(_castSE);
     }
 }
