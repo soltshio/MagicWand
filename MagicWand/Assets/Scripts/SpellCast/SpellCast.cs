@@ -8,9 +8,6 @@ public class SpellCast : MonoBehaviour
     int[] _activeOrderIndexs;
 
     [SerializeField]
-    string _magicLog;
-
-    [SerializeField]
     Material _magicSphereMaterial;
 
     bool _spellIsValid = true;
@@ -41,22 +38,21 @@ public class SpellCast : MonoBehaviour
         }
     }
 
-    //詠唱(なぞった球の要素番号を入力する、間違えたら初期化しない限り二度と魔法は発動しない)
-    public void Cast(int magicSphereIndex)
+    //詠唱(なぞった球の要素番号を入力する、番号が違っていたらfalseを返し、初期化しない限り二度と魔法は発動しない。合っていたらtrueを返す)
+    public bool Cast(int magicSphereIndex)
     {
-        if (IsReadyToInvoke) return;
-        if (!_spellIsValid) return;
+        if (IsReadyToInvoke) return false;
+        if (!_spellIsValid) return false;
 
-        //番号が間違えていたら、魔法の発動手順を間違えたということにする
+        //番号が違っていたら、魔法の発動手順を間違えたということにする(初期化しない限り二度と発動しない)
         if (_activeOrderIndexs[_currentIndex] != magicSphereIndex)
         {
             _spellIsValid = false;
+            return false;
         }
 
+        //合っていた場合次の番号へ
         _currentIndex++;
-
-        //以下はデバッグ用処理
-        if (!IsReadyToInvoke) return;
-        Debug.Log(_magicLog);
+        return true;
     }
 }
