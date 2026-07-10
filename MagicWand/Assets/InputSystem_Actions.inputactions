@@ -1171,6 +1171,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CursorControlMode",
+            "id": "b1676782-8bd6-4a80-9a0a-a78258897594",
+            "actions": [
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "5fcc0104-b58c-43e7-b4c6-d8e7203164c3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "69871c9d-3a13-41f6-899a-fec199e5c0d0",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
