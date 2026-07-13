@@ -13,15 +13,30 @@ public class CursorControllerByHokuyo : MonoBehaviour
     [SerializeField]
     InputActionReference _escapeAction;
 
+    [SerializeField][Min(1)]
+    int _movingAverageSize;
+
+    [Tooltip("北陽レーザー検知範囲内に何もない時はカーソルを真ん中に戻すか？")] [SerializeField]
+    bool _shouldReturnCursorToCenterWhenIsNotExist;
+
+    Vector2MovingAverage _movingAverage;
+
     bool _isActive = true;//これがtrueになっている間は北陽レーザーから値を受け取ってカーソルを動かすようにする。false時はマウスで動かせるようにする。
-    
+
+    Vector2 _windowCenter = new Vector2(0.5f,0.5f);
+
+    private void Awake()
+    {
+        _movingAverage = new(_movingAverageSize);
+    }
 
     private void OnEnable()
     {
         _escapeAction.action.performed += OnCancelHokuyoControlMode;
         _escapeAction.action.Enable();
 
-        _hokuyoBlobPosReceiver.OnMovePos += MoveCursor;
+        _hokuyoBlobPosReceiver.OnCatchPos += MoveCursor;
+        _hokuyoBlobPosReceiver.OnSwitchExistObject += ClearMovingAverage;
     }
 
     private void OnDisable()
@@ -29,7 +44,8 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.performed -= OnCancelHokuyoControlMode;
         _escapeAction.action.Disable();
 
-        _hokuyoBlobPosReceiver.OnMovePos -= MoveCursor;
+        _hokuyoBlobPosReceiver.OnCatchPos -= MoveCursor;
+        _hokuyoBlobPosReceiver.OnSwitchExistObject -= ClearMovingAverage;
     }
 
     private void OnCancelHokuyoControlMode(InputAction.CallbackContext context)
@@ -46,9 +62,27 @@ public class CursorControllerByHokuyo : MonoBehaviour
     void MoveCursor(Vector2 blobPos)
     {
         if (!_isActive) return;
+        if (!_hokuyoBlobPosReceiver.IsExistObject) return;
+
+        blobPos = _movingAverage.AddValue(blobPos);
 
         var mainCamera = Camera.main;
         Vector2 cursorWarpPos = mainCamera.ViewportToScreenPoint(blobPos);
+
+        Mouse.current.WarpCursorPosition(cursorWarpPos);
+    }
+
+    void ClearMovingAverage(bool isExistObject)
+    {
+        if (isExistObject) return;
+
+        _movingAverage.Clear();
+
+        if (!_shouldReturnCursorToCenterWhenIsNotExist) return;
+
+        //真ん中に戻す
+        var mainCamera = Camera.main;
+        Vector2 cursorWarpPos = mainCamera.ViewportToScreenPoint(_windowCenter);
 
         Mouse.current.WarpCursorPosition(cursorWarpPos);
     }

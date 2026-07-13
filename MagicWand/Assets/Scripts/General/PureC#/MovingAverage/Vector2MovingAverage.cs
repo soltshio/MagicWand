@@ -2,38 +2,38 @@
 using UnityEngine;
 
 //作成者:杉山
-//移動平均を取るクラス(Vector3用)
+//移動平均を取るクラス(Vector2用)
 
-public class Vector3MovingAverage
+public class Vector2MovingAverage
 {
-    Queue<Vector3> _buffer = new Queue<Vector3>();
+    Queue<Vector2> _buffer = new Queue<Vector2>();
     int _windowSize;
 
-    Vector3 _sum;// 現在の合計値を保持しておくことで、平均の計算を高速化する
+    Vector2 _sum;// 現在の合計値を保持しておくことで、平均の計算を高速化する
     const int _minSize = 1;
 
-    public Vector3MovingAverage(int size)
+    public Vector2MovingAverage(int size)
     {
         size = Mathf.Max(size, _minSize);//サイズが0になることを防ぐ
 
         _windowSize = size;
-        _sum = Vector3.zero;
+        _sum = Vector2.zero;
     }
 
     public void Clear()
     {
         _buffer.Clear();
-        _sum = Vector3.zero;
+        _sum = Vector2.zero;
     }
 
-    public Vector3 AddValue(Vector3 value)
+    public Vector2 AddValue(Vector2 value)
     {
         _sum += value;
         _buffer.Enqueue(value);
 
         DequeueOldestValue();
 
-        Vector3 avg = Average();
+        Vector2 avg = Average();
 
         return avg;
     }
@@ -42,11 +42,11 @@ public class Vector3MovingAverage
     {
         if (_buffer.Count <= _windowSize) return;
 
-        Vector3 dequeuedValue = _buffer.Dequeue();
+        Vector2 dequeuedValue = _buffer.Dequeue();
         _sum -= dequeuedValue;// 古い値を合計から引いておく
     }
 
-    Vector3 Average()
+    Vector2 Average()
     {
         return _sum / _buffer.Count;
     }
