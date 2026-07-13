@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 405899259057306558}
   m_Layer: 0
   m_Name: OSCReceiver
-  m_TagString: Untagged
+  m_TagString: OSCReceiver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   _oscReceiver: {fileID: 5386432015967416139}
+  _isNotExistObjectThreashold: {x: 0.001, y: 0.001}
 --- !u!114 &405899259057306558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,3 +81,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   _hokuyoBlobPosReceiver: {fileID: 2980541767281467537}
   _escapeAction: {fileID: -2514656397130829150, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _movingAverageSize: 15

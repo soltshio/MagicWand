@@ -10,4 +10,6 @@ public static class TagNameList
     public const string MagicSphere = "MagicSphere";
     //UIカメラ
     public const string UICamera = "UICamera";
+    //OSCレシーバー
+    public const string OSCReceiver = "OSCReceiver";
 }
