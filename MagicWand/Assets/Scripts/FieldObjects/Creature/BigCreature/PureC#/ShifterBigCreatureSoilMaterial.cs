@@ -20,7 +20,7 @@ public class ShifterBigCreatureSoilMaterial
 
     public void AddSoil()
     {
-        float newSoilValueRate = _bigCreatureSoilController.CurrentSoilValueRate - _deltaRate;
+        float newSoilValueRate = _bigCreatureSoilController.CurrentSoilValueRate + _deltaRate;
 
         newSoilValueRate = Mathf.Clamp01(newSoilValueRate);
 
@@ -29,7 +29,7 @@ public class ShifterBigCreatureSoilMaterial
 
     public void RemoveSoil()
     {
-        float newSoilValueRate = _bigCreatureSoilController.CurrentSoilValueRate + _deltaRate;
+        float newSoilValueRate = _bigCreatureSoilController.CurrentSoilValueRate - _deltaRate;
 
         newSoilValueRate = Mathf.Clamp01(newSoilValueRate);
 
