@@ -11,7 +11,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class BigCreatureSoilController : MonoBehaviour
 {
     [SerializeField]
-    MeshRenderer[] _bigCreatureBodyMeshRenderers;
+    SkinnedMeshRenderer[] _bigCreatureBodyMeshRenderers;
 
     [SerializeField]
     float _minSoilValue = -1.83f;

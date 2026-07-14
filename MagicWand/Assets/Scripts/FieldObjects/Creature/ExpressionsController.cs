@@ -6,7 +6,7 @@
 public class ExpressionsController : MonoBehaviour
 {
     [SerializeField]
-    MeshRenderer _expressionsRenderer;
+    SkinnedMeshRenderer _expressionsRenderer;
 
     [Tooltip("デフォルト(初期)の表情番号")] [SerializeField]
     int _defaultExpressionNum;
