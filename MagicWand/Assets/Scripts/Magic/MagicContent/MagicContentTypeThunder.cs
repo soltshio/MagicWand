@@ -16,34 +16,33 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     [SerializeField]
     PlayableDirector _thunderEffectDirecter;
 
+    List<UniTask> runningTasks = new();
+
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
     {
-        _thunderEffectDirecter.Pause();
+        AffectEventAsync().Forget();
     }
 
     public override async UniTask ActivateAsync(CancellationToken token)
     {
+        runningTasks.Clear();
+
         _thunderEffectDirecter.Play();
 
-        //一旦一時停止になるまで待つ
-        await UniTask.WaitUntil(() => _thunderEffectDirecter.state == PlayState.Paused, cancellationToken: token);
-
-        //ここから魔法の影響を近くの物に与える
-        await AffectToAround();
-
-        //また再生させて今度は終わるまで待つ
-        _thunderEffectDirecter.Play();
-        await _thunderEffectDirecter.WaitForStoppedAsync(token);
+        //タイムラインの再生が終わるまで待つ
+        await _thunderEffectDirecter.WaitForStoppedAsync(this.GetCancellationTokenOnDestroy());
     }
 
-    async UniTask AffectToAround()
+    //一旦タイムラインを一時停止し、他のオブジェクトへの影響処理が終わるのを待ってからまた再生させる
+    async UniTask AffectEventAsync()
     {
-        List<UniTask> runningTasks = new();
+        _thunderEffectDirecter.Pause();
 
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
-
         await UniTask.WhenAll(runningTasks);
+
+        _thunderEffectDirecter.Play();
     }
 }

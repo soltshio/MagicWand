@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Playables;
 
 //作成者:杉山
 //炎魔法の内容
@@ -12,42 +13,61 @@ public class MagicContentTypeFire : MagicContentTypeBase
     [SerializeField]
     BigCreature _bigCreature;
 
+    [SerializeField]
+    PlayableDirector _sunEffectDirecter;
+
     [Tooltip("日向の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _sunAudioSource;
 
     [SerializeField]
+    AudioClip _sunSE;
+
+    [SerializeField]
     SunLensActivator _sunLensActivator;
 
-    [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
-    float _delayDurationAffection = 2f;
+    [SerializeField]
+    ParticleSystem _sunParticle;
+
+    List<UniTask> runningTasks = new();
+
+    public void SunLensActivate()
+    {
+        _sunLensActivator.ActivateAsync().Forget();
+        _sunAudioSource.PlayOneShot(_sunSE);
+        _sunParticle.Play();
+    }
+
+    public void SunLensDeactivate()
+    {
+        _sunLensActivator.DeactivateAsync().Forget();
+        _sunParticle.Stop();
+    }
+
+    //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
+    public void PauseTimelineForAffectFieldObjects()
+    {
+        AffectEventAsync().Forget();
+    }
 
     public override async UniTask ActivateAsync(CancellationToken token)
     {
-        //日向の効果音を鳴らし始める
-        _sunAudioSource.Play();
+        runningTasks.Clear();
 
-        //日光エフェクトをだんだん光らせ始める
-        _sunLensActivator.ActivateAsync().Forget();
+        _sunEffectDirecter.Play();
 
-        //エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
-        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
-
-        await AffectToAround();
-
-        //日光エフェクトをだんだん消していく
-        _sunLensActivator.DeactivateAsync().Forget();
-
-        //日航の効果音を止める
-        _sunAudioSource.Stop();
+        //タイムラインの再生が終わるまで待つ
+        await _sunEffectDirecter.WaitForStoppedAsync(this.GetCancellationTokenOnDestroy());
     }
 
-    async UniTask AffectToAround()
+    //一旦タイムラインを一時停止し、他のオブジェクトへの影響処理が終わるのを待ってからまた再生させる
+    async UniTask AffectEventAsync()
     {
-        List<UniTask> runningTasks = new();
+        _sunEffectDirecter.Pause();
 
         //でか生物に魔法を当てる
         runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Fire));
-
         await UniTask.WhenAll(runningTasks);
+
+        _sunEffectDirecter.Play();
     }
 }
