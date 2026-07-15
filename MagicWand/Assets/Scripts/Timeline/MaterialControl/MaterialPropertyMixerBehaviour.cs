@@ -3,19 +3,21 @@ using UnityEngine.Playables;
 
 public class MaterialPropertyMixerBehaviour : PlayableBehaviour
 {
-    private MaterialPropertyBlock block;
+    private MaterialPropertyBlock _block;
+    Renderer _renderer;
 
-    public override void ProcessFrame(
-        Playable playable,
-        FrameData info,
-        object playerData)
+    public override void ProcessFrame(Playable playable,FrameData info,object playerData)
     {
-        if (playerData is not Renderer renderer)
-            return;
+        _renderer = playerData as Renderer;
 
-        block ??= new MaterialPropertyBlock();
+        if (_renderer == null) return;
 
-        renderer.GetPropertyBlock(block);
+        if (_block == null)
+        {
+            _block = new MaterialPropertyBlock();
+        }
+
+        _renderer.GetPropertyBlock(_block);
 
         int inputCount = playable.GetInputCount();
 
@@ -23,12 +25,9 @@ public class MaterialPropertyMixerBehaviour : PlayableBehaviour
         {
             float weight = playable.GetInputWeight(i);
 
-            if (weight <= 0f)
-                continue;
-
-            var input =
-                (ScriptPlayable<MaterialPropertyBehaviour>)
-                playable.GetInput(i);
+            if (weight <= 0f) continue;
+            
+            var input =(ScriptPlayable<MaterialPropertyBehaviour>)playable.GetInput(i);
 
             var behaviour = input.GetBehaviour();
 
@@ -36,20 +35,24 @@ public class MaterialPropertyMixerBehaviour : PlayableBehaviour
 
             if (input.GetDuration() > 0)
             {
-                t = Mathf.Clamp01(
-                    (float)(input.GetTime() / input.GetDuration()));
+                t = Mathf.Clamp01((float)(input.GetTime() / input.GetDuration()));
             }
 
-            float value = Mathf.Lerp(
-                behaviour.StartValue,
-                behaviour.EndValue,
-                t);
+            float value = Mathf.Lerp(behaviour.StartValue,behaviour.EndValue,t);
 
-            block.SetFloat(
-                behaviour.PropertyID,
-                value);
+            _block.SetFloat(behaviour.PropertyID,value);
         }
 
-        renderer.SetPropertyBlock(block);
+        _renderer.SetPropertyBlock(_block);
+    }
+
+    public override void OnGraphStop(Playable playable)
+    {
+        if(_renderer!=null) _renderer.SetPropertyBlock(null);
+    }
+
+    public override void OnPlayableDestroy(Playable playable)
+    {
+        if (_renderer != null) _renderer.SetPropertyBlock(null);
     }
 }
