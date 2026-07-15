@@ -899,7 +899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.585197
+      value: -8.585201
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2193,11 +2193,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5218203731191341638, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
+      propertyPath: randomSeed
+      value: 5984
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218203731191341638, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: lengthInSec
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5218203731191341638, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218203731191341638, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
+      propertyPath: autoRandomSeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5218203731191341638, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
@@ -2328,6 +2336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackThunderEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 8352559688436039051, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2336,6 +2348,11 @@ PrefabInstance:
 --- !u!4 &350216446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4959409054966819145, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
+  m_PrefabInstance: {fileID: 350216445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &350216447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8352559688436039051, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
   m_PrefabInstance: {fileID: 350216445}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &350216448 stripped
@@ -4918,14 +4935,13 @@ GameObject:
   - component: {fileID: 1090376056}
   - component: {fileID: 1090376055}
   - component: {fileID: 1090376057}
-  - component: {fileID: 1090376058}
   m_Layer: 0
   m_Name: TimelineTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &1090376055
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -4943,11 +4959,17 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -3755264297618569644, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
     value: {fileID: 330585548}
+  - key: {fileID: -5489706803485786304, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
+    value: {fileID: 447535808}
+  - key: {fileID: -3917575501625958298, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
+    value: {fileID: 1138852480}
   m_ExposedReferences:
     m_References:
     - fd8c09a3194b60f4fa9a78ada7138e8a: {fileID: 684725215}
     - 17fbbe0a0a418904cb72bf239a0aa0c9: {fileID: 684725215}
+    - a003da83e255d39409317a2e99bf2684: {fileID: 350216447}
     - 69482fafab04100468a81f4d3383e6c3: {fileID: 667172822}
+    - dd9a34d120a2d304caa8b7ca25df57ad: {fileID: 350216447}
     - db22e4c6ad8f7d04d9490470d1a2a929: {fileID: 684725215}
     - 9a1cc231e3108374697e9ff94c814b04: {fileID: 667172822}
 --- !u!4 &1090376056
@@ -4982,31 +5004,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     m_Events:
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1090376058}
-          m_TargetAssemblyTypeName: SigTest, Assembly-CSharp
-          m_MethodName: DebugCall
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &1090376058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090376054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41fda1be8fac59847bc1509d5e40c997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SigTest
+        m_Calls: []
 --- !u!1 &1118699959
 GameObject:
   m_ObjectHideFlags: 0
