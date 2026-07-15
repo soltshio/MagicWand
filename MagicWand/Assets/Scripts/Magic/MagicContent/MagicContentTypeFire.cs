@@ -25,17 +25,22 @@ public class MagicContentTypeFire : MagicContentTypeBase
     [SerializeField]
     SunLensActivator _sunLensActivator;
 
+    [SerializeField]
+    ParticleSystem _sunParticle;
+
     List<UniTask> runningTasks = new();
 
     public void SunLensActivate()
     {
         _sunLensActivator.ActivateAsync().Forget();
         _sunAudioSource.PlayOneShot(_sunSE);
+        _sunParticle.Play();
     }
 
     public void SunLensDeactivate()
     {
         _sunLensActivator.DeactivateAsync().Forget();
+        _sunParticle.Stop();
     }
 
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
@@ -60,7 +65,7 @@ public class MagicContentTypeFire : MagicContentTypeBase
         _sunEffectDirecter.Pause();
 
         //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Fire));
         await UniTask.WhenAll(runningTasks);
 
         _sunEffectDirecter.Play();
