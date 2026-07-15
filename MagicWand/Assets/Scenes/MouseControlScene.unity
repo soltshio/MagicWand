@@ -899,7 +899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.585203
+      value: -8.585207
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2353,11 +2353,6 @@ Transform:
 --- !u!1 &350216447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8352559688436039051, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
-  m_PrefabInstance: {fileID: 350216445}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &350216448 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5218203731191341638, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
   m_PrefabInstance: {fileID: 350216445}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &395197795
@@ -4924,117 +4919,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088551901}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1090376054
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1090376056}
-  - component: {fileID: 1090376055}
-  - component: {fileID: 1090376057}
-  m_Layer: 0
-  m_Name: TimelineTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!320 &1090376055
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090376054}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -3755264297618569644, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
-    value: {fileID: 330585548}
-  - key: {fileID: -5489706803485786304, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
-    value: {fileID: 447535808}
-  - key: {fileID: -3917575501625958298, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
-    value: {fileID: 1138852480}
-  m_ExposedReferences:
-    m_References:
-    - fd8c09a3194b60f4fa9a78ada7138e8a: {fileID: 684725215}
-    - 17fbbe0a0a418904cb72bf239a0aa0c9: {fileID: 684725215}
-    - a003da83e255d39409317a2e99bf2684: {fileID: 350216447}
-    - 69482fafab04100468a81f4d3383e6c3: {fileID: 667172822}
-    - dd9a34d120a2d304caa8b7ca25df57ad: {fileID: 350216447}
-    - db22e4c6ad8f7d04d9490470d1a2a929: {fileID: 684725215}
-    - 9a1cc231e3108374697e9ff94c814b04: {fileID: 667172822}
---- !u!4 &1090376056
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090376054}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0924, y: -2.4, z: 19.91722}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1090376057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090376054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
-    - {fileID: 11400000, guid: 5be0d47f496967d44af65aa36d82dd87, type: 2}
-    - {fileID: 11400000, guid: ca6ad8b2f2fab624aa38ecb509698188, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls: []
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1138852480}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: PlayOneShot
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 8300000, guid: 0ddded5363c40bc4fa1944247fd55009, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1138852485}
-          m_TargetAssemblyTypeName: Unity.Cinemachine.CinemachineImpulseSource, Unity.Cinemachine
-          m_MethodName: GenerateImpulse
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1118699959
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,8 +5113,9 @@ GameObject:
   - component: {fileID: 1138852481}
   - component: {fileID: 1138852480}
   - component: {fileID: 1138852482}
-  - component: {fileID: 1138852483}
   - component: {fileID: 1138852485}
+  - component: {fileID: 1138852487}
+  - component: {fileID: 1138852486}
   m_Layer: 0
   m_Name: Thunder
   m_TagString: Untagged
@@ -5364,8 +5249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeThunder
   _bigCreature: {fileID: 623789239}
-  _thunderEventPlayer: {fileID: 1138852483}
-  _delayDurationMagicAffection: 0.5
+  _thunderEffectDirecter: {fileID: 1138852487}
 --- !u!114 &1138852482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,29 +5263,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
   _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
---- !u!114 &1138852483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138852477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a20a55a38a0dc468d5591007615199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ThunderCloudEvent
-  _thunderEffect: {fileID: 350216448}
-  _cloudFadeController: {fileID: 447535811}
-  _audioSource: {fileID: 1138852480}
-  _distantThunderSE: {fileID: 8300000, guid: 740a484031a590c438fa0e105f6e4703, type: 3}
-  _directThunderSE: {fileID: 8300000, guid: 0ddded5363c40bc4fa1944247fd55009, type: 3}
-  _defaultCamera: {fileID: 684725215}
-  _lookUpCamera: {fileID: 667172822}
-  _impulseSource: {fileID: 1138852485}
-  _delayDurationFromLookUpCameraToCauseThunderCloud: 0.7
-  _delayDurationFromEffectPlayToLightningStrike: 0.5
-  _delayDurationFromLightningStrikeToDefault: 1
 --- !u!114 &1138852485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5725,6 +5586,93 @@ MonoBehaviour:
     DissipationDistance: 100
     PropagationSpeed: 343
   DefaultVelocity: {x: 0, y: -3, z: 0}
+--- !u!114 &1138852486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 5be0d47f496967d44af65aa36d82dd87, type: 2}
+    - {fileID: 11400000, guid: ca6ad8b2f2fab624aa38ecb509698188, type: 2}
+    - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1138852480}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 0ddded5363c40bc4fa1944247fd55009, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1138852485}
+          m_TargetAssemblyTypeName: Unity.Cinemachine.CinemachineImpulseSource, Unity.Cinemachine
+          m_MethodName: GenerateImpulse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1138852481}
+          m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
+          m_MethodName: PauseTimelineForAffectFieldObjects
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!320 &1138852487
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -3755264297618569644, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
+    value: {fileID: 330585548}
+  - key: {fileID: -5489706803485786304, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
+    value: {fileID: 447535808}
+  - key: {fileID: -3917575501625958298, guid: 9dbc3fc8c58781e49b5343a9124df93a, type: 2}
+    value: {fileID: 1138852480}
+  m_ExposedReferences:
+    m_References:
+    - fd8c09a3194b60f4fa9a78ada7138e8a: {fileID: 684725215}
+    - 17fbbe0a0a418904cb72bf239a0aa0c9: {fileID: 684725215}
+    - dd9a34d120a2d304caa8b7ca25df57ad: {fileID: 350216447}
+    - 9a1cc231e3108374697e9ff94c814b04: {fileID: 667172822}
 --- !u!1 &1148722369
 GameObject:
   m_ObjectHideFlags: 0
@@ -8520,4 +8468,3 @@ SceneRoots:
   - {fileID: 906078519}
   - {fileID: 447535810}
   - {fileID: 623789235}
-  - {fileID: 1090376056}
