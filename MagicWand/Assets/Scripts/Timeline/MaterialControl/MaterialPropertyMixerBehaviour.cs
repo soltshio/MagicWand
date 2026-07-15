@@ -46,11 +46,6 @@ public class MaterialPropertyMixerBehaviour : PlayableBehaviour
         _renderer.SetPropertyBlock(_block);
     }
 
-    public override void OnGraphStop(Playable playable)
-    {
-        if(_renderer!=null) _renderer.SetPropertyBlock(null);
-    }
-
     public override void OnPlayableDestroy(Playable playable)
     {
         if (_renderer != null) _renderer.SetPropertyBlock(null);
