@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 //作成者:杉山
 //炎魔法の内容
 
-public class MagicContentTypeFire : MagicContentTypeBase
+public class MagicContentTypeSun : MagicContentTypeBase
 {
     [SerializeField]
     BigCreature _bigCreature;
@@ -65,7 +65,7 @@ public class MagicContentTypeFire : MagicContentTypeBase
         _sunEffectDirecter.Pause();
 
         //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Fire));
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Sun));
         await UniTask.WhenAll(runningTasks);
 
         _sunEffectDirecter.Play();

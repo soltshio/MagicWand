@@ -7,8 +7,7 @@ using UnityEngine;
 //作成者:杉山
 //ビックリした反応の演出
 
-[System.Serializable]
-public class SurpriseReaction
+public class SurpriseReaction : MonoBehaviour
 {
     [Tooltip("!の文字アニメーションを表示し始めてから非表示にし始めるまでに待つ時間")] [SerializeField]
     float _waitDurationFromStartActiveToStartDeactive=1.5f;
@@ -46,7 +45,7 @@ public class SurpriseReaction
         _audioSource.Stop();
     }
 
-    public void Start()
+    void Start()
     {
         _surpriseText.enabled = false;
     }

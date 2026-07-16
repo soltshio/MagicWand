@@ -7,14 +7,13 @@ using UnityEngine;
 //作成者:杉山
 //無視(沈黙)した反応の演出
 
-[System.Serializable]
-public class IgnoreReaction
+public class IgnoreReaction : MonoBehaviour
 {
     [Tooltip("。をテキストに追加していくインターバル")] [SerializeField]
-    float _intervalAddPoint = 0.3f;
+    float _intervalAddPoint = 0.9f;
 
     [Tooltip("全ての。を表示してからテキストそのものを非表示にするまで待つ時間")] [SerializeField]
-    float _waitDurationFromAllShowToAllHide = 1f;
+    float _waitDurationFromAllShowToAllHide = 0.2f;
 
     [SerializeField]
     TextMeshProUGUI _ignoreText;
@@ -48,7 +47,7 @@ public class IgnoreReaction
         _audioSource.Stop();
     }
 
-    public void Start()
+    void Start()
     {
         _ignoreText.enabled = false;
     }
