@@ -24,6 +24,12 @@ public class MagicContentTypeThunder : MagicContentTypeBase
         AffectEventAsync().Forget();
     }
 
+    public void AffectToBigCreature()
+    {
+        //でか生物に魔法を当てる
+        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+    }
+
     public override async UniTask ActivateAsync(CancellationToken token)
     {
         runningTasks.Clear();
@@ -38,9 +44,7 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     async UniTask AffectEventAsync()
     {
         _thunderEffectDirecter.Pause();
-
-        //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+        
         await UniTask.WhenAll(runningTasks);
 
         _thunderEffectDirecter.Play();
