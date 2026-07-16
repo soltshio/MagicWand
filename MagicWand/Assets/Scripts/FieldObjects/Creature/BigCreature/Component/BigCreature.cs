@@ -14,20 +14,14 @@ public class BigCreature : MonoBehaviour
     [Tooltip("最大体力(起きるまでに対象の魔法を撃たないといけない回数)")] [SerializeField]
     int _maxHp;
 
-    [Tooltip("でかい生き物の無視(沈黙)演出")] [SerializeField]
-    IgnoreReaction _ignoreReaction;
-
-    [Tooltip("でかい生き物の驚き演出")] [SerializeField]
-    SurpriseReaction _surpriseReaction;
+    [SerializeField]
+    SerializableDictionary<EMagic, BigCreatureReactionTypeBase> _bigCreatureReactions;
 
     [Tooltip("でかい生き物の歩行演出")] [SerializeField]
     BigCreatureWalking _bigCreatureWalking;
 
     [Tooltip("でかい生き物の睡眠演出")] [SerializeField]
     SleepReaction _sleepZZZReaction;
-
-    [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
-    ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
 
     int _hp;
 
@@ -38,33 +32,23 @@ public class BigCreature : MonoBehaviour
         _hp = _maxHp;
     }
 
-    void Start()
-    {
-        _ignoreReaction.Start();
-        _surpriseReaction.Start();
-        _sleepZZZReaction.Start();
-    }
-
     public async UniTask TakeMagicAsync(EMagic magic)
     {
         var token = this.GetCancellationTokenOnDestroy();
 
-        if(IsCorrectMagic(magic))//正解の魔法が来た場合
+        if(IsCorrectMagic(magic))//正解の魔法が来た場合にhpを減らす
         {
             _hp--;
-
-            _shifterBigCreatureSoil.RemoveSoil();
-
-            //驚き演出
-            await _surpriseReaction.TakeSurpriseReactionAsync(token);
         }
-        else//不正解の魔法が来た場合
+
+
+        if(!_bigCreatureReactions.TryGetValue(magic,out var reaction))
         {
-            _shifterBigCreatureSoil.AddSoil();
-
-            //無視(沈黙)演出
-            await _ignoreReaction.TakeIgnoreReactionAsync(token);
+            Debug.Log("巨大生物のリアクションの取得に失敗");
+            return;
         }
+
+        await reaction.TakeReactionAsync();
 
         
         if (!_isWakeUp)

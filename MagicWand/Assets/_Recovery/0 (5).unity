@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 525957}
   - component: {fileID: 525956}
   m_Layer: 0
-  m_Name: Sun
+  m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.5852165
+      value: -8.585215
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1304,17 +1304,9 @@ PrefabInstance:
       value: -0.22703482
       objectReference: {fileID: 0}
     - target: {fileID: -3087833995483049797, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3087833995483049797, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ae905e961b45d3b4fada83244269d144, type: 2}
-    - target: {fileID: -3087833995483049797, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: ed5f5298c831783438720e45d5516273, type: 2}
     - target: {fileID: -2785621037624836816, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
       value: -4.245341e-15
@@ -1628,52 +1620,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
---- !u!1 &236339059
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 236339060}
-  - component: {fileID: 236339061}
-  m_Layer: 0
-  m_Name: Time
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &236339060
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 236339059}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1736635912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &236339061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 236339059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ef0113841557d468967e5af9523e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Time
-  _ignoreReaction: {fileID: 1736635916}
-  _shifterBigCreatureSoil: {fileID: 1736635910}
 --- !u!1 &259463702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,55 +2898,6 @@ MonoBehaviour:
   _offAlphaOffset: -1
   _onAlphaOffset: 0.65
   _cloudMeshRenderer: {fileID: 447535808}
---- !u!1 &465656551
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 465656552}
-  - component: {fileID: 465656553}
-  m_Layer: 0
-  m_Name: Thunder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &465656552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465656551}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1736635912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &465656553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465656551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ff42a759a16574484da0dae9c77de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Thunder
-  _surpriseReaction: {fileID: 1736635915}
-  _shifterBigCreatureSoil: {fileID: 1736635910}
-  _waitElectricShockDuration: 2.5
-  _bigCreatureBodyMeshRenderer: {fileID: 15600235}
-  _electricShockMat: {fileID: 2100000, guid: ed5f5298c831783438720e45d5516273, type: 2}
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3371,6 +3268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623789235}
   - component: {fileID: 623789239}
+  - component: {fileID: 623789238}
   - component: {fileID: 623789237}
   - component: {fileID: 623789236}
   m_Layer: 0
@@ -3395,7 +3293,6 @@ Transform:
   m_Children:
   - {fileID: 796611147}
   - {fileID: 349517872}
-  - {fileID: 1736635912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &623789236
@@ -3432,6 +3329,103 @@ MonoBehaviour:
   _expressionsTexCount: {x: 4, y: 8}
   _texPosFirstExpression: {x: 0, y: 0}
   _texDistance: {x: 0.25, y: -0.125}
+--- !u!82 &623789238
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623789234}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7297662483988035034, guid: 820dd1004abb98c4e86a76975149a0e5, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.21
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &623789239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3445,20 +3439,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreature
   _maxHp: 3
-  _bigCreatureReactions:
-    _list:
-    - key: 0
-      value: {fileID: 465656553}
-    - key: 1
-      value: {fileID: 1655082379}
-    - key: 2
-      value: {fileID: 236339061}
-    - key: 3
-      value: {fileID: 696876405}
-    - key: 4
-      value: {fileID: 1417002369}
-  _bigCreatureWalking: {fileID: 1736635914}
-  _sleepZZZReaction: {fileID: 1736635913}
+  _ignoreReaction:
+    _intervalAddPoint: 0.9
+    _waitDurationFromAllShowToAllHide: 0.2
+    _ignoreText: {fileID: 1647558154}
+    _audioSource: {fileID: 623789238}
+    _ignoreSE: {fileID: 8300000, guid: f0277081d65e6234aa46ee346b9caaa6, type: 3}
+  _surpriseReaction:
+    _waitDurationFromStartActiveToStartDeactive: 1.5
+    _surpriseTextAnimator: {fileID: 1381235194}
+    _surpriseText: {fileID: 1381235192}
+    _audioSource: {fileID: 623789238}
+    _surpriseSE: {fileID: 8300000, guid: 2a25587379fb41740a039a624ac5264b, type: 3}
+  _bigCreatureWalking:
+    _moveDuration: 3
+    _bigCreatureTrs: {fileID: 796611147}
+    _destination: {fileID: 349517872}
+    _audioSource: {fileID: 623789238}
+    _walkSE: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
+  _sleepZZZReaction:
+    _zzzTexts:
+    - {fileID: 97870382}
+    - {fileID: 1385307458}
+    - {fileID: 1888029711}
+    _showInterval: 0.8
+    _waitDurationFromAllShowToAllHide: 1.3
+    _audioSource: {fileID: 623789238}
+    _sleepSE: {fileID: 8300000, guid: d8677e929f470364b92475b54b32af08, type: 3}
+  _shifterBigCreatureSoil:
+    _bigCreatureSoilController: {fileID: 623789236}
+    _deltaRate: 0.243
+    _shiftDuration: 1.3
 --- !u!1 &642836013
 GameObject:
   m_ObjectHideFlags: 0
@@ -3858,52 +3869,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695698447}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &696876403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 696876404}
-  - component: {fileID: 696876405}
-  m_Layer: 0
-  m_Name: Star
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &696876404
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696876403}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1736635912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &696876405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696876403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968b334abde962d4e9968408d0652e11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Star
-  _ignoreReaction: {fileID: 1736635916}
-  _shifterBigCreatureSoil: {fileID: 1736635910}
 --- !u!1 &741445573
 GameObject:
   m_ObjectHideFlags: 0
@@ -5816,7 +5781,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5be0d47f496967d44af65aa36d82dd87, type: 2}
     - {fileID: 11400000, guid: ca6ad8b2f2fab624aa38ecb509698188, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
-    - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -5851,20 +5815,6 @@ MonoBehaviour:
         - m_Target: {fileID: 1138852481}
           m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
           m_MethodName: PauseTimelineForAffectFieldObjects
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1138852481}
-          m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
-          m_MethodName: AffectToBigCreature
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6654,52 +6604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeStart_InGameScene
   _fadeInOutPanel: {fileID: 1124889694}
---- !u!1 &1417002367
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1417002368}
-  - component: {fileID: 1417002369}
-  m_Layer: 0
-  m_Name: Sun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1417002368
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417002367}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1736635912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1417002369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417002367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2bf868576ac8d94b92c199a634488a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Sun
-  _ignoreReaction: {fileID: 1736635916}
-  _shifterBigCreatureSoil: {fileID: 1736635910}
 --- !u!1 &1531092903
 GameObject:
   m_ObjectHideFlags: 0
@@ -7199,52 +7103,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647558152}
   m_CullTransparentMesh: 1
---- !u!1 &1655082377
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1655082378}
-  - component: {fileID: 1655082379}
-  m_Layer: 0
-  m_Name: Rain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1655082378
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655082377}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1736635912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1655082379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655082377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 106854a09383d604586e5ffd8fbe2e9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Rain
-  _surpriseReaction: {fileID: 1736635915}
-  _shifterBigCreatureSoil: {fileID: 1736635910}
 --- !u!137 &1685562678 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -5095027816529180778, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
@@ -7419,231 +7277,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1736635909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1736635912}
-  - component: {fileID: 1736635916}
-  - component: {fileID: 1736635913}
-  - component: {fileID: 1736635915}
-  - component: {fileID: 1736635914}
-  - component: {fileID: 1736635910}
-  - component: {fileID: 1736635911}
-  m_Layer: 0
-  m_Name: Reaction
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1736635910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6ca3fa747b0f30468f5861b62bfc533, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShifterBigCreatureSoilMaterial
-  _bigCreatureSoilController: {fileID: 623789236}
-  _deltaRate: 0.243
-  _shiftDuration: 1.3
---- !u!82 &1736635911
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7297662483988035034, guid: 820dd1004abb98c4e86a76975149a0e5, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.21
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &1736635912
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 465656552}
-  - {fileID: 1655082378}
-  - {fileID: 236339060}
-  - {fileID: 696876404}
-  - {fileID: 1417002368}
-  m_Father: {fileID: 623789235}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1736635913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a933ddda5de3e458ac533ba5c3dafb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SleepReaction
-  _zzzTexts:
-  - {fileID: 97870382}
-  - {fileID: 1385307458}
-  - {fileID: 1888029711}
-  _showInterval: 0.8
-  _waitDurationFromAllShowToAllHide: 1.3
-  _audioSource: {fileID: 1736635911}
-  _sleepSE: {fileID: 8300000, guid: d8677e929f470364b92475b54b32af08, type: 3}
---- !u!114 &1736635914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed3f6521be4ef84c837a7de0b2b44a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureWalking
-  _moveDuration: 3
-  _bigCreatureTrs: {fileID: 796611147}
-  _destination: {fileID: 349517872}
-  _audioSource: {fileID: 1736635911}
-  _walkSE: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
---- !u!114 &1736635915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b728185df08b8f458426f5637224991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SurpriseReaction
-  _waitDurationFromStartActiveToStartDeactive: 1.5
-  _surpriseTextAnimator: {fileID: 1381235194}
-  _surpriseText: {fileID: 1381235192}
-  _audioSource: {fileID: 1736635911}
-  _surpriseSE: {fileID: 8300000, guid: 2a25587379fb41740a039a624ac5264b, type: 3}
---- !u!114 &1736635916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e808161a06b26489a39d04d4c71fde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IgnoreReaction
-  _intervalAddPoint: 0.9
-  _waitDurationFromAllShowToAllHide: 0.2
-  _ignoreText: {fileID: 1647558154}
-  _audioSource: {fileID: 1736635911}
-  _ignoreSE: {fileID: 8300000, guid: f0277081d65e6234aa46ee346b9caaa6, type: 3}
 --- !u!1 &1763767049
 GameObject:
   m_ObjectHideFlags: 0
@@ -8036,7 +7669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
   _groundGrassAlphaController: {fileID: 1531092908}
-  _alphaDeltaRate: 0.429
+  _alphaDeltaRate: 0.337
   _shiftGrassAmountDuration: 1.5
   _bigCreature: {fileID: 623789239}
   _clockAudioSource: {fileID: 1910504422}

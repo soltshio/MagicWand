@@ -7,17 +7,16 @@ using UnityEngine;
 //作成者:杉山
 //ZZZのリアクション
 
-[System.Serializable]
-public class SleepReaction
+public class SleepReaction : MonoBehaviour
 {
     [Tooltip("zzzの文字。要素番号が0のものから順に表示していく")] [SerializeField]
     TextMeshProUGUI[] _zzzTexts;
 
     [SerializeField]
-    float _showInterval = 0.3f;
+    float _showInterval = 0.8f;
 
     [Tooltip("全てのzの文字を表示してから、何秒で全てのzの文字を非表示にするか")] [SerializeField]
-    float _waitDurationFromAllShowToAllHide;
+    float _waitDurationFromAllShowToAllHide=1.3f;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -40,7 +39,7 @@ public class SleepReaction
         await ShowZTextAsync(showZCount,ct);
     }
 
-    public void Start()
+    void Start()
     {
         //全てのzを非表示にしておく
         HideAllZText();

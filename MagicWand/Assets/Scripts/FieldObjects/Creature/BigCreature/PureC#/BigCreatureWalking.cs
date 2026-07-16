@@ -6,8 +6,7 @@ using UnityEngine.UIElements;
 //作成者:杉山
 //でか生き物の歩行
 
-[System.Serializable]
-public class BigCreatureWalking
+public class BigCreatureWalking : MonoBehaviour
 {
     [SerializeField]
     float _moveDuration=3f;
