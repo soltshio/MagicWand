@@ -29,7 +29,7 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
         var token = this.GetCancellationTokenOnDestroy();
 
         //巨大生物の感電リアクション
-        //await TakeElectricShockAsync(token);
+        await TakeElectricShockAsync(token);
 
         _shifterBigCreatureSoil.RemoveSoil();
 
@@ -40,7 +40,7 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     async UniTask TakeElectricShockAsync(CancellationToken ct)
     {
         var defaultMat = _bigCreatureBodyMeshRenderer.material;
-        _bigCreatureBodyMeshRenderer.material = _electricShockMat;
+        _bigCreatureBodyMeshRenderer.sharedMaterial = _electricShockMat;
 
         //少し待つ
         await UniTask.Delay(TimeSpan.FromSeconds(_waitElectricShockDuration), cancellationToken: ct);

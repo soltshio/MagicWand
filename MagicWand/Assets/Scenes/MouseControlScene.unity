@@ -2990,6 +2990,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Thunder
   _surpriseReaction: {fileID: 1736635915}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+  _waitElectricShockDuration: 1
+  _bigCreatureBodyMeshRenderer: {fileID: 15600235}
+  _electricShockMat: {fileID: 2100000, guid: ed5f5298c831783438720e45d5516273, type: 2}
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
