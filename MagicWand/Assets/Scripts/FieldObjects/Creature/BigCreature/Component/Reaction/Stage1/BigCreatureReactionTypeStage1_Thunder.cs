@@ -15,6 +15,12 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
     ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
 
+    [SerializeField]
+    AudioSource _audioSource;
+
+    [SerializeField]
+    AudioClip _electricShockSE;
+
     [SerializeField] [Tooltip("感電リアクション時間")]
     float _waitElectricShockDuration = 0.5f;
 
@@ -39,12 +45,17 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
 
     async UniTask TakeElectricShockAsync(CancellationToken ct)
     {
+        //感電マテリアルに変更
         var defaultMat = _bigCreatureBodyMeshRenderer.material;
         _bigCreatureBodyMeshRenderer.sharedMaterial = _electricShockMat;
+
+        //感電の効果音
+        _audioSource.PlayOneShot(_electricShockSE);
 
         //少し待つ
         await UniTask.Delay(TimeSpan.FromSeconds(_waitElectricShockDuration), cancellationToken: ct);
 
+        //元のマテリアルに変更
         _bigCreatureBodyMeshRenderer.material = defaultMat;
     }
 }
