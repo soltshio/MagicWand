@@ -74,6 +74,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
 
     void ClearMovingAverage(bool isExistObject)
     {
+        //北陽レーザー検知範囲内に何もない場合は移動平均をクリアする
         if (isExistObject) return;
 
         _movingAverage.Clear();
