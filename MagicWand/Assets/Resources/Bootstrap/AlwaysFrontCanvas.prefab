@@ -5389,6 +5389,7 @@ GameObject:
   - component: {fileID: 6691339582183461745}
   - component: {fileID: 7760163873628654852}
   - component: {fileID: 3555678142593795823}
+  - component: {fileID: 4965556374005623614}
   m_Layer: 7
   m_Name: BlockRaycastPanel
   m_TagString: Untagged
@@ -5436,7 +5437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5453,3 +5454,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4965556374005623614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147593486085190412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee32a1b452fa7cd42bd7c108fc1a88f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockRaycaster
+  _timeOutToBlockRaycast: 0.5
+  _blockRaycastPanel: {fileID: 3555678142593795823}

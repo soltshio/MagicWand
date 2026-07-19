@@ -25,7 +25,7 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
     bool _isExistObject = false;//北陽レーザー検知範囲内にオブジェクトがあるか
 
     public event Action<Vector2> OnCatchPos;//OSC通信で位置を受け取ったことを通知(その時のBlobPositionが送られてくる)
-    public event Action<bool> OnSwitchExistObject;
+    public event Action<bool> OnSwitchIsExistObject;
 
     public bool IsRunning { get { return _oscRunnincChecker.IsRunning; } }
 
@@ -41,7 +41,7 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
             if (_isExistObject == value) return;
 
             _isExistObject = value;
-            OnSwitchExistObject?.Invoke(_isExistObject);
+            OnSwitchIsExistObject?.Invoke(_isExistObject);
         }
     }
 
