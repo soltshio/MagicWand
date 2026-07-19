@@ -36,7 +36,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.Enable();
 
         _hokuyoBlobPosReceiver.OnCatchPos += MoveCursor;
-        _hokuyoBlobPosReceiver.OnSwitchExistObject += ClearMovingAverage;
+        _hokuyoBlobPosReceiver.OnSwitchIsExistObject += ClearMovingAverage;
     }
 
     private void OnDisable()
@@ -45,7 +45,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.Disable();
 
         _hokuyoBlobPosReceiver.OnCatchPos -= MoveCursor;
-        _hokuyoBlobPosReceiver.OnSwitchExistObject -= ClearMovingAverage;
+        _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= ClearMovingAverage;
     }
 
     private void OnCancelHokuyoControlMode(InputAction.CallbackContext context)
@@ -74,6 +74,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
 
     void ClearMovingAverage(bool isExistObject)
     {
+        //北陽レーザー検知範囲内に何もない場合は移動平均をクリアする
         if (isExistObject) return;
 
         _movingAverage.Clear();

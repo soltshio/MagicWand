@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using UnityEditor.ShaderGraph.Internal;
 
 //作成者:杉山
 //OSC通信で送られてきた北陽レーザーが察知した物体(塊)の座標を受け取る
@@ -24,7 +25,7 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
     bool _isExistObject = false;//北陽レーザー検知範囲内にオブジェクトがあるか
 
     public event Action<Vector2> OnCatchPos;//OSC通信で位置を受け取ったことを通知(その時のBlobPositionが送られてくる)
-    public event Action<bool> OnSwitchExistObject;
+    public event Action<bool> OnSwitchIsExistObject;
 
     public bool IsRunning { get { return _oscRunnincChecker.IsRunning; } }
 
@@ -40,7 +41,7 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
             if (_isExistObject == value) return;
 
             _isExistObject = value;
-            OnSwitchExistObject?.Invoke(_isExistObject);
+            OnSwitchIsExistObject?.Invoke(_isExistObject);
         }
     }
 
@@ -79,30 +80,29 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
 
     void UpdateIsExistObject(Vector2 blobPosition)
     {
-        //blobPoositionがだいたいゼロベクトルであれば、オブジェクトが検知範囲内に無いことにする
+        //blobPoositionがだいたいゼロベクトル(x,y両成分が0に近い)であれば、オブジェクトが検知範囲内に無いことにする
         //値をfloatで管理しているので、閾値内であればゼロベクトルという判定にする
 
         //xの比較
-        float x = blobPosition.x;
-        float threasholdX = _isNotExistObjectThreashold.x;
-
-        if (!MathfExtension.IsInRange(x, -threasholdX, threasholdX))
+        if (!IsBlobPosOneComponent_InRange(blobPosition.x, _isNotExistObjectThreashold.x))
         {
             IsExistObject = true;
             return;
         }
 
-
         //yの比較
-        float y = blobPosition.y;
-        float threasholdY = _isNotExistObjectThreashold.y;
-
-        if (!MathfExtension.IsInRange(y, -threasholdY, threasholdY))
+        if (!IsBlobPosOneComponent_InRange(blobPosition.y,_isNotExistObjectThreashold.y))
         {
             IsExistObject = true;
             return;
         }
 
         IsExistObject = false;
+    }
+
+    //ベクトルの1成分が範囲内に入っているか
+    bool IsBlobPosOneComponent_InRange(float t,float threashold)
+    {
+        return MathfExtension.IsInRange(t, -threashold, threashold);
     }
 }
