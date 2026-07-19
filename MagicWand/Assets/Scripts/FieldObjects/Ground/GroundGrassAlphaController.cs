@@ -22,7 +22,7 @@ public class GroundGrassAlphaController : MonoBehaviour
 
     Material _groundMat;
 
-    CancellationTokenSource _cts;
+    SingleTaskCancellation _singleTaskCancellation = new();
 
     static readonly int _grassAlphaID = Shader.PropertyToID("_GrassAlpha");
 
@@ -36,9 +36,7 @@ public class GroundGrassAlphaController : MonoBehaviour
     {
         toAlphaRate = Mathf.Clamp01(toAlphaRate);
 
-        CancelRunningUniTask();
-
-        var ct = CreateLinkedToken(this.GetCancellationTokenOnDestroy());
+        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
         float toAlpha = FromRateToAlpha(toAlphaRate);
         await _groundMat.DOFloat(toAlpha, _grassAlphaID, duration).ToUniTask(cancellationToken: ct);
@@ -64,20 +62,5 @@ public class GroundGrassAlphaController : MonoBehaviour
     float FromAlphaToRate(float alpha)
     {
         return Mathf.InverseLerp(_minAlpha, MaxAlpha, alpha);
-    }
-
-    void CancelRunningUniTask()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-    }
-
-    CancellationToken CreateLinkedToken(CancellationToken ct)
-    {
-        _cts = new CancellationTokenSource();
-
-        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, ct);
-
-        return linkedCts.Token;
     }
 }
