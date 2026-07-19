@@ -17,7 +17,7 @@ public class RaycastBlocker : MonoBehaviour
 
     HokuyoBlobPosReceiver _hokuyoBlobPosReceiver;
 
-    CancellationTokenSource _cts;
+    SingleTaskCancellation _singleTaskCancellation = new ();
 
     void OnEnable()
     {
@@ -43,9 +43,7 @@ public class RaycastBlocker : MonoBehaviour
     {
         if (isExistObject) return;
 
-        CancelRunningUniTask();
-
-        var newCt = CreateLinkedToken(this.GetCancellationTokenOnDestroy());
+        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
         CountDownToBlockRaycastAsync(newCt).Forget();
     }
@@ -57,21 +55,6 @@ public class RaycastBlocker : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(_timeOutToBlockRaycast), cancellationToken: ct);
 
         _blockRaycastPanel.enabled = true;
-    }
-
-    void CancelRunningUniTask()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-    }
-
-    CancellationToken CreateLinkedToken(CancellationToken ct)
-    {
-        _cts = new CancellationTokenSource();
-
-        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, ct);
-
-        return linkedCts.Token;
     }
 
     void SetHokuyoBlobPosReceiver()

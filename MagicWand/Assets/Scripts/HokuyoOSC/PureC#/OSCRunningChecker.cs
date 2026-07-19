@@ -13,32 +13,16 @@ public class OSCRunningChecker
     float _timeOutSec = 2f;
 
     bool _isRunning = false;
-    CancellationTokenSource _cts;
+
+    SingleTaskCancellation _singleTaskCancellation = new();
 
     public bool IsRunning { get { return _isRunning; } }
 
     public void UpdateRunning(CancellationToken ct)
     {
-        CancelRunningUniTask();
-
-        var newCt = CreateLinkedToken(ct);
+        var newCt = _singleTaskCancellation.CancelAndReCreateToken(ct);
 
         TimeOutAsync(ct).Forget();
-    }
-
-    void CancelRunningUniTask()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-    }
-
-    CancellationToken CreateLinkedToken(CancellationToken ct)
-    {
-        _cts = new CancellationTokenSource();
-
-        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, ct);
-
-        return linkedCts.Token;
     }
 
     async UniTask TimeOutAsync(CancellationToken ct)
