@@ -111,3 +111,20 @@ MonoBehaviour:
     - {fileID: 973123996309289888}
     - {fileID: -8239485325438264658}
     - {fileID: 460820588729905950}
+    - {fileID: 6731147805845533390}
+--- !u!114 &6731147805845533390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 3
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //作成者:杉山

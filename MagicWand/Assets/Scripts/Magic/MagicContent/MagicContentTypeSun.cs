@@ -14,7 +14,7 @@ public class MagicContentTypeSun : MagicContentTypeBase
     BigCreature _bigCreature;
 
     [SerializeField]
-    PlayableDirector _sunEffectDirecter;
+    WaitUntilAllFinishTasksEventDirecter _sunEffectDirecter;
 
     [Tooltip("日向の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _sunAudioSource;
@@ -27,8 +27,6 @@ public class MagicContentTypeSun : MagicContentTypeBase
 
     [SerializeField]
     ParticleSystem _sunParticle;
-
-    List<UniTask> runningTasks = new();
 
     public void SunLensActivate()
     {
@@ -46,28 +44,19 @@ public class MagicContentTypeSun : MagicContentTypeBase
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
     {
-        AffectEventAsync().Forget();
+        _sunEffectDirecter.PauseUntilAllFinishTasksAsync().Forget();
     }
 
-    public override async UniTask ActivateAsync(CancellationToken token)
+    public void AffectToBigCreature()
     {
-        runningTasks.Clear();
-
-        _sunEffectDirecter.Play();
-
-        //タイムラインの再生が終わるまで待つ
-        await _sunEffectDirecter.WaitForStoppedAsync(this.GetCancellationTokenOnDestroy());
-    }
-
-    //一旦タイムラインを一時停止し、他のオブジェクトへの影響処理が終わるのを待ってからまた再生させる
-    async UniTask AffectEventAsync()
-    {
-        _sunEffectDirecter.Pause();
-
         //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Sun));
-        await UniTask.WhenAll(runningTasks);
+        _sunEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Sun));
+    }
 
-        _sunEffectDirecter.Play();
+    public override async UniTask ActivateAsync(CancellationToken ct)
+    {
+        _sunEffectDirecter.ClearTasks();
+
+        await _sunEffectDirecter.StartPlayingAndWaitUntilFinishPlayingAsync(ct);
     }
 }

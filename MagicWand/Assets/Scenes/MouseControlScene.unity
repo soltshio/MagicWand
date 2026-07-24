@@ -280,7 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeFire
   _bigCreature: {fileID: 623789239}
-  _sunEffectDirecter: {fileID: 525957}
+  _sunEffectDirecter:
+    _eventDirecter: {fileID: 525957}
   _sunAudioSource: {fileID: 525953}
   _sunSE: {fileID: 8300000, guid: 4ae975fd8d94443419a321de459816ad, type: 3}
   _sunLensActivator: {fileID: 525955}
@@ -318,6 +319,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ae9f563f33d2ee14e929dcc23a9733c0, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: 25089268d87a5ed46a0dab69121d2f70, type: 2}
+    - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -352,6 +354,20 @@ MonoBehaviour:
         - m_Target: {fileID: 525954}
           m_TargetAssemblyTypeName: MagicContentTypeFire, Assembly-CSharp
           m_MethodName: SunLensDeactivate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525954}
+          m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
+          m_MethodName: AffectToBigCreature
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1077,7 +1093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.58522
+      value: -8.585222
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5524,7 +5540,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeThunder
   _bigCreature: {fileID: 623789239}
-  _thunderEffectDirecter: {fileID: 1138852487}
+  _thunderEffectDirecter:
+    _eventDirecter: {fileID: 1138852487}
 --- !u!114 &1138852482
 MonoBehaviour:
   m_ObjectHideFlags: 0
