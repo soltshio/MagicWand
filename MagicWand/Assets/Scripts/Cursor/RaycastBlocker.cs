@@ -19,9 +19,13 @@ public class RaycastBlocker : MonoBehaviour
 
     SingleTaskCancellation _singleTaskCancellation = new ();
 
-    void OnEnable()
+    async void OnEnable()
     {
         _blockRaycastPanel.enabled = false;
+
+        //取得のために1フレーム遅らせる
+        var ct = this.GetCancellationTokenOnDestroy();
+        await UniTask.Yield(cancellationToken: ct);
 
         SetHokuyoBlobPosReceiver();
 
@@ -41,17 +45,20 @@ public class RaycastBlocker : MonoBehaviour
 
     void StartCountDownToBlockRaycast(bool isExistObject)
     {
-        if (isExistObject) return;
+        if(isExistObject)
+        {
+            _blockRaycastPanel.enabled = false;
+        }
+        else
+        {
+            var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
-        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
-
-        CountDownToBlockRaycastAsync(newCt).Forget();
+            CountDownToBlockRaycastAsync(newCt).Forget();
+        }
     }
 
     async UniTask CountDownToBlockRaycastAsync(CancellationToken ct)
     {
-        _blockRaycastPanel.enabled = false;
-
         await UniTask.Delay(TimeSpan.FromSeconds(_timeOutToBlockRaycast), cancellationToken: ct);
 
         _blockRaycastPanel.enabled = true;

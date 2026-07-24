@@ -41,6 +41,9 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
             if (_isExistObject == value) return;
 
             _isExistObject = value;
+
+            Debug.Log(_isExistObject);
+
             OnSwitchIsExistObject?.Invoke(_isExistObject);
         }
     }
