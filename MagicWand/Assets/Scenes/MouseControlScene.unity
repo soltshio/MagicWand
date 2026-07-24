@@ -4968,6 +4968,8 @@ GameObject:
   - component: {fileID: 1040190900}
   - component: {fileID: 1040190901}
   - component: {fileID: 1040190902}
+  - component: {fileID: 1040190903}
+  - component: {fileID: 1040190904}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -5017,11 +5019,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeStar
   _bigCreature: {fileID: 623789239}
-  _starAudioSource: {fileID: 1040190902}
-  _delayDurationAffection: 3
-  _shootingStarParticle: {fileID: 1307481291}
-  _defaultCamera: {fileID: 684725215}
-  _lookUpCamera: {fileID: 667172822}
+  _starEffectDirecter:
+    _eventDirecter: {fileID: 1040190903}
 --- !u!82 &1040190902
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5033,7 +5032,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7297662483988035034, guid: 820dd1004abb98c4e86a76975149a0e5, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 78ef390415d688742ab25cab580b010b, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5119,6 +5118,76 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!320 &1040190903
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040190897}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: f6ce595a5e76a2646bcd9de5adfa342f, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -3226650351826662840, guid: f6ce595a5e76a2646bcd9de5adfa342f, type: 2}
+    value: {fileID: 330585548}
+  - key: {fileID: 961308309810870436, guid: f6ce595a5e76a2646bcd9de5adfa342f, type: 2}
+    value: {fileID: 1040190902}
+  m_ExposedReferences:
+    m_References:
+    - 9882974ee8bdff7468b25a058ff10e4b: {fileID: 684725215}
+    - 94036cc317bd7ef46996c45539f95cf9: {fileID: 667172822}
+    - b5cd5eec835ca4d48bebcf9b29154926: {fileID: 1766556537}
+    - 214d89008f27dae478de3efe360a8a84: {fileID: 684725215}
+--- !u!114 &1040190904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040190897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
+    - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1040190901}
+          m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
+          m_MethodName: AffectToBigCreature
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1040190901}
+          m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
+          m_MethodName: PauseTimelineForAffectFieldObjects
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1088551901
 GameObject:
   m_ObjectHideFlags: 0
@@ -6380,11 +6449,6 @@ Canvas:
   m_SortingLayerID: -1840740083
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!198 &1307481291 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4228081996676052218, guid: 273fb25532f042048b1a369f284ac340, type: 3}
-  m_PrefabInstance: {fileID: 3518306023845177156}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1307481292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6256673353547510877, guid: 273fb25532f042048b1a369f284ac340, type: 3}
@@ -8893,6 +8957,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763767049}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1766556537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2271371474901056177, guid: 273fb25532f042048b1a369f284ac340, type: 3}
+  m_PrefabInstance: {fileID: 3518306023845177156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1771542476
 GameObject:
   m_ObjectHideFlags: 0
@@ -9999,6 +10068,14 @@ PrefabInstance:
     - target: {fileID: 2271371474901056177, guid: 273fb25532f042048b1a369f284ac340, type: 3}
       propertyPath: m_Name
       value: ShootingStar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228081996676052218, guid: 273fb25532f042048b1a369f284ac340, type: 3}
+      propertyPath: randomSeed
+      value: 3666
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228081996676052218, guid: 273fb25532f042048b1a369f284ac340, type: 3}
+      propertyPath: autoRandomSeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4228081996676052218, guid: 273fb25532f042048b1a369f284ac340, type: 3}
       propertyPath: SizeModule.curve.scalar
