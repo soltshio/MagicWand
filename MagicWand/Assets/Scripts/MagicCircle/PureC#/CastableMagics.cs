@@ -28,7 +28,7 @@ public class CastableMagics
 
             if (nextIndex == -1) continue;
 
-            magicSpheresList[nextIndex].ToActive(spellCastPair.Value.MagicSphereMaterial);
+            magicSpheresList[nextIndex].ToActive(spellCastPair.Value.MagicSphereColor);
             activeMagicSphereIndexList.Add(nextIndex);
         }
 
