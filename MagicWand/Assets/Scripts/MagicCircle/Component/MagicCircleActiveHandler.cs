@@ -23,8 +23,11 @@ public class MagicCircleActiveHandler : MonoBehaviour
 
 
     [Header("魔法陣の球関係")]
-    [Tooltip("魔法陣の球")] [SerializeField]
-    GameObject[] _magicSpheres;
+    [Tooltip("魔法陣の球の当たり判定")] [SerializeField]
+    Collider[] _magicSphereColliders;
+
+    [SerializeField]
+    MagicSpheresList _magicSphereList;
 
 
     [Header("魔法陣の線関係")]
@@ -42,9 +45,9 @@ public class MagicCircleActiveHandler : MonoBehaviour
         _magicCircleRenderer.enabled = _isInitShow;
 
         //魔法陣の球
-        for(int i=0; i< _magicSpheres.Length ;i++)
+        for(int i=0; i< _magicSphereColliders.Length ;i++)
         {
-            _magicSpheres[i].SetActive(_isInitShow);
+            _magicSphereColliders[i].enabled=_isInitShow;
         }
 
         //魔法陣の線
@@ -74,15 +77,18 @@ public class MagicCircleActiveHandler : MonoBehaviour
             float magicCircleAlpha = Mathf.Lerp(0f, _magicCircleAlpha_Active, rate);
             SetMagicCircleAlpha(magicCircleAlpha);
 
+            //球の表示
+            _magicSphereList.SetAllMagicSpheresAlpha(rate);
+
             //魔法陣の線
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
 
-        //球を表示
-        for (int i = 0; i < _magicSpheres.Length; i++)
+        //球の当たり判定をオンにする
+        for (int i = 0; i < _magicSphereColliders.Length; i++)
         {
-            _magicSpheres[i].SetActive(true);
+            _magicSphereColliders[i].enabled = true;
         }
 
         //魔法陣の透明度を最大化
@@ -100,10 +106,10 @@ public class MagicCircleActiveHandler : MonoBehaviour
         if (_isProcessing) return;
         _isProcessing = true;
 
-        //球を非表示
-        for (int i = 0; i < _magicSpheres.Length; i++)
+        //球の当たり判定をオフにする
+        for (int i = 0; i < _magicSphereColliders.Length; i++)
         {
-            _magicSpheres[i].SetActive(false);
+            _magicSphereColliders[i].enabled = false;
         }
 
         float elapsed = 0f;
@@ -116,6 +122,10 @@ public class MagicCircleActiveHandler : MonoBehaviour
             //魔法陣
             float magicCircleAlpha = Mathf.Lerp(_magicCircleAlpha_Active, 0f, rate);
             SetMagicCircleAlpha(magicCircleAlpha);
+
+            //魔法陣の球
+            float magicSphereAlpha = Mathf.Lerp(1, 0, rate);
+            _magicSphereList.SetAllMagicSpheresAlpha(magicSphereAlpha);
 
             //魔法陣の線
 
@@ -138,11 +148,5 @@ public class MagicCircleActiveHandler : MonoBehaviour
         var magicCircleColor = _magicCircleRenderer.color;
         magicCircleColor.a = alpha;
         _magicCircleRenderer.color = magicCircleColor;
-    }
-
-    //魔法陣の線の透明度をセットする
-    void SetMagicCircleTrailAlpha(float alpha)
-    {
-        
     }
 }

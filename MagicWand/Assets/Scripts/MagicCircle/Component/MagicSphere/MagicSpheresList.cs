@@ -19,4 +19,13 @@ public class MagicSpheresList : MonoBehaviour
             magicSphere.ToDeactive();
         }
     }
+
+    //球のalphaを一括で変更する
+    public void SetAllMagicSpheresAlpha(float alpha)
+    {
+        foreach (var magicSphere in _magicSpheres)
+        {
+            magicSphere.SetAlpha(alpha);
+        }
+    }
 }

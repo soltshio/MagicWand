@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicSphereMaterial: {fileID: 2100000, guid: f408940f44735674a9e7f1e9303c97b4, type: 2}
+  _magicSphereColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!82 &525953
 AudioSource:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicSphereMaterial: {fileID: 2100000, guid: 9559c9182dadb3840b37ce8619460cc4, type: 2}
+  _magicSphereColor: {r: 0, g: 0.047058824, b: 1, a: 1}
 --- !u!82 &52058002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2016,7 +2016,6 @@ GameObject:
   - component: {fileID: 305296930}
   - component: {fileID: 305296928}
   - component: {fileID: 305296929}
-  - component: {fileID: 305296932}
   - component: {fileID: 305296933}
   m_Layer: 0
   m_Name: Sphere (4)
@@ -2050,7 +2049,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  - {fileID: 2100000, guid: ab0601dbc39ad254199dc2e5cae45ecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2113,25 +2112,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.73, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.70000005, y: 0.70000005, z: 0.70000005}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &305296932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305296926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
-  _renderer: {fileID: 305296928}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!114 &305296933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2145,7 +2130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 305296928}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _defaultAlpha: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,7 +3345,6 @@ GameObject:
   - component: {fileID: 549293273}
   - component: {fileID: 549293271}
   - component: {fileID: 549293272}
-  - component: {fileID: 549293275}
   - component: {fileID: 549293276}
   m_Layer: 0
   m_Name: Sphere (1)
@@ -3393,7 +3378,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  - {fileID: 2100000, guid: ab0601dbc39ad254199dc2e5cae45ecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3455,26 +3440,12 @@ Transform:
   m_GameObject: {fileID: 549293269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.98, y: 0.57, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -3.15, y: 0.57, z: 0}
+  m_LocalScale: {x: 0.70000005, y: 0.70000005, z: 0.70000005}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &549293275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549293269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
-  _renderer: {fileID: 549293271}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!114 &549293276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3488,7 +3459,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 549293271}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _defaultAlpha: 0
 --- !u!1 &613696709
 GameObject:
   m_ObjectHideFlags: 0
@@ -4289,12 +4261,13 @@ MonoBehaviour:
   _fadeDuration: 1
   _magicCircleRenderer: {fileID: 1118699961}
   _magicCircleAlpha_Active: 0.3
-  _magicSpheres:
-  - {fileID: 1579516459}
-  - {fileID: 549293269}
-  - {fileID: 993358635}
-  - {fileID: 2118804864}
-  - {fileID: 305296926}
+  _magicSphereColliders:
+  - {fileID: 1579516462}
+  - {fileID: 549293272}
+  - {fileID: 993358638}
+  - {fileID: 2118804867}
+  - {fileID: 305296929}
+  _magicSphereList: {fileID: 741445581}
   _magicCircleTrailRenderer: {fileID: 741445576}
   _magicCircleTrailAlpha_Active: 0
 --- !u!114 &741445580
@@ -4669,7 +4642,6 @@ GameObject:
   - component: {fileID: 993358639}
   - component: {fileID: 993358637}
   - component: {fileID: 993358638}
-  - component: {fileID: 993358641}
   - component: {fileID: 993358642}
   m_Layer: 0
   m_Name: Sphere (2)
@@ -4703,7 +4675,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  - {fileID: 2100000, guid: ab0601dbc39ad254199dc2e5cae45ecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4765,26 +4737,12 @@ Transform:
   m_GameObject: {fileID: 993358635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.75, y: -2.69, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -1.83, y: -2.83, z: 0}
+  m_LocalScale: {x: 0.70000005, y: 0.70000005, z: 0.70000005}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &993358641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993358635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
-  _renderer: {fileID: 993358637}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!114 &993358642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4798,7 +4756,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 993358637}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _defaultAlpha: 0
 --- !u!1 &1015091472
 GameObject:
   m_ObjectHideFlags: 0
@@ -5101,7 +5060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicSphereMaterial: {fileID: 2100000, guid: 8b72f857612c2e74fb854e88b79f3528, type: 2}
+  _magicSphereColor: {r: 1, g: 0, b: 0.9372549, a: 1}
 --- !u!114 &1040190901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5725,7 +5684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicSphereMaterial: {fileID: 2100000, guid: 7218278249f37af45a892b8d77711ced, type: 2}
+  _magicSphereColor: {r: 0.99607843, g: 1, b: 0, a: 1}
 --- !u!114 &1138852485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8167,7 +8126,6 @@ GameObject:
   - component: {fileID: 1579516463}
   - component: {fileID: 1579516461}
   - component: {fileID: 1579516462}
-  - component: {fileID: 1579516465}
   - component: {fileID: 1579516466}
   m_Layer: 0
   m_Name: Sphere
@@ -8201,7 +8159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  - {fileID: 2100000, guid: ab0601dbc39ad254199dc2e5cae45ecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8263,26 +8221,12 @@ Transform:
   m_GameObject: {fileID: 1579516459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.98, y: 0.53, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 3.2, y: 0.53, z: 0}
+  m_LocalScale: {x: 0.70000005, y: 0.70000005, z: 0.70000005}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1579516465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579516459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
-  _renderer: {fileID: 1579516461}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!114 &1579516466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8296,7 +8240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 1579516461}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _defaultAlpha: 0
 --- !u!1 &1637943370
 GameObject:
   m_ObjectHideFlags: 0
@@ -9472,7 +9417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _magicSphereMaterial: {fileID: 2100000, guid: d4d7938abcf7e3f4690e545bf9a5b437, type: 2}
+  _magicSphereColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!82 &1910504422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10224,7 +10169,6 @@ GameObject:
   - component: {fileID: 2118804868}
   - component: {fileID: 2118804866}
   - component: {fileID: 2118804867}
-  - component: {fileID: 2118804870}
   - component: {fileID: 2118804871}
   m_Layer: 0
   m_Name: Sphere (3)
@@ -10258,7 +10202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  - {fileID: 2100000, guid: ab0601dbc39ad254199dc2e5cae45ecf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10320,26 +10264,12 @@ Transform:
   m_GameObject: {fileID: 2118804864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.82, y: -2.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 1.83, y: -2.83, z: 0}
+  m_LocalScale: {x: 0.70000005, y: 0.70000005, z: 0.70000005}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2118804870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118804864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d559fb1869021b42872a327456f7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer2
-  _renderer: {fileID: 2118804866}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
 --- !u!114 &2118804871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10353,7 +10283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 2118804866}
-  _deactiveMat: {fileID: 2100000, guid: ae4c2668e2ebd2743ab5e938c61e370d, type: 2}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _defaultAlpha: 0
 --- !u!1001 &3518306023845177156
 PrefabInstance:
   m_ObjectHideFlags: 0

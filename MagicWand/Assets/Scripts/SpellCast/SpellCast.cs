@@ -8,7 +8,7 @@ public class SpellCast : MonoBehaviour
     int[] _activeOrderIndexs;
 
     [SerializeField]
-    Material _magicSphereMaterial;
+    Color _magicSphereColor;
 
     bool _spellIsValid = true;
     int _currentIndex = 0;
@@ -16,7 +16,7 @@ public class SpellCast : MonoBehaviour
     public bool SpellIsValid { get { return _spellIsValid; } }//魔法の発動手順が合っているか
     public bool IsReadyToInvoke { get { return _currentIndex >= _activeOrderIndexs.Length; } }//魔法が発動可能か
 
-    public Material MagicSphereMaterial { get { return _magicSphereMaterial; } }//魔法球のマテリアル
+    public Color MagicSphereColor { get { return _magicSphereColor; } }//魔法球の色
 
     //初期化
     public void Initialize(int[] activeOrderIndexs)
