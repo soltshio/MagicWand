@@ -1,6 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -13,41 +11,42 @@ public class MagicContentTypeRain : MagicContentTypeBase
     BigCreature _bigCreature;
 
     [SerializeField]
+    WaitUntilAllFinishTasksEventDirecter _rainEffectDirecter;
+
+    [SerializeField]
     ParticleSystem _rainParticle;
 
     [Tooltip("雨の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _audioRainSource;
 
-    [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
-    float _delayDurationAffection = 2f;
-
-    public override async UniTask ActivateAsync(CancellationToken token)
+    public void StartRaining()
     {
-        //雨のエフェクトを表示する
         _rainParticle.Play();
-
-        //雨の効果音を鳴らし始める
         _audioRainSource.Play();
+    }
 
-        //雨エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
-        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
-
-        await AffectToAround();
-
-        //雨のエフェクトを非表示にする
+    public void StopRaining()
+    {
         _rainParticle.Stop();
-
-        //雨の効果音をストップする
         _audioRainSource.Stop();
     }
 
-    async UniTask AffectToAround()
+    //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
+    public void PauseTimelineForAffectFieldObjects()
     {
-        List<UniTask> runningTasks = new();
+        _rainEffectDirecter.PauseUntilAllFinishTasksAsync().Forget();
+    }
 
+    public void AffectToBigCreature()
+    {
         //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Rain));
+        _rainEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Rain));
+    }
 
-        await UniTask.WhenAll(runningTasks);
+    public override async UniTask ActivateAsync(CancellationToken ct)
+    {
+        _rainEffectDirecter.ClearTasks();
+
+        await _rainEffectDirecter.StartPlayingAndWaitUntilFinishPlayingAsync(ct);
     }
 }

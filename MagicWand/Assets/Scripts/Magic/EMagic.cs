@@ -9,5 +9,5 @@ public enum EMagic
     Rain,//レイン(雨)
     Time,//タイム
     Star,//スター
-    Fire,//ファイア
+    Sun,//太陽
 }

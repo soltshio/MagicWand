@@ -1,9 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
 using System.Collections.Generic;
 using System.Threading;
-using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 //作成者:杉山
 //雷魔法の発動内容
@@ -13,30 +13,25 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     [SerializeField]
     BigCreature _bigCreature;
 
-    [Tooltip("雷雲の演出")] [SerializeField]
-    ThunderEventPlayer _thunderEventPlayer;
+    [SerializeField]
+    WaitUntilAllFinishTasksEventDirecter _thunderEffectDirecter;
 
-    [Tooltip("演出が終わってから他のものに魔法の影響を与えるまでの遅延時間")] [SerializeField]
-    float _delayDurationMagicAffection;
-
-    public override async UniTask ActivateAsync(CancellationToken token)
+    //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
+    public void PauseTimelineForAffectFieldObjects()
     {
-        //雷雲が発生し、雷が落ちる演出
-        await _thunderEventPlayer.CauseThunderEventAsync();
-
-        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationMagicAffection), cancellationToken: token);
-
-        //ここから魔法の影響を近くの物に与える
-        await AffectToAround();
+        _thunderEffectDirecter.PauseUntilAllFinishTasksAsync().Forget();
     }
 
-    async UniTask AffectToAround()
+    public void AffectToBigCreature()
     {
-        List<UniTask> runningTasks = new();
-
         //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+        _thunderEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+    }
 
-        await UniTask.WhenAll(runningTasks);
+    public override async UniTask ActivateAsync(CancellationToken ct)
+    {
+        _thunderEffectDirecter.ClearTasks();
+
+        await _thunderEffectDirecter.StartPlayingAndWaitUntilFinishPlayingAsync(ct);
     }
 }

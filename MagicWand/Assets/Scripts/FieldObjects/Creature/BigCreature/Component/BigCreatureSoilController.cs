@@ -11,7 +11,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class BigCreatureSoilController : MonoBehaviour
 {
     [SerializeField]
-    MeshRenderer[] _bigCreatureBodyMeshRenderers;
+    SkinnedMeshRenderer[] _bigCreatureBodyMeshRenderers;
 
     [SerializeField]
     float _minSoilValue = -1.83f;
@@ -25,7 +25,7 @@ public class BigCreatureSoilController : MonoBehaviour
 
     Material[] _materials;
 
-    CancellationTokenSource _cts;
+    SingleTaskCancellation _singleTaskCancellation = new SingleTaskCancellation();
 
     static readonly int _soilBoundaryHeightID = Shader.PropertyToID("_SoilBoundaryHeight");
 
@@ -39,9 +39,7 @@ public class BigCreatureSoilController : MonoBehaviour
     {
         toSoilValueRate = Mathf.Clamp01(toSoilValueRate);
 
-        CancelRunningUniTask();
-
-        var ct = CreateLinkedToken(this.GetCancellationTokenOnDestroy());
+        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
         float toSoilValue = FromRateToSoilValue(toSoilValueRate);
 
@@ -79,21 +77,6 @@ public class BigCreatureSoilController : MonoBehaviour
         {
             _materials[i] = _bigCreatureBodyMeshRenderers[i].material;
         }
-    }
-
-    void CancelRunningUniTask()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-    }
-
-    CancellationToken CreateLinkedToken(CancellationToken ct)
-    {
-        _cts = new CancellationTokenSource();
-
-        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, ct);
-
-        return linkedCts.Token;
     }
 
     float FromRateToSoilValue(float rate)

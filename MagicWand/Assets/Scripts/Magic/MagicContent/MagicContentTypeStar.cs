@@ -1,9 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 using System.Threading;
-using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //作成者:杉山
@@ -15,53 +11,24 @@ public class MagicContentTypeStar : MagicContentTypeBase
     BigCreature _bigCreature;
 
     [SerializeField]
-    AudioSource _starAudioSource;
+    WaitUntilAllFinishTasksEventDirecter _starEffectDirecter;
 
-    [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
-    float _delayDurationAffection = 0.8f;
-
-    [Tooltip("流れ星のエフェクト")] [SerializeField]
-    ParticleSystem _shootingStarParticle;
-
-    [Tooltip("通常時のCInemachineカメラ")] [SerializeField]
-    CinemachineCamera _defaultCamera;
-
-    [Tooltip("見上げる視点のCinemachineカメラ")] [SerializeField]
-    CinemachineCamera _lookUpCamera;
-
-    public override async UniTask ActivateAsync(CancellationToken token)
+    //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
+    public void PauseTimelineForAffectFieldObjects()
     {
-        _shootingStarParticle.Play();
-
-        _starAudioSource.Play();
-
-        SwitchActiveCamera(true);
-
-        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
-
-        SwitchActiveCamera(false);
-
-        _starAudioSource.Stop();
-
-        await AffectToAround();
-
-        _shootingStarParticle.Stop();
+        _starEffectDirecter.PauseUntilAllFinishTasksAsync().Forget();
     }
 
-    async UniTask AffectToAround()
+    public void AffectToBigCreature()
     {
-        List<UniTask> runningTasks = new();
-
         //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Star));
-
-        await UniTask.WhenAll(runningTasks);
+        _starEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Star));
     }
 
-    //カメラを切り替える
-    void SwitchActiveCamera(bool isToLookUp)
+    public override async UniTask ActivateAsync(CancellationToken ct)
     {
-        _defaultCamera.enabled = !isToLookUp;
-        _lookUpCamera.enabled = isToLookUp;
+        _starEffectDirecter.ClearTasks();
+
+        await _starEffectDirecter.StartPlayingAndWaitUntilFinishPlayingAsync(ct);
     }
 }

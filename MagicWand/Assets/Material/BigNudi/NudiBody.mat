@@ -78,10 +78,10 @@ Material:
     - _Range: 1.07
     - _Scale: 61.56
     - _SoilBoundary: -0.16
-    - _SoilBoundaryHeight: -0.94
+    - _SoilBoundaryHeight: -2.23
     - _SoilEdge1: 0.499
     - _SoilEdge2: 0.71
-    - _SoilFadeRange: 1.84
+    - _SoilFadeRange: 7.55
     - _SoilFillAmount: 1
     - _slider: 0.497
     m_Colors: []

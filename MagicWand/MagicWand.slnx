@@ -1,7 +1,9 @@
 ﻿<Solution>
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UniTask.csproj" />
+  <Project Path="extOSC.csproj" />
   <Project Path="UniTask.Linq.csproj" />
+  <Project Path="extOSC.Editor.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Samples.Runtime.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
