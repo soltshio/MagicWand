@@ -9,6 +9,9 @@ using UnityEngine;
 
 public class MagicContentTypeTime : MagicContentTypeBase
 {
+    [SerializeField]
+    WaitUntilAllFinishTasksEventDirecter _timeEffectDirecter;
+
     [Header("地面関係")]
     
     [SerializeField]
@@ -30,42 +33,45 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [Tooltip("時計の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _clockAudioSource;
 
-    [Tooltip("魔法の影響を与えるまでに遅らせる時間")] [SerializeField]
-    float _delayDurationAffection = 2f;
-
     [SerializeField]
     ClockEffectActivator _clockEffectActivator;
 
-    public override async UniTask ActivateAsync(CancellationToken token)
+    //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
+    public void PauseTimelineForAffectFieldObjects()
     {
-        _clockAudioSource.Play();
+        _timeEffectDirecter.PauseUntilAllFinishTasksAsync().Forget();
+    }
 
-        //時計のエフェクトを表示させる
+    public void AffectToBigCreature()
+    {
+        //でか生物に魔法を当てる
+        _timeEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Time));
+    }
+
+    public void AffectToGroundGrass()
+    {
+        //地面に草を生やす
+        float newAlphaRate = CalcNewGrassAlpha();
+        _timeEffectDirecter.AddTasks(_groundGrassAlphaController.SetGrassAlphaAsync(newAlphaRate, _shiftGrassAmountDuration));
+    }
+
+    public void ActivateClockEffect()
+    {
         _clockEffectActivator.ActivateAsync().Forget();
+        _clockAudioSource.Play();
+    }
 
-        //エフェクトが出て少し遅らせてから他のものに魔法の影響を与える
-        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationAffection), cancellationToken: token);
-
-        await AffectToAround();
-
-        //時計のエフェクトを非表示にさせる
+    public void DeactivateClockEffect()
+    {
         _clockEffectActivator.DeactivateAsync().Forget();
-
         _clockAudioSource.Stop();
     }
 
-    async UniTask AffectToAround()
+    public override async UniTask ActivateAsync(CancellationToken ct)
     {
-        List<UniTask> runningTasks = new();
+        _timeEffectDirecter.ClearTasks();
 
-        //でか生物に魔法を当てる
-        runningTasks.Add(_bigCreature.TakeMagicAsync(EMagic.Time));
-
-        //地面に草を生やす
-        float newAlphaRate = CalcNewGrassAlpha();
-        runningTasks.Add(_groundGrassAlphaController.SetGrassAlphaAsync(newAlphaRate, _shiftGrassAmountDuration));
-
-        await UniTask.WhenAll(runningTasks);
+        await _timeEffectDirecter.StartPlayingAndWaitUntilFinishPlayingAsync(ct);
     }
 
     float CalcNewGrassAlpha()

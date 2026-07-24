@@ -9416,6 +9416,8 @@ GameObject:
   - component: {fileID: 1910504421}
   - component: {fileID: 1910504422}
   - component: {fileID: 1910504423}
+  - component: {fileID: 1910504424}
+  - component: {fileID: 1910504425}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -9450,12 +9452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc3f4d9ba3d7fe40ba02228ba5c249b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
+  _timeEffectDirecter:
+    _eventDirecter: {fileID: 1910504424}
   _groundGrassAlphaController: {fileID: 1531092908}
   _alphaDeltaRate: 0.429
-  _shiftGrassAmountDuration: 1.5
+  _shiftGrassAmountDuration: 3
   _bigCreature: {fileID: 623789239}
   _clockAudioSource: {fileID: 1910504422}
-  _delayDurationAffection: 2
   _clockEffectActivator: {fileID: 1910504423}
 --- !u!114 &1910504421
 MonoBehaviour:
@@ -9586,6 +9589,113 @@ MonoBehaviour:
   - {fileID: 2087219706}
   - {fileID: 1828028210}
   _clockCanvasGroup: {fileID: 2087219708}
+--- !u!320 &1910504424
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: aff423124e3db104aa78253d50a73920, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &1910504425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: ed453fc5698c5fd4a802c8eb7daaf6ec, type: 2}
+    - {fileID: 11400000, guid: e436a530e98a7cd4096585c5e4bd77de, type: 2}
+    - {fileID: 11400000, guid: c9bcd791f6ed2d04c82cd975dbc0ca3d, type: 2}
+    - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
+    - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910504420}
+          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
+          m_MethodName: ActivateClockEffect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910504420}
+          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
+          m_MethodName: DeactivateClockEffect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910504420}
+          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
+          m_MethodName: AffectToGroundGrass
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910504420}
+          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
+          m_MethodName: AffectToBigCreature
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910504420}
+          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
+          m_MethodName: PauseTimelineForAffectFieldObjects
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0
