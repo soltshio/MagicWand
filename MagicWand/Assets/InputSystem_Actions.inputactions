@@ -1199,6 +1199,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SwitchScreenMode",
+            "id": "68c62e06-a67d-4849-8b36-0d61955cd551",
+            "actions": [
+                {
+                    "name": "Switch",
+                    "type": "Button",
+                    "id": "2d97ff6f-256d-4450-aace-0ce57f479d06",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "32a53d1c-c57b-48cb-b86d-d5bc8c3c0cd6",
+                    "path": "<Keyboard>/f11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
