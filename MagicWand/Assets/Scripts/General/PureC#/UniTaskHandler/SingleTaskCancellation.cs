@@ -5,27 +5,15 @@
 
 public class SingleTaskCancellation
 {
-    CancellationTokenSource _cts;
+    CancellationTokenSource _linkedCts;
 
-    public CancellationToken CancelAndReCreateToken(CancellationToken ct)
+    public CancellationToken CancelAndReCreateToken(CancellationToken parent)
     {
-        CancelRunningUniTask();
+        _linkedCts?.Cancel();
+        _linkedCts?.Dispose();
 
-        return CreateLinkedToken(ct);
-    }
+        _linkedCts = CancellationTokenSource.CreateLinkedTokenSource(parent);
 
-    void CancelRunningUniTask()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-    }
-
-    CancellationToken CreateLinkedToken(CancellationToken ct)
-    {
-        _cts = new CancellationTokenSource();
-
-        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token, ct);
-
-        return linkedCts.Token;
+        return _linkedCts.Token;
     }
 }

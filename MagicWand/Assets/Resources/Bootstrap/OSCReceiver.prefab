@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   _oscReceiver: {fileID: 5386432015967416139}
   _oscRunnincChecker:
-    _timeOutSec: 2
+    _timeOutSec: 3
   _isNotExistObjectThreashold: {x: 0.001, y: 0.001}
 --- !u!114 &405899259057306558
 MonoBehaviour:
