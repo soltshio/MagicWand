@@ -1189,7 +1189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.585224
+      value: -8.585222
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2092,7 +2092,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &305296930
 MeshFilter:
@@ -3062,7 +3062,7 @@ MonoBehaviour:
   _electricShockSE: {fileID: 8300000, guid: fe082fc6a1f5b4f43b022e7bab01a65a, type: 3}
   _waitElectricShockDuration: 2.5
   _bigCreatureBodyMeshRenderer: {fileID: 15600235}
-  _electricShockMat: {fileID: 2100000, guid: c51d840b8be06184b8a86f904af67c0c, type: 2}
+  _electricShockMat: {fileID: 2100000, guid: ed5f5298c831783438720e45d5516273, type: 2}
 --- !u!82 &465656554
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3421,7 +3421,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &549293273
 MeshFilter:
@@ -4718,7 +4718,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &993358639
 MeshFilter:
@@ -8202,7 +8202,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1579516463
 MeshFilter:
@@ -10245,7 +10245,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2118804868
 MeshFilter:

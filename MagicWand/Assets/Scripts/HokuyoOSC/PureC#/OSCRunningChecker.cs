@@ -22,7 +22,7 @@ public class OSCRunningChecker
     {
         var newCt = _singleTaskCancellation.CancelAndReCreateToken(ct);
 
-        TimeOutAsync(ct).Forget();
+        TimeOutAsync(newCt).Forget();
     }
 
     async UniTask TimeOutAsync(CancellationToken ct)

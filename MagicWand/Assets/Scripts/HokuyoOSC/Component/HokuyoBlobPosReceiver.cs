@@ -2,7 +2,6 @@
 using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using UnityEditor.ShaderGraph.Internal;
 
 //作成者:杉山
 //OSC通信で送られてきた北陽レーザーが察知した物体(塊)の座標を受け取る
@@ -41,8 +40,6 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
             if (_isExistObject == value) return;
 
             _isExistObject = value;
-
-            Debug.Log(_isExistObject);
 
             OnSwitchIsExistObject?.Invoke(_isExistObject);
         }
