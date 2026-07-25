@@ -4066,6 +4066,7 @@ GameObject:
   - component: {fileID: 741445581}
   - component: {fileID: 741445582}
   - component: {fileID: 741445583}
+  - component: {fileID: 741445584}
   m_Layer: 0
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -4426,6 +4427,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &741445584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741445573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76505f83cc14544782d6b9cccd9de36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereColliderRadiusChanger_CastNum
+  _magicCircleManagerVer3: {fileID: 741445578}
+  _magicSphereColliders:
+  - {fileID: 1579516462}
+  - {fileID: 549293272}
+  - {fileID: 993358638}
+  - {fileID: 2118804867}
+  - {fileID: 305296929}
+  _defaultRadius: 0.5
+  _radiusMoreThanTwice: 1
 --- !u!1 &796611146
 GameObject:
   m_ObjectHideFlags: 0

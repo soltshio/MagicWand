@@ -30,6 +30,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
 
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
+    public event Action OnStartToCast;//魔法の発動が終わったことの通知
 
     public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
 
@@ -51,6 +52,8 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
+
+        OnStartToCast?.Invoke();
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
