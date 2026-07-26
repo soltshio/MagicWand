@@ -1227,6 +1227,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ShowScreenSize",
+            "id": "0de75f4d-48e3-4c79-b7de-b68f553026f5",
+            "actions": [
+                {
+                    "name": "Show",
+                    "type": "Button",
+                    "id": "9355a05f-7df0-4991-a6a1-7d49839e4ef5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b19eb5aa-a5fb-43a7-9074-5a94b298223f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Show",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
