@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 964775380682771171}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.17, y: 0, z: 0}
   m_LocalScale: {x: 0.00315, y: 0.00315, z: 0.00315}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4904,7 +4904,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 960, y: 540, z: 0}
+      - m_Value: {x: 955.83, y: 540, z: 0}
         m_Name: cursor
         m_Overridden: 1
     m_Vector4f:
