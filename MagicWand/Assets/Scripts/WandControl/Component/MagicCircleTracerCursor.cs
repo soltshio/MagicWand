@@ -1,4 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +10,14 @@ using UnityEngine.InputSystem;
 
 public class MagicCircleTracerCursor : MonoBehaviour
 {
+    [SerializeField]
+    float _deactiveDurationOnObjectEnter=0.05f;
+
+    bool _isCursorDeactiveOnWandExit = false;
+
     HokuyoBlobPosReceiver _hokuyoBlobPosReceiver;
+    SingleTaskCancellation _singleTaskCancellation = new();
+    
 
     void Awake()
     {
@@ -21,9 +30,40 @@ public class MagicCircleTracerCursor : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        _hokuyoBlobPosReceiver.OnSwitchIsExistObject += NotifyOnObjectEnter;
+    }
+
+    void OnDisable()
+    {
+        _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= NotifyOnObjectEnter;
+    }
+
+
+    void NotifyOnObjectEnter(bool isExistObject)
+    {
+        if (!isExistObject) return;
+
+        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
+        CursorDeactiveAsync(newCt).Forget();
+    }
+
+    //杖が
+    async UniTask CursorDeactiveAsync(CancellationToken ct)
+    {
+        _isCursorDeactiveOnWandExit = true;
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_deactiveDurationOnObjectEnter), cancellationToken: ct);
+
+        _isCursorDeactiveOnWandExit = false;
+    }
+
     void Update()
     {
         if (_hokuyoBlobPosReceiver == null) return;
+
+        if (_isCursorDeactiveOnWandExit) return;
 
         //OSC通信が動いているかつ、北陽レーザーの検知範囲内にオブジェクトが無い
         if ( _hokuyoBlobPosReceiver.IsRunning && !_hokuyoBlobPosReceiver.IsExistObject) return;
