@@ -3557,9 +3557,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureSoilController
   _bigCreatureBodyMeshRenderers:
   - {fileID: 15600235}
-  _minSoilValue: -2.77
-  _rangeSoilValue: 1.78
-  _defaultSoilValueRate: 0.25
+  _minSoilValue: -2.45
+  _rangeSoilValue: 1.61
+  _defaultSoilValueRate: 0.523
 --- !u!114 &623789237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6524,7 +6524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4959409054966819145, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.4
+      value: 15.84
       objectReference: {fileID: 0}
     - target: {fileID: 4959409054966819145, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
       propertyPath: m_LocalRotation.w
