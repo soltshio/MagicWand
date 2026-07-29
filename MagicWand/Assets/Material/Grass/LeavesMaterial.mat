@@ -105,6 +105,11 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RandomNoiseScale: 43.89
+    - _RandomNoiseScaleX: 31.04
+    - _RandomNoiseScaleY: 33.59
+    - _RandomnessX: 3.89
+    - _RandomnessY: 6.35
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -112,7 +117,12 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _SwaySpeed: 2
+    - _SwaySpeedX: 1.5
+    - _SwaySpeedY: 1.5
     - _WindDistortion: 5.88
+    - _WindIntensityX: 0.004
+    - _WindIntensityY: 0.009
     - _WindMovementSpeed: 0.22
     - _WindPower: 0.05
     - _WorkflowMode: 1
