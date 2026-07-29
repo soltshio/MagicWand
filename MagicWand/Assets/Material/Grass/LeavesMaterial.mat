@@ -106,8 +106,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RandomNoiseScale: 43.89
-    - _RandomNoiseScaleX: 31.04
-    - _RandomNoiseScaleY: 33.59
+    - _RandomNoiseScaleX: 12.1
+    - _RandomNoiseScaleY: 1.5
     - _RandomnessX: 3.89
     - _RandomnessY: 6.35
     - _ReceiveShadows: 1
@@ -121,8 +121,8 @@ Material:
     - _SwaySpeedX: 1.5
     - _SwaySpeedY: 1.5
     - _WindDistortion: 5.88
-    - _WindIntensityX: 0.004
-    - _WindIntensityY: 0.009
+    - _WindIntensityX: 0.007
+    - _WindIntensityY: 0.025
     - _WindMovementSpeed: 0.22
     - _WindPower: 0.05
     - _WorkflowMode: 1
