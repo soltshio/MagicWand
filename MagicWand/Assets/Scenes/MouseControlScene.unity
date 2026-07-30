@@ -4312,6 +4312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23b01c7bdcca5f46a9ba6671761dcb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSpheresList
+  _magicSphereObjs:
+  - {fileID: 305296926}
+  - {fileID: 1579516459}
+  - {fileID: 2118804864}
+  - {fileID: 993358635}
+  - {fileID: 549293269}
   _magicSpheres:
   - {fileID: 305296933}
   - {fileID: 1579516466}

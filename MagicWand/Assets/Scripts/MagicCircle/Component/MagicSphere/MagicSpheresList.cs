@@ -6,28 +6,25 @@
 public class MagicSpheresList : MonoBehaviour
 {
     [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
+    GameObject[] _magicSphereObjs;
+
+    [Tooltip("12時の方向から時計回りに入れるようにしてください")] [SerializeField]
     MagicSphereVer3[] _magicSpheres; //魔法陣上の球の配列
 
-    public MagicSphereVer3[] MagicSpheres { get { return _magicSpheres; } }
-    public MagicSphereVer3 this[int index] { get { return _magicSpheres[index]; } }
+    ComponentCache[] _magicSphereComponentCaches;
 
-    //よく使用する処理群
+    //public MagicSphereVer3[] MagicSpheres { get { return _magicSpheres; } }
+    //public MagicSphereVer3 this[int index] { get { return _magicSpheres[index]; } }
 
-    //球を全て非アクティブにする
-    public void AllMagicSpheresToDeactive()
+    void Awake()
     {
-        foreach (var magicSphere in _magicSpheres)
-        {
-            magicSphere.ToDeactive();
-        }
-    }
+        _magicSphereComponentCaches = new ComponentCache[_magicSphereObjs.Length];
 
-    //球のalphaを一括で変更する
-    public void SetAllMagicSpheresAlpha(float alpha)
-    {
-        foreach (var magicSphere in _magicSpheres)
+        for(int i=0; i<_magicSphereComponentCaches.Length ;i++)
         {
-            magicSphere.SetAlpha(alpha);
+            if (_magicSphereObjs[i] == null) continue;
+
+            _magicSphereComponentCaches[i] = new(_magicSphereObjs[i]);
         }
     }
 }
