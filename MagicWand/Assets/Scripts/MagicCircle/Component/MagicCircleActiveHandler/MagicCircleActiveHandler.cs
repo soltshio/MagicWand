@@ -7,51 +7,30 @@ using UnityEngine;
 
 public class MagicCircleActiveHandler : MonoBehaviour
 {
-    [Tooltip("初期状態では表示しておくか")] [SerializeField]
-    bool _isInitShow = false;
-
     [Tooltip("表示・非表示にかける時間")] [SerializeField]
     float _fadeDuration = 1f;
 
+    [Header("魔法陣関係")] [SerializeField]
+    MagicCircleRendererActivator_MagicCircleActiveHandler _magicCircleRendererActivator;
 
-    [Header("魔法陣関係")]
-    [Tooltip("魔法陣の描画機能")] [SerializeField]
-    SpriteRenderer _magicCircleRenderer;
+    [Header("魔法陣の球関係")] [SerializeField]
+    MagicSphereRendererActivator_MagicCircleActiveHandler _magicSphereRendererActivator;
 
-    [Tooltip("表示時の透明度")] [Range(0f, 1f)] [SerializeField]
-    float _magicCircleAlpha_Active;
-
-
-    [Header("魔法陣の球関係")]
-    [Tooltip("魔法陣の球の当たり判定")] [SerializeField]
-    Collider[] _magicSphereColliders;
-
-    [SerializeField]
-    MagicSpheresList _magicSphereList;
-
-
-    [Header("魔法陣の線関係")]
-    [Tooltip("魔法陣の線の描画機能")] [SerializeField]
-    LineRenderer _magicCircleTrailRenderer;
-
-    [Tooltip("表示時の透明度")] [Range(0f, 1f)] [SerializeField]
-    float _magicCircleTrailAlpha_Active;
+    [Header("魔法陣の線関係")] [SerializeField]
+    MagicTrailRendererActivator_MagicCircleActiveHandler _magicTrailRendererActivator;
 
     bool _isProcessing = false;
 
     void Start()
     {
-        //魔法陣
-        _magicCircleRenderer.enabled = _isInitShow;
+        //魔法陣は最初に非表示
+        _magicCircleRendererActivator.Start();
 
         //魔法陣の球
-        for(int i=0; i< _magicSphereColliders.Length ;i++)
-        {
-            _magicSphereColliders[i].enabled=_isInitShow;
-        }
+        _magicSphereRendererActivator.Start();
 
         //魔法陣の線
-        _magicCircleTrailRenderer.enabled = _isInitShow;
+        _magicTrailRendererActivator.Start();
     }
 
     //魔法陣の表示
@@ -61,41 +40,30 @@ public class MagicCircleActiveHandler : MonoBehaviour
         _isProcessing = true;
 
         //魔法陣を表示
-        _magicCircleRenderer.enabled = true;
+        _magicCircleRendererActivator.MagicCircleSwitchEnable(true);
 
         //魔法陣の線を表示
-        _magicCircleTrailRenderer.enabled = true;
+        _magicTrailRendererActivator.MagicTrailSwitchEnable(true);
 
-        float elapsed = 0f;
+        ProgressTimer progressTimer = new(_fadeDuration);
 
-        while(elapsed < _fadeDuration)
+        while(!progressTimer.IsFinished)
         {
-            elapsed += Time.deltaTime;
-            float rate = elapsed / _fadeDuration;
+            progressTimer.Tick();
+
+            float progress = progressTimer.CalcProgress();
 
             //魔法陣
-            float magicCircleAlpha = Mathf.Lerp(0f, _magicCircleAlpha_Active, rate);
-            SetMagicCircleAlpha(magicCircleAlpha);
+            _magicCircleRendererActivator.ActivateMagicCircle(progress);
 
             //球の表示
-            _magicSphereList.SetAllMagicSpheresAlpha(rate);
-
-            //魔法陣の線
+            _magicSphereRendererActivator.ActivateMagicSphere(progress);
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
 
         //球の当たり判定をオンにする
-        for (int i = 0; i < _magicSphereColliders.Length; i++)
-        {
-            _magicSphereColliders[i].enabled = true;
-        }
-
-        //魔法陣の透明度を最大化
-        SetMagicCircleAlpha(_magicCircleAlpha_Active);
-        
-        //魔法陣の線の透明度を最大化
-        
+        _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(true);
 
         _isProcessing = false;
     }
@@ -107,46 +75,31 @@ public class MagicCircleActiveHandler : MonoBehaviour
         _isProcessing = true;
 
         //球の当たり判定をオフにする
-        for (int i = 0; i < _magicSphereColliders.Length; i++)
-        {
-            _magicSphereColliders[i].enabled = false;
-        }
+        _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
 
-        float elapsed = 0f;
+        ProgressTimer progressTimer = new(_fadeDuration);
 
-        while (elapsed < _fadeDuration)
+        while (!progressTimer.IsFinished)
         {
-            elapsed += Time.deltaTime;
-            float rate = elapsed / _fadeDuration;
+            progressTimer.Tick();
+
+            float progress = progressTimer.CalcProgress();
 
             //魔法陣
-            float magicCircleAlpha = Mathf.Lerp(_magicCircleAlpha_Active, 0f, rate);
-            SetMagicCircleAlpha(magicCircleAlpha);
+            _magicCircleRendererActivator.DeactivateMagicCircle(progress);
 
             //魔法陣の球
-            float magicSphereAlpha = Mathf.Lerp(1, 0, rate);
-            _magicSphereList.SetAllMagicSpheresAlpha(magicSphereAlpha);
-
-            //魔法陣の線
+            _magicSphereRendererActivator.DeactivateMagicSphere(progress);
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
 
         //魔法陣を完全に非表示
-        SetMagicCircleAlpha(0f);
-        _magicCircleRenderer.enabled = false;
+        _magicCircleRendererActivator.MagicCircleSwitchEnable(false);
 
         //魔法陣の線を完全に非表示
-        _magicCircleTrailRenderer.enabled = false;
+        _magicTrailRendererActivator.MagicTrailSwitchEnable(false);
 
         _isProcessing = false;
-    }
-
-    //魔法陣の透明度をセットする
-    void SetMagicCircleAlpha(float alpha)
-    {
-        var magicCircleColor = _magicCircleRenderer.color;
-        magicCircleColor.a = alpha;
-        _magicCircleRenderer.color = magicCircleColor;
     }
 }

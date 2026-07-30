@@ -4260,19 +4260,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1cb5804913bf24b9224480269d5b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicCircleActiveHandler
-  _isInitShow: 0
   _fadeDuration: 1
-  _magicCircleRenderer: {fileID: 1118699961}
-  _magicCircleAlpha_Active: 0.3
-  _magicSphereColliders:
-  - {fileID: 1579516462}
-  - {fileID: 549293272}
-  - {fileID: 993358638}
-  - {fileID: 2118804867}
-  - {fileID: 305296929}
-  _magicSphereList: {fileID: 741445581}
-  _magicCircleTrailRenderer: {fileID: 741445576}
-  _magicCircleTrailAlpha_Active: 0
+  _magicCircleRendererActivator:
+    _magicCircleRenderer: {fileID: 1118699961}
+    _magicCircleAlpha_Active: 0.3
+  _magicSphereRendererActivator:
+    _magicSphereColliders:
+    - {fileID: 1579516462}
+    - {fileID: 549293272}
+    - {fileID: 993358638}
+    - {fileID: 2118804867}
+    - {fileID: 305296929}
+    _magicSphereList: {fileID: 741445581}
+  _magicTrailRendererActivator:
+    _magicCircleTrailRenderer: {fileID: 741445576}
 --- !u!114 &741445580
 MonoBehaviour:
   m_ObjectHideFlags: 0
