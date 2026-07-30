@@ -11,6 +11,8 @@ public class MagicSpheresList : MonoBehaviour
     public MagicSphereVer3[] MagicSpheres { get { return _magicSpheres; } }
     public MagicSphereVer3 this[int index] { get { return _magicSpheres[index]; } }
 
+    //よく使用する処理群
+
     //球を全て非アクティブにする
     public void AllMagicSpheresToDeactive()
     {
