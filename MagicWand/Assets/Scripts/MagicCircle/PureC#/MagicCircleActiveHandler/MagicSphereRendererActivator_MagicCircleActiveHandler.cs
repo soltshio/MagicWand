@@ -23,13 +23,25 @@ public class MagicSphereRendererActivator_MagicCircleActiveHandler
     //球をrate(0～1)に合わせて、だんだん表示させる(1で完全に表示)
     public void ActivateMagicSphere(float rate)
     {
-        _magicSphereList.SetAllMagicSpheresAlpha(rate);
+        SetAllMagicSpheresAlpha(rate);
     }
 
     //球をrate(0～1)に合わせて、だんだん非表示にさせる(1で完全に非表示)
     public void DeactivateMagicSphere(float rate)
     {
-        _magicSphereList.SetAllMagicSpheresAlpha(1f - rate);
+        SetAllMagicSpheresAlpha(1f - rate);
+    }
+
+    void SetAllMagicSpheresAlpha(float alpha)
+    {
+        var magicSpheres = _magicSphereList.GetComponentsArrayFromMagicSpheres<MagicSphereVer3>();
+
+        foreach(var magicSphere in magicSpheres)
+        {
+            if (magicSphere == null) continue;
+
+            magicSphere.SetAlpha(alpha);
+        }
     }
 
     //球の当たり判定をオンにする

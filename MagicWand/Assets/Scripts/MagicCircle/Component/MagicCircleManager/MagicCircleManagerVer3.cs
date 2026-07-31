@@ -86,10 +86,10 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
             //球を全て非アクティブにする
-            _magicSpheresList.AllMagicSpheresToDeactive();
+            AllMagicSpheresToDeactive();
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
-            _magicSphereTrail.Add(_magicSpheresList[touchedMagicSphereindex].transform.localPosition);
+            _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
 
             //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
             if (invokableMagics.Length > 0)
@@ -102,6 +102,17 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         }
     }
 
+    void AllMagicSpheresToDeactive()
+    {
+        var magicSpheres = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereVer3>();
+        
+        foreach (var magicSphere in magicSpheres)
+        {
+            if (magicSphere == null) continue;
+            magicSphere.ToDeactive();
+        }
+    }
+
     //いずれかの球に杖がタッチしたか
     bool IsTouchedAnyMagicSphere(List<int> activeMagicSphereIndexList, out int touchedMagicSphereindex)
     {
@@ -109,9 +120,13 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         foreach (var i in activeMagicSphereIndexList)
         {
-            if (!MathfExtension.IsInRange(i, 0, _magicSpheresList.MagicSpheres.Length - 1)) continue;
+            if (!MathfExtension.IsInRange(i, 0, _magicSpheresList.MagicSphereObjects.Length - 1)) continue;
 
-            if (!_magicSpheresList[i].IsActive)
+            var magicSphere = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereVer3>(i);
+
+            if (magicSphere == null) continue;
+
+            if (!magicSphere.IsActive)
             {
                 touchedMagicSphereindex = i;
                 return true;

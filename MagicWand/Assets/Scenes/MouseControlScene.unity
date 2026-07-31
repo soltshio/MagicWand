@@ -1186,7 +1186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000009536741
+      value: -4.770003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4318,12 +4318,6 @@ MonoBehaviour:
   - {fileID: 2118804864}
   - {fileID: 993358635}
   - {fileID: 549293269}
-  _magicSpheres:
-  - {fileID: 305296933}
-  - {fileID: 1579516466}
-  - {fileID: 2118804871}
-  - {fileID: 993358642}
-  - {fileID: 549293276}
 --- !u!114 &741445582
 MonoBehaviour:
   m_ObjectHideFlags: 0

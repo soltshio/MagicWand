@@ -32,7 +32,7 @@ public class CastPatternManager : MonoBehaviour
 
     void ShiftIndex(ref Dictionary<EMagic, int[]> castPatterns)
     {
-        int magicSpheresLength = _magicSpheresList.MagicSpheres.Length;
+        int magicSpheresLength = _magicSpheresList.MagicSphereObjects.Length;
 
         int shiftNum = Random.Range(0,magicSpheresLength);
 
