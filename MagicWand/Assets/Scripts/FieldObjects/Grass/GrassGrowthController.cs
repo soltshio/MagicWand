@@ -7,9 +7,9 @@ using UnityEngine;
 public class GrassGrowthController : MonoBehaviour
 {
     [System.Serializable]
-    struct GrowthSegment//成長区間
+    struct LeaveGrowthSegment//葉っぱの成長区間
     {
-        public GameObject leaveObject;
+        public Renderer leaveRenderer;
 
         [Range(0, 1)] public float startRate;
 
@@ -17,7 +17,7 @@ public class GrassGrowthController : MonoBehaviour
     }
 
     [SerializeField]
-    GrowthSegment[] _growthSegments;
+    LeaveGrowthSegment[] _leaveGrowthSegments;
 
     [SerializeField]
     Renderer _stemRenderer;
@@ -46,38 +46,47 @@ public class GrassGrowthController : MonoBehaviour
         rate = Mathf.Clamp01(rate);
 
         //葉っぱの成長
-        for(int i=0; i<_growthSegments.Length ;i++)
-        {
-            var growthSegment = _growthSegments[i];
+        SetLeaveGrowth(rate);
 
-            if (growthSegment.leaveObject == null) continue;
+        //茎の成長
+        SetStemGrowth(rate);
+    }
+
+    void SetLeaveGrowth(float rate)
+    {
+        for (int i = 0; i < _leaveGrowthSegments.Length; i++)
+        {
+            var growthSegment = _leaveGrowthSegments[i];
+
+            if (growthSegment.leaveRenderer == null) continue;
 
             //その成長セグメントに達していない場合は非表示にする
-            if(rate<growthSegment.startRate)
+            if (rate < growthSegment.startRate)
             {
-                growthSegment.leaveObject.SetActive(false);
+                growthSegment.leaveRenderer.enabled = false;
                 continue;
             }
 
-            growthSegment.leaveObject.SetActive(true);
-
+            growthSegment.leaveRenderer.enabled = true;
             //位置を設定
             float heightRate = Mathf.Clamp(rate, growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate);
-            
+
             float leavePosY = heightRate * _height;
-            var leaveLocalPos = growthSegment.leaveObject.transform.localPosition;
+            var leaveLocalPos = growthSegment.leaveRenderer.transform.localPosition;
             leaveLocalPos.y = leavePosY;
-            growthSegment.leaveObject.transform.localPosition = leaveLocalPos;
+            growthSegment.leaveRenderer.transform.localPosition = leaveLocalPos;
 
             //大きさを設定
             float scaleRate = Mathf.InverseLerp(growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate, rate);
             scaleRate = Mathf.Clamp01(scaleRate);
 
             Vector3 leaveScale = new Vector3(scaleRate, scaleRate, scaleRate);
-            growthSegment.leaveObject.transform.localScale=leaveScale;
+            growthSegment.leaveRenderer.transform.localScale = leaveScale;
         }
+    }
 
-        //茎の成長
+    void SetStemGrowth(float rate)
+    {
         if (_stemRenderer == null) return;
 
         MaterialPropertyBlock block = new MaterialPropertyBlock();
