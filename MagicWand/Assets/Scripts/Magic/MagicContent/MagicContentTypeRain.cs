@@ -11,6 +11,9 @@ public class MagicContentTypeRain : MagicContentTypeBase
     BigCreature _bigCreature;
 
     [SerializeField]
+    GrassesGrowth _grassesGrowth;
+
+    [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _rainEffectDirecter;
 
     [SerializeField]
@@ -41,6 +44,12 @@ public class MagicContentTypeRain : MagicContentTypeBase
     {
         //でか生物に魔法を当てる
         _rainEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Rain));
+    }
+
+    public void AffectToGrasses()
+    {
+        //草を成長させる
+        _rainEffectDirecter.AddTasks(_grassesGrowth.TakeMagicAsync(EMagic.Rain));
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
