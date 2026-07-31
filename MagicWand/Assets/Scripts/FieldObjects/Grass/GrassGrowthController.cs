@@ -28,7 +28,11 @@ public class GrassGrowthController : MonoBehaviour
     [SerializeField] [Range(0, 1)]
     float _defaultGrowthRate;
 
+    float _currentGrowthRate;
+
     static readonly int _displayRateID = Shader.PropertyToID("_DisplayRate");
+
+    public float CurrentGrowthRate { get { return _currentGrowthRate; } }
 
     void Start()
     {
@@ -41,15 +45,16 @@ public class GrassGrowthController : MonoBehaviour
     }
 
     //1を設定すると最大まで成長させる
-    public void SetGrowth(float rate)
+    public void SetGrowth(float newGrowthRate)
     {
-        rate = Mathf.Clamp01(rate);
+        newGrowthRate = Mathf.Clamp01(newGrowthRate);
+        _currentGrowthRate = newGrowthRate;
 
         //葉っぱの成長
-        SetLeaveGrowth(rate);
+        SetLeaveGrowth(newGrowthRate);
 
         //茎の成長
-        SetStemGrowth(rate);
+        SetStemGrowth(newGrowthRate);
     }
 
     void SetLeaveGrowth(float rate)

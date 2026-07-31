@@ -28,6 +28,11 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [SerializeField]
     BigCreature _bigCreature;
 
+    [Header("草関係")]
+
+    [SerializeField]
+    GrassesGrowth _grassesGrowth;
+
     [Header("魔法のエフェクト関係")]
 
     [Tooltip("時計の効果音が入ったAudioSource")] [SerializeField]
@@ -46,6 +51,12 @@ public class MagicContentTypeTime : MagicContentTypeBase
     {
         //でか生物に魔法を当てる
         _timeEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Time));
+    }
+
+    public void AffectToGrasses()
+    {
+        //草を成長させる
+        _timeEffectDirecter.AddTasks(_grassesGrowth.TakeMagicAsync(EMagic.Rain));
     }
 
     public void AffectToGroundGrass()

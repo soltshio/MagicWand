@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeRain
   _bigCreature: {fileID: 623789239}
+  _grassesGrowth: {fileID: 0}
   _rainEffectDirecter:
     _eventDirecter: {fileID: 52058004}
   _rainParticle: {fileID: 1844311280}
@@ -1966,6 +1967,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260902642}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &277833887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4917193594257771220, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
+  m_PrefabInstance: {fileID: 8216313973547915381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
 --- !u!1 &288916588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,6 +2745,59 @@ MonoBehaviour:
   _magicInvoker: {fileID: 446498116}
   _bigCreature: {fileID: 623789239}
   _delayDuration: 0.5
+--- !u!1 &399095678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399095679}
+  - component: {fileID: 399095680}
+  m_Layer: 0
+  m_Name: Grasses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &399095679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399095678}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1706836586}
+  - {fileID: 2095164784}
+  - {fileID: 2074077705}
+  m_Father: {fileID: 501344642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &399095680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399095678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2edc9c3ac3284468f3946f27ed12ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassesGrowth
+  _grassGrowthControllers:
+  - {fileID: 277833887}
+  - {fileID: 2095164785}
+  - {fileID: 2074077706}
+  _growthDelta: 0.2
+  _growthDuration: 3
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,9 +3271,7 @@ Transform:
   - {fileID: 103916097}
   - {fileID: 2064327885}
   - {fileID: 1531092904}
-  - {fileID: 1706836586}
-  - {fileID: 2095164784}
-  - {fileID: 2074077705}
+  - {fileID: 399095679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &503687519
@@ -9380,6 +9443,7 @@ MonoBehaviour:
   _alphaDeltaRate: 0.429
   _shiftGrassAmountDuration: 3
   _bigCreature: {fileID: 623789239}
+  _grassesGrowth: {fileID: 0}
   _clockAudioSource: {fileID: 1910504422}
   _clockEffectActivator: {fileID: 1910504423}
 --- !u!114 &1910504421
@@ -10051,7 +10115,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 501344642}
+    m_TransformParent: {fileID: 399095679}
     m_Modifications:
     - target: {fileID: 1506986880858994463, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
       propertyPath: m_Name
@@ -10119,6 +10183,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2279441784720747941, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
   m_PrefabInstance: {fileID: 2074077704}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2074077706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4917193594257771220, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
+  m_PrefabInstance: {fileID: 2074077704}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
 --- !u!1 &2087219704
 GameObject:
   m_ObjectHideFlags: 0
@@ -10214,7 +10289,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 501344642}
+    m_TransformParent: {fileID: 399095679}
     m_Modifications:
     - target: {fileID: 1506986880858994463, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
       propertyPath: m_Name
@@ -10282,6 +10357,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2279441784720747941, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
   m_PrefabInstance: {fileID: 2095164783}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2095164785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4917193594257771220, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
+  m_PrefabInstance: {fileID: 2095164783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
 --- !u!1 &2118804864
 GameObject:
   m_ObjectHideFlags: 0
@@ -10596,7 +10682,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 501344642}
+    m_TransformParent: {fileID: 399095679}
     m_Modifications:
     - target: {fileID: 1506986880858994463, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
       propertyPath: m_Name
@@ -10612,7 +10698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2279441784720747941, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.1
+      value: 7.0999994
       objectReference: {fileID: 0}
     - target: {fileID: 2279441784720747941, guid: 3b7d97f292acb75468dd367293a9f22d, type: 3}
       propertyPath: m_LocalRotation.w
