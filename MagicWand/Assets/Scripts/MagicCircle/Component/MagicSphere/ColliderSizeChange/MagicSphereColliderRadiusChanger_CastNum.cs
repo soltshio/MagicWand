@@ -11,7 +11,7 @@ public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
     MagicCircleManagerVer3 _magicCircleManagerVer3;
 
     [SerializeField]
-    SphereCollider[] _magicSphereColliders;
+    MagicSpheresList _magicSphereList;
 
     [SerializeField]
     float _defaultRadius=0.5f;
@@ -22,28 +22,32 @@ public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
     private void OnEnable()
     {
         _magicCircleManagerVer3.OnSuccessToCast += ChangeRadius;
-        _magicCircleManagerVer3.OnStartToCast += ResetSize;
+        _magicCircleManagerVer3.OnStartToCast += ResetRadius;
     }
 
     private void OnDisable()
     {
         _magicCircleManagerVer3.OnSuccessToCast -= ChangeRadius;
-        _magicCircleManagerVer3.OnStartToCast -= ResetSize;
+        _magicCircleManagerVer3.OnStartToCast -= ResetRadius;
     }
 
-    void ResetSize()
+    void ResetRadius()
     {
-        for(int i=0; i<_magicSphereColliders.Length ;i++)
-        {
-            _magicSphereColliders[i].radius = _defaultRadius;
-        }
+        SetAllMagicSphereRadius(_defaultRadius);
     }
 
     void ChangeRadius(EMagic magic,int magicSphereNum)
     {
+        SetAllMagicSphereRadius(_radiusMoreThanTwice);
+    }
+
+    void SetAllMagicSphereRadius(float radius)
+    {
+        var _magicSphereColliders = _magicSphereList.GetComponentsArrayFromMagicSpheres<SphereCollider>();
+
         for (int i = 0; i < _magicSphereColliders.Length; i++)
         {
-            _magicSphereColliders[i].radius = _radiusMoreThanTwice;
+            _magicSphereColliders[i].radius = radius;
         }
     }
 }
