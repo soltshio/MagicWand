@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using System;
 using Cysharp.Threading.Tasks;
@@ -27,10 +26,16 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
     MagicCircleActiveHandler _magicCircleActiveHandler;
 
+    [Tooltip("誘導エフェクトをコントロールする機能")] [SerializeField]
+    MagicSphereLeadEffectController _magicSphereLeadEffectController;
+
+    MagicSphereTouchChecker _magicSphereTouchChecker;
+
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
+    PassedSphereIndexHistory _passedSphereIndexHistory = new();//通った球の番号の履歴
 
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
-    public event Action OnStartToCast;//魔法の発動が終わったことの通知
+    public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
     public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
 
@@ -49,6 +54,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         //魔法発動の初期化
         InitAllSpellCast();
+
+        //新しい履歴を作成
+        _passedSphereIndexHistory.CreateNewHistory();
 
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
@@ -75,21 +83,27 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         while (true)
         {
-            //発動可能性のある魔法から、次になぞるべき球をアクティブにする
-            List<int> activeMagicSphereIndexList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
+            //発動可能性のある魔法から、次になぞるべき球をリストアップする
+            List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
+
+            //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
+            await _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList);
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
-            int touchedMagicSphereindex = -1;
-            await UniTask.WaitUntil(() => IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
+            List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
+            int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, token);
+
+            //履歴に番号を追加
+            _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
 
             //杖が触れた球のインデックスを魔法に伝える
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
-            //球を全て非アクティブにする
-            AllMagicSpheresToDeactive();
-
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
+
+            //球を全て非アクティブにする
+            await _magicSphereLeadEffectController.DeactiveLeadAsync();
 
             //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
             if (invokableMagics.Length > 0)
@@ -102,38 +116,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         }
     }
 
-    void AllMagicSpheresToDeactive()
+    private void Awake()
     {
-        var magicSpheres = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereVer3>();
-        
-        foreach (var magicSphere in magicSpheres)
-        {
-            if (magicSphere == null) continue;
-            magicSphere.ToDeactive();
-        }
-    }
-
-    //いずれかの球に杖がタッチしたか
-    bool IsTouchedAnyMagicSphere(List<int> activeMagicSphereIndexList, out int touchedMagicSphereindex)
-    {
-        touchedMagicSphereindex = -1;
-
-        foreach (var i in activeMagicSphereIndexList)
-        {
-            if (!MathfExtension.IsInRange(i, 0, _magicSpheresList.MagicSphereObjects.Length - 1)) continue;
-
-            var magicSphere = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereVer3>(i);
-
-            if (magicSphere == null) continue;
-
-            if (!magicSphere.IsActive)
-            {
-                touchedMagicSphereindex = i;
-                return true;
-            }
-        }
-
-        return false;
+        _magicSphereTouchChecker = new(_magicSpheresList);
     }
 
     //魔法発動の初期化
@@ -152,5 +137,10 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
             spellCast.Value.Initialize(orderIndexs);
         }
+    }
+
+    int? PreActiveSphereIndex()
+    {
+        return _passedSphereIndexHistory.TryGetLastIndex(out int index) ? index : null;
     }
 }

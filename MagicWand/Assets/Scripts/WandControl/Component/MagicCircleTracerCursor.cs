@@ -49,7 +49,6 @@ public class MagicCircleTracerCursor : MonoBehaviour
         CursorDeactiveAsync(newCt).Forget();
     }
 
-    //杖が
     async UniTask CursorDeactiveAsync(CancellationToken ct)
     {
         _isCursorDeactiveOnWandExit = true;
@@ -78,7 +77,10 @@ public class MagicCircleTracerCursor : MonoBehaviour
 
         if (!hit.collider.CompareTag(TagNameList.MagicSphere)) return;
 
-        var magicSphere = hit.collider.GetComponent<MagicSphereVer3>();
-        magicSphere.ToDeactive();
+        var magicSphere = hit.collider.GetComponent<MagicSphereTouchedReceiver>();
+
+        if(magicSphere == null) return;
+
+        magicSphere.InformTouch();
     }
 }

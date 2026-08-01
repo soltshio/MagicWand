@@ -29,9 +29,9 @@ public class MagicSphereRendererActivator_MagicCircleActiveHandler
 
     void SetAllMagicSpheresAlpha(float alpha)
     {
-        var magicSpheres = _magicSphereList.GetComponentsArrayFromMagicSpheres<MagicSphereVer3>();
+        var magicSphereMaterialControllers = _magicSphereList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
 
-        foreach(var magicSphere in magicSpheres)
+        foreach(var magicSphere in magicSphereMaterialControllers)
         {
             if (magicSphere == null) continue;
 

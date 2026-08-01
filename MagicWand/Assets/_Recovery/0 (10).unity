@@ -2211,8 +2211,7 @@ GameObject:
   - component: {fileID: 305296930}
   - component: {fileID: 305296928}
   - component: {fileID: 305296929}
-  - component: {fileID: 305296934}
-  - component: {fileID: 305296935}
+  - component: {fileID: 305296933}
   m_Layer: 0
   m_Name: Sphere (4)
   m_TagString: MagicSphere
@@ -2313,7 +2312,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &305296934
+--- !u!114 &305296933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2322,25 +2321,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 305296926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a6ab4f1c9b147a4acf2357043ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 305296928}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _defaultAlpha: 0
---- !u!114 &305296935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305296926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
-  _timeOutDurationToResetIsTouched: 0.1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,8 +3594,7 @@ GameObject:
   - component: {fileID: 549293273}
   - component: {fileID: 549293271}
   - component: {fileID: 549293272}
-  - component: {fileID: 549293277}
-  - component: {fileID: 549293278}
+  - component: {fileID: 549293276}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: MagicSphere
@@ -3710,7 +3695,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &549293277
+--- !u!114 &549293276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3719,25 +3704,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 549293269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a6ab4f1c9b147a4acf2357043ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 549293271}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _defaultAlpha: 0
---- !u!114 &549293278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549293269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
-  _timeOutDurationToResetIsTouched: 0.1
 --- !u!1 &613696709
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,7 +4272,6 @@ GameObject:
   - component: {fileID: 741445582}
   - component: {fileID: 741445583}
   - component: {fileID: 741445584}
-  - component: {fileID: 741445585}
   m_Layer: 0
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -4480,7 +4451,6 @@ MonoBehaviour:
     - key: 4
       value: {fileID: 525952}
   _magicCircleActiveHandler: {fileID: 741445579}
-  _magicSphereLeadEffectController: {fileID: 741445585}
 --- !u!114 &741445579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4673,37 +4643,6 @@ MonoBehaviour:
   _magicSphereList: {fileID: 741445581}
   _defaultRadius: 0.8
   _radiusMoreThanTwice: 1.3
---- !u!114 &741445585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c76f9334afb41a4eace932a28aa34de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereLeadEffectController
-  _leadEffectPrefab: {fileID: 9158732050661789252, guid: 89ee62085d709b140bfcf51121d1d66c, type: 3}
-  _magicCircleCenter: {fileID: 741445575}
-  _leadEffectLifeTime: 7
-  _activeDuration: 0.3
-  _deactiveDuration: 0.15
-  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
-  _magicSpheresList: {fileID: 741445581}
-  _spellCastsDictionary:
-    _list:
-    - key: 0
-      value: {fileID: 1138852482}
-    - key: 1
-      value: {fileID: 52058001}
-    - key: 2
-      value: {fileID: 1910504421}
-    - key: 3
-      value: {fileID: 1040190900}
-    - key: 4
-      value: {fileID: 525952}
 --- !u!1 &796611146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,8 +4859,7 @@ GameObject:
   - component: {fileID: 993358639}
   - component: {fileID: 993358637}
   - component: {fileID: 993358638}
-  - component: {fileID: 993358643}
-  - component: {fileID: 993358644}
+  - component: {fileID: 993358642}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: MagicSphere
@@ -5022,7 +4960,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &993358643
+--- !u!114 &993358642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5031,25 +4969,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 993358635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a6ab4f1c9b147a4acf2357043ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 993358637}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _defaultAlpha: 0
---- !u!114 &993358644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993358635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
-  _timeOutDurationToResetIsTouched: 0.1
 --- !u!1 &1015091472
 GameObject:
   m_ObjectHideFlags: 0
@@ -8419,8 +8344,7 @@ GameObject:
   - component: {fileID: 1579516463}
   - component: {fileID: 1579516461}
   - component: {fileID: 1579516462}
-  - component: {fileID: 1579516467}
-  - component: {fileID: 1579516468}
+  - component: {fileID: 1579516466}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: MagicSphere
@@ -8521,7 +8445,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1579516467
+--- !u!114 &1579516466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8530,25 +8454,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579516459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a6ab4f1c9b147a4acf2357043ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 1579516461}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _defaultAlpha: 0
---- !u!114 &1579516468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579516459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
-  _timeOutDurationToResetIsTouched: 0.1
 --- !u!1 &1637943370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10827,8 +10738,7 @@ GameObject:
   - component: {fileID: 2118804868}
   - component: {fileID: 2118804866}
   - component: {fileID: 2118804867}
-  - component: {fileID: 2118804872}
-  - component: {fileID: 2118804873}
+  - component: {fileID: 2118804871}
   m_Layer: 0
   m_Name: Sphere (3)
   m_TagString: MagicSphere
@@ -10929,7 +10839,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 741445575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2118804872
+--- !u!114 &2118804871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10938,25 +10848,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2118804864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f086a6ab4f1c9b147a4acf2357043ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90e40baee9fdfd24c8db26d72a82f536, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereVer3
   _renderer: {fileID: 2118804866}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _defaultAlpha: 0
---- !u!114 &2118804873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118804864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
-  _timeOutDurationToResetIsTouched: 0.1
 --- !u!1001 &3518306023845177156
 PrefabInstance:
   m_ObjectHideFlags: 0
