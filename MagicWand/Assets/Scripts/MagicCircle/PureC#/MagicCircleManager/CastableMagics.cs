@@ -18,6 +18,7 @@ public class CastableMagics
 
     //発動可能性のある魔法から、次になぞるべき球をアクティブにする
     //アクティブにした球のインデックスリストを返す
+    //TODO:インデックスだけじゃなくてそれに対応する魔法の内容も一緒に返す
     public List<int> ActivateNextTraceMagicSphere(MagicSpheresList magicSpheresList)
     {
         List<int> activeMagicSphereIndexList = new();
@@ -27,12 +28,6 @@ public class CastableMagics
             int nextIndex = spellCastPair.Value.NextMagicSphereIndex;
 
             if (nextIndex == -1) continue;
-
-            var activeMagicSphere = magicSpheresList.GetComponentFromMagicSphere<MagicSphereVer3>(nextIndex);
-
-            if(activeMagicSphere == null) continue;
-
-            activeMagicSphere.ToActive(spellCastPair.Value.MagicSphereColor);
 
             activeMagicSphereIndexList.Add(nextIndex);
         }

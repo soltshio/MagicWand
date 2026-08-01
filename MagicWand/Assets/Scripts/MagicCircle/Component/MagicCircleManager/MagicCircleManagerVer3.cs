@@ -61,8 +61,12 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //発動可能魔法を受け取る
         var invokableMagics = await CastMagicAsync(token);
 
+        Debug.Log("魔法が完成");
+
         //魔法陣と魔法陣の線を非表示にする
         await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
+
+        Debug.Log("魔法陣が非表示になった");
 
         _isActiveMagicCircle = false;
 
@@ -84,15 +88,15 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //TODO:誘導演出マネージャー的なのを作って、演出はそれに任せる
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
-            int touchedMagicSphereindex = -1;
-            await UniTask.WaitUntil(() => _magicSphereTouchChecker.IsTouchedAnyMagicSphere(activeMagicSphereIndexList, out touchedMagicSphereindex), cancellationToken: token);
+            int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeMagicSphereIndexList, token);
+
+            Debug.Log(touchedMagicSphereindex);
 
             //杖が触れた球のインデックスを魔法に伝える
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
             //球を全て非アクティブにする
             //TODO:誘導演出マネージャー的なのを作って、非アクティブになる演出はそれに任せる
-            AllMagicSpheresToDeactive();
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
@@ -111,17 +115,6 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     private void Awake()
     {
         _magicSphereTouchChecker = new(_magicSpheresList);
-    }
-
-    void AllMagicSpheresToDeactive()
-    {
-        var magicSpheres = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereVer3>();
-        
-        foreach (var magicSphere in magicSpheres)
-        {
-            if (magicSphere == null) continue;
-            magicSphere.ToDeactive();
-        }
     }
 
     //魔法発動の初期化

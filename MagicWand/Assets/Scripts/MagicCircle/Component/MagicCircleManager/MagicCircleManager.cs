@@ -1,83 +1,83 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-//ì¬Ò:™R
-//–‚–@w‚Ì–{‘Ì(Ÿ‚É‚Ç‚Ì‹…‚ğƒAƒNƒeƒBƒu‚É‚·‚é‚©‚È‚Ç‚ğŒˆ‚ß‚éƒ}ƒl[ƒWƒƒ[)
+//ä½œæˆè€…:æ‰å±±
+//é­”æ³•é™£ã®æœ¬ä½“(æ¬¡ã«ã©ã®çƒã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹ã‹ãªã©ã‚’æ±ºã‚ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼)
 
-public class MagicCircleManager : MonoBehaviour
-{
-    [Tooltip("12‚Ì•ûŒü‚©‚çŒv‰ñ‚è‚É“ü‚ê‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢")] [SerializeField]
-    MagicSphere[] _magicSpheres; //–‚–@wã‚Ì‹…‚Ì”z—ñ
+//public class MagicCircleManager : MonoBehaviour
+//{
+//    [Tooltip("12æ™‚ã®æ–¹å‘ã‹ã‚‰æ™‚è¨ˆå›ã‚Šã«å…¥ã‚Œã‚‹ã‚ˆã†ã«ã—ã¦ãã ã•ã„")] [SerializeField]
+//    MagicSphere[] _magicSpheres; //é­”æ³•é™£ä¸Šã®çƒã®é…åˆ—
 
-    [Tooltip("Ÿ‚ÉƒAƒNƒeƒBƒu‚É‚·‚é‹…‚ğƒ‰ƒ“ƒ_ƒ€‚É‚·‚é‚©‚Ç‚¤‚©\n“ñ˜A‘±‚Å“¯‚¶‚Ì‚ª—ˆ‚È‚¢‚æ‚¤‚É‚Í’Š‘I‚³‚ê‚Ü‚·(‚½‚¾‚µd•¡‚Í‚ ‚è‚Ü‚·)")] [SerializeField]
-    bool _isRandom = true;
+//    [Tooltip("æ¬¡ã«ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹çƒã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«ã™ã‚‹ã‹ã©ã†ã‹\näºŒé€£ç¶šã§åŒã˜ã®ãŒæ¥ãªã„ã‚ˆã†ã«ã¯æŠ½é¸ã•ã‚Œã¾ã™(ãŸã ã—é‡è¤‡ã¯ã‚ã‚Šã¾ã™)")] [SerializeField]
+//    bool _isRandom = true;
 
-    [Tooltip("ƒ‰ƒ“ƒ_ƒ€’Š‘I‚Ìê‡A‰½‰ñ•ª’Š‘I‚ğs‚¤‚©")] [SerializeField]
-    int _activeCount;
+//    [Tooltip("ãƒ©ãƒ³ãƒ€ãƒ æŠ½é¸ã®å ´åˆã€ä½•å›åˆ†æŠ½é¸ã‚’è¡Œã†ã‹")] [SerializeField]
+//    int _activeCount;
 
-    [Tooltip("‹…‚ÌƒAƒNƒeƒBƒu‰»‚Ì‡”Ô\nMagicSpheres‚Ì—v‘f”Ô†(0`”z—ñ‚Ì—v‘f”-1)‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢")] [SerializeField]
-    List<int> _activeOrderIndexList;
+//    [Tooltip("çƒã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–ã®é †ç•ª\nMagicSpheresã®è¦ç´ ç•ªå·(0ï½é…åˆ—ã®è¦ç´ æ•°-1)ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„")] [SerializeField]
+//    List<int> _activeOrderIndexList;
 
-    private void Awake()
-    {
-        TryDecideOrder();
-    }
+//    private void Awake()
+//    {
+//        TryDecideOrder();
+//    }
 
-    void TryDecideOrder()
-    {
-        if (!_isRandom) return;
+//    void TryDecideOrder()
+//    {
+//        if (!_isRandom) return;
 
-        _activeOrderIndexList.Clear();
+//        _activeOrderIndexList.Clear();
 
-        int previous = -1;
+//        int previous = -1;
 
-        //‡”Ô‚ğŒˆ’è(2˜A‘±‚Å“¯‚¶’l‚ª’Š‘I‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é)
-        for (int i=0; i<_activeCount ;i++)
-        {
-            int lotteryNum;
+//        //é †ç•ªã‚’æ±ºå®š(2é€£ç¶šã§åŒã˜å€¤ãŒæŠ½é¸ã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹)
+//        for (int i=0; i<_activeCount ;i++)
+//        {
+//            int lotteryNum;
 
-            //Å‰‚Ì1‰ñ‚Í•’Ê‚É’Š‘I
-            if (previous==-1)
-            {
-                lotteryNum = Random.Range(0, _magicSpheres.Length);
-            }
-            //2‰ñ–ÚˆÈ~‚Í‘O‰ñ‚Ì’l‚ªo‚È‚¢‚æ‚¤’Š‘I
-            else
-            {
-                lotteryNum = Random.Range(0, _magicSpheres.Length - 1);
+//            //æœ€åˆã®1å›ã¯æ™®é€šã«æŠ½é¸
+//            if (previous==-1)
+//            {
+//                lotteryNum = Random.Range(0, _magicSpheres.Length);
+//            }
+//            //2å›ç›®ä»¥é™ã¯å‰å›ã®å€¤ãŒå‡ºãªã„ã‚ˆã†æŠ½é¸
+//            else
+//            {
+//                lotteryNum = Random.Range(0, _magicSpheres.Length - 1);
 
-                if (lotteryNum >= previous)
-                {
-                    lotteryNum++;
-                }
-            }
+//                if (lotteryNum >= previous)
+//                {
+//                    lotteryNum++;
+//                }
+//            }
 
-            _activeOrderIndexList.Add(lotteryNum);
-            previous = lotteryNum;
-        }
-    }
+//            _activeOrderIndexList.Add(lotteryNum);
+//            previous = lotteryNum;
+//        }
+//    }
 
-    private void Start()
-    {
-        StartCoroutine(MagicCircleCoroutine());
-    }
+//    private void Start()
+//    {
+//        StartCoroutine(MagicCircleCoroutine());
+//    }
 
-    IEnumerator MagicCircleCoroutine()
-    {
+//    IEnumerator MagicCircleCoroutine()
+//    {
 
-        for(int i=0; i<_activeOrderIndexList.Count ;i++)
-        {
-            int index = _activeOrderIndexList[i];
+//        for(int i=0; i<_activeOrderIndexList.Count ;i++)
+//        {
+//            int index = _activeOrderIndexList[i];
 
-            if (!MathfExtension.IsInRange(index, 0, _magicSpheres.Length - 1)) continue;
+//            if (!MathfExtension.IsInRange(index, 0, _magicSpheres.Length - 1)) continue;
 
-            _magicSpheres[index].SwitchActive(true);
+//            _magicSpheres[index].SwitchActive(true);
 
-            //ñ‚ª‹…‚ÉG‚ê‚Ä”ñƒAƒNƒeƒBƒu‚É‚È‚é‚Ü‚Å‘Ò‚Â
-            yield return new WaitUntil(() => !_magicSpheres[index].IsActive);
-        }
+//            //æ–ãŒçƒã«è§¦ã‚Œã¦éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã‚‹ã¾ã§å¾…ã¤
+//            yield return new WaitUntil(() => !_magicSpheres[index].IsActive);
+//        }
 
-        Debug.Log("ƒNƒŠƒAI");
-    }
-}
+//        Debug.Log("ã‚¯ãƒªã‚¢ï¼");
+//    }
+//}
