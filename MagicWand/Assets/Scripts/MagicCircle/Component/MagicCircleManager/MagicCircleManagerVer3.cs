@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using System;
 using Cysharp.Threading.Tasks;
@@ -61,12 +60,8 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //発動可能魔法を受け取る
         var invokableMagics = await CastMagicAsync(token);
 
-        Debug.Log("魔法が完成");
-
         //魔法陣と魔法陣の線を非表示にする
         await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
-
-        Debug.Log("魔法陣が非表示になった");
 
         _isActiveMagicCircle = false;
 
@@ -82,15 +77,14 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         while (true)
         {
             //発動可能性のある魔法から、次になぞるべき球をリストアップする
-            List<int> activeMagicSphereIndexList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
+            List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
 
             //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
             //TODO:誘導演出マネージャー的なのを作って、演出はそれに任せる
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
-            int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeMagicSphereIndexList, token);
-
-            Debug.Log(touchedMagicSphereindex);
+            List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
+            int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, token);
 
             //杖が触れた球のインデックスを魔法に伝える
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
