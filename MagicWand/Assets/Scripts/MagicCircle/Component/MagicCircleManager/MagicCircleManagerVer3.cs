@@ -29,6 +29,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     MagicSphereTouchChecker _magicSphereTouchChecker;
 
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
+    PassedSphereIndexHistory _passedSphereIndexHistory = new();//通った球の番号の履歴
 
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
@@ -50,6 +51,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
         //魔法発動の初期化
         InitAllSpellCast();
+
+        //新しい履歴を作成
+        _passedSphereIndexHistory.CreateNewHistory();
 
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
@@ -85,6 +89,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
             int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, token);
+
+            //履歴に番号を追加
+            _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
 
             //杖が触れた球のインデックスを魔法に伝える
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
