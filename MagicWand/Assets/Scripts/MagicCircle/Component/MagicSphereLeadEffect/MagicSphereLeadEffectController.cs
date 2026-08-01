@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -35,8 +36,6 @@ public class MagicSphereLeadEffectController : MonoBehaviour
     [SerializeField]
     SerializableDictionary<EMagic, SpellCast> _spellCastsDictionary;
 
-    MagicSphereMaterialController[] _activedSphereMaterialControllers;
-
     public async UniTask ActiveLeadAsync(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList)
     {
         CancellationToken ct = this.GetCancellationTokenOnDestroy();
@@ -46,9 +45,6 @@ public class MagicSphereLeadEffectController : MonoBehaviour
 
         //誘導エフェクトの初期化
         LeadEffect[] leadEffects = InitLeadEffect(activeSphereIndex_MagicList, start);
-
-        //色をつける予定の魔法球のマテリアル操作用のコンポーネントを取得
-
 
         ProgressTimer progressTimer = new(_activeDuration);
 
@@ -64,9 +60,27 @@ public class MagicSphereLeadEffectController : MonoBehaviour
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
 
-
-
         //魔法球に色をつける
+        var magicSphereMaterialControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
+
+        for(int i=0; i< activeSphereIndex_MagicList.Count; i++)
+        {
+            var index = activeSphereIndex_MagicList[i].index;
+            var magic = activeSphereIndex_MagicList[i].magic;
+
+            //色を取得
+            if (!_spellCastsDictionary.TryGetValue(magic, out var spellCast)) continue;
+
+            Color sphereColor = spellCast.MagicSphereColor;
+
+            //色を変える球のマテリアルコントローラーを取得
+            var magicSphereMaterialController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereMaterialController>(index);
+
+            if (magicSphereMaterialController == null) continue;
+
+            magicSphereMaterialController.SetColor(sphereColor);
+        }
+
     }
 
     public async UniTask DeactiveLeadAsync()
@@ -75,7 +89,17 @@ public class MagicSphereLeadEffectController : MonoBehaviour
 
         await UniTask.Delay(TimeSpan.FromSeconds(_deactiveDuration), cancellationToken: ct);
 
-        //色がついた魔法球を元に戻す
+        //全ての魔法球を元に戻す
+        var magicSphereMaterialControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
+
+        for(int i=0; i<magicSphereMaterialControllers.Length ;i++)
+        {
+            var matController = magicSphereMaterialControllers[i];
+
+            if (matController == null) continue;
+
+            matController.SetColor(_deactiveColor);
+        }
     }
 
     Vector3 CalcStartPos(int? preActiveSphereIndex)
@@ -106,6 +130,7 @@ public class MagicSphereLeadEffectController : MonoBehaviour
 
             var leadEffectInstance = Instantiate(_leadEffectPrefab);
             leadEffectInstance.Initialize(start, end);
+            Destroy(leadEffectInstance, _leadEffectLifeTime);
 
             leadEffects[i] = leadEffectInstance;
         }
