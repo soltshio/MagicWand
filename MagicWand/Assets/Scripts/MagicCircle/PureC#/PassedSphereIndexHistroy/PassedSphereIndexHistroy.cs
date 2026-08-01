@@ -24,9 +24,9 @@ public class PassedSphereIndexHistory
         return _passedIndexHistory;
     }
 
-    //一番最新の番号を取得する
+    //今の履歴で最新の番号を取得する
     //履歴が空の場合はfalse
-    public bool TryGetLatestIndex(out int index)
+    public bool TryGetLastIndex(out int index)
     {
         if (_currentHistory.Count == 0)
         {

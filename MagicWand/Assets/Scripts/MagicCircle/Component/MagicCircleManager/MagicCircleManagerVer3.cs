@@ -26,6 +26,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
     MagicCircleActiveHandler _magicCircleActiveHandler;
 
+    [Tooltip("誘導エフェクトをコントロールする機能")] [SerializeField]
+    MagicSphereLeadEffectController _magicSphereLeadEffectController;
+
     MagicSphereTouchChecker _magicSphereTouchChecker;
 
     bool _isActiveMagicCircle = false;//魔法陣が起動しているか
@@ -84,7 +87,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
 
             //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
-            //TODO:誘導演出マネージャー的なのを作って、演出はそれに任せる
+            await _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList);
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
@@ -96,11 +99,11 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             //杖が触れた球のインデックスを魔法に伝える
             var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
-            //球を全て非アクティブにする
-            //TODO:誘導演出マネージャー的なのを作って、非アクティブになる演出はそれに任せる
-
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
+
+            //球を全て非アクティブにする
+            await _magicSphereLeadEffectController.DeactiveLeadAsync();
 
             //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
             if (invokableMagics.Length > 0)
@@ -134,5 +137,10 @@ public class MagicCircleManagerVer3 : MonoBehaviour
 
             spellCast.Value.Initialize(orderIndexs);
         }
+    }
+
+    int? PreActiveSphereIndex()
+    {
+        return _passedSphereIndexHistory.TryGetLastIndex(out int index) ? index : null;
     }
 }
