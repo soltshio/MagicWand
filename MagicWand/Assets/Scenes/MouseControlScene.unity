@@ -3664,6 +3664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446498115}
   - component: {fileID: 446498116}
+  - component: {fileID: 446498117}
   m_Layer: 0
   m_Name: Magics
   m_TagString: Untagged
@@ -3715,6 +3716,30 @@ MonoBehaviour:
       value: {fileID: 1040190901}
     - key: 2
       value: {fileID: 1910504420}
+--- !u!114 &446498117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446498114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81ee3c8218e16f4e92ba8d0b0baffac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCastList
+  _spellCastsDictionary:
+    _list:
+    - key: 0
+      value: {fileID: 1138852482}
+    - key: 1
+      value: {fileID: 52058001}
+    - key: 2
+      value: {fileID: 1910504421}
+    - key: 3
+      value: {fileID: 1040190900}
+    - key: 4
+      value: {fileID: 525952}
 --- !u!1 &447535806
 GameObject:
   m_ObjectHideFlags: 0
@@ -4999,18 +5024,7 @@ MonoBehaviour:
   _magicSpheresList: {fileID: 741445581}
   _castPatternManager: {fileID: 741445580}
   _magicSphereTrail: {fileID: 741445577}
-  _spellCastsDictionary:
-    _list:
-    - key: 0
-      value: {fileID: 1138852482}
-    - key: 1
-      value: {fileID: 52058001}
-    - key: 2
-      value: {fileID: 1910504421}
-    - key: 3
-      value: {fileID: 1040190900}
-    - key: 4
-      value: {fileID: 525952}
+  _spellCastList: {fileID: 446498117}
   _magicCircleActiveHandler: {fileID: 741445579}
   _magicSphereLeadEffectController: {fileID: 741445585}
 --- !u!114 &741445579
@@ -5224,18 +5238,7 @@ MonoBehaviour:
   _deactiveDuration: 0.15
   _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _magicSpheresList: {fileID: 741445581}
-  _spellCastsDictionary:
-    _list:
-    - key: 0
-      value: {fileID: 1138852482}
-    - key: 1
-      value: {fileID: 52058001}
-    - key: 2
-      value: {fileID: 1910504421}
-    - key: 3
-      value: {fileID: 1040190900}
-    - key: 4
-      value: {fileID: 525952}
+  _spellCastList: {fileID: 446498117}
 --- !u!95 &774845730 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
