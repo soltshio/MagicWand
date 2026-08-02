@@ -21,7 +21,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     MagicSphereTrail _magicSphereTrail;
 
     [Tooltip("魔法一覧")] [SerializeField]
-    SerializableDictionary<EMagic, SpellCast> _spellCastsDictionary;
+    SpellCastList _spellCastList;
 
     [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
     MagicCircleActiveHandler _magicCircleActiveHandler;
@@ -78,7 +78,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
     async UniTask<EMagic[]> CastMagicAsync(CancellationToken token)
     {
         //現在発動の可能性がある魔法リストの作成
-        CastableMagics castableMagics = new(_spellCastsDictionary);
+        CastableMagics castableMagics = new(_spellCastList.SpellCasts);
         castableMagics.OnSuccessToCast += OnSuccessToCast;
 
         while (true)
@@ -127,7 +127,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //発動パターンを決定
         var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
 
-        foreach (var spellCast in _spellCastsDictionary)
+        foreach (var spellCast in _spellCastList.SpellCasts)
         {
             if(!castPatterns.TryGetValue(spellCast.Key,out var orderIndexs))
             {

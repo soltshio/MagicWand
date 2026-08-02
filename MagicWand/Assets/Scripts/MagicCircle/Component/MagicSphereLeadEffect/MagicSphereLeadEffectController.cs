@@ -34,7 +34,7 @@ public class MagicSphereLeadEffectController : MonoBehaviour
     MagicSpheresList _magicSpheresList;
 
     [SerializeField]
-    SerializableDictionary<EMagic, SpellCast> _spellCastsDictionary;
+    SpellCastList _spellCastList;
 
     public async UniTask ActiveLeadAsync(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList)
     {
@@ -69,7 +69,7 @@ public class MagicSphereLeadEffectController : MonoBehaviour
             var magic = activeSphereIndex_MagicList[i].magic;
 
             //色を取得
-            if (!_spellCastsDictionary.TryGetValue(magic, out var spellCast)) continue;
+            if (!_spellCastList.TryGetSpellCast(magic, out var spellCast)) continue;
 
             Color sphereColor = spellCast.MagicSphereColor;
 
