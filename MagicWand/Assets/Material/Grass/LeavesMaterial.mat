@@ -97,6 +97,8 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _GMaskEdge1: 0.21
+    - _GMaskEdge2: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -107,6 +109,8 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RMaskEdge1: 0.146
+    - _RMaskEdge2: 1
     - _RandomNoiseScale: 43.89
     - _RandomNoiseScaleX: 12.1
     - _RandomNoiseScaleY: 1.5
@@ -125,8 +129,8 @@ Material:
     - _WindDistortion: 0.04
     - _WindIntensityX: 0.007
     - _WindIntensityY: 0.025
-    - _WindMovementSpeed: 2.77
-    - _WindPower: 0.52
+    - _WindMovementSpeed: 12
+    - _WindPower: 0.4
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
