@@ -5,10 +5,13 @@
 
 public class SpellCast : MonoBehaviour
 {
-    int[] _activeOrderIndexs;
+    [SerializeField] [ColorUsage(true, true)]
+    Color _leadEffectEmissionColor;
 
     [SerializeField]
     Color _magicSphereColor;
+
+    int[] _activeOrderIndexs;
 
     bool _spellIsValid = true;
     int _currentIndex = 0;
@@ -17,6 +20,7 @@ public class SpellCast : MonoBehaviour
     public bool IsReadyToInvoke { get { return _currentIndex >= _activeOrderIndexs.Length; } }//魔法が発動可能か
 
     public Color MagicSphereColor { get { return _magicSphereColor; } }//魔法球の色
+    public Color LeadEffectEmissionColor { get { return _leadEffectEmissionColor; } }//誘導エフェクトの色
 
     //初期化
     public void Initialize(int[] activeOrderIndexs)

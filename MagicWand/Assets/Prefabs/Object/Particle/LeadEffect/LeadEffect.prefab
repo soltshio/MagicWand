@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
+      scalar: 3.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4867,3 +4867,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3966ede529a61649990f0663e42c341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeadEffect
+  _leadParticle: {fileID: 5743291841574887311}

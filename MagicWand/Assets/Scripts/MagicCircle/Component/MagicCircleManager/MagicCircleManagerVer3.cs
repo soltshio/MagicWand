@@ -87,7 +87,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
 
             //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
-            await _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList);
+            _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList).Forget();
 
             //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
             List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
@@ -103,7 +103,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
 
             //球を全て非アクティブにする
-            await _magicSphereLeadEffectController.DeactiveLeadAsync();
+            _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
 
             //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
             if (invokableMagics.Length > 0)
