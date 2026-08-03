@@ -10,13 +10,7 @@ using UnityEngine;
 public partial class MagicSphereLeadEffectController : MonoBehaviour
 {
     [SerializeField]
-    LeadEffect _leadEffectPrefab;
-
-    [Tooltip("魔法陣の中心位置")] [SerializeField]
-    Transform _magicCircleCenter;
-
-    [SerializeField]
-    float _leadEffectLifeTime=7f;
+    LeadEffectController _leadEffectController;
 
     [SerializeField]
     float _activeDuration=1f;
@@ -33,15 +27,13 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
     [SerializeField]
     SpellCastList _spellCastList;
 
+    SingleTaskCancellation _singleTaskCancellation = new();
+
     public async UniTask ActiveLeadAsync(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList)
     {
-        CancellationToken ct = this.GetCancellationTokenOnDestroy();
+        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
-        //誘導エフェクトのスタート地点を求める
-        Vector3 start = CalcStartPos(preActiveSphereIndex);
-
-        //誘導エフェクトの初期化
-        LeadEffect[] leadEffects = InitLeadEffect(activeSphereIndex_MagicList, start);
+        _leadEffectController.InitLeadEffect(preActiveSphereIndex, activeSphereIndex_MagicList,_activeDuration);
 
         ProgressTimer progressTimer = new(_activeDuration);
 
@@ -51,10 +43,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
             float progress = progressTimer.CalcProgress();
 
-            //誘導エフェクトを動かす
-            ControlLeadEffectsPos(leadEffects, progress);
-
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: newCt);
         }
 
         //魔法球に色をつける
@@ -63,60 +52,17 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
     public async UniTask DeactiveLeadAsync()
     {
-        CancellationToken ct = this.GetCancellationTokenOnDestroy();
-
-        await UniTask.Delay(TimeSpan.FromSeconds(_deactiveDuration), cancellationToken: ct);
+        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
         //全ての魔法球を元に戻す
         _leadMagicSphereColorController.PaintDefaultColorToAllMagicSphere();
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_deactiveDuration), cancellationToken: newCt);
     }
 
     void Awake()
     {
         _leadMagicSphereColorController.Awake(_magicSpheresList, _spellCastList);
-    }
-
-    Vector3 CalcStartPos(int? preActiveSphereIndex)
-    {
-        if (preActiveSphereIndex == null)
-        {
-            return _magicCircleCenter.position;
-        }
-        else
-        {
-            return _magicSpheresList.MagicSphereObjects[(int)preActiveSphereIndex].transform.position;
-        }
-    }
-
-    Vector3 CalcEndPos(int nextActiveSphereIndex)
-    {
-        return _magicSpheresList.MagicSphereObjects[nextActiveSphereIndex].transform.position;
-    }
-
-    LeadEffect[] InitLeadEffect(List<(EMagic magic, int index)> activeSphereIndex_MagicList,Vector3 start)
-    {
-        LeadEffect[] leadEffects = new LeadEffect[activeSphereIndex_MagicList.Count];
-
-        for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
-        {
-            //終点を求める
-            Vector3 end = CalcEndPos(activeSphereIndex_MagicList[i].index);
-
-            var leadEffectInstance = Instantiate(_leadEffectPrefab);
-            leadEffectInstance.Initialize(start, end);
-            Destroy(leadEffectInstance, _leadEffectLifeTime);
-
-            leadEffects[i] = leadEffectInstance;
-        }
-
-        return leadEffects;
-    }
-
-    void ControlLeadEffectsPos(LeadEffect[] leadEffects,float progress)
-    {
-        for(int i=0; i<leadEffects.Length ;i++)
-        {
-            leadEffects[i].SetPos(progress);
-        }
+        _leadEffectController.Awake(_magicSpheresList);
     }
 }
