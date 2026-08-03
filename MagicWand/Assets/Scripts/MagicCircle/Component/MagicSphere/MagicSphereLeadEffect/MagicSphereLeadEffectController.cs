@@ -1,16 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //作成者:杉山
 //魔法球の誘導演出
 
-public class MagicSphereLeadEffectController : MonoBehaviour
+public partial class MagicSphereLeadEffectController : MonoBehaviour
 {
     [SerializeField]
     LeadEffect _leadEffectPrefab;
@@ -28,7 +25,7 @@ public class MagicSphereLeadEffectController : MonoBehaviour
     float _deactiveDuration = 0.2f;
 
     [SerializeField]
-    Color _deactiveColor;
+    LeadMagicSphereColorController _leadMagicSphereColorController;
 
     [SerializeField]
     MagicSpheresList _magicSpheresList;
@@ -61,26 +58,7 @@ public class MagicSphereLeadEffectController : MonoBehaviour
         }
 
         //魔法球に色をつける
-        var magicSphereMaterialControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
-
-        for(int i=0; i< activeSphereIndex_MagicList.Count; i++)
-        {
-            var index = activeSphereIndex_MagicList[i].index;
-            var magic = activeSphereIndex_MagicList[i].magic;
-
-            //色を取得
-            if (!_spellCastList.TryGetSpellCast(magic, out var spellCast)) continue;
-
-            Color sphereColor = spellCast.MagicSphereColor;
-
-            //色を変える球のマテリアルコントローラーを取得
-            var magicSphereMaterialController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereMaterialController>(index);
-
-            if (magicSphereMaterialController == null) continue;
-
-            magicSphereMaterialController.SetColor(sphereColor);
-        }
-
+        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(activeSphereIndex_MagicList);
     }
 
     public async UniTask DeactiveLeadAsync()
@@ -90,16 +68,12 @@ public class MagicSphereLeadEffectController : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(_deactiveDuration), cancellationToken: ct);
 
         //全ての魔法球を元に戻す
-        var magicSphereMaterialControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
+        _leadMagicSphereColorController.PaintDefaultColorToAllMagicSphere();
+    }
 
-        for(int i=0; i<magicSphereMaterialControllers.Length ;i++)
-        {
-            var matController = magicSphereMaterialControllers[i];
-
-            if (matController == null) continue;
-
-            matController.SetColor(_deactiveColor);
-        }
+    void Awake()
+    {
+        _leadMagicSphereColorController.Awake(_magicSpheresList, _spellCastList);
     }
 
     Vector3 CalcStartPos(int? preActiveSphereIndex)

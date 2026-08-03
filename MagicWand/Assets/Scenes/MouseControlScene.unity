@@ -5236,7 +5236,8 @@ MonoBehaviour:
   _leadEffectLifeTime: 7
   _activeDuration: 0.3
   _deactiveDuration: 0.15
-  _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+  _leadMagicSphereColorController:
+    _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
   _magicSpheresList: {fileID: 741445581}
   _spellCastList: {fileID: 446498117}
 --- !u!95 &774845730 stripped
