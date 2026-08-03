@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //作成者:杉山
@@ -7,15 +6,22 @@ using UnityEngine;
 
 public class LeadEffect : MonoBehaviour
 {
+    [SerializeField]
+    ParticleSystem _leadParticle;
+
     float _moveDuration;
     Vector3 _start;
     Vector3 _end;
 
-    public void Initialize(float moveDuration, Vector3 start,Vector3 end)
+    static readonly int _emissionColorID = Shader.PropertyToID("_EmissionColor");
+
+    public void Initialize(float moveDuration, Vector3 start,Vector3 end,Color leadEffectEmissionColor)
     {
         _start = start;
         _end = end;
         _moveDuration = moveDuration;
+
+        SetLeadEffectEmissionColor(leadEffectEmissionColor);
 
         transform.position = start;
     }
@@ -42,5 +48,16 @@ public class LeadEffect : MonoBehaviour
     void SetPos(float progress)
     {
         transform.position = Vector3.Lerp(_start, _end, progress);
+    }
+
+    void SetLeadEffectEmissionColor(Color leadEffectEmissionColor)
+    {
+        var renderer = _leadParticle.GetComponent<ParticleSystemRenderer>();
+
+        if (renderer == null) return;
+
+        Material mat = renderer.material;
+
+        mat.SetColor(_emissionColorID, leadEffectEmissionColor);
     }
 }

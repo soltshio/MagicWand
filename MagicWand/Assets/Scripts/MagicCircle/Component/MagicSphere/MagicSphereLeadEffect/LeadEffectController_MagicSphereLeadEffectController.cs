@@ -19,10 +19,12 @@ public partial class MagicSphereLeadEffectController
         float _leadEffectLifeTime = 7f;
 
         MagicSpheresList _magicSpheresList;
+        SpellCastList _spellCastList;
 
-        public void Awake(MagicSpheresList magicSpheresList)
+        public void Awake(MagicSpheresList magicSpheresList,SpellCastList spellCastList)
         {
             _magicSpheresList = magicSpheresList;
+            _spellCastList = spellCastList;
         }
 
         //誘導エフェクトを動かす前にする初期化
@@ -52,23 +54,21 @@ public partial class MagicSphereLeadEffectController
             return _magicSpheresList.MagicSphereObjects[nextActiveSphereIndex].transform.position;
         }
 
-        LeadEffect[] InstantiateLeadEffect(List<(EMagic magic, int index)> activeSphereIndex_MagicList, Vector3 start,float activeDuration)
+        void InstantiateLeadEffect(List<(EMagic magic, int index)> activeSphereIndex_MagicList, Vector3 start,float activeDuration)
         {
-            LeadEffect[] leadEffects = new LeadEffect[activeSphereIndex_MagicList.Count];
-
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
+                //パーティクルのエミッションの色を取得する
+                if (!_spellCastList.TryGetSpellCast(activeSphereIndex_MagicList[i].magic, out var spellCast)) continue;
+                Color leadEffectEmissionColor = spellCast.LeadEffectEmissionColor;
+
                 //終点を求める
                 Vector3 end = CalcEndPos(activeSphereIndex_MagicList[i].index);
 
                 var leadEffectInstance = Instantiate(_leadEffectPrefab);
-                leadEffectInstance.Initialize(activeDuration,start, end);
+                leadEffectInstance.Initialize(activeDuration,start, end,leadEffectEmissionColor);
                 Destroy(leadEffectInstance, _leadEffectLifeTime);
-
-                leadEffects[i] = leadEffectInstance;
             }
-
-            return leadEffects;
         }
     }
 }

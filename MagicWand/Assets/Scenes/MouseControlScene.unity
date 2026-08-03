@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 44.62176, a: 1}
   _magicSphereColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!82 &525953
 AudioSource:
@@ -511,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _leadEffectEmissionColor: {r: 32.289646, g: 214.48436, b: 440.52325, a: 1}
   _magicSphereColor: {r: 0, g: 0.047058824, b: 1, a: 1}
 --- !u!82 &52058002
 AudioSource:
@@ -5894,6 +5896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 359.87543, a: 1}
   _magicSphereColor: {r: 1, g: 0, b: 0.9372549, a: 1}
 --- !u!114 &1040190901
 MonoBehaviour:
@@ -6518,6 +6521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _leadEffectEmissionColor: {r: 421.3235, g: 440.52325, b: 32.289646, a: 1}
   _magicSphereColor: {r: 0.99607843, g: 1, b: 0, a: 1}
 --- !u!114 &1138852485
 MonoBehaviour:
@@ -10356,6 +10360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
+  _leadEffectEmissionColor: {r: 68.961555, g: 440.52325, b: 32.289646, a: 1}
   _magicSphereColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!82 &1910504422
 AudioSource:
