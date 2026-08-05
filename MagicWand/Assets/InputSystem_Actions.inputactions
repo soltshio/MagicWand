@@ -1255,6 +1255,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ShowSetUp",
+            "id": "c160f8e8-8f22-45e9-8355-75a0e1e3b148",
+            "actions": [
+                {
+                    "name": "SwitchShow",
+                    "type": "Button",
+                    "id": "4fefff9d-a079-4471-9793-41e1fb3827c7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "95cc9c74-4ace-41f5-9128-8efcb2182e98",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "SwitchShow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
