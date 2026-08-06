@@ -1215,11 +1215,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.84
+      value: -0.84000003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.58523
+      value: -8.585232
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3468,7 +3468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
   _magicCircleManager: {fileID: 741445578}
   _magicInvoker: {fileID: 446498116}
-  _bigCreature: {fileID: 623789239}
+  _bigCreatureStatus: {fileID: 623789240}
   _delayDuration: 0.5
 --- !u!1 &399095678
 GameObject:
@@ -4348,6 +4348,7 @@ GameObject:
   - component: {fileID: 623789239}
   - component: {fileID: 623789237}
   - component: {fileID: 623789236}
+  - component: {fileID: 623789240}
   m_Layer: 0
   m_Name: BigNudi
   m_TagString: Untagged
@@ -4416,10 +4417,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 623789234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a7dc6e57ea8d024fa886953c1798308, type: 3}
+  m_Script: {fileID: 11500000, guid: 44cb4795d8a858c4192b0b1310107904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreature
-  _maxHp: 3
   _bigCreatureReactions:
     _list:
     - key: 0
@@ -4434,6 +4434,20 @@ MonoBehaviour:
       value: {fileID: 1417002369}
   _bigCreatureWalking: {fileID: 1736635914}
   _sleepZZZReaction: {fileID: 1736635913}
+  _bigCreatureStatus: {fileID: 623789240}
+--- !u!114 &623789240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623789234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442aca0bf5f0b5640a26d5d9ba81f301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureStatus
+  _maxHp: 3
 --- !u!1 &642836013
 GameObject:
   m_ObjectHideFlags: 0
@@ -8826,7 +8840,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 255
   m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

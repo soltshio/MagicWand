@@ -11,7 +11,7 @@ using UnityEngine.Timeline;
 public class MagicContentTypeThunder : MagicContentTypeBase
 {
     [SerializeField]
-    BigCreature _bigCreature;
+    BigCreatureReactionManager _bigCreature;
 
     [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _thunderEffectDirecter;

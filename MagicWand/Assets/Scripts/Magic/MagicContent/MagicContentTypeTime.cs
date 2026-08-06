@@ -26,7 +26,7 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [Header("でか生き物関係")]
 
     [SerializeField]
-    BigCreature _bigCreature;
+    BigCreatureReactionManager _bigCreature;
 
     [Header("草関係")]
 

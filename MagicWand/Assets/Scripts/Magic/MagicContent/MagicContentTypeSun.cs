@@ -11,7 +11,7 @@ using UnityEngine.Playables;
 public class MagicContentTypeSun : MagicContentTypeBase
 {
     [SerializeField]
-    BigCreature _bigCreature;
+    BigCreatureReactionManager _bigCreature;
 
     [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _sunEffectDirecter;

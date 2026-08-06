@@ -16,8 +16,8 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     [SerializeField]
     MagicInvoker _magicInvoker;
 
-    [SerializeField]
-    BigCreature _bigCreature;
+    [Tooltip("巨大生物のステータス")] [SerializeField]
+    BigCreatureStatus _bigCreatureStatus;
 
     [SerializeField]
     float _delayDuration=0.5f;
@@ -51,7 +51,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             await UniTask.Delay(TimeSpan.FromSeconds(_delayDuration), cancellationToken: token);
 
             //でか生物がどいたらゲーム終了
-            if (_bigCreature._isWakeUp) break;
+            if (_bigCreatureStatus.IsWakeUp) break;
         }
 
         stateMachine.ChangeState(EGamePhaseState.Finish);

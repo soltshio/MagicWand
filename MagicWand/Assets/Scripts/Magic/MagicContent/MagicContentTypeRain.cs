@@ -8,7 +8,7 @@ using UnityEngine;
 public class MagicContentTypeRain : MagicContentTypeBase
 {
     [SerializeField]
-    BigCreature _bigCreature;
+    BigCreatureReactionManager _bigCreature;
 
     [SerializeField]
     GrassesGrowth _grassesGrowth;

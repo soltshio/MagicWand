@@ -8,7 +8,7 @@ using UnityEngine;
 public class MagicContentTypeStar : MagicContentTypeBase
 {
     [SerializeField]
-    BigCreature _bigCreature;
+    BigCreatureReactionManager _bigCreature;
 
     [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _starEffectDirecter;
