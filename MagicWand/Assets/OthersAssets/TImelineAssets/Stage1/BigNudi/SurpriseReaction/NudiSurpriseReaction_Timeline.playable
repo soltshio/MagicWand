@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0.3333333333333333
+    m_Start: 0.8333333333333334
     m_ClipIn: 0
     m_Asset: {fileID: -618306469417459404}
     m_Duration: 0.42218181818181816
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
-  m_Time: 0.3333333333333333
+  m_Time: 0
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0
+    m_Start: 0.33333333333333354
     m_ClipIn: 0
     m_Asset: {fileID: -4219137863219158675}
     m_Duration: 2.1666666666666665
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0
+    m_Start: 0.33333333333333354
     m_ClipIn: 0
     m_Asset: {fileID: 2333029555504120774}
     m_Duration: 0.3333333333333333
@@ -428,11 +428,11 @@ MonoBehaviour:
     m_Recordable: 0
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 1.5
-    m_PreExtrapolationTime: 0
+    m_PostExtrapolationTime: 1.4999999999999991
+    m_PreExtrapolationTime: 0.33333333333333354
     m_DisplayName: Active
   - m_Version: 1
-    m_Start: 1.8333333333333333
+    m_Start: 2.166666666666666
     m_ClipIn: 0
     m_Asset: {fileID: -6160099948544609458}
     m_Duration: 0.3333333333333333
