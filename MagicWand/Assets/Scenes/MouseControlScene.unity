@@ -1215,11 +1215,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.84
+      value: -0.84000003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.58523
+      value: -8.585234
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2458,6 +2458,98 @@ Transform:
   - {fileID: 1771374251}
   m_Father: {fileID: 1736635912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &202859450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 202859451}
+  - component: {fileID: 202859453}
+  - component: {fileID: 202859452}
+  m_Layer: 0
+  m_Name: WakeUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &202859451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202859450}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1771374251}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &202859452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202859450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1771374252}
+          m_TargetAssemblyTypeName: SurpriseReaction, Assembly-CSharp
+          m_MethodName: PlayBigCreatureGoBackToSleepMotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!320 &202859453
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202859450}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: c137cd2467ea9d94ca3f8e317488da00, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 7122512358889858277, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+    value: {fileID: 1381235194}
+  - key: {fileID: 3403161542351210038, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+    value: {fileID: 1736635911}
+  - key: {fileID: 6665047306845229242, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+    value: {fileID: 1381235190}
+  - key: {fileID: 3403161542351210038, guid: c137cd2467ea9d94ca3f8e317488da00, type: 2}
+    value: {fileID: 1736635911}
+  - key: {fileID: 6665047306845229242, guid: c137cd2467ea9d94ca3f8e317488da00, type: 2}
+    value: {fileID: 1381235190}
+  - key: {fileID: 7122512358889858277, guid: c137cd2467ea9d94ca3f8e317488da00, type: 2}
+    value: {fileID: 1381235194}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &236339059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3514,92 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8352559688436039051, guid: 6b1798b5c04095f4ba28cd4ea45f2010, type: 3}
   m_PrefabInstance: {fileID: 350216445}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &394192148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394192151}
+  - component: {fileID: 394192149}
+  - component: {fileID: 394192150}
+  m_Layer: 0
+  m_Name: StillSleep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &394192149
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394192148}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 7122512358889858277, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+    value: {fileID: 1381235194}
+  - key: {fileID: 3403161542351210038, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+    value: {fileID: 1736635911}
+  - key: {fileID: 6665047306845229242, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
+    value: {fileID: 1381235190}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &394192150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394192148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1771374252}
+          m_TargetAssemblyTypeName: SurpriseReaction, Assembly-CSharp
+          m_MethodName: PlayBigCreatureGoBackToSleepMotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!4 &394192151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394192148}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1771374251}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &395197795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,7 +3646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
   _magicCircleManager: {fileID: 741445578}
   _magicInvoker: {fileID: 446498116}
-  _bigCreature: {fileID: 623789239}
+  _bigCreatureStatus: {fileID: 623789240}
   _delayDuration: 0.5
 --- !u!1 &399095678
 GameObject:
@@ -4348,6 +4526,7 @@ GameObject:
   - component: {fileID: 623789239}
   - component: {fileID: 623789237}
   - component: {fileID: 623789236}
+  - component: {fileID: 623789240}
   m_Layer: 0
   m_Name: BigNudi
   m_TagString: Untagged
@@ -4416,10 +4595,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 623789234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a7dc6e57ea8d024fa886953c1798308, type: 3}
+  m_Script: {fileID: 11500000, guid: 44cb4795d8a858c4192b0b1310107904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreature
-  _maxHp: 3
   _bigCreatureReactions:
     _list:
     - key: 0
@@ -4434,6 +4612,20 @@ MonoBehaviour:
       value: {fileID: 1417002369}
   _bigCreatureWalking: {fileID: 1736635914}
   _sleepZZZReaction: {fileID: 1736635913}
+  _bigCreatureStatus: {fileID: 623789240}
+--- !u!114 &623789240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623789234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442aca0bf5f0b5640a26d5d9ba81f301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureStatus
+  _maxHp: 3
 --- !u!1 &642836013
 GameObject:
   m_ObjectHideFlags: 0
@@ -8826,7 +9018,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 255
   m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -10179,8 +10371,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1771374251}
   - component: {fileID: 1771374252}
-  - component: {fileID: 1771374253}
-  - component: {fileID: 1771374254}
   m_Layer: 0
   m_Name: Surprise
   m_TagString: Untagged
@@ -10200,7 +10390,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 394192151}
+  - {fileID: 202859451}
   m_Father: {fileID: 193202437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1771374252
@@ -10215,61 +10407,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b728185df08b8f458426f5637224991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SurpriseReaction
-  _surpriseReactionDirector: {fileID: 1771374253}
+  _surprise_StillSleeping_ReactionDirector: {fileID: 394192149}
+  _surprise_WakeUp_ReactionDirector: {fileID: 202859453}
   _bigCreatureAnimator: {fileID: 774845730}
---- !u!320 &1771374253
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771374250}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 7122512358889858277, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
-    value: {fileID: 1381235194}
-  - key: {fileID: 3403161542351210038, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
-    value: {fileID: 1736635911}
-  - key: {fileID: 6665047306845229242, guid: f57edd5425bd4434a9662e2b09f5c7e6, type: 2}
-    value: {fileID: 1381235190}
-  m_ExposedReferences:
-    m_References: []
---- !u!114 &1771374254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771374250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1771374252}
-          m_TargetAssemblyTypeName: SurpriseReaction, Assembly-CSharp
-          m_MethodName: PlayBigCreatureGoBackToSleepMotion
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1771542476
 GameObject:
   m_ObjectHideFlags: 0

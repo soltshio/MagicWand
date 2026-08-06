@@ -12,13 +12,13 @@ public class BigCreatureReactionTypeStage1_Rain : BigCreatureReactionTypeBase
     [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
     ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
 
-    public override async UniTask TakeReactionAsync()
+    public override async UniTask TakeReactionAsync(BigCreatureStatus updatedBigCreatureStatus)
     {
         var token = this.GetCancellationTokenOnDestroy();
 
         _shifterBigCreatureSoil.RemoveSoil();
 
         //驚き演出
-        await _surpriseReaction.TakeSurpriseReactionAsync(token);
+        await _surpriseReaction.TakeSurpriseReactionAsync(updatedBigCreatureStatus,token);
     }
 }

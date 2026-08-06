@@ -30,17 +30,24 @@ public class LeadEffect : MonoBehaviour
     {
         var ct = this.GetCancellationTokenOnDestroy();
 
-        ProgressTimer _progressTimer = new(_moveDuration);
-
-        while(!_progressTimer.IsFinished)
+        try
         {
-            _progressTimer.Tick();
+            ProgressTimer _progressTimer = new(_moveDuration);
 
-            float progress = _progressTimer.CalcProgress();
+            while (!_progressTimer.IsFinished)
+            {
+                _progressTimer.Tick();
 
-            SetPos(progress);
+                float progress = _progressTimer.CalcProgress();
 
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+                SetPos(progress);
+
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+            }
+        }
+        catch
+        {
+            
         }
     }
 

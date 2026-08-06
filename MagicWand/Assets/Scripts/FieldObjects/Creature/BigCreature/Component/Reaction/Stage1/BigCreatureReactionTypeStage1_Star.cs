@@ -12,7 +12,7 @@ public class BigCreatureReactionTypeStage1_Star : BigCreatureReactionTypeBase
     [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
     ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
 
-    public override async UniTask TakeReactionAsync()
+    public override async UniTask TakeReactionAsync(BigCreatureStatus updatedBigCreatureStatus)
     {
         var token = this.GetCancellationTokenOnDestroy();
 

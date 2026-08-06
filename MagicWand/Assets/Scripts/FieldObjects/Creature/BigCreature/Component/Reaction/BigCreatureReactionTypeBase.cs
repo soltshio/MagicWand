@@ -7,5 +7,6 @@ using UnityEngine;
 public abstract class BigCreatureReactionTypeBase : MonoBehaviour
 {
     //リアクション
-    public abstract UniTask TakeReactionAsync();
+    //updatedBigCreatureStatus: 更新後の巨大生物のステータス
+    public abstract UniTask TakeReactionAsync(BigCreatureStatus updatedBigCreatureStatus);
 }

@@ -9,11 +9,8 @@ using UnityEngine;
 //作成者:杉山
 //道をふさぐでかい生物
 
-public class BigCreature : MonoBehaviour
+public class BigCreatureReactionManager : MonoBehaviour
 {
-    [Tooltip("最大体力(起きるまでに対象の魔法を撃たないといけない回数)")] [SerializeField]
-    int _maxHp;
-
     [SerializeField]
     SerializableDictionary<EMagic, BigCreatureReactionTypeBase> _bigCreatureReactions;
 
@@ -23,14 +20,8 @@ public class BigCreature : MonoBehaviour
     [Tooltip("でかい生き物の睡眠演出")] [SerializeField]
     SleepReaction _sleepZZZReaction;
 
-    int _hp;
-
-    public bool _isWakeUp { get { return _hp <= 0; } }//起きたか
-
-    void Awake()
-    {
-        _hp = _maxHp;
-    }
+    [Tooltip("巨大生物のステータス")] [SerializeField]
+    BigCreatureStatus _bigCreatureStatus;
 
     public async UniTask TakeMagicAsync(EMagic magic)
     {
@@ -38,7 +29,7 @@ public class BigCreature : MonoBehaviour
 
         if(IsCorrectMagic(magic))//正解の魔法が来た場合にhpを減らす
         {
-            _hp--;
+            _bigCreatureStatus.HP--;
         }
 
 
@@ -48,13 +39,13 @@ public class BigCreature : MonoBehaviour
             return;
         }
 
-        await reaction.TakeReactionAsync();
+        await reaction.TakeReactionAsync(_bigCreatureStatus);
 
         
-        if (!_isWakeUp)
+        if (!_bigCreatureStatus.IsWakeUp)
         {
             //体力が0じゃない間は眠る演出
-            await _sleepZZZReaction.TakeSleepReactionAsunc(_hp,token);
+            await _sleepZZZReaction.TakeSleepReactionAsunc(_bigCreatureStatus.HP,token);
         }
         else
         {
