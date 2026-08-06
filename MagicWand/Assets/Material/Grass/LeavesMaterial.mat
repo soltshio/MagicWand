@@ -102,6 +102,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LeaveHeightMaskEdge1: 0.146
+    - _LeaveHeightMaskEdge2: 1
+    - _LeaveSurfaceMaskEdge1: 0.21
+    - _LeaveSurfaceMaskEdge2: 1
     - _MaskEdge1: 0.21
     - _MaskEdge2: 1
     - _Metallic: 0

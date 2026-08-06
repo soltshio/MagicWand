@@ -115,6 +115,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _StemHeightMaskEdge1: 0.15
+    - _StemHeightMaskEdge2: 1
     - _Surface: 0
     - _WindDistortion: 0.04
     - _WindMovementSpeed: 12
