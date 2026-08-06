@@ -1,8 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
 using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -12,7 +9,10 @@ using UnityEngine.Playables;
 public class SurpriseReaction : MonoBehaviour
 {
     [SerializeField]
-    PlayableDirector _surpriseReactionDirector;
+    PlayableDirector _surprise_StillSleeping_ReactionDirector;
+
+    [SerializeField]
+    PlayableDirector _surprise_WakeUp_ReactionDirector;
 
     [SerializeField]
     Animator _bigCreatureAnimator;
@@ -23,12 +23,24 @@ public class SurpriseReaction : MonoBehaviour
         _bigCreatureAnimator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName,true);
     }
 
-    public async UniTask TakeSurpriseReactionAsync(CancellationToken ct)
+    public async UniTask TakeSurpriseReactionAsync(BigCreatureStatus updatedBigCreatureStatus,CancellationToken ct)
     {
-        _surpriseReactionDirector.Play();
+        PlayableDirector _surpriseReactionDirecter;
+
+        //巨大生物が起きているかによって流すタイムラインを変える
+        if(updatedBigCreatureStatus.IsWakeUp)
+        {
+            _surpriseReactionDirecter = _surprise_WakeUp_ReactionDirector;
+        }
+        else
+        {
+            _surpriseReactionDirecter = _surprise_StillSleeping_ReactionDirector;
+        }
+
+        _surpriseReactionDirecter.Play();
 
         //タイムラインの再生が終わるまで待つ
-        await _surpriseReactionDirector.WaitForStoppedAsync(ct);
+        await _surpriseReactionDirecter.WaitForStoppedAsync(ct);
 
         //巨大生物に元のモーションをさせる
         _bigCreatureAnimator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, false);

@@ -30,7 +30,7 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     [SerializeField]
     Material _electricShockMat;
 
-    public override async UniTask TakeReactionAsync()
+    public override async UniTask TakeReactionAsync(BigCreatureStatus updatedBigCreatureStatus)
     {
         var token = this.GetCancellationTokenOnDestroy();
 
@@ -40,7 +40,7 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
         _shifterBigCreatureSoil.RemoveSoil();
 
         //驚き演出
-        await _surpriseReaction.TakeSurpriseReactionAsync(token);
+        await _surpriseReaction.TakeSurpriseReactionAsync(updatedBigCreatureStatus,token);
     }
 
     async UniTask TakeElectricShockAsync(CancellationToken ct)

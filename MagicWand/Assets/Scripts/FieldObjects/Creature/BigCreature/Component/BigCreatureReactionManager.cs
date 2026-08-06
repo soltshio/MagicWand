@@ -39,7 +39,7 @@ public class BigCreatureReactionManager : MonoBehaviour
             return;
         }
 
-        await reaction.TakeReactionAsync();
+        await reaction.TakeReactionAsync(_bigCreatureStatus);
 
         
         if (!_bigCreatureStatus.IsWakeUp)
