@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 //作成者:杉山
@@ -9,9 +10,6 @@ public partial class MagicSphereLeadEffectController
     [System.Serializable]
     class LeadMagicSphereColorController
     {
-        [SerializeField]
-        DefaultMagicSphereMaterialProperty _defaultMaterialProperty;
-
         MagicSpheresList _magicSpheresList;
 
         SpellCastList _spellCastList;
@@ -25,8 +23,6 @@ public partial class MagicSphereLeadEffectController
         //次になぞるべき魔法球に、魔法に対応した色を塗る
         public void PaintMagicColorToMagicSphere(List<(EMagic magic, int index)> activeSphereIndex_MagicList)
         {
-            var magicSphereMaterialControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
-
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
                 var index = activeSphereIndex_MagicList[i].index;
@@ -37,31 +33,26 @@ public partial class MagicSphereLeadEffectController
 
                 var activeMagicSphereMaterialProperty = spellCast.ActiveMagicSphereMaterialProperty;
 
-                //色を変える球のマテリアルコントローラーを取得
-                var magicSphereMaterialController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereMaterialController>(index);
+                var magicSphereElementColorController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereElementColorController>(index);
 
-                if (magicSphereMaterialController == null) continue;
+                if (magicSphereElementColorController == null) continue;
 
-                magicSphereMaterialController.SetColor(activeMagicSphereMaterialProperty);
-                magicSphereMaterialController.SetTexture(activeMagicSphereMaterialProperty);
-                magicSphereMaterialController.SetMarkAlphaClipThreshold(0f);
+                magicSphereElementColorController.ToActiveAsync(activeMagicSphereMaterialProperty).Forget();
             }
         }
 
         //全ての魔法球を元の色に戻す
         public void PaintDefaultColorToAllMagicSphere()
         {
-            var magicSphereMaterialControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
+            var magicSphereElementColorControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereElementColorController>();
 
-            for (int i = 0; i < magicSphereMaterialControllers.Length; i++)
+            for (int i = 0; i < magicSphereElementColorControllers.Length; i++)
             {
-                var matController = magicSphereMaterialControllers[i];
+                var controller = magicSphereElementColorControllers[i];
 
-                if (matController == null) continue;
+                if (controller == null) continue;
 
-                matController.SetColor(_defaultMaterialProperty.Property);
-                matController.SetTexture(_defaultMaterialProperty.Property);
-                matController.SetMarkAlphaClipThreshold(1f);
+                controller.ToDeactiveAsync().Forget();
             }
         }
     }

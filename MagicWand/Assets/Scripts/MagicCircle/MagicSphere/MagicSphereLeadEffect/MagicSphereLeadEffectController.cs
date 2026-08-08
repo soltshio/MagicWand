@@ -37,7 +37,10 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
         ProgressTimer progressTimer = new(_activeDuration);
 
-        while(!progressTimer.IsFinished)
+        //魔法球に色をつける
+        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(activeSphereIndex_MagicList);
+
+        while (!progressTimer.IsFinished)
         {
             progressTimer.Tick();
 
@@ -45,9 +48,6 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: newCt);
         }
-
-        //魔法球に色をつける
-        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(activeSphereIndex_MagicList);
     }
 
     public async UniTask DeactiveLeadAsync()

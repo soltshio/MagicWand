@@ -2836,6 +2836,7 @@ GameObject:
   - component: {fileID: 305296929}
   - component: {fileID: 305296934}
   - component: {fileID: 305296935}
+  - component: {fileID: 305296936}
   m_Layer: 3
   m_Name: Sphere (4)
   m_TagString: MagicSphere
@@ -2965,6 +2966,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
   _timeOutDurationToResetIsTouched: 0.1
+--- !u!114 &305296936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305296926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08ffc56965b1bf489f21b67738a5be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereElementColorController
+  _fadeDuration: 0.8
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
+  _magicSphereMaterialController: {fileID: 305296934}
 --- !u!4 &315441524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6940187360728510656, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
@@ -4352,6 +4368,7 @@ GameObject:
   - component: {fileID: 549293272}
   - component: {fileID: 549293277}
   - component: {fileID: 549293278}
+  - component: {fileID: 549293279}
   m_Layer: 3
   m_Name: Sphere (1)
   m_TagString: MagicSphere
@@ -4481,6 +4498,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
   _timeOutDurationToResetIsTouched: 0.1
+--- !u!114 &549293279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549293269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08ffc56965b1bf489f21b67738a5be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereElementColorController
+  _fadeDuration: 0.8
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
+  _magicSphereMaterialController: {fileID: 549293277}
 --- !u!1 &613696709
 GameObject:
   m_ObjectHideFlags: 0
@@ -5439,8 +5471,6 @@ MonoBehaviour:
     _leadEffectLifeTime: 7
   _activeDuration: 1
   _deactiveDuration: 0.15
-  _leadMagicSphereColorController:
-    _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _magicSpheresList: {fileID: 741445581}
   _spellCastList: {fileID: 446498117}
 --- !u!95 &774845730 stripped
@@ -5666,6 +5696,7 @@ GameObject:
   - component: {fileID: 993358638}
   - component: {fileID: 993358643}
   - component: {fileID: 993358644}
+  - component: {fileID: 993358645}
   m_Layer: 3
   m_Name: Sphere (2)
   m_TagString: MagicSphere
@@ -5795,6 +5826,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
   _timeOutDurationToResetIsTouched: 0.1
+--- !u!114 &993358645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993358635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08ffc56965b1bf489f21b67738a5be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereElementColorController
+  _fadeDuration: 0.8
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
+  _magicSphereMaterialController: {fileID: 993358643}
 --- !u!1 &1015091472
 GameObject:
   m_ObjectHideFlags: 0
@@ -9635,6 +9681,7 @@ GameObject:
   - component: {fileID: 1579516462}
   - component: {fileID: 1579516467}
   - component: {fileID: 1579516468}
+  - component: {fileID: 1579516469}
   m_Layer: 3
   m_Name: Sphere
   m_TagString: MagicSphere
@@ -9764,6 +9811,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
   _timeOutDurationToResetIsTouched: 0.1
+--- !u!114 &1579516469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579516459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08ffc56965b1bf489f21b67738a5be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereElementColorController
+  _fadeDuration: 0.8
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
+  _magicSphereMaterialController: {fileID: 1579516467}
 --- !u!1 &1637943370
 GameObject:
   m_ObjectHideFlags: 0
@@ -11746,6 +11808,7 @@ GameObject:
   - component: {fileID: 2118804867}
   - component: {fileID: 2118804872}
   - component: {fileID: 2118804873}
+  - component: {fileID: 2118804874}
   m_Layer: 3
   m_Name: Sphere (3)
   m_TagString: MagicSphere
@@ -11875,6 +11938,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereTouchedReceiver
   _timeOutDurationToResetIsTouched: 0.1
+--- !u!114 &2118804874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118804864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08ffc56965b1bf489f21b67738a5be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereElementColorController
+  _fadeDuration: 0.8
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
+  _magicSphereMaterialController: {fileID: 2118804872}
 --- !u!1001 &2739905914218230985
 PrefabInstance:
   m_ObjectHideFlags: 0

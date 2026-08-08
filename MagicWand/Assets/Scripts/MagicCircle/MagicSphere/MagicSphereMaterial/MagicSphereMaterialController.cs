@@ -24,9 +24,20 @@ public class MagicSphereMaterialController : MonoBehaviour
     static readonly int _baseInEmissionColorID = Shader.PropertyToID("_BaseInEmissionColor");
     static readonly int _baseOutEmissionColorID = Shader.PropertyToID("_BaseOutEmissionColor");
     static readonly int _markEmissionColorID = Shader.PropertyToID("_MarkEmissionColor");
-    //alpha関係
+    //alphaClipThreshold関係
     static readonly int _baseAlphaClipThresholdID = Shader.PropertyToID("_BaseAlphaClipThreshold");
     static readonly int _markAlphaClipThresholdID = Shader.PropertyToID("_MarkAlphaClipThreshold");
+
+    //プロパティの取得
+    //色関係
+    public Texture CurrentMarkTexture { get { return _sphereMat.GetTexture(_markTextureID); } }
+    public Color CurrentBaseInEmissionColor { get { return _sphereMat.GetColor(_baseInEmissionColorID); } }
+    public Color CurrentBaseOutEmissionColor { get { return _sphereMat.GetColor(_baseOutEmissionColorID); } }
+    public Color CurrentMarkEmissionColor { get { return _sphereMat.GetColor(_markEmissionColorID); } }
+    //alphaClipThreshold関係
+    public float CurrentBaseAlphaClipThreshold { get { return _sphereMat.GetFloat(_baseAlphaClipThresholdID); } }
+    public float CurrentMarkAlphaClipThreshold { get { return _sphereMat.GetFloat(_markAlphaClipThresholdID); } }
+
 
     //本体部分のalphaClipThresholdの変更
     //newBaseAlphaClipThresholdは0～1
