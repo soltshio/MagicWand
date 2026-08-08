@@ -28,9 +28,6 @@ public class MagicCircleActiveHandler : MonoBehaviour
 
         //魔法陣の球
         _magicSphereRendererActivator.Start();
-
-        //魔法陣の線
-        _magicTrailRendererActivator.Start();
     }
 
     //魔法陣の表示
@@ -41,9 +38,6 @@ public class MagicCircleActiveHandler : MonoBehaviour
 
         //魔法陣を表示
         _magicCircleRendererActivator.MagicCircleSwitchEnable(true);
-
-        //魔法陣の線を表示
-        _magicTrailRendererActivator.MagicTrailSwitchEnable(true);
 
         ProgressTimer progressTimer = new(_fadeDuration);
 
@@ -77,6 +71,9 @@ public class MagicCircleActiveHandler : MonoBehaviour
         //球の当たり判定をオフにする
         _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
 
+        //魔法陣の線を非表示にし始める
+        _magicTrailRendererActivator.HideMagicTrail(_fadeDuration);
+
         ProgressTimer progressTimer = new(_fadeDuration);
 
         while (!progressTimer.IsFinished)
@@ -96,9 +93,6 @@ public class MagicCircleActiveHandler : MonoBehaviour
 
         //魔法陣を完全に非表示
         _magicCircleRendererActivator.MagicCircleSwitchEnable(false);
-
-        //魔法陣の線を完全に非表示
-        _magicTrailRendererActivator.MagicTrailSwitchEnable(false);
 
         _isProcessing = false;
     }

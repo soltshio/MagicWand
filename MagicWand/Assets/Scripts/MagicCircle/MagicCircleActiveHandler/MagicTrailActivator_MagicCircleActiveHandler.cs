@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 //作成者:杉山
 //MagicCircleActiveHandlerの通った球をつなぐ線の表示・非表示の処理をする
@@ -6,16 +7,11 @@
 [System.Serializable]
 public class MagicTrailRendererActivator_MagicCircleActiveHandler
 {
-    [Tooltip("魔法陣の線の描画機能")] [SerializeField]
-    LineRenderer _magicCircleTrailRenderer;
+    [Tooltip("魔法陣の線")] [SerializeField]
+    MagicSphereTrail _magicSphereTrail;
 
-    public void Start()
+    public void HideMagicTrail(float fadeDuration)
     {
-        _magicCircleTrailRenderer.enabled = false;
-    }
-
-    public void MagicTrailSwitchEnable(bool isEnable)
-    {
-        _magicCircleTrailRenderer.enabled = isEnable;
+        _magicSphereTrail.HideAsync(fadeDuration).Forget();
     }
 }
