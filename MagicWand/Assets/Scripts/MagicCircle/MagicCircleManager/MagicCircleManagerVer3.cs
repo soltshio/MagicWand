@@ -50,7 +50,7 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         _isActiveMagicCircle = true;
 
         //魔法陣の線を消す
-        _magicSphereTrail.Clear();
+        _magicSphereTrail.ResetTrail();
 
         //魔法発動の初期化
         InitAllSpellCast();
@@ -66,6 +66,9 @@ public class MagicCircleManagerVer3 : MonoBehaviour
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
         var invokableMagics = await CastMagicAsync(token);
+
+        //魔法陣の線を目立たせる
+        _magicSphereTrail.Activate();
 
         //魔法陣と魔法陣の線を非表示にする
         await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
