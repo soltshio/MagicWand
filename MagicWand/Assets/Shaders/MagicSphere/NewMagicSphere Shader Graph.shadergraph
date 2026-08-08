@@ -1713,8 +1713,8 @@
     "m_ObjectId": "2a46cd44e10a42dfbb5775f60402f61c",
     "m_Title": "外側の色が少なめになるように調整",
     "m_Position": {
-        "x": 281.60009765625,
-        "y": -1054.4000244140625
+        "x": 281.599853515625,
+        "y": -1054.39990234375
     }
 }
 
@@ -1728,10 +1728,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "Texture2D",
+    "m_Name": "MarkTexture",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Texture2D",
-    "m_DefaultReferenceName": "_Texture2D",
+    "m_RefNameGeneratedByDisplayName": "MarkTexture",
+    "m_DefaultReferenceName": "_MarkTexture",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -2121,7 +2121,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "44cabb2b542a4fa7945c24a34ed6b775",
     "m_Id": 0,
-    "m_DisplayName": "MaxScale",
+    "m_DisplayName": "BaseMaxScale",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2461,8 +2461,8 @@
     "m_ObjectId": "5620371aa7f74f0ba956853d1d132e7f",
     "m_Title": "BaseColor",
     "m_Position": {
-        "x": 704.000244140625,
-        "y": -1015.2000122070313
+        "x": 704.0001220703125,
+        "y": -1015.1998901367188
     }
 }
 
@@ -2710,8 +2710,8 @@
     "m_ObjectId": "6555da878d8643babbe61f2b7561e3f5",
     "m_Title": "Sineを利用して、NoiseのScaleを変更している",
     "m_Position": {
-        "x": -1597.60009765625,
-        "y": -789.60009765625
+        "x": -1597.5999755859375,
+        "y": -789.5999755859375
     }
 }
 
@@ -3043,7 +3043,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "71b36ad48d5446438eb520fb6e171af5",
     "m_Id": 0,
-    "m_DisplayName": "BaseOutColor",
+    "m_DisplayName": "BaseOutEmissionColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3357,7 +3357,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "828b640262504f24a5f601d5ad641e6b",
     "m_Id": 0,
-    "m_DisplayName": "NoiseSpeed",
+    "m_DisplayName": "BaseNoiseSpeed",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -3787,10 +3787,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "MaxScale",
+    "m_Name": "BaseMaxScale",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "MaxScale",
-    "m_DefaultReferenceName": "_MaxScale",
+    "m_RefNameGeneratedByDisplayName": "BaseMaxScale",
+    "m_DefaultReferenceName": "_BaseMaxScale",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -3802,7 +3802,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 20.0,
+    "m_Value": 30.0,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -4267,10 +4267,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "NoiseSpeed",
+    "m_Name": "BaseNoiseSpeed",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "NoiseSpeed",
-    "m_DefaultReferenceName": "_NoiseSpeed",
+    "m_RefNameGeneratedByDisplayName": "BaseNoiseSpeed",
+    "m_DefaultReferenceName": "_BaseNoiseSpeed",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -4282,7 +4282,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 1.0,
+    "m_Value": 0.10000000149011612,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -4354,7 +4354,7 @@
     "m_ObjectId": "b2837dabe0504dfc8ffa8b8ca534d308",
     "m_Title": "BaseNoiseAlpha",
     "m_Position": {
-        "x": 612.0,
+        "x": 611.9999389648438,
         "y": -563.199951171875
     }
 }
@@ -4385,7 +4385,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "b53a68ed1b1c4261b42eb3711d949051",
     "m_Id": 0,
-    "m_DisplayName": "BaseInColor",
+    "m_DisplayName": "BaseInEmissionColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4447,7 +4447,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "b75e2d1427db41fc80c2c0deea2cf374",
     "m_Id": 0,
-    "m_DisplayName": "MinScale",
+    "m_DisplayName": "BaseMinScale",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4541,10 +4541,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "MinScale",
+    "m_Name": "BaseMinScale",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "MinScale",
-    "m_DefaultReferenceName": "_MinScale",
+    "m_RefNameGeneratedByDisplayName": "BaseMinScale",
+    "m_DefaultReferenceName": "_BaseMinScale",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -4556,7 +4556,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 10.0,
+    "m_Value": 15.0,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -4920,7 +4920,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "d5b48fb49ae44caaa1a7bf4757b73745",
     "m_Id": 0,
-    "m_DisplayName": "Texture2D",
+    "m_DisplayName": "MarkTexture",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -4990,10 +4990,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "BaseInColor",
+    "m_Name": "BaseInEmissionColor",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "BaseInColor",
-    "m_DefaultReferenceName": "_BaseInColor",
+    "m_RefNameGeneratedByDisplayName": "BaseInEmissionColor",
+    "m_DefaultReferenceName": "_BaseInEmissionColor",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -5092,8 +5092,8 @@
     "m_ObjectId": "de6d4caa2c994d5ca3488f4cf30048b5",
     "m_Title": "MarkNoiseAlpha",
     "m_Position": {
-        "x": 235.20004272460938,
-        "y": 427.1999816894531
+        "x": 235.19970703125,
+        "y": 427.20001220703127
     }
 }
 
@@ -5143,10 +5143,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "BaseOutColor",
+    "m_Name": "BaseOutEmissionColor",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "BaseOutColor",
-    "m_DefaultReferenceName": "_BaseOutColor",
+    "m_RefNameGeneratedByDisplayName": "BaseOutEmissionColor",
+    "m_DefaultReferenceName": "_BaseOutEmissionColor",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -5619,8 +5619,8 @@
     "m_ObjectId": "f7c2f87e97ed4bd0ac30f90112b5ddbe",
     "m_Title": "MarkColor",
     "m_Position": {
-        "x": 611.2000122070313,
-        "y": -64.79998779296875
+        "x": 611.1997680664063,
+        "y": -64.800048828125
     }
 }
 

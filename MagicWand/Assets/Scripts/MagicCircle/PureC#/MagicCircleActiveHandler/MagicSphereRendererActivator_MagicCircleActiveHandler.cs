@@ -10,6 +10,12 @@ public class MagicSphereRendererActivator_MagicCircleActiveHandler
     [SerializeField]
     MagicSpheresList _magicSphereList;
 
+    [SerializeField] [Range(0,1)]
+    float _activeBaseAlphaClipThreshold = 0.354f;
+
+    [SerializeField] [Range(0, 1)]
+    float _deActiveBaseAlphaClipThreshold = 1f;
+
     public void Start()
     {
         MagicSphereCollidersSwitchEnable(false);
@@ -18,16 +24,20 @@ public class MagicSphereRendererActivator_MagicCircleActiveHandler
     //球をrate(0～1)に合わせて、だんだん表示させる(1で完全に表示)
     public void ActivateMagicSphere(float rate)
     {
-        SetAllMagicSpheresAlpha(rate);
+        float newBaseAlphaClipThreshold = Mathf.Lerp(_deActiveBaseAlphaClipThreshold, _activeBaseAlphaClipThreshold, rate);
+
+        SetAllMagicSpheresBaseAlphaClipThreshold(newBaseAlphaClipThreshold);
     }
 
     //球をrate(0～1)に合わせて、だんだん非表示にさせる(1で完全に非表示)
     public void DeactivateMagicSphere(float rate)
     {
-        SetAllMagicSpheresAlpha(1f - rate);
+        float newBaseAlphaClipThreshold = Mathf.Lerp(_activeBaseAlphaClipThreshold, _deActiveBaseAlphaClipThreshold, rate);
+
+        SetAllMagicSpheresBaseAlphaClipThreshold(newBaseAlphaClipThreshold);
     }
 
-    void SetAllMagicSpheresAlpha(float alpha)
+    void SetAllMagicSpheresBaseAlphaClipThreshold(float newBaseAlphaClipThreshold)
     {
         var magicSphereMaterialControllers = _magicSphereList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
 
@@ -35,7 +45,7 @@ public class MagicSphereRendererActivator_MagicCircleActiveHandler
         {
             if (magicSphere == null) continue;
 
-            magicSphere.SetAlpha(alpha);
+            magicSphere.SetBaseAlphaClipThreshold(newBaseAlphaClipThreshold);
         }
     }
 

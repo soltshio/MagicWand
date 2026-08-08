@@ -52,6 +52,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MarkTexture:
+        m_Texture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -95,6 +99,9 @@ Material:
     - _AlphaClipThreshold: 0.446
     - _AlphaToMask: 0
     - _BaseAlphaClipThreshold: 0.354
+    - _BaseMaxScale: 30
+    - _BaseMinScale: 15
+    - _BaseNoiseSpeed: 0.1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -134,9 +141,11 @@ Material:
     m_Colors:
     - _BaseColor: {r: 5.992157, g: 0.10610507, b: 0.09411748, a: 1}
     - _BaseInColor: {r: 0.29774287, g: 0.30029407, b: 0.7773584, a: 1}
+    - _BaseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
     - _BaseMaxColor: {r: 0.520833, g: 0.5590194, b: 0.83396226, a: 1}
     - _BaseMinColor: {r: 2.8767529, g: 4.701152, b: 5.387559, a: 1}
     - _BaseOutColor: {r: 0.85013855, g: 1.6183572, b: 10.478462, a: 1}
+    - _BaseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MarkEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}

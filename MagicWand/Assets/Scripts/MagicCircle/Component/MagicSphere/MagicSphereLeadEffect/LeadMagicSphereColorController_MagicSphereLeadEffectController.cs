@@ -10,7 +10,7 @@ public partial class MagicSphereLeadEffectController
     class LeadMagicSphereColorController
     {
         [SerializeField]
-        Color _deactiveColor;
+        MagicSphereMaterialProperty _deactiveMaterialProperty;
 
         MagicSpheresList _magicSpheresList;
 
@@ -35,14 +35,16 @@ public partial class MagicSphereLeadEffectController
                 //色を取得
                 if (!_spellCastList.TryGetSpellCast(magic, out var spellCast)) continue;
 
-                Color sphereColor = spellCast.MagicSphereColor;
+                var activeMagicSphereMaterialProperty = spellCast.ActiveMagicSphereMaterialProperty;
 
                 //色を変える球のマテリアルコントローラーを取得
                 var magicSphereMaterialController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereMaterialController>(index);
 
                 if (magicSphereMaterialController == null) continue;
 
-                magicSphereMaterialController.SetColor(sphereColor);
+                magicSphereMaterialController.SetColor(activeMagicSphereMaterialProperty);
+                magicSphereMaterialController.SetTexture(activeMagicSphereMaterialProperty);
+                magicSphereMaterialController.SetMarkAlphaClipThreshold(0f);
             }
         }
 
@@ -57,7 +59,9 @@ public partial class MagicSphereLeadEffectController
 
                 if (matController == null) continue;
 
-                matController.SetColor(_deactiveColor);
+                matController.SetColor(_deactiveMaterialProperty);
+                matController.SetTexture(_deactiveMaterialProperty);
+                matController.SetMarkAlphaClipThreshold(1f);
             }
         }
     }

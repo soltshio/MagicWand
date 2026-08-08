@@ -170,7 +170,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
   _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 44.62176, a: 1}
-  _magicSphereColor: {r: 1, g: 0, b: 0, a: 1}
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
+    baseInEmissionColor: {r: 2.670157, g: 0.17379397, b: 0, a: 1}
+    baseOutEmissionColor: {r: 6.9132075, g: 0, b: 0.084023006, a: 1}
+    markEmissionColor: {r: 33.896748, g: 12.067951, b: 12.202014, a: 1}
 --- !u!82 &525953
 AudioSource:
   m_ObjectHideFlags: 0
@@ -513,7 +517,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
   _leadEffectEmissionColor: {r: 32.289646, g: 214.48436, b: 440.52325, a: 1}
-  _magicSphereColor: {r: 0, g: 0.047058824, b: 1, a: 1}
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: c21aa54705e0b2343afb5f458f49b3b1, type: 3}
+    baseInEmissionColor: {r: 0.023529412, g: 0.2627451, b: 0.8627451, a: 1}
+    baseOutEmissionColor: {r: 0.08175422, g: 1.3780837, b: 2.2307217, a: 1}
+    markEmissionColor: {r: 2.3332283, g: 31.708021, b: 23.739332, a: 1}
 --- !u!82 &52058002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2921,13 +2929,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305296926}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14460059, y: 0.69216377, z: -0.14460059, w: 0.69216377}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.03999996, y: 3.77, z: -0.3700003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -23.6}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &305296934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,8 +2949,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 305296928}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
-  _defaultAlpha: 0
+  _defaultMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
+    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
+    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultBaseAlphaClipThreshold: 1
+  _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &305296935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4436,13 +4449,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549293269}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.5792812, z: 0, w: 0.81512785}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3.87, y: 0.71, z: -0.41}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
-  m_LocalEulerAnglesHint: {x: 0, y: 70.8, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &549293277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4456,8 +4469,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 549293271}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
-  _defaultAlpha: 0
+  _defaultMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
+    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
+    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultBaseAlphaClipThreshold: 1
+  _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &549293278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5235,6 +5253,8 @@ MonoBehaviour:
     _magicCircleAlpha_Active: 0.3
   _magicSphereRendererActivator:
     _magicSphereList: {fileID: 741445581}
+    _activeBaseAlphaClipThreshold: 0.354
+    _deActiveBaseAlphaClipThreshold: 1
   _magicTrailRendererActivator:
     _magicCircleTrailRenderer: {fileID: 741445576}
 --- !u!114 &741445580
@@ -5428,7 +5448,11 @@ MonoBehaviour:
   _activeDuration: 1
   _deactiveDuration: 0.15
   _leadMagicSphereColorController:
-    _deactiveColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
+    _deactiveMaterialProperty:
+      markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+      baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
+      baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
+      markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
   _magicSpheresList: {fileID: 741445581}
   _spellCastList: {fileID: 446498117}
 --- !u!95 &774845730 stripped
@@ -5747,13 +5771,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993358635}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07888172, y: 0.70269316, z: 0.07888172, w: 0.70269316}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -2.46, y: -3.53, z: -0.1800003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 12.81}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &993358643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5767,8 +5791,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 993358637}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
-  _defaultAlpha: 0
+  _defaultMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
+    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
+    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultBaseAlphaClipThreshold: 1
+  _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &993358644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6085,7 +6114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
   _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 359.87543, a: 1}
-  _magicSphereColor: {r: 1, g: 0, b: 0.9372549, a: 1}
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: c016c874d6bb1e84ca1726814ce3bb25, type: 3}
+    baseInEmissionColor: {r: 0.59607846, g: 0.0627451, b: 0.8784314, a: 1}
+    baseOutEmissionColor: {r: 2.220284, g: 0, b: 2.9960785, a: 1}
+    markEmissionColor: {r: 33.896748, g: 12.067951, b: 30.124746, a: 1}
 --- !u!114 &1040190901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7040,7 +7073,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
   _leadEffectEmissionColor: {r: 421.3235, g: 440.52325, b: 32.289646, a: 1}
-  _magicSphereColor: {r: 0.99607843, g: 1, b: 0, a: 1}
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
+    baseInEmissionColor: {r: 0.75686276, g: 0.8784314, b: 0.0627451, a: 1}
+    baseOutEmissionColor: {r: 2.64722, g: 2.9960785, b: 0, a: 1}
+    markEmissionColor: {r: 30.862919, g: 33.89675, b: 11.959798, a: 1}
 --- !u!114 &1138852485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7878,7 +7915,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1215717639}
   - component: {fileID: 1215717636}
-  - component: {fileID: 1215717638}
   - component: {fileID: 1215717637}
   m_Layer: 0
   m_Name: MagicCircleCamera
@@ -7982,14 +8018,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &1215717638
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215717635}
-  m_Enabled: 1
 --- !u!4 &1215717639
 Transform:
   m_ObjectHideFlags: 0
@@ -9716,13 +9744,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579516459}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.78580284, z: 0, w: 0.61847705}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 3.79, y: 0.71, z: -0.3300003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
-  m_LocalEulerAnglesHint: {x: 0, y: 103.59, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1579516467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9736,8 +9764,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 1579516461}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
-  _defaultAlpha: 0
+  _defaultMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
+    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
+    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultBaseAlphaClipThreshold: 1
+  _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &1579516468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10960,7 +10993,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
   _leadEffectEmissionColor: {r: 68.961555, g: 440.52325, b: 32.289646, a: 1}
-  _magicSphereColor: {r: 0, g: 1, b: 0, a: 1}
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 3a2f149c756d1a14499ea6a0492bff97, type: 3}
+    baseInEmissionColor: {r: 0.14117648, g: 0.8784314, b: 0.0627451, a: 1}
+    baseOutEmissionColor: {r: 0, g: 2.380148, b: 0.55385345, a: 1}
+    markEmissionColor: {r: 1.3150908, g: 46.46682, b: 1.7878766, a: 1}
 --- !u!82 &1910504422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11822,13 +11859,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118804864}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.055063937, y: 0.7525259, z: 0.04789167, w: 0.6545068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.46, y: -3.53, z: -0.1800003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
-  m_LocalEulerAnglesHint: {x: 0, y: 97.97, z: 8.37}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2118804872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11842,8 +11879,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 2118804866}
-  _defaultColor: {r: 0.47843137, g: 0.44705883, b: 0.43529412, a: 1}
-  _defaultAlpha: 0
+  _defaultMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
+    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
+    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
+    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultBaseAlphaClipThreshold: 1
+  _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &2118804873
 MonoBehaviour:
   m_ObjectHideFlags: 0
