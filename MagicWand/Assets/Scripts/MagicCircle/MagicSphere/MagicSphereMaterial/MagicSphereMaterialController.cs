@@ -9,7 +9,7 @@ public class MagicSphereMaterialController : MonoBehaviour
     Renderer _renderer;
 
     [SerializeField]
-    MagicSphereMaterialProperty _defaultMaterialProperty;
+    DefaultMagicSphereMaterialProperty _defaultMaterialProperty;
 
     [SerializeField] [Range(0, 1)]
     float _defaultBaseAlphaClipThreshold;
@@ -18,8 +18,6 @@ public class MagicSphereMaterialController : MonoBehaviour
     float _defaultMarkAlphaClipThreshold;
 
     Material _sphereMat;
-
-    public MagicSphereMaterialProperty DefaultMaterialProperty { get { return _defaultMaterialProperty; } }
 
     //色関係
     static readonly int _markTextureID = Shader.PropertyToID("_MarkTexture");
@@ -65,8 +63,8 @@ public class MagicSphereMaterialController : MonoBehaviour
 
     void Start()
     {
-        SetColor(_defaultMaterialProperty);
-        SetTexture(_defaultMaterialProperty);
+        SetColor(_defaultMaterialProperty.Property);
+        SetTexture(_defaultMaterialProperty.Property);
         SetBaseAlphaClipThreshold(_defaultBaseAlphaClipThreshold);
         SetMarkAlphaClipThreshold(_defaultMarkAlphaClipThreshold);
     }

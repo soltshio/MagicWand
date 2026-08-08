@@ -10,7 +10,7 @@ public partial class MagicSphereLeadEffectController
     class LeadMagicSphereColorController
     {
         [SerializeField]
-        MagicSphereMaterialProperty _deactiveMaterialProperty;
+        DefaultMagicSphereMaterialProperty _defaultMaterialProperty;
 
         MagicSpheresList _magicSpheresList;
 
@@ -59,8 +59,8 @@ public partial class MagicSphereLeadEffectController
 
                 if (matController == null) continue;
 
-                matController.SetColor(_deactiveMaterialProperty);
-                matController.SetTexture(_deactiveMaterialProperty);
+                matController.SetColor(_defaultMaterialProperty.Property);
+                matController.SetTexture(_defaultMaterialProperty.Property);
                 matController.SetMarkAlphaClipThreshold(1f);
             }
         }

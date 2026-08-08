@@ -2949,11 +2949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 305296928}
-  _defaultMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
-    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
-    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
-    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _defaultBaseAlphaClipThreshold: 1
   _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &305296935
@@ -4469,11 +4465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 549293271}
-  _defaultMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
-    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
-    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
-    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _defaultBaseAlphaClipThreshold: 1
   _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &549293278
@@ -5448,11 +5440,7 @@ MonoBehaviour:
   _activeDuration: 1
   _deactiveDuration: 0.15
   _leadMagicSphereColorController:
-    _deactiveMaterialProperty:
-      markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
-      baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
-      baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
-      markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+    _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _magicSpheresList: {fileID: 741445581}
   _spellCastList: {fileID: 446498117}
 --- !u!95 &774845730 stripped
@@ -5791,11 +5779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 993358637}
-  _defaultMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
-    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
-    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
-    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _defaultBaseAlphaClipThreshold: 1
   _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &993358644
@@ -9764,11 +9748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 1579516461}
-  _defaultMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
-    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
-    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
-    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _defaultBaseAlphaClipThreshold: 1
   _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &1579516468
@@ -11879,11 +11859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController
   _renderer: {fileID: 2118804866}
-  _defaultMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 2a67d4130b600694592f83882dbc4a17, type: 3}
-    baseInEmissionColor: {r: 0.20392157, g: 0.32941177, b: 0.3647059, a: 1}
-    baseOutEmissionColor: {r: 0.37790415, g: 0.48068187, b: 1.6283679, a: 1}
-    markEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+  _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _defaultBaseAlphaClipThreshold: 1
   _defaultMarkAlphaClipThreshold: 1
 --- !u!114 &2118804873
