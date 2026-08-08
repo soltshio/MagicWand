@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5743291841574887311}
   - component: {fileID: 3277208280239589685}
   - component: {fileID: 9158732050661789252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeadEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
