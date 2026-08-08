@@ -11,6 +11,9 @@ using UnityEngine.InputSystem;
 public class MagicCircleTracerCursor : MonoBehaviour
 {
     [SerializeField]
+    Camera _magicCircleCamera;
+
+    [SerializeField]
     float _deactiveDurationOnObjectEnter=0.05f;
 
     bool _isCursorDeactiveOnWandExit = false;
@@ -69,7 +72,7 @@ public class MagicCircleTracerCursor : MonoBehaviour
 
         Vector2 mousePos = Mouse.current.position.ReadValue();
 
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        Ray ray = _magicCircleCamera.ScreenPointToRay(mousePos);
 
         RaycastHit hit;
 
