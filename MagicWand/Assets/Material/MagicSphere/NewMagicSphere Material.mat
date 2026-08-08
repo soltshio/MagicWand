@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NewMagicSphere Material
-  m_Shader: {fileID: -6465566751694194690, guid: 52afe7b699ef1714e8bf41593d252014, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 9e472caf5543b9646835fb6262709b08, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
+        m_Texture: {fileID: 2800000, guid: c21aa54705e0b2343afb5f458f49b3b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -92,7 +92,9 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
+    - _AlphaClipThreshold: 0.446
     - _AlphaToMask: 0
+    - _BaseAlphaClipThreshold: 0.383
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -108,9 +110,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaxScale: 100
+    - _MarkAlphaClipThreshold: 0
+    - _MarkNoiseScale: 150
+    - _MaxScale: 50
     - _Metallic: 0
-    - _MinScale: 50
+    - _MinScale: 30
     - _NoiseSpeed: 0.08
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -129,11 +133,14 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 5.992157, g: 0.10610507, b: 0.09411748, a: 1}
-    - _BaseMaxColor: {r: 2.1185474, g: 1.7467709, b: 0.033275552, a: 1}
-    - _BaseMinColor: {r: 5.2164755, g: 0.08193402, b: 0.15494536, a: 1}
+    - _BaseInColor: {r: 0.027607882, g: 0.02352937, b: 1.4980392, a: 1}
+    - _BaseMaxColor: {r: 0.520833, g: 0.5590194, b: 0.83396226, a: 1}
+    - _BaseMinColor: {r: 2.8767529, g: 4.701152, b: 5.387559, a: 1}
+    - _BaseOutColor: {r: 0.04705873, g: 2.5038407, b: 2.9960783, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MarkEmissionColor: {r: 224.43492, g: 12.240484, b: 2.9642231, a: 1}
+    - _MarkEmissionColor: {r: 0.49675503, g: 21.900677, b: 31.626795, a: 1}
+    - _MarkTextureScaleVector: {r: 5, g: 2.55, b: 0, a: 0}
     - _ScaleVector: {r: 4.35456, g: 2.28096, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
