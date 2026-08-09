@@ -51,9 +51,16 @@ public class LeadEffect : MonoBehaviour
 
             await UniTask.Delay(TimeSpan.FromSeconds(_leadEffectLifeTimeAfterFinishMove), cancellationToken: ct);
         }
+        catch (OperationCanceledException)
+        {
+            // キャンセルされた場合は何もしない
+        }
         finally
         {
-            Destroy(gameObject);
+            if (this != null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
