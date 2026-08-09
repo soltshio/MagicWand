@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 //作成者:杉山
@@ -8,6 +9,9 @@ public class LeadEffect : MonoBehaviour
 {
     [SerializeField]
     ParticleSystem _leadParticle;
+
+    [SerializeField]
+    float _leadEffectLifeTimeAfterFinishMove = 5f;
 
     float _moveDuration;
     Vector3 _start;
@@ -44,10 +48,19 @@ public class LeadEffect : MonoBehaviour
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
             }
+
+            await UniTask.Delay(TimeSpan.FromSeconds(_leadEffectLifeTimeAfterFinishMove), cancellationToken: ct);
         }
-        catch
+        catch (OperationCanceledException)
         {
-            
+            // キャンセルされた場合は何もしない
+        }
+        finally
+        {
+            if (this != null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

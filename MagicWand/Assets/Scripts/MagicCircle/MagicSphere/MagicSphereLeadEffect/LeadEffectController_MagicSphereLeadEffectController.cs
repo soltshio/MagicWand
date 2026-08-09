@@ -15,9 +15,6 @@ public partial class MagicSphereLeadEffectController
         [Tooltip("魔法陣の中心位置")] [SerializeField]
         Transform _magicCircleCenter;
 
-        [SerializeField]
-        float _leadEffectLifeTime = 7f;
-
         MagicSpheresList _magicSpheresList;
         SpellCastList _spellCastList;
 
@@ -67,7 +64,6 @@ public partial class MagicSphereLeadEffectController
 
                 var leadEffectInstance = Instantiate(_leadEffectPrefab);
                 leadEffectInstance.Initialize(activeDuration,start, end,leadEffectEmissionColor);
-                Destroy(leadEffectInstance, _leadEffectLifeTime);
             }
         }
     }
