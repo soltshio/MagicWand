@@ -3134,7 +3134,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -3493,7 +3493,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -5733,6 +5733,7 @@ MonoBehaviour:
   _leadEffectController:
     _leadEffectPrefab: {fileID: 9158732050661789252, guid: 89ee62085d709b140bfcf51121d1d66c, type: 3}
     _magicCircleCenter: {fileID: 1118699960}
+    _leadEffectLifeTime: 7
   _activeDuration: 1
   _deactiveDuration: 0.15
   _magicSpheresList: {fileID: 741445581}
@@ -8291,7 +8292,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
