@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 5070272228090828378}
   - component: {fileID: 2213653358301958676}
   - component: {fileID: 5032145277208547877}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: TestCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4952,7 +4952,7 @@ GameObject:
   - component: {fileID: 7819484051988417599}
   - component: {fileID: 5143822250085091466}
   - component: {fileID: 2000723838479233800}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5090,10 +5090,9 @@ GameObject:
   - component: {fileID: 1559228452859887018}
   - component: {fileID: 6906403626323678592}
   - component: {fileID: 2928197468284447942}
-  - component: {fileID: 6179642511540510002}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: AlwaysFrontCanvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5187,20 +5186,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6179642511540510002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4459442736063957584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d9cf134e225ad408096b38dd5c2529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PersistentCursorCanvas
-  _canvas: {fileID: 1559228452859887018}
-  _uiCameraPrefab: {fileID: 6199533108961418876, guid: ac5b3f75a3a1e464cab8be6aa0aa3d39, type: 3}
 --- !u!1 &5147593486085190412
 GameObject:
   m_ObjectHideFlags: 0
@@ -5213,7 +5198,7 @@ GameObject:
   - component: {fileID: 7760163873628654852}
   - component: {fileID: 3555678142593795823}
   - component: {fileID: 4965556374005623614}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: BlockRaycastPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5303,7 +5288,7 @@ GameObject:
   - component: {fileID: 5786723674126875837}
   - component: {fileID: 8764985639801314932}
   - component: {fileID: 5622863160128290745}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: ScreenSizeText (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5781,7 +5766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5909004171834993671, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9007362224342117221, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5896,7 +5881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7379994953117577939, guid: 89ee62085d709b140bfcf51121d1d66c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7379994953117577939, guid: 89ee62085d709b140bfcf51121d1d66c, type: 3}
       propertyPath: m_IsActive
