@@ -16,7 +16,7 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
     OSCRunningChecker _oscRunnincChecker;
 
     [SerializeField]
-    Vector2 _isNotExistObjectThreashold;
+    Vector2 _isNotExistObjectThreashold;//TODO:0,0が原点じゃなくなったので別の方法を取ることにする
 
     private Vector2 _blobPosition = new();
     const string _posAddressName="/position";
