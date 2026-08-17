@@ -1,38 +1,38 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ì¬Ò:™R
-//”Šw“I‚Èˆ—‚ğ”Ä—p‚Ég‚¦‚é‚æ‚¤‚É‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+//ä½œæˆè€…:æ‰å±±
+//æ•°å­¦çš„ãªå‡¦ç†ã‚’æ±ç”¨ã«ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
 
 public class MathfExtension
 {
     /// <summary>
-    /// ’l‚ğ”ÍˆÍ“à‚ÅzŠÂ‚³‚¹‚é
-    /// ”ÍˆÍÅ¬(rangeMin)ˆÈãA”ÍˆÍÅ‘å(rangeMax)ˆÈ‰º‚ğ”ÍˆÍ‚Æ‚·‚é
+    /// å€¤ã‚’ç¯„å›²å†…ã§å¾ªç’°ã•ã›ã‚‹
+    /// ç¯„å›²æœ€å°(rangeMin)ä»¥ä¸Šã€ç¯„å›²æœ€å¤§(rangeMax)ä»¥ä¸‹ã‚’ç¯„å›²ã¨ã™ã‚‹
     /// </summary>
-    public static int CircularWrapping(int num,int rangeMax)//”ÍˆÍÅ¬‚ª0
+    public static int CircularWrapping(int num,int rangeMax)//ç¯„å›²æœ€å°ãŒ0
     {
         return CircularWrapping(num, 0, rangeMax);
     }
 
-    public static int CircularWrapping(int num,int rangeMin,int rangeMax)//”ÍˆÍÅ¬‚àw’è‰Â”\
+    public static int CircularWrapping(int num,int rangeMin,int rangeMax)//ç¯„å›²æœ€å°ã‚‚æŒ‡å®šå¯èƒ½
     {
-        //rangeMax‚Ì•û‚ª¬‚³‚©‚Á‚½‚çŒx‚ğo‚·
+        //rangeMaxã®æ–¹ãŒå°ã•ã‹ã£ãŸã‚‰è­¦å‘Šã‚’å‡ºã™
         if(rangeMin > rangeMax)
         {
-            Debug.Log("rangeMin‚Ì•û‚ª‘å‚«‚­‚È‚Á‚Ä‚¢‚Ü‚·I");
-            (rangeMin, rangeMax) = (rangeMax, rangeMin);//’l‚Ì“ü‚ê‘Ö‚¦
+            Debug.Log("rangeMinã®æ–¹ãŒå¤§ãããªã£ã¦ã„ã¾ã™ï¼");
+            (rangeMin, rangeMax) = (rangeMax, rangeMin);//å€¤ã®å…¥ã‚Œæ›¿ãˆ
         }
 
         int range = rangeMax - rangeMin + 1;
 
-        num -= rangeMin;//”ÍˆÍÅ¬‚ğ0‚É‚µ‚½‚É‡‚í‚¹‚é
+        num -= rangeMin;//ç¯„å›²æœ€å°ã‚’0ã«ã—ãŸæ™‚ã«åˆã‚ã›ã‚‹
 
         num %= range;
         num = (num + range) % range;
 
-        num += rangeMin;//Œ³‚É–ß‚·
+        num += rangeMin;//å…ƒã«æˆ»ã™
 
         return num;
     }
@@ -40,15 +40,15 @@ public class MathfExtension
 
 
     /// <summary>
-    /// ’l‚ğ‘‰ÁEŒ¸­‚³‚¹A•Ï‰»Œã‚Ì’l‚ğ”ÍˆÍ“à‚ÅzŠÂ‚³‚¹‚é
-    /// /// ”ÍˆÍÅ¬(rangeMin)ˆÈãA”ÍˆÍÅ‘å(rangeMax)ˆÈ‰º‚ğ”ÍˆÍ‚Æ‚·‚é
+    /// å€¤ã‚’å¢—åŠ ãƒ»æ¸›å°‘ã•ã›ã€å¤‰åŒ–å¾Œã®å€¤ã‚’ç¯„å›²å†…ã§å¾ªç’°ã•ã›ã‚‹
+    /// /// ç¯„å›²æœ€å°(rangeMin)ä»¥ä¸Šã€ç¯„å›²æœ€å¤§(rangeMax)ä»¥ä¸‹ã‚’ç¯„å›²ã¨ã™ã‚‹
     /// </summary>
-    public static int CircularWrapping_Delta(int num,int delta,int rangeMax)//”ÍˆÍÅ¬‚ª0
+    public static int CircularWrapping_Delta(int num,int delta,int rangeMax)//ç¯„å›²æœ€å°ãŒ0
     {
         return CircularWrapping_Delta(num,delta,0,rangeMax);
     }
 
-    public static int CircularWrapping_Delta(int num,int delta,int rangeMin,int rangeMax)//”ÍˆÍÅ¬‚àw’è‰Â”\
+    public static int CircularWrapping_Delta(int num,int delta,int rangeMin,int rangeMax)//ç¯„å›²æœ€å°ã‚‚æŒ‡å®šå¯èƒ½
     {
         int range = rangeMax - rangeMin + 1;
 
@@ -59,7 +59,7 @@ public class MathfExtension
     }
 
     /// <summary>
-    /// •Ô‚è’l‚ªalpha‚Ì”{”‚É‚È‚é‚æ‚¤‚É’[”‚ğØ‚èÌ‚Ä
+    /// è¿”ã‚Šå€¤ãŒalphaã®å€æ•°ã«ãªã‚‹ã‚ˆã†ã«ç«¯æ•°ã‚’åˆ‡ã‚Šæ¨ã¦
     /// </summary>
     public static float FloorByAlpha(float value, float alpha)
     {
@@ -67,7 +67,7 @@ public class MathfExtension
     }
 
     /// <summary>
-    /// •Ô‚è’l‚ªalpha‚Ì”{”‚É‚È‚é‚æ‚¤‚É’[”‚ğØ‚èã‚°
+    /// è¿”ã‚Šå€¤ãŒalphaã®å€æ•°ã«ãªã‚‹ã‚ˆã†ã«ç«¯æ•°ã‚’åˆ‡ã‚Šä¸Šã’
     /// </summary>
     public static float CeilByAlpha(float value, float alpha)
     {
@@ -75,7 +75,7 @@ public class MathfExtension
     }
 
     /// <summary>
-    /// •Ô‚è’l‚ªalpha‚Ì”{”‚É‚È‚é‚æ‚¤‚É’[”‚ğlÌŒÜ“üi‚Ì‚æ‚¤‚É‚·‚éj
+    /// è¿”ã‚Šå€¤ãŒalphaã®å€æ•°ã«ãªã‚‹ã‚ˆã†ã«ç«¯æ•°ã‚’å››æ¨äº”å…¥ï¼ˆã®ã‚ˆã†ã«ã™ã‚‹ï¼‰
     /// </summary>
     public static float RoundByAlpha(float value, float alpha)
     {
@@ -84,7 +84,7 @@ public class MathfExtension
 
 
     /// <summary>
-    /// max‚æ‚è‚àmin‚Ì•û‚ª‘å‚«‚¯‚ê‚ÎA©“®“I‚É“ü‚ê‘Ö‚¦‚é(intŒ^)
+    /// maxã‚ˆã‚Šã‚‚minã®æ–¹ãŒå¤§ãã‘ã‚Œã°ã€è‡ªå‹•çš„ã«å…¥ã‚Œæ›¿ãˆã‚‹(intå‹)
     /// </summary>
     public static void NormalizeRange(ref int min,ref int max)
     {
@@ -95,7 +95,7 @@ public class MathfExtension
     }
 
     /// <summary>
-    /// max‚æ‚è‚àmin‚Ì•û‚ª‘å‚«‚¯‚ê‚ÎA©“®“I‚É“ü‚ê‘Ö‚¦‚é(floatŒ^)
+    /// maxã‚ˆã‚Šã‚‚minã®æ–¹ãŒå¤§ãã‘ã‚Œã°ã€è‡ªå‹•çš„ã«å…¥ã‚Œæ›¿ãˆã‚‹(floatå‹)
     /// </summary>
     public static void NormalizeRange(ref float min, ref float max)
     {
@@ -107,7 +107,7 @@ public class MathfExtension
 
 
     /// <summary>
-    /// ’l(intŒ^)‚ª”ÍˆÍ“à‚©(minˆÈãAmaxˆÈ‰º)‚ğ•Ô‚·
+    /// å€¤(intå‹)ãŒç¯„å›²å†…ã‹(minä»¥ä¸Šã€maxä»¥ä¸‹)ã‚’è¿”ã™
     /// </summary>
     public static bool IsInRange(int value,int min,int max)
     {
@@ -116,11 +116,25 @@ public class MathfExtension
     }
 
     /// <summary>
-    /// ’l(floatŒ^)‚ª”ÍˆÍ“à‚©(minˆÈãAmaxˆÈ‰º)‚ğ•Ô‚·
+    /// å€¤(floatå‹)ãŒç¯„å›²å†…ã‹(minä»¥ä¸Šã€maxä»¥ä¸‹)ã‚’è¿”ã™
     /// </summary>
     public static bool IsInRange(float value, float min, float max)
     {
         NormalizeRange(ref min, ref max);
         return value >= min && value <= max;
+    }
+
+    /// <summary>
+    /// å€¤ã‚’åˆ¥ã®ç¯„å›²ã«ç·šå½¢è£œé–“ã—ã¦å¤‰æ›ã™ã‚‹
+    /// </summary>
+    /// <param name="value">å¤‰æ›ã™ã‚‹å€¤</param>
+    /// <param name="inMin">å…¥åŠ›ç¯„å›²ã®æœ€å°å€¤</param>
+    /// <param name="inMax">å…¥åŠ›ç¯„å›²ã®æœ€å¤§å€¤</param>
+    /// <param name="outMin">å‡ºåŠ›ç¯„å›²ã®æœ€å°å€¤</param>
+    /// <param name="outMax">å‡ºåŠ›ç¯„å›²ã®æœ€å¤§å€¤</param>
+    /// <returns>å¤‰æ›å¾Œã®å€¤</returns>
+    public static float Remap(float value, float inMin, float inMax, float outMin, float outMax)
+    {
+        return Mathf.Lerp(outMin, outMax, Mathf.InverseLerp(inMin, inMax, value));
     }
 }
