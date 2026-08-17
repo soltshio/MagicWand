@@ -16,12 +16,14 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
     OSCRunningChecker _oscRunnincChecker;
 
     [SerializeField]
-    Vector2 _isNotExistObjectThreashold;//TODO:0,0が原点じゃなくなったので別の方法を取ることにする
+    OSCAddressNameList _oscAddressNameList;
 
     private Vector2 _blobPosition = new();
-    const string _posAddressName="/position";
 
     bool _isExistObject = false;//北陽レーザー検知範囲内にオブジェクトがあるか
+    float _sizeScale;//画面の大きさに対する北陽レーザー検知範囲の拡大率
+    Vector2 _center;//北陽レーザーの中心の設定
+    Vector2 _size;//北陽レーザーのサイズの設定
 
     public event Action<Vector2> OnCatchPos;//OSC通信で位置を受け取ったことを通知(その時のBlobPositionが送られてくる)
     public event Action<bool> OnSwitchIsExistObject;
@@ -55,16 +57,21 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
         {
             _blobPosition = value;
 
-            //検知範囲内にオブジェクトがないかの判定の更新
-            UpdateIsExistObject(_blobPosition);
-
             OnCatchPos?.Invoke(_blobPosition);
         }
     }
 
+    public float SizeScale { get { return _sizeScale; } }
+    public Vector2 Center { get { return _center; } }
+    public Vector2 Size { get { return _size; } }
+
     void Start()
     {
-        _oscReceiver.Bind(_posAddressName, ReceivePos);
+        _oscReceiver.Bind(_oscAddressNameList.PositionAddressName, ReceivePos);
+        _oscReceiver.Bind(_oscAddressNameList.IsExistObjectAddressName, ReceiveIsExistObject);
+        _oscReceiver.Bind(_oscAddressNameList.SizeScaleAddressName, ReceiveSizeScale);
+        _oscReceiver.Bind(_oscAddressNameList.CenterAddressName, ReceiveCenter);
+        _oscReceiver.Bind(_oscAddressNameList.SizeAddressName, ReceiveSize);
     }
 
     void ReceivePos(OSCMessage message)
@@ -78,31 +85,27 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
         BlobPosition = blobPos;
     }
 
-    void UpdateIsExistObject(Vector2 blobPosition)
+    void ReceiveIsExistObject(OSCMessage message)
     {
-        //blobPoositionがだいたいゼロベクトル(x,y両成分が0に近い)であれば、オブジェクトが検知範囲内に無いことにする
-        //値をfloatで管理しているので、閾値内であればゼロベクトルという判定にする
-
-        //xの比較
-        if (!IsBlobPosOneComponent_InRange(blobPosition.x, _isNotExistObjectThreashold.x))
-        {
-            IsExistObject = true;
-            return;
-        }
-
-        //yの比較
-        if (!IsBlobPosOneComponent_InRange(blobPosition.y,_isNotExistObjectThreashold.y))
-        {
-            IsExistObject = true;
-            return;
-        }
-
-        IsExistObject = false;
+        if (!message.ToBool(out bool value)) return;
+        
+        IsExistObject = value;
     }
 
-    //ベクトルの1成分が範囲内に入っているか
-    bool IsBlobPosOneComponent_InRange(float t,float threashold)
+    void ReceiveSizeScale(OSCMessage message)
     {
-        return MathfExtension.IsInRange(t, -threashold, threashold);
+        _sizeScale = message.Values[0].FloatValue;
+    }
+
+    void ReceiveCenter(OSCMessage message)
+    {
+        _center.x = message.Values[0].FloatValue;
+        _center.y = message.Values[0].FloatValue;
+    }
+
+    void ReceiveSize(OSCMessage message)
+    {
+        _size.x = message.Values[0].FloatValue;
+        _size.y = message.Values[1].FloatValue;
     }
 }

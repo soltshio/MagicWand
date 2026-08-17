@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OSCAddressNameList
   m_EditorClassIdentifier: Assembly-CSharp::OSCAddressNameList
   _positionAddressName: /position
-  _isExistBlobsAddressName: /isExistBlobs
+  _isExistObjectAddressName: /isExistBlobs
   _sizeScaleAddressName: /sizeScale
   _centerAddressName: /center
   _sizeAddressName: /size

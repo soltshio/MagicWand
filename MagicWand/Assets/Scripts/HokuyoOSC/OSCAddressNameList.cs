@@ -11,7 +11,7 @@ public class OSCAddressNameList : ScriptableObject
     string _positionAddressName;
 
     [SerializeField]
-    string _isExistBlobsAddressName;
+    string _isExistObjectAddressName;
 
     [SerializeField]
     string _sizeScaleAddressName;
@@ -23,7 +23,7 @@ public class OSCAddressNameList : ScriptableObject
     string _sizeAddressName;
 
     public string PositionAddressName { get { return _positionAddressName; } }
-    public string IsExistBlobsAddressName { get { return _isExistBlobsAddressName; } }
+    public string IsExistObjectAddressName { get { return _isExistObjectAddressName; } }
     public string SizeScaleAddressName { get { return _sizeScaleAddressName; } }
     public string CenterAddressName { get { return _centerAddressName; } }
     public string SizeAddressName { get { return _sizeAddressName; } }
