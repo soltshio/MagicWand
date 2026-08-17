@@ -68,7 +68,7 @@ MonoBehaviour:
   _oscReceiver: {fileID: 5386432015967416139}
   _oscRunnincChecker:
     _timeOutSec: 3
-  _isNotExistObjectThreashold: {x: 0.001, y: 0.001}
+  _oscAddressNameList: {fileID: 11400000, guid: 58911baf78b3d834d9f233750bf9c970, type: 2}
 --- !u!114 &405899259057306558
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -64,12 +64,15 @@ public class CursorControllerByHokuyo : MonoBehaviour
         if (!_isActive) return;
         if (!_hokuyoBlobPosReceiver.IsExistObject) return;
 
-        blobPos = _movingAverage.AddValue(blobPos);
+        //ビューポート座標に変換する
+        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromHokuyoPosToViewPortPos(blobPos,_hokuyoBlobPosReceiver.SizeScale);
+
+        blobViewPos = _movingAverage.AddValue(blobViewPos);
 
         var mainCamera = Camera.main;
-        Vector2 cursorWarpPos = mainCamera.ViewportToScreenPoint(blobPos);
+        Vector2 cursorScreenPos = mainCamera.ViewportToScreenPoint(blobViewPos);
 
-        Mouse.current.WarpCursorPosition(cursorWarpPos);
+        Mouse.current.WarpCursorPosition(cursorScreenPos);
     }
 
     void ClearMovingAverage(bool isExistObject)
