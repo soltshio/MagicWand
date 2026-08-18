@@ -1,13 +1,14 @@
-﻿using extOSC;
+﻿using Cysharp.Threading.Tasks;
+using extOSC;
 using System;
+using System.Threading;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 
 //作成者:杉山
 //OSC通信で送られてきた北陽レーザーが察知した物体(塊)の座標を受け取る
 //物体が何も存在しない場合はBlobPositionにはx:0,y:0のベクトルが入っている
 
-public class HokuyoBlobPosReceiver : MonoBehaviour
+public class HokuyoDataReceiver : MonoBehaviour
 {
     [SerializeField]
     OSCReceiver _oscReceiver;
@@ -19,7 +20,6 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
     OSCAddressNameList _oscAddressNameList;
 
     private Vector2 _blobPosition = new();
-
     bool _isExistObject = false;//北陽レーザー検知範囲内にオブジェクトがあるか
     float _sizeScale;//画面の大きさに対する北陽レーザー検知範囲の拡大率
     Vector2 _center;//北陽レーザーの中心の設定
@@ -27,6 +27,22 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
 
     public event Action<Vector2> OnCatchPos;//OSC通信で位置を受け取ったことを通知(その時のBlobPositionが送られてくる)
     public event Action<bool> OnSwitchIsExistObject;
+
+    //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
+    public static async UniTask<HokuyoDataReceiver> GetInstanceAsync(CancellationToken ct)
+    {
+        if(Instance != null) return Instance;
+
+        await UniTask.WaitUntil(() => Instance != null,cancellationToken: ct);
+
+        return Instance;
+    }
+
+    public static HokuyoDataReceiver Instance
+    {
+        get;
+        private set;
+    }
 
     public bool IsRunning { get { return _oscRunnincChecker.IsRunning; } }
 
@@ -64,6 +80,20 @@ public class HokuyoBlobPosReceiver : MonoBehaviour
     public float SizeScale { get { return _sizeScale; } }
     public Vector2 Center { get { return _center; } }
     public Vector2 Size { get { return _size; } }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    //データの受け取り関連
 
     void Start()
     {

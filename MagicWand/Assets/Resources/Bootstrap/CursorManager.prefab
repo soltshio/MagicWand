@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6908308086199538043}
   - component: {fileID: 6591191952852035364}
+  - component: {fileID: 3071101165161340009}
   m_Layer: 0
-  m_Name: CursorVisibleManager
+  m_Name: CursorManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,3 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 056305f6ab3925148bc859814e68aff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInVisibler
+--- !u!114 &3071101165161340009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5659390370706328862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0192548840b1b3f459bc12930fc340dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorController
+  _escapeAction: {fileID: -2514656397130829150, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _movingAverageSize: 7
+  _shouldReturnCursorToCenterWhenIsNotExist: 0

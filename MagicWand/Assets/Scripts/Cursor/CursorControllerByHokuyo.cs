@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,8 +8,7 @@ using UnityEngine.InputSystem;
 
 public class CursorControllerByHokuyo : MonoBehaviour
 {
-    [SerializeField]
-    HokuyoBlobPosReceiver _hokuyoBlobPosReceiver;
+    HokuyoDataReceiver _hokuyoBlobPosReceiver;
 
     [SerializeField]
     InputActionReference _escapeAction;
@@ -30,8 +30,10 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _movingAverage = new(_movingAverageSize);
     }
 
-    private void OnEnable()
+    async void OnEnable()
     {
+        _hokuyoBlobPosReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+
         _escapeAction.action.performed += OnCancelHokuyoControlMode;
         _escapeAction.action.Enable();
 
