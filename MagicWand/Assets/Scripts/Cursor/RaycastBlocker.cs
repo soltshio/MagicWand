@@ -15,7 +15,7 @@ public class RaycastBlocker : MonoBehaviour
     [SerializeField]
     Image _blockRaycastPanel;
 
-    HokuyoBlobPosReceiver _hokuyoBlobPosReceiver;
+    HokuyoDataReceiver _hokuyoDataReceiver;
 
     SingleTaskCancellation _singleTaskCancellation = new ();
 
@@ -23,24 +23,14 @@ public class RaycastBlocker : MonoBehaviour
     {
         _blockRaycastPanel.enabled = false;
 
-        //取得のために1フレーム遅らせる
-        var ct = this.GetCancellationTokenOnDestroy();
-        await UniTask.Yield(cancellationToken: ct);
+        _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
-        SetHokuyoBlobPosReceiver();
-
-        if (_hokuyoBlobPosReceiver == null) return;
-
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject += StartCountDownToBlockRaycast;
+        _hokuyoDataReceiver.OnSwitchIsExistObject += StartCountDownToBlockRaycast;
     }
 
     private void OnDisable()
     {
-        SetHokuyoBlobPosReceiver();
-
-        if (_hokuyoBlobPosReceiver == null) return;
-
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= StartCountDownToBlockRaycast;
+        _hokuyoDataReceiver.OnSwitchIsExistObject -= StartCountDownToBlockRaycast;
     }
 
     void StartCountDownToBlockRaycast(bool isExistObject)
@@ -62,20 +52,5 @@ public class RaycastBlocker : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(_timeOutToBlockRaycast), cancellationToken: ct);
 
         _blockRaycastPanel.enabled = true;
-    }
-
-    void SetHokuyoBlobPosReceiver()
-    {
-        if (_hokuyoBlobPosReceiver != null) return;
-
-        //まだ取得出来ていなかったら、取得処理を行う
-
-        var receiverObj = GameObject.FindWithTag(TagNameList.OSCReceiver);
-
-        if (receiverObj == null) return;
-
-        var hokuyoBlobPosReceiver = receiverObj.GetComponent<HokuyoBlobPosReceiver>();
-
-        _hokuyoBlobPosReceiver = hokuyoBlobPosReceiver;
     }
 }

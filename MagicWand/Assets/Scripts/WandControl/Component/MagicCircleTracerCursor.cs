@@ -18,31 +18,20 @@ public class MagicCircleTracerCursor : MonoBehaviour
 
     bool _isCursorDeactiveOnWandExit = false;
 
-    HokuyoBlobPosReceiver _hokuyoBlobPosReceiver;
+    HokuyoDataReceiver _hokuyoDataReceiver;
     SingleTaskCancellation _singleTaskCancellation = new();
-    
 
-    void Awake()
+    async void OnEnable()
     {
-        var oscReceiver = GameObject.FindWithTag(TagNameList.OSCReceiver);
-        _hokuyoBlobPosReceiver = oscReceiver.GetComponent<HokuyoBlobPosReceiver>();
+        _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
-        if(_hokuyoBlobPosReceiver==null)
-        {
-            Debug.Log("北陽レーザーの位置情報レシーバーの取得に失敗");
-        }
-    }
-
-    void OnEnable()
-    {
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject += NotifyOnObjectEnter;
+        _hokuyoDataReceiver.OnSwitchIsExistObject += NotifyOnObjectEnter;
     }
 
     void OnDisable()
     {
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= NotifyOnObjectEnter;
+        _hokuyoDataReceiver.OnSwitchIsExistObject -= NotifyOnObjectEnter;
     }
-
 
     void NotifyOnObjectEnter(bool isExistObject)
     {
@@ -63,12 +52,12 @@ public class MagicCircleTracerCursor : MonoBehaviour
 
     void Update()
     {
-        if (_hokuyoBlobPosReceiver == null) return;
+        if (_hokuyoDataReceiver == null) return;
 
         if (_isCursorDeactiveOnWandExit) return;
 
         //OSC通信が動いているかつ、北陽レーザーの検知範囲内にオブジェクトが無い
-        if ( _hokuyoBlobPosReceiver.IsRunning && !_hokuyoBlobPosReceiver.IsExistObject) return;
+        if (_hokuyoDataReceiver.IsRunning && !_hokuyoDataReceiver.IsExistObject) return;
 
         Vector2 mousePos = Mouse.current.position.ReadValue();
 
