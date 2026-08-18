@@ -29,6 +29,9 @@ public class CursorAdjustSceneManager : MonoBehaviour
     [SerializeField]
     AimLeftDown_CursorAdjust _aimLeftDown_CursorAdjust;
 
+    [SerializeField]
+    AdjustHokuyoCenter_CursorAdjust _adjustHokuyoCenter_CursorAdjust;
+
     async void Start()
     {
         try
@@ -45,6 +48,7 @@ public class CursorAdjustSceneManager : MonoBehaviour
             Vector2 centerBlobPos = await _aimCenter_CursorAdjust.GetCurrentCenterPosAsync(ct);
 
             //画面の中心補正処理を行う
+            _adjustHokuyoCenter_CursorAdjust.AdjustHokuyoCenter(centerBlobPos);
 
             //右上に合わせる
             Vector2 rightUpBlobPos = await _aimRightUp_CursorAdjust.GetCurrentRightUpPosAsync(ct);
@@ -70,11 +74,13 @@ public class CursorAdjustSceneManager : MonoBehaviour
     async UniTask InitializeAsync(CancellationToken ct)
     {
         var hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(ct);
+        var hokuyoDataTransmitter = await HokuyoDataTransmitter.GetInstanceAsync(ct);
 
         _aimCenter_CursorAdjust.Initialize(hokuyoDataReceiver);
         _aimRightUp_CursorAdjust.Initialize(hokuyoDataReceiver);
         _aimRightDown_CursorAdjust.Initialize(hokuyoDataReceiver);
         _aimLeftDown_CursorAdjust.Initialize(hokuyoDataReceiver);
+        _adjustHokuyoCenter_CursorAdjust.Initialize(hokuyoDataTransmitter, hokuyoDataReceiver);
     }
 
     public void GetInputKey(InputAction.CallbackContext context)
