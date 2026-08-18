@@ -65,6 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   _oscReceiver: {fileID: 5386432015967416139}
-  _oscRunnincChecker:
-    _timeOutSec: 3
+  _oscRunningChecker:
+    _timeOutSec: 2
   _oscAddressNameList: {fileID: 11400000, guid: 58911baf78b3d834d9f233750bf9c970, type: 2}

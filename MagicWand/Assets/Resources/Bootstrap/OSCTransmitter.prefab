@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2282002441540326177}
   - component: {fileID: 5035629275416424752}
   - component: {fileID: 6085498570447741179}
+  - component: {fileID: 3598723326046285646}
   m_Layer: 0
   m_Name: OSCTransmitter
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6470131221370072548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db9c8893fa6498c4580cf6788a6f1fbd, type: 3}
   m_Name: 
@@ -72,3 +73,17 @@ MonoBehaviour:
   transmitter: {fileID: 5035629275416424752}
   value: 35
   value2: 47
+--- !u!114 &3598723326046285646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470131221370072548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1275bcb626427874ba0ae24aceee2253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HokuyoDataTransmitter
+  transmitter: {fileID: 5035629275416424752}
+  _oscAddressNameList: {fileID: 11400000, guid: 58911baf78b3d834d9f233750bf9c970, type: 2}
