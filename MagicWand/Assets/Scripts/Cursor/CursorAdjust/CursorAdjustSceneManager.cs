@@ -1,13 +1,21 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
+using UnityEngine;
 
 //作成者:杉山
 //カーソルの位置を調整するシーンの制御
 
 public class CursorAdjustSceneManager : MonoBehaviour
 {
-    void Start()
+    [SerializeField]
+    Start_CursorAdjust _start_CursorAdjust;
+
+    async void Start()
     {
+        var ct = this.GetCancellationTokenOnDestroy();
+
         //補正開始
+        await _start_CursorAdjust.InformStartAsync(ct);
 
         //中心に合わせる
 

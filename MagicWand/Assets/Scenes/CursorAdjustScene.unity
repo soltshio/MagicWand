@@ -251,7 +251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u88DC\u6B63\u3092"
+  m_text: "\u88DC\u6B63\u3092\u59CB\u3081\u308B\u3088"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
   m_sharedMaterial: {fileID: 5995689022082753112, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u88DC\u6B63\u7D42\u308F\u308A\uFF01\u30BF\u30A4\u30C8\u30EB\u30B7\u30FC\u30F3\u306B\u623B\u308B\u3088\uFF01"
+  m_text: "\u88DC\u6B63\u7D42\u308F\u308A\u3000\u30BF\u30A4\u30C8\u30EB\u30B7\u30FC\u30F3\u306B\u623B\u308B\u3088"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
   m_sharedMaterial: {fileID: 5995689022082753112, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
@@ -1722,6 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579351466}
+  - component: {fileID: 1579351467}
   m_Layer: 0
   m_Name: CursorAdjustManager
   m_TagString: Untagged
@@ -1744,6 +1745,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1929045435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579351467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579351465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce7da83e06b263499ad5c3fa3eaa31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorAdjustSceneManager
+  _start_CursorAdjust:
+    _startText: {fileID: 230387015}
+    _showDuration: 2
 --- !u!1 &1929045434
 GameObject:
   m_ObjectHideFlags: 0
