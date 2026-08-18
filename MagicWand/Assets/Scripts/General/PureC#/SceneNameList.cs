@@ -11,4 +11,6 @@ public static class SceneNameList
    public const string GameScene = "MouseControlScene";
    //クリアシーン
    public const string ClearScene = "ClearScene";
+    //カーソル調整シーン
+   public const string CursorAdjustScene = "CursorAdjustScene";
 }
