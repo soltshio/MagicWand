@@ -31,33 +31,40 @@ public class CursorAdjustSceneManager : MonoBehaviour
 
     async void Start()
     {
-        var ct = this.GetCancellationTokenOnDestroy();
+        try
+        {
+            var ct = this.GetCancellationTokenOnDestroy();
 
-        //初期化処理
-        await InitializeAsync(ct);
+            //初期化処理
+            await InitializeAsync(ct);
 
-        //補正開始
-        await _start_CursorAdjust.InformStartAsync(ct);
+            //補正開始
+            await _start_CursorAdjust.InformStartAsync(ct);
 
-        //中心に合わせる
-        Vector2 centerBlobPos = await _aimCenter_CursorAdjust.GetCurrentCenterPosAsync(ct);
+            //中心に合わせる
+            Vector2 centerBlobPos = await _aimCenter_CursorAdjust.GetCurrentCenterPosAsync(ct);
 
-        //画面の中心補正処理を行う
+            //画面の中心補正処理を行う
 
-        //右上に合わせる
-        Vector2 rightUpBlobPos = await _aimRightUp_CursorAdjust.GetCurrentRightUpPosAsync(ct);
-        //右下に合わせる
-        Vector2 rightDownBlobPos = await _aimRightDown_CursorAdjust.GetCurrentRightDownPosAsync(ct);
-        //左下に合わせる
-        Vector2 leftDownBlobPos = await _aimLeftDown_CursorAdjust.GetCurrentLeftDownPosAsync(ct);
+            //右上に合わせる
+            Vector2 rightUpBlobPos = await _aimRightUp_CursorAdjust.GetCurrentRightUpPosAsync(ct);
+            //右下に合わせる
+            Vector2 rightDownBlobPos = await _aimRightDown_CursorAdjust.GetCurrentRightDownPosAsync(ct);
+            //左下に合わせる
+            Vector2 leftDownBlobPos = await _aimLeftDown_CursorAdjust.GetCurrentLeftDownPosAsync(ct);
 
-        //画面の大きさ補正処理を行う
+            //画面の大きさ補正処理を行う
 
-        //補正終了
-        await _finish_CursorAdjust.InformFinishAsync(ct);
+            //補正終了
+            await _finish_CursorAdjust.InformFinishAsync(ct);
 
-        //タイトルシーンに遷移
-        LoadTitleScene();
+            //タイトルシーンに遷移
+            LoadTitleScene();
+        }
+        catch 
+        {
+            Debug.Log("補正処理が中断されました");
+        }
     }
 
     async UniTask InitializeAsync(CancellationToken ct)

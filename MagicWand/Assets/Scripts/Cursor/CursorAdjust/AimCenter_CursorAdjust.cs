@@ -29,7 +29,7 @@ public class AimCenter_CursorAdjust
 
         await UniTask.WaitUntil(() => _isConfirmed, cancellationToken: ct);
 
-        _guideAimCenterText.gameObject.SetActive(true);
+        _guideAimCenterText.gameObject.SetActive(false);
 
         Vector2 blobPos = _hokuyoDataReceiver.BlobPosition;
         return blobPos;
