@@ -1,6 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Threading;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 //作成者:杉山
@@ -14,20 +17,39 @@ public class CursorAdjustSceneManager : MonoBehaviour
     [SerializeField]
     Finish_CursorAdjust _finish_CursorAdjust;
 
+    [SerializeField]
+    AimCenter_CursorAdjust _aimCenter_CursorAdjust;
+
+    [SerializeField]
+    AimRightUp_CursorAdjust _aimRightUp_CursorAdjust;
+
+    [SerializeField]
+    AimRightDown_CursorAdjust _aimRightDown_CursorAdjust;
+
+    [SerializeField]
+    AimLeftDown_CursorAdjust _aimLeftDown_CursorAdjust;
+
     async void Start()
     {
         var ct = this.GetCancellationTokenOnDestroy();
+
+        //初期化処理
+        await InitializeAsync(ct);
 
         //補正開始
         await _start_CursorAdjust.InformStartAsync(ct);
 
         //中心に合わせる
+        Vector2 centerBlobPos = await _aimCenter_CursorAdjust.GetCurrentCenterPosAsync(ct);
 
         //画面の中心補正処理を行う
 
         //右上に合わせる
+        Vector2 rightUpBlobPos = await _aimRightUp_CursorAdjust.GetCurrentRightUpPosAsync(ct);
         //右下に合わせる
+        Vector2 rightDownBlobPos = await _aimRightDown_CursorAdjust.GetCurrentRightDownPosAsync(ct);
         //左下に合わせる
+        Vector2 leftDownBlobPos = await _aimLeftDown_CursorAdjust.GetCurrentLeftDownPosAsync(ct);
 
         //画面の大きさ補正処理を行う
 
@@ -36,6 +58,24 @@ public class CursorAdjustSceneManager : MonoBehaviour
 
         //タイトルシーンに遷移
         LoadTitleScene();
+    }
+
+    async UniTask InitializeAsync(CancellationToken ct)
+    {
+        var hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(ct);
+
+        _aimCenter_CursorAdjust.Initialize(hokuyoDataReceiver);
+        _aimRightUp_CursorAdjust.Initialize(hokuyoDataReceiver);
+        _aimRightDown_CursorAdjust.Initialize(hokuyoDataReceiver);
+        _aimLeftDown_CursorAdjust.Initialize(hokuyoDataReceiver);
+    }
+
+    public void GetInputKey(InputAction.CallbackContext context)
+    {
+        _aimCenter_CursorAdjust.GetInputKey(context);
+        _aimRightUp_CursorAdjust.GetInputKey(context);
+        _aimRightDown_CursorAdjust.GetInputKey(context);
+        _aimLeftDown_CursorAdjust.GetInputKey(context);
     }
 
     void LoadTitleScene()

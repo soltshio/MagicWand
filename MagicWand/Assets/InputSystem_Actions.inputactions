@@ -1283,6 +1283,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CursorAdjust",
+            "id": "e43a6fc6-9beb-4659-bd6c-3be57f9edb65",
+            "actions": [
+                {
+                    "name": "Confirm",
+                    "type": "Button",
+                    "id": "2a137d71-c1af-49bf-8def-1e893a98d428",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "285d9722-84a7-45e6-bfb1-4d84d06e0b34",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
