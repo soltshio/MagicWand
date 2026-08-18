@@ -8,20 +8,20 @@ using UnityEngine;
 //カーソルの位置の調整シーンの開始処理
 
 [System.Serializable]
-public class Start_CursorAdjust
+public class Finish_CursorAdjust
 {
     [SerializeField]
-    TextMeshProUGUI _startText;
+    TextMeshProUGUI _finishText;
 
     [SerializeField]
     float _showDuration = 2f;
 
-    public async UniTask InformStartAsync(CancellationToken ct)
+    public async UniTask InformFinishAsync(CancellationToken ct)
     {
-        _startText.gameObject.SetActive(true);
+        _finishText.gameObject.SetActive(true);
 
         await UniTask.Delay(TimeSpan.FromSeconds(_showDuration), cancellationToken: ct);
 
-        _startText.gameObject.SetActive(false);
+        _finishText.gameObject.SetActive(false);
     }
 }

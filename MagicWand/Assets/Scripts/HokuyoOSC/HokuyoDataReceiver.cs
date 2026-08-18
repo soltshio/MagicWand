@@ -14,7 +14,7 @@ public class HokuyoDataReceiver : MonoBehaviour
     OSCReceiver _oscReceiver;
 
     [SerializeField]
-    OSCRunningChecker _oscRunnincChecker;
+    OSCRunningChecker _oscRunningChecker;
 
     [SerializeField]
     OSCAddressNameList _oscAddressNameList;
@@ -44,7 +44,7 @@ public class HokuyoDataReceiver : MonoBehaviour
         private set;
     }
 
-    public bool IsRunning { get { return _oscRunnincChecker.IsRunning; } }
+    public bool IsRunning { get { return _oscRunningChecker.IsRunning; } }
 
     //検知範囲内にオブジェクトが存在するか
     public bool IsExistObject
@@ -106,7 +106,7 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     void ReceivePos(OSCMessage message)
     {
-        _oscRunnincChecker.UpdateRunning(this.GetCancellationTokenOnDestroy());
+        _oscRunningChecker.UpdateRunning(this.GetCancellationTokenOnDestroy());
 
         Vector2 blobPos;
         blobPos.x = message.Values[0].FloatValue;
