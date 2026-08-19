@@ -37,7 +37,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.performed += OnCancelHokuyoControlMode;
         _escapeAction.action.Enable();
 
-        _hokuyoBlobPosReceiver.OnCatchPos += MoveCursor;
+        _hokuyoBlobPosReceiver.OnCatchDetectionPortPos += MoveCursor;
         _hokuyoBlobPosReceiver.OnSwitchIsExistObject += ClearMovingAverage;
     }
 
@@ -46,7 +46,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.performed -= OnCancelHokuyoControlMode;
         _escapeAction.action.Disable();
 
-        _hokuyoBlobPosReceiver.OnCatchPos -= MoveCursor;
+        _hokuyoBlobPosReceiver.OnCatchDetectionPortPos -= MoveCursor;
         _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= ClearMovingAverage;
     }
 
@@ -67,7 +67,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
         if (!_hokuyoBlobPosReceiver.IsExistObject) return;
 
         //ビューポート座標に変換する
-        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromHokuyoPosToViewPortPos(blobPos,_hokuyoBlobPosReceiver.SizeScale);
+        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoBlobPosReceiver.SizeScale);
 
         blobViewPos = _movingAverage.AddValue(blobViewPos);
 

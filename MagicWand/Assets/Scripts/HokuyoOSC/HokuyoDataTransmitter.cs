@@ -27,24 +27,24 @@ public class HokuyoDataTransmitter : MonoBehaviour
         private set;
     }
 
-    //OSC通信で画面の中心位置を送信する(向こう側で自動的に値が更新されるようになっている)
-    public void SendCenter(Vector2 center)
+    //OSC通信で画面のレーザー検知範囲の中心位置(単位はm)を送信する(向こう側で自動的に値が更新されるようになっている)
+    public void SendCenterM(Vector2 newCenterM)
     {
         OSCMessage message = new OSCMessage(_oscAddressNameList.CenterAddressName);
 
-        message.AddValue(OSCValue.Float(center.x));
-        message.AddValue(OSCValue.Float(center.y));
+        message.AddValue(OSCValue.Float(newCenterM.x));
+        message.AddValue(OSCValue.Float(newCenterM.y));
 
         transmitter.Send(message);
     }
 
-    //OSC通信でモニターに映す画面サイズを送信する(向こう側で自動的に値が更新されるようになっている)
-    public void SendSize(Vector2 size)
+    //OSC通信で実際の画面のサイズ(単位はm)を送信する(向こう側で自動的に値が更新されるようになっている)
+    public void SendSizeM(Vector2 newSizeM)
     {
         OSCMessage message = new OSCMessage(_oscAddressNameList.SizeAddressName);
 
-        message.AddValue(OSCValue.Float(size.x));
-        message.AddValue(OSCValue.Float(size.y));
+        message.AddValue(OSCValue.Float(newSizeM.x));
+        message.AddValue(OSCValue.Float(newSizeM.y));
 
         transmitter.Send(message);
     }

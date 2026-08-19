@@ -5,8 +5,7 @@ using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
-//OSC通信で送られてきた北陽レーザーが察知した物体(塊)の座標を受け取る
-//物体が何も存在しない場合はBlobPositionにはx:0,y:0のベクトルが入っている
+//OSC通信で送られてきたデータを受け取る
 
 public class HokuyoDataReceiver : MonoBehaviour
 {
@@ -19,13 +18,13 @@ public class HokuyoDataReceiver : MonoBehaviour
     [SerializeField]
     OSCAddressNameList _oscAddressNameList;
 
-    private Vector2 _blobPosition = new();
-    bool _isExistObject = false;//北陽レーザー検知範囲内にオブジェクトがあるか
-    float _sizeScale;//画面の大きさに対する北陽レーザー検知範囲の拡大率
-    Vector2 _center;//北陽レーザーの中心の設定
-    Vector2 _size;//北陽レーザーのサイズの設定
+    private Vector2 _detectionPortPosition = new();
+    bool _isExistObject = false;
+    float _sizeScale;
+    Vector2 _centerM;
+    Vector2 _sizeM;
 
-    public event Action<Vector2> OnCatchPos;//OSC通信で位置を受け取ったことを通知(その時のBlobPositionが送られてくる)
+    public event Action<Vector2> OnCatchDetectionPortPos;//OSC通信で位置を受け取ったことを通知(その時のDetectionPortPositionが送られてくる)
     public event Action<bool> OnSwitchIsExistObject;
 
     //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
@@ -46,7 +45,7 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     public bool IsRunning { get { return _oscRunningChecker.IsRunning; } }
 
-    //検知範囲内にオブジェクトが存在するか
+    //レーザー検知範囲内にオブジェクトがあるか
     public bool IsExistObject
     {
         get 
@@ -63,23 +62,24 @@ public class HokuyoDataReceiver : MonoBehaviour
         }
     }
 
-    public Vector2 BlobPosition
+    //レーザー検知範囲の中でどの位置に物体はあるか(xy共に0～1に正規化された割合で表す)
+    public Vector2 DetectionPortPosition
     {
         get
         {
-            return _blobPosition; 
+            return _detectionPortPosition; 
         } 
         private set
         {
-            _blobPosition = value;
+            _detectionPortPosition = value;
 
-            OnCatchPos?.Invoke(_blobPosition);
+            OnCatchDetectionPortPos?.Invoke(_detectionPortPosition);
         }
     }
 
-    public float SizeScale { get { return _sizeScale; } }
-    public Vector2 Center { get { return _center; } }
-    public Vector2 Size { get { return _size; } }
+    public float SizeScale { get { return _sizeScale; } }//実際の画面の大きさに対するレーザー検知範囲の拡大率
+    public Vector2 CenterM { get { return _centerM; } }//レーザー検知範囲の中心位置の設定(単位はm)
+    public Vector2 SizeM { get { return _sizeM; } }//実際の画面のサイズの設定(単位はm)
 
     void Awake()
     {
@@ -97,14 +97,14 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     void Start()
     {
-        _oscReceiver.Bind(_oscAddressNameList.PositionAddressName, ReceivePos);
+        _oscReceiver.Bind(_oscAddressNameList.PositionAddressName, ReceiveDetectionPortPos);
         _oscReceiver.Bind(_oscAddressNameList.IsExistObjectAddressName, ReceiveIsExistObject);
         _oscReceiver.Bind(_oscAddressNameList.SizeScaleAddressName, ReceiveSizeScale);
-        _oscReceiver.Bind(_oscAddressNameList.CenterAddressName, ReceiveCenter);
-        _oscReceiver.Bind(_oscAddressNameList.SizeAddressName, ReceiveSize);
+        _oscReceiver.Bind(_oscAddressNameList.CenterAddressName, ReceiveCenterM);
+        _oscReceiver.Bind(_oscAddressNameList.SizeAddressName, ReceiveSizeM);
     }
 
-    void ReceivePos(OSCMessage message)
+    void ReceiveDetectionPortPos(OSCMessage message)
     {
         _oscRunningChecker.UpdateRunning(this.GetCancellationTokenOnDestroy());
 
@@ -112,7 +112,7 @@ public class HokuyoDataReceiver : MonoBehaviour
         blobPos.x = message.Values[0].FloatValue;
         blobPos.y = message.Values[1].FloatValue;
 
-        BlobPosition = blobPos;
+        DetectionPortPosition = blobPos;
     }
 
     void ReceiveIsExistObject(OSCMessage message)
@@ -127,15 +127,15 @@ public class HokuyoDataReceiver : MonoBehaviour
         _sizeScale = message.Values[0].FloatValue;
     }
 
-    void ReceiveCenter(OSCMessage message)
+    void ReceiveCenterM(OSCMessage message)
     {
-        _center.x = message.Values[0].FloatValue;
-        _center.y = message.Values[0].FloatValue;
+        _centerM.x = message.Values[0].FloatValue;
+        _centerM.y = message.Values[0].FloatValue;
     }
 
-    void ReceiveSize(OSCMessage message)
+    void ReceiveSizeM(OSCMessage message)
     {
-        _size.x = message.Values[0].FloatValue;
-        _size.y = message.Values[1].FloatValue;
+        _sizeM.x = message.Values[0].FloatValue;
+        _sizeM.y = message.Values[1].FloatValue;
     }
 }
