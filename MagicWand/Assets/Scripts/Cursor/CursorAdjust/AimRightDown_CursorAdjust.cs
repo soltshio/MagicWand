@@ -22,7 +22,7 @@ public class AimRightDown_CursorAdjust
         _hokuyoDataReceiver = hokuyoDataReceiver;
     }
 
-    public async UniTask<Vector2> GetCurrentRightDownPosAsync(CancellationToken ct)
+    public async UniTask<Vector2> GetCurrentDetectionPortRightDownPosAsync(CancellationToken ct)
     {
         _guideAimRightDownText.gameObject.SetActive(true);
         _isConfirmed = false;
@@ -31,8 +31,8 @@ public class AimRightDown_CursorAdjust
 
         _guideAimRightDownText.gameObject.SetActive(false);
 
-        Vector2 blobPos = _hokuyoDataReceiver.BlobPosition;
-        return blobPos;
+        Vector2 currentDetectionPortRightDownPos = _hokuyoDataReceiver.DetectionPortPosition;
+        return currentDetectionPortRightDownPos;
     }
 
     public void GetInputKey(InputAction.CallbackContext context)

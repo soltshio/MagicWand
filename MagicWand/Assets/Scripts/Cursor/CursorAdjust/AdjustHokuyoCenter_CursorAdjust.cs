@@ -17,13 +17,13 @@ public class AdjustHokuyoCenter_CursorAdjust
         _hokuyoDataReceiver = hokuyoDataReceiver;
     }
 
-    public void AdjustHokuyoCenter(Vector2 currentCenterBlobPos)
+    public void AdjustHokuyoCenter(Vector2 currentDetectionPortCenterPos)
     {
-        Vector2 deltaCenter = currentCenterBlobPos - _trueCenterBlobPos;
-        Vector2 deltaCenterM = CursorPosWithHokuyoPosTransformHandler.FromHokuyoPosToDetectionRangeMeterPos(deltaCenter, _hokuyoDataReceiver.SizeScale, _hokuyoDataReceiver.Size);
+        Vector2 deltaCenter = currentDetectionPortCenterPos - _trueCenterBlobPos;
+        Vector2 deltaCenterM = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToDetectionMeterPos(deltaCenter, _hokuyoDataReceiver.SizeScale, _hokuyoDataReceiver.SizeM);
 
-        Vector2 trueCenterM = _hokuyoDataReceiver.Center + deltaCenterM;
+        Vector2 trueCenterM = _hokuyoDataReceiver.CenterM + deltaCenterM;
 
-        _hokuyoDataTransmitter.SendCenter(trueCenterM);
+        _hokuyoDataTransmitter.SendCenterM(trueCenterM);
     }
 }

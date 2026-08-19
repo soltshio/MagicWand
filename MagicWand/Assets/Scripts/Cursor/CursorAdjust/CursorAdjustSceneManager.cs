@@ -48,20 +48,19 @@ public class CursorAdjustSceneManager : MonoBehaviour
             await _start_CursorAdjust.InformStartAsync(ct);
 
             //中心に合わせる
-            Vector2 centerBlobPos = await _aimCenter_CursorAdjust.GetCurrentCenterPosAsync(ct);
+            Vector2 currentDetectionPortCenterPos = await _aimCenter_CursorAdjust.GetCurrentDetectionPortCenterPosAsync(ct);
 
             //画面の中心補正処理を行う
-            _adjustHokuyoCenter_CursorAdjust.AdjustHokuyoCenter(centerBlobPos);
+            _adjustHokuyoCenter_CursorAdjust.AdjustHokuyoCenter(currentDetectionPortCenterPos);
 
             //右上に合わせる
-            Vector2 rightUpBlobPos = await _aimRightUp_CursorAdjust.GetCurrentRightUpPosAsync(ct);
+            Vector2 currentDetectionPortRightUpPos = await _aimRightUp_CursorAdjust.GetCurrentDetectionPortRightUpPosAsync(ct);
             //右下に合わせる
-            Vector2 rightDownBlobPos = await _aimRightDown_CursorAdjust.GetCurrentRightDownPosAsync(ct);
+            Vector2 currentDetectionPortRightDownPos = await _aimRightDown_CursorAdjust.GetCurrentDetectionPortRightDownPosAsync(ct);
             //左下に合わせる
-            Vector2 leftDownBlobPos = await _aimLeftDown_CursorAdjust.GetCurrentLeftDownPosAsync(ct);
-
+            Vector2 currentDetectionPortLeftDownPos = await _aimLeftDown_CursorAdjust.GetCurrentDetectionPortLeftDownPosAsync(ct);
             //画面の大きさ補正処理を行う
-            _adjustHokuyoSize_CursorAdjust.AdjustHokuyoSize(rightUpBlobPos, rightDownBlobPos, leftDownBlobPos);
+            _adjustHokuyoSize_CursorAdjust.AdjustHokuyoSize(currentDetectionPortRightUpPos, currentDetectionPortRightDownPos, currentDetectionPortLeftDownPos);
 
             //補正終了
             await _finish_CursorAdjust.InformFinishAsync(ct);

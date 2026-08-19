@@ -17,7 +17,7 @@ public class AdjustHokuyoSize_CursorAdjust
 
     public void AdjustHokuyoSize(Vector2 currentRightUp,Vector2 currentRightDown,Vector2 currentLeftDown)
     {
-        Vector2 currentScaledSize = _hokuyoDataReceiver.Size * _hokuyoDataReceiver.SizeScale;
+        Vector2 currentScaledSize = _hokuyoDataReceiver.SizeM * _hokuyoDataReceiver.SizeScale;
 
         float trueScaledSizeY = Mathf.Abs(currentRightUp.y - currentRightDown.y) * currentScaledSize.y;
         float trueScaledSizeX = Mathf.Abs(currentRightDown.x - currentLeftDown.x) * currentScaledSize.x;
@@ -26,6 +26,6 @@ public class AdjustHokuyoSize_CursorAdjust
 
         Vector2 trueSize = trueScaledSize / _hokuyoDataReceiver.SizeScale;
 
-        _hokuyoDataTransmitter.SendSize(trueSize);
+        _hokuyoDataTransmitter.SendSizeM(trueSize);
     }
 }

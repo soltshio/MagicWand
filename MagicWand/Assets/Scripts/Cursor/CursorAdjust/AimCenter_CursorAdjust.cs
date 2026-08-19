@@ -22,7 +22,7 @@ public class AimCenter_CursorAdjust
         _hokuyoDataReceiver = hokuyoDataReceiver;
     }
 
-    public async UniTask<Vector2> GetCurrentCenterPosAsync(CancellationToken ct)
+    public async UniTask<Vector2> GetCurrentDetectionPortCenterPosAsync(CancellationToken ct)
     {
         _guideAimCenterText.gameObject.SetActive(true);
         _isConfirmed = false;
@@ -31,8 +31,8 @@ public class AimCenter_CursorAdjust
 
         _guideAimCenterText.gameObject.SetActive(false);
 
-        Vector2 blobPos = _hokuyoDataReceiver.BlobPosition;
-        return blobPos;
+        Vector2 currentDetectionPortCenterPos = _hokuyoDataReceiver.DetectionPortPosition;
+        return currentDetectionPortCenterPos;
     }
 
     public void GetInputKey(InputAction.CallbackContext context)
