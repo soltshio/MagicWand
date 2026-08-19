@@ -71,8 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestOSCTransmit
   transmitter: {fileID: 5035629275416424752}
-  value: 35
-  value2: 47
 --- !u!114 &3598723326046285646
 MonoBehaviour:
   m_ObjectHideFlags: 0
