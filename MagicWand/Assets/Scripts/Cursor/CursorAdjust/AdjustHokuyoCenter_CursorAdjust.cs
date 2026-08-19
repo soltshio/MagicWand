@@ -4,7 +4,7 @@
 //カーソルの位置の調整シーンの北陽レーザーの中心の値の補正処理
 
 [System.Serializable]
-public class AdjustHokuyoCenter_CursorAdjust : MonoBehaviour
+public class AdjustHokuyoCenter_CursorAdjust
 {
     HokuyoDataTransmitter _hokuyoDataTransmitter;
     HokuyoDataReceiver _hokuyoDataReceiver;

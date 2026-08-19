@@ -32,6 +32,9 @@ public class CursorAdjustSceneManager : MonoBehaviour
     [SerializeField]
     AdjustHokuyoCenter_CursorAdjust _adjustHokuyoCenter_CursorAdjust;
 
+    [SerializeField]
+    AdjustHokuyoSize_CursorAdjust _adjustHokuyoSize_CursorAdjust;
+
     async void Start()
     {
         try
@@ -58,6 +61,7 @@ public class CursorAdjustSceneManager : MonoBehaviour
             Vector2 leftDownBlobPos = await _aimLeftDown_CursorAdjust.GetCurrentLeftDownPosAsync(ct);
 
             //画面の大きさ補正処理を行う
+            _adjustHokuyoSize_CursorAdjust.AdjustHokuyoSize(rightUpBlobPos, rightDownBlobPos, leftDownBlobPos);
 
             //補正終了
             await _finish_CursorAdjust.InformFinishAsync(ct);
@@ -81,6 +85,7 @@ public class CursorAdjustSceneManager : MonoBehaviour
         _aimRightDown_CursorAdjust.Initialize(hokuyoDataReceiver);
         _aimLeftDown_CursorAdjust.Initialize(hokuyoDataReceiver);
         _adjustHokuyoCenter_CursorAdjust.Initialize(hokuyoDataTransmitter, hokuyoDataReceiver);
+        _adjustHokuyoSize_CursorAdjust.Initialize(hokuyoDataTransmitter, hokuyoDataReceiver);
     }
 
     public void GetInputKey(InputAction.CallbackContext context)
