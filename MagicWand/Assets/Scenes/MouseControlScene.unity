@@ -5720,7 +5720,7 @@ MonoBehaviour:
       value: 030000000000000002000000040000000100000003000000
     - key: 4
       value: 000000000100000002000000030000000400000000000000
-  _castPatternDecideMode: 1
+  _castPatternDecideMode: 0
   _magicSpheresList: {fileID: 741445581}
 --- !u!114 &741445581
 MonoBehaviour:
