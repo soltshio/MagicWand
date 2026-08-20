@@ -21,9 +21,9 @@ public class RaycastBlocker : MonoBehaviour
 
     async void OnEnable()
     {
-        _blockRaycastPanel.enabled = false;
-
         _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+
+        _blockRaycastPanel.enabled = !_hokuyoDataReceiver.IsExistObject;
 
         _hokuyoDataReceiver.OnSwitchIsExistObject += StartCountDownToBlockRaycast;
     }
@@ -35,14 +35,14 @@ public class RaycastBlocker : MonoBehaviour
 
     void StartCountDownToBlockRaycast(bool isExistObject)
     {
-        if(isExistObject)
+        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
+
+        if (isExistObject)
         {
             _blockRaycastPanel.enabled = false;
         }
         else
         {
-            var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
-
             CountDownToBlockRaycastAsync(newCt).Forget();
         }
     }
