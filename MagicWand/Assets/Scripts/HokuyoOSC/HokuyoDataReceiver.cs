@@ -117,9 +117,9 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     void ReceiveIsExistObject(OSCMessage message)
     {
-        if (!message.ToBool(out bool value)) return;
-        
-        IsExistObject = value;
+        int isExistObjectVal = (int)message.Values[0].FloatValue;
+
+        IsExistObject = (isExistObjectVal!=0);
     }
 
     void ReceiveSizeScale(OSCMessage message)
@@ -130,7 +130,7 @@ public class HokuyoDataReceiver : MonoBehaviour
     void ReceiveCenterM(OSCMessage message)
     {
         _centerM.x = message.Values[0].FloatValue;
-        _centerM.y = message.Values[0].FloatValue;
+        _centerM.y = message.Values[1].FloatValue;
     }
 
     void ReceiveSizeM(OSCMessage message)

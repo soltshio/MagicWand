@@ -2,13 +2,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 //作成者:杉山
 //北陽レーザーでカーソルを動かすクラス
 
 public class CursorControllerByHokuyo : MonoBehaviour
 {
-    HokuyoDataReceiver _hokuyoBlobPosReceiver;
+    HokuyoDataReceiver _hokuyoDataReceiver;
 
     [SerializeField]
     InputActionReference _escapeAction;
@@ -32,13 +33,13 @@ public class CursorControllerByHokuyo : MonoBehaviour
 
     async void OnEnable()
     {
-        _hokuyoBlobPosReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+        _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
         _escapeAction.action.performed += OnCancelHokuyoControlMode;
         _escapeAction.action.Enable();
 
-        _hokuyoBlobPosReceiver.OnCatchDetectionPortPos += MoveCursor;
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject += ClearMovingAverage;
+        _hokuyoDataReceiver.OnCatchDetectionPortPos += MoveCursor;
+        _hokuyoDataReceiver.OnSwitchIsExistObject += ClearMovingAverage;
     }
 
     private void OnDisable()
@@ -46,8 +47,8 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.performed -= OnCancelHokuyoControlMode;
         _escapeAction.action.Disable();
 
-        _hokuyoBlobPosReceiver.OnCatchDetectionPortPos -= MoveCursor;
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= ClearMovingAverage;
+        _hokuyoDataReceiver.OnCatchDetectionPortPos -= MoveCursor;
+        _hokuyoDataReceiver.OnSwitchIsExistObject -= ClearMovingAverage;
     }
 
     private void OnCancelHokuyoControlMode(InputAction.CallbackContext context)
@@ -64,10 +65,11 @@ public class CursorControllerByHokuyo : MonoBehaviour
     void MoveCursor(Vector2 blobPos)
     {
         if (!_isActive) return;
-        if (!_hokuyoBlobPosReceiver.IsExistObject) return;
+        if (!_hokuyoDataReceiver.IsExistObject) return;
+        if (IsZeroVector2(blobPos)) return;
 
         //ビューポート座標に変換する
-        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoBlobPosReceiver.SizeScale);
+        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoDataReceiver.SizeScale);
 
         blobViewPos = _movingAverage.AddValue(blobViewPos);
 
@@ -77,10 +79,20 @@ public class CursorControllerByHokuyo : MonoBehaviour
         Mouse.current.WarpCursorPosition(cursorScreenPos);
     }
 
+    bool IsZeroVector2(Vector2 vector)
+    {
+        const float range = 0.005f;
+
+        if (!MathfExtension.IsInRange(vector.x, -range, range)) return false;
+        if (!MathfExtension.IsInRange(vector.y, -range, range)) return false;
+
+        return true;
+    }
+
     void ClearMovingAverage(bool isExistObject)
     {
         //北陽レーザー検知範囲内に何もない場合は移動平均をクリアする
-        if (isExistObject) return;
+        //if (isExistObject) return;
 
         _movingAverage.Clear();
 
