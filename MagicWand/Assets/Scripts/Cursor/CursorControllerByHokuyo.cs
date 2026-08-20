@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class CursorControllerByHokuyo : MonoBehaviour
 {
-    HokuyoDataReceiver _hokuyoBlobPosReceiver;
+    HokuyoDataReceiver _hokuyoDataReceiver;
 
     [SerializeField]
     InputActionReference _escapeAction;
@@ -32,13 +32,15 @@ public class CursorControllerByHokuyo : MonoBehaviour
 
     async void OnEnable()
     {
-        _hokuyoBlobPosReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+        _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
         _escapeAction.action.performed += OnCancelHokuyoControlMode;
         _escapeAction.action.Enable();
 
-        _hokuyoBlobPosReceiver.OnCatchDetectionPortPos += MoveCursor;
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject += ClearMovingAverage;
+        Debug.Log(_hokuyoDataReceiver.gameObject.name);
+
+        _hokuyoDataReceiver.OnCatchDetectionPortPos += MoveCursor;
+        _hokuyoDataReceiver.OnSwitchIsExistObject += ClearMovingAverage;
     }
 
     private void OnDisable()
@@ -46,8 +48,8 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.performed -= OnCancelHokuyoControlMode;
         _escapeAction.action.Disable();
 
-        _hokuyoBlobPosReceiver.OnCatchDetectionPortPos -= MoveCursor;
-        _hokuyoBlobPosReceiver.OnSwitchIsExistObject -= ClearMovingAverage;
+        _hokuyoDataReceiver.OnCatchDetectionPortPos -= MoveCursor;
+        _hokuyoDataReceiver.OnSwitchIsExistObject -= ClearMovingAverage;
     }
 
     private void OnCancelHokuyoControlMode(InputAction.CallbackContext context)
@@ -64,10 +66,10 @@ public class CursorControllerByHokuyo : MonoBehaviour
     void MoveCursor(Vector2 blobPos)
     {
         if (!_isActive) return;
-        if (!_hokuyoBlobPosReceiver.IsExistObject) return;
+        if (!_hokuyoDataReceiver.IsExistObject) return;
 
         //ビューポート座標に変換する
-        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoBlobPosReceiver.SizeScale);
+        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoDataReceiver.SizeScale);
 
         blobViewPos = _movingAverage.AddValue(blobViewPos);
 
