@@ -37,8 +37,6 @@ public class CursorControllerByHokuyo : MonoBehaviour
         _escapeAction.action.performed += OnCancelHokuyoControlMode;
         _escapeAction.action.Enable();
 
-        Debug.Log(_hokuyoDataReceiver.gameObject.name);
-
         _hokuyoDataReceiver.OnCatchDetectionPortPos += MoveCursor;
         _hokuyoDataReceiver.OnSwitchIsExistObject += ClearMovingAverage;
     }
