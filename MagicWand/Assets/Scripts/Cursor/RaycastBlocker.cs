@@ -23,7 +23,9 @@ public class RaycastBlocker : MonoBehaviour
     {
         _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
-        _blockRaycastPanel.enabled = !_hokuyoDataReceiver.IsExistObject;
+        //レイキャストをブロックするためのパネルの表示状態の初期化
+        bool shouldBlockRaycast = !_hokuyoDataReceiver.IsExistObject && _hokuyoDataReceiver.IsRunning;
+        _blockRaycastPanel.enabled = shouldBlockRaycast;
 
         _hokuyoDataReceiver.OnSwitchIsExistObject += StartCountDownToBlockRaycast;
     }
