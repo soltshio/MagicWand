@@ -62,14 +62,14 @@ public class CursorControllerByHokuyo : MonoBehaviour
 #endif
     }
 
-    void MoveCursor(Vector2 blobPos)
+    void MoveCursor(Vector2 detectionPortPos)
     {
         if (!_isActive) return;
         if (!_hokuyoDataReceiver.IsExistObject) return;
-        if (blobPos.IsZeroVector()) return;
+        if (detectionPortPos.IsZeroVector()) return;
 
         //ビューポート座標に変換する
-        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoDataReceiver.SizeScale);
+        Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(detectionPortPos,_hokuyoDataReceiver.SizeScale);
 
         blobViewPos = _movingAverage.AddValue(blobViewPos);
 
