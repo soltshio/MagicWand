@@ -3747,7 +3747,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 0,
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
@@ -4627,8 +4627,8 @@
     "m_ObjectId": "8f98da28eaac4508989cc0977b9a5651",
     "m_Title": "葉っぱの外側になるほど揺れが激しくなるようにする",
     "m_Position": {
-        "x": -2306.400390625,
-        "y": -800.800048828125
+        "x": -2306.400146484375,
+        "y": -800.7999267578125
     }
 }
 
@@ -5165,7 +5165,7 @@
     "m_ObjectId": "a3da6eb6b5f549d9bbfdda62e04e4fe0",
     "m_Title": "NormalShake",
     "m_Position": {
-        "x": -3916.0,
+        "x": -3916.000244140625,
         "y": -1548.7999267578125
     }
 }
