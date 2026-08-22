@@ -66,7 +66,7 @@ public class CursorControllerByHokuyo : MonoBehaviour
     {
         if (!_isActive) return;
         if (!_hokuyoDataReceiver.IsExistObject) return;
-        if (IsZeroVector2(blobPos)) return;
+        if (blobPos.IsZeroVector()) return;
 
         //ビューポート座標に変換する
         Vector2 blobViewPos = CursorPosWithHokuyoPosTransformHandler.FromDetectionPortPosToViewPortPos(blobPos,_hokuyoDataReceiver.SizeScale);
@@ -77,16 +77,6 @@ public class CursorControllerByHokuyo : MonoBehaviour
         Vector2 cursorScreenPos = mainCamera.ViewportToScreenPoint(blobViewPos);
 
         Mouse.current.WarpCursorPosition(cursorScreenPos);
-    }
-
-    bool IsZeroVector2(Vector2 vector)
-    {
-        const float range = 0.005f;
-
-        if (!MathfExtension.IsInRange(vector.x, -range, range)) return false;
-        if (!MathfExtension.IsInRange(vector.y, -range, range)) return false;
-
-        return true;
     }
 
     void ClearMovingAverage(bool isExistObject)
