@@ -13,15 +13,9 @@ public class MagicContentTypeTime : MagicContentTypeBase
     WaitUntilAllFinishTasksEventDirecter _timeEffectDirecter;
 
     [Header("地面関係")]
-    
-    [SerializeField]
-    GroundGrassAlphaController _groundGrassAlphaController;
-
-    [Tooltip("草の量の変化量(0を最低値、1を最大値として設定する)")] [SerializeField] [Range(0, 1)]
-    float _alphaDeltaRate;
 
     [SerializeField]
-    float _shiftGrassAmountDuration;
+    GroundGrassSetter _groundGrassSetter;
 
     [Header("でか生き物関係")]
 
@@ -62,8 +56,7 @@ public class MagicContentTypeTime : MagicContentTypeBase
     public void AffectToGroundGrass()
     {
         //地面に草を生やす
-        float newAlphaRate = CalcNewGrassAlpha();
-        _timeEffectDirecter.AddTasks(_groundGrassAlphaController.SetGrassAlphaAsync(newAlphaRate, _shiftGrassAmountDuration));
+        _timeEffectDirecter.AddTasks(_groundGrassSetter.GrowGrassOnGroundAsync());
     }
 
     public void ActivateClockEffect()
@@ -83,12 +76,5 @@ public class MagicContentTypeTime : MagicContentTypeBase
         _timeEffectDirecter.ClearTasks();
 
         await _timeEffectDirecter.StartPlayingAndWaitUntilFinishPlayingAsync(ct);
-    }
-
-    float CalcNewGrassAlpha()
-    {
-        float newAlphaRate = _groundGrassAlphaController.CurrentAlphaRate + _alphaDeltaRate;
-
-        return Mathf.Clamp01(newAlphaRate);
     }
 }

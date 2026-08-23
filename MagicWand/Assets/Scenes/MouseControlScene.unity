@@ -4273,7 +4273,7 @@ MonoBehaviour:
   - {fileID: 1036908298}
   - {fileID: 947237657}
   _growthDelta: 0.2
-  _growthDuration: 5
+  _growthDuration: 9
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -11633,6 +11633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1910504418}
   - component: {fileID: 1910504420}
+  - component: {fileID: 1910504426}
   - component: {fileID: 1910504421}
   - component: {fileID: 1910504422}
   - component: {fileID: 1910504423}
@@ -11674,9 +11675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
   _timeEffectDirecter:
     _eventDirecter: {fileID: 1910504424}
-  _groundGrassAlphaController: {fileID: 1531092908}
-  _alphaDeltaRate: 0.429
-  _shiftGrassAmountDuration: 5
+  _groundGrassSetter: {fileID: 1910504426}
   _bigCreature: {fileID: 623789239}
   _grassesGrowth: {fileID: 399095680}
   _clockAudioSource: {fileID: 1910504422}
@@ -11937,6 +11936,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1910504426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66dd1972aeb4d745b96c5d86653422f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundGrassSetter
+  _groundGrassAlphaController: {fileID: 1531092908}
+  _alphaDeltaRate: 0.429
+  _shiftGrassAmountDuration: 9
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0
