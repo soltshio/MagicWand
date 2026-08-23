@@ -11,7 +11,13 @@ using UnityEngine;
 public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
 {
     [SerializeField]
+    MagicCircleDeploymentManager _magicCircleDeploymentManager;
+
+    [SerializeField]
     MagicCircleCastManager _magicCircleCastManager;
+
+    [SerializeField]
+    MagicCircleCloseManager _magicCircleCloseManager;
 
     [SerializeField]
     MagicInvoker _magicInvoker;
@@ -41,8 +47,14 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     {
         while(true)
         {
-            //魔法陣を起動
+            //魔法陣を展開
+            await _magicCircleDeploymentManager.DeployAsync();
+
+            //魔法陣をなぞる
             var invokableMagics = await _magicCircleCastManager.MagicCircleAsync();
+
+            //魔法陣を閉じる
+            await _magicCircleCloseManager.CloseAsync();
 
             //魔法を発動
             await _magicInvoker.InvokeMagicAsync(invokableMagics);

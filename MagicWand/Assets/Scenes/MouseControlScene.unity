@@ -1318,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.585236
+      value: -8.5852375
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2531,6 +2531,40 @@ PrefabInstance:
       addedObject: {fileID: 1036908297}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
+--- !u!1 &189164086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 189164087}
+  m_Layer: 0
+  m_Name: MagicCircleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &189164087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189164086}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1458048154}
+  - {fileID: 1557604841}
+  - {fileID: 713691837}
+  m_Father: {fileID: 537828264}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &193202436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,7 +2724,7 @@ MonoBehaviour:
     _magicCircleCenter: {fileID: 1118699960}
   _activeDuration: 1
   _deactiveDuration: 0.15
-  _magicSpheresList: {fileID: 741445581}
+  _magicSpheresList: {fileID: 741445577}
   _spellCastList: {fileID: 446498117}
   _leadEffectAudioSource: {fileID: 214072087}
   _leadSE: {fileID: 8300000, guid: 293a96d307893704fb1444e91e43c5aa, type: 3}
@@ -4215,7 +4249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cf720ae4a88184282eb1a79ae7ec3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
-  _magicCircleCastManager: {fileID: 741445578}
+  _magicCircleDeploymentManager: {fileID: 1458048155}
+  _magicCircleCastManager: {fileID: 1557604846}
+  _magicCircleCloseManager: {fileID: 713691838}
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
   _delayDuration: 0.5
@@ -4273,7 +4309,7 @@ MonoBehaviour:
   - {fileID: 1036908298}
   - {fileID: 947237657}
   _growthDelta: 0.2
-  _growthDuration: 9
+  _growthDuration: 8
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,6 +4934,7 @@ Transform:
   - {fileID: 1174364086}
   - {fileID: 1015091474}
   - {fileID: 332800073}
+  - {fileID: 189164087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549293269
@@ -5617,6 +5654,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Star
   _ignoreReaction: {fileID: 1736635916}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+--- !u!1 &713691836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 713691837}
+  - component: {fileID: 713691838}
+  m_Layer: 0
+  m_Name: Close
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &713691837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713691836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 189164087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &713691838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713691836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeba0d833eea46c499cd966f0c29ed8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleCloseManager
+  _magicSphereTrail: {fileID: 241167068}
+  _magicCircleActiveHandler: {fileID: 741445576}
 --- !u!1 &741445573
 GameObject:
   m_ObjectHideFlags: 0
@@ -5626,13 +5709,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 741445575}
-  - component: {fileID: 741445578}
-  - component: {fileID: 741445580}
-  - component: {fileID: 741445579}
-  - component: {fileID: 741445581}
-  - component: {fileID: 741445582}
-  - component: {fileID: 741445583}
-  - component: {fileID: 741445584}
+  - component: {fileID: 741445577}
+  - component: {fileID: 741445576}
   m_Layer: 3
   m_Name: MagicCircle
   m_TagString: Untagged
@@ -5664,25 +5742,7 @@ Transform:
   - {fileID: 214072088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &741445578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6176893d13ff5da4cb5d7f0ec36c6dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer3
-  _magicSpheresList: {fileID: 741445581}
-  _castPatternManager: {fileID: 741445580}
-  _magicSphereTrail: {fileID: 241167068}
-  _spellCastList: {fileID: 446498117}
-  _magicCircleActiveHandler: {fileID: 741445579}
-  _magicSphereLeadEffectController: {fileID: 214072086}
---- !u!114 &741445579
+--- !u!114 &741445576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5699,38 +5759,12 @@ MonoBehaviour:
     _magicCircleRenderer: {fileID: 1118699961}
     _magicCircleAlpha_Active: 0.3
   _magicSphereRendererActivator:
-    _magicSphereList: {fileID: 741445581}
+    _magicSphereList: {fileID: 741445577}
     _activeBaseAlphaClipThreshold: 0.61
     _deActiveBaseAlphaClipThreshold: 1
   _magicTrailRendererActivator:
     _magicSphereTrail: {fileID: 241167068}
---- !u!114 &741445580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001ac74fe2483044f9daaad67203fb99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CastPattern
-  _castPatternsArray:
-  - _list:
-    - key: 0
-      value: 0100000002000000000000000300000004000000
-    - key: 1
-      value: 02000000000000000300000002000000
-    - key: 2
-      value: 0400000001000000030000000200000004000000
-    - key: 3
-      value: 030000000000000002000000040000000100000003000000
-    - key: 4
-      value: 000000000100000002000000030000000400000000000000
-  _castPatternDecideMode: 0
-  _magicSpheresList: {fileID: 741445581}
---- !u!114 &741445581
+--- !u!114 &741445577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5748,134 +5782,6 @@ MonoBehaviour:
   - {fileID: 2118804864}
   - {fileID: 993358635}
   - {fileID: 549293269}
---- !u!114 &741445582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3945061a2874c374498ffbb7643470a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestLog_OnSuccessToCast
-  _magicCircleCastManager: {fileID: 741445578}
-  _audioSource: {fileID: 741445583}
-  _castSE: {fileID: 8300000, guid: 5b8011d382ef06c4eab4d51224bd0d54, type: 3}
---- !u!82 &741445583
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7297662483988035034, guid: 820dd1004abb98c4e86a76975149a0e5, type: 2}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.54
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &741445584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741445573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76505f83cc14544782d6b9cccd9de36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereColliderRadiusChanger_CastNum
-  _magicCircleCastManager: {fileID: 741445578}
-  _magicSphereList: {fileID: 741445581}
-  _defaultRadius: 0.8
-  _radiusMoreThanTwice: 1.3
 --- !u!1001 &765414140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10190,6 +10096,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Sun
   _ignoreReaction: {fileID: 1736635916}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+--- !u!1 &1458048153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1458048154}
+  - component: {fileID: 1458048155}
+  m_Layer: 0
+  m_Name: Deployment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1458048154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458048153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 189164087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1458048155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458048153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf821f1404537a48b89ad347dcd5a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleDeploymentManager
+  _magicSphereTrail: {fileID: 241167068}
+  _magicCircleActiveHandler: {fileID: 741445576}
 --- !u!1 &1531092903
 GameObject:
   m_ObjectHideFlags: 0
@@ -10320,6 +10272,213 @@ MonoBehaviour:
   _minAlpha: 0.1
   _rangeAlpha: 0.613
   _defaultAlphaRate: 0
+--- !u!1 &1557604840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1557604841}
+  - component: {fileID: 1557604846}
+  - component: {fileID: 1557604845}
+  - component: {fileID: 1557604844}
+  - component: {fileID: 1557604843}
+  - component: {fileID: 1557604842}
+  m_Layer: 3
+  m_Name: Cast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1557604841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.27541, y: 3.54, z: 19.16983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 189164087}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1557604842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76505f83cc14544782d6b9cccd9de36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereColliderRadiusChanger_CastNum
+  _magicCircleCastManager: {fileID: 1557604846}
+  _magicSphereList: {fileID: 741445577}
+  _defaultRadius: 0.8
+  _radiusMoreThanTwice: 1.3
+--- !u!82 &1557604843
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7297662483988035034, guid: 820dd1004abb98c4e86a76975149a0e5, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.54
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1557604844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3945061a2874c374498ffbb7643470a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestLog_OnSuccessToCast
+  _magicCircleCastManager: {fileID: 1557604846}
+  _audioSource: {fileID: 1557604843}
+  _castSE: {fileID: 8300000, guid: 5b8011d382ef06c4eab4d51224bd0d54, type: 3}
+--- !u!114 &1557604845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ac74fe2483044f9daaad67203fb99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastPattern
+  _castPatternsArray:
+  - _list:
+    - key: 0
+      value: 0100000002000000000000000300000004000000
+    - key: 1
+      value: 02000000000000000300000002000000
+    - key: 2
+      value: 0400000001000000030000000200000004000000
+    - key: 3
+      value: 030000000000000002000000040000000100000003000000
+    - key: 4
+      value: 000000000100000002000000030000000400000000000000
+  _castPatternDecideMode: 0
+  _magicSpheresList: {fileID: 741445577}
+--- !u!114 &1557604846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6176893d13ff5da4cb5d7f0ec36c6dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer3
+  _magicSpheresList: {fileID: 741445577}
+  _castPatternManager: {fileID: 1557604845}
+  _magicSphereTrail: {fileID: 241167068}
+  _spellCastList: {fileID: 446498117}
+  _magicSphereLeadEffectController: {fileID: 214072086}
 --- !u!4 &1570316130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4947662903358045435, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
