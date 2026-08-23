@@ -14,6 +14,8 @@ public class GrassGrowthController : MonoBehaviour
         [Range(0, 1)] public float startRate;
 
         [Range(0, 1)] public float rangeRate;
+
+        public float maxScale;
     }
 
     [SerializeField]
@@ -57,7 +59,7 @@ public class GrassGrowthController : MonoBehaviour
         SetStemGrowth(newGrowthRate);
     }
 
-    void SetLeaveGrowth(float rate)
+    void SetLeaveGrowth(float growthRate)
     {
         for (int i = 0; i < _leaveGrowthSegments.Length; i++)
         {
@@ -66,28 +68,40 @@ public class GrassGrowthController : MonoBehaviour
             if (growthSegment.leaveRenderer == null) continue;
 
             //その成長セグメントに達していない場合は非表示にする
-            if (rate < growthSegment.startRate)
+            if (growthRate < growthSegment.startRate)
             {
                 growthSegment.leaveRenderer.enabled = false;
                 continue;
             }
 
             growthSegment.leaveRenderer.enabled = true;
-            //位置を設定
-            float heightRate = Mathf.Clamp(rate, growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate);
 
-            float leavePosY = heightRate * _height;
-            var leaveLocalPos = growthSegment.leaveRenderer.transform.localPosition;
-            leaveLocalPos.y = leavePosY;
-            growthSegment.leaveRenderer.transform.localPosition = leaveLocalPos;
+            //位置を設定
+            SetLeavePos(growthSegment, growthRate);
 
             //大きさを設定
-            float scaleRate = Mathf.InverseLerp(growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate, rate);
-            scaleRate = Mathf.Clamp01(scaleRate);
-
-            Vector3 leaveScale = new Vector3(scaleRate, scaleRate, scaleRate);
-            growthSegment.leaveRenderer.transform.localScale = leaveScale;
+            SetLeaveScale(growthSegment, growthRate);
         }
+    }
+
+    void SetLeavePos(LeaveGrowthSegment growthSegment,float growthRate)
+    {
+        float heightRate = Mathf.Clamp(growthRate, growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate);
+
+        float leavePosY = heightRate * _height;
+        var leaveLocalPos = growthSegment.leaveRenderer.transform.localPosition;
+        leaveLocalPos.y = leavePosY;
+        growthSegment.leaveRenderer.transform.localPosition = leaveLocalPos;
+    }
+
+    void SetLeaveScale(LeaveGrowthSegment growthSegment, float growthRate)
+    {
+        float scaleRate = Mathf.InverseLerp(growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate, growthRate);
+        scaleRate = Mathf.Clamp01(scaleRate);
+
+        Vector3 leaveScale = new Vector3(scaleRate, scaleRate, scaleRate);
+        leaveScale *= growthSegment.maxScale;
+        growthSegment.leaveRenderer.transform.localScale = leaveScale;
     }
 
     void SetStemGrowth(float rate)

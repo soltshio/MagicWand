@@ -1318,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.585234
+      value: -8.585236
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4215,7 +4215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cf720ae4a88184282eb1a79ae7ec3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
-  _magicCircleManager: {fileID: 741445578}
+  _magicCircleCastManager: {fileID: 741445578}
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
   _delayDuration: 0.5
@@ -4273,7 +4273,7 @@ MonoBehaviour:
   - {fileID: 1036908298}
   - {fileID: 947237657}
   _growthDelta: 0.2
-  _growthDuration: 3
+  _growthDuration: 9
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5760,7 +5760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3945061a2874c374498ffbb7643470a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestLog_OnSuccessToCast
-  _magicCircleManager: {fileID: 741445578}
+  _magicCircleCastManager: {fileID: 741445578}
   _audioSource: {fileID: 741445583}
   _castSE: {fileID: 8300000, guid: 5b8011d382ef06c4eab4d51224bd0d54, type: 3}
 --- !u!82 &741445583
@@ -5872,7 +5872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76505f83cc14544782d6b9cccd9de36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereColliderRadiusChanger_CastNum
-  _magicCircleManagerVer3: {fileID: 741445578}
+  _magicCircleCastManager: {fileID: 741445578}
   _magicSphereList: {fileID: 741445581}
   _defaultRadius: 0.8
   _radiusMoreThanTwice: 1.3
@@ -5890,19 +5890,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2868203881069109838, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.10000048
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2868203881069109838, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.10000048
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2868203881069109838, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.10000048
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2868203881069109838, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5005
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 2868203881069109838, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -5910,19 +5910,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2992996570122978245, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.10999992
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2992996570122978245, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.10999992
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2992996570122978245, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.10999992
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2992996570122978245, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.11605
+      value: 0.165
       objectReference: {fileID: 0}
     - target: {fileID: 2992996570122978245, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -5932,21 +5932,37 @@ PrefabInstance:
       propertyPath: _defaultGrowthRate
       value: 0.182
       objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[0].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[1].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[2].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[3].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5029696231885031691, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6601196701994976165, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6601196701994976165, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6601196701994976165, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6601196701994976165, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6010,19 +6026,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7339992752951705756, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.14814807
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7339992752951705756, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.14814807
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7339992752951705756, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.14814807
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7339992752951705756, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2552
+      value: 0.33110002
       objectReference: {fileID: 0}
     - target: {fileID: 7339992752951705756, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -6990,6 +7006,22 @@ PrefabInstance:
       propertyPath: _defaultGrowthRate
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[0].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[1].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[2].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[3].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5029696231885031691, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7335,6 +7367,22 @@ PrefabInstance:
     - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: _defaultGrowthRate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[0].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[1].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[2].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[3].maxScale
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5029696231885031691, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_Enabled
@@ -11585,6 +11633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1910504418}
   - component: {fileID: 1910504420}
+  - component: {fileID: 1910504426}
   - component: {fileID: 1910504421}
   - component: {fileID: 1910504422}
   - component: {fileID: 1910504423}
@@ -11626,9 +11675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
   _timeEffectDirecter:
     _eventDirecter: {fileID: 1910504424}
-  _groundGrassAlphaController: {fileID: 1531092908}
-  _alphaDeltaRate: 0.429
-  _shiftGrassAmountDuration: 3
+  _groundGrassSetter: {fileID: 1910504426}
   _bigCreature: {fileID: 623789239}
   _grassesGrowth: {fileID: 399095680}
   _clockAudioSource: {fileID: 1910504422}
@@ -11889,6 +11936,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1910504426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66dd1972aeb4d745b96c5d86653422f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundGrassSetter
+  _groundGrassAlphaController: {fileID: 1531092908}
+  _alphaDeltaRate: 0.429
+  _shiftGrassAmountDuration: 9
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0
@@ -12281,6 +12343,22 @@ PrefabInstance:
     - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: _defaultGrowthRate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[0].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[1].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[2].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[3].maxScale
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5029696231885031691, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_Enabled
@@ -12784,6 +12862,22 @@ PrefabInstance:
     - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: _defaultGrowthRate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[0].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[1].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[2].maxScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755843054830021106, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
+      propertyPath: _leaveGrowthSegments.Array.data[3].maxScale
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5029696231885031691, guid: 9c8a40aee66565c4785a3291d11a4c7f, type: 3}
       propertyPath: m_Enabled
