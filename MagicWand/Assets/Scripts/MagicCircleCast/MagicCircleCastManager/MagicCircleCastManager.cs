@@ -23,34 +23,20 @@ public class MagicCircleCastManager : MonoBehaviour
     [Tooltip("魔法一覧")] [SerializeField]
     SpellCastList _spellCastList;
 
-    [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
-    MagicCircleActiveHandler _magicCircleActiveHandler;
-
     [Tooltip("誘導エフェクトをコントロールする機能")] [SerializeField]
     MagicSphereLeadEffectController _magicSphereLeadEffectController;
 
     MagicSphereTouchChecker _magicSphereTouchChecker;
 
-    bool _isActiveMagicCircle = false;//魔法陣が起動しているか
     PassedSphereIndexHistory _passedSphereIndexHistory = new();//通った球の番号の履歴
 
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
-    public bool IsActiveMagicCircle { get => _isActiveMagicCircle; }
-
     //魔法陣の処理、処理が終わったら魔法の内容を返す
-    //そもそも処理途中なのを無理やり呼び出したらNoneを
     public async UniTask<EMagic[]> MagicCircleAsync()
     {
-        if (_isActiveMagicCircle) return null;
-
         var token = this.GetCancellationTokenOnDestroy();
-
-        _isActiveMagicCircle = true;
-
-        //魔法陣の線を消す
-        _magicSphereTrail.ResetTrail();
 
         //魔法発動の初期化
         InitAllSpellCast();
@@ -58,22 +44,11 @@ public class MagicCircleCastManager : MonoBehaviour
         //新しい履歴を作成
         _passedSphereIndexHistory.CreateNewHistory();
 
-        //魔法陣を表示する
-        await _magicCircleActiveHandler.ActivateMagicCircleAsync(token);
-
         OnStartToCast?.Invoke();
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
         var invokableMagics = await CastMagicAsync(token);
-
-        //魔法陣の線を目立たせる
-        _magicSphereTrail.Activate();
-
-        //魔法陣と魔法陣の線を非表示にする
-        await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
-
-        _isActiveMagicCircle = false;
 
         return invokableMagics;
     }
