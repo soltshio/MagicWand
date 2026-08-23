@@ -8,7 +8,7 @@ using UnityEngine;
 public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
 {
     [SerializeField]
-    MagicCircleManagerVer3 _magicCircleManagerVer3;
+    MagicCircleCastManager _magicCircleCastManager;
 
     [SerializeField]
     MagicSpheresList _magicSphereList;
@@ -21,14 +21,14 @@ public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
 
     private void OnEnable()
     {
-        _magicCircleManagerVer3.OnSuccessToCast += ChangeRadius;
-        _magicCircleManagerVer3.OnStartToCast += ResetRadius;
+        _magicCircleCastManager.OnSuccessToCast += ChangeRadius;
+        _magicCircleCastManager.OnStartToCast += ResetRadius;
     }
 
     private void OnDisable()
     {
-        _magicCircleManagerVer3.OnSuccessToCast -= ChangeRadius;
-        _magicCircleManagerVer3.OnStartToCast -= ResetRadius;
+        _magicCircleCastManager.OnSuccessToCast -= ChangeRadius;
+        _magicCircleCastManager.OnStartToCast -= ResetRadius;
     }
 
     void ResetRadius()

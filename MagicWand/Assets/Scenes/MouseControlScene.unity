@@ -4215,7 +4215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cf720ae4a88184282eb1a79ae7ec3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
-  _magicCircleManager: {fileID: 741445578}
+  _magicCircleCastManager: {fileID: 741445578}
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
   _delayDuration: 0.5
@@ -5760,7 +5760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3945061a2874c374498ffbb7643470a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestLog_OnSuccessToCast
-  _magicCircleManager: {fileID: 741445578}
+  _magicCircleCastManager: {fileID: 741445578}
   _audioSource: {fileID: 741445583}
   _castSE: {fileID: 8300000, guid: 5b8011d382ef06c4eab4d51224bd0d54, type: 3}
 --- !u!82 &741445583
@@ -5872,7 +5872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76505f83cc14544782d6b9cccd9de36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereColliderRadiusChanger_CastNum
-  _magicCircleManagerVer3: {fileID: 741445578}
+  _magicCircleCastManager: {fileID: 741445578}
   _magicSphereList: {fileID: 741445581}
   _defaultRadius: 0.8
   _radiusMoreThanTwice: 1.3

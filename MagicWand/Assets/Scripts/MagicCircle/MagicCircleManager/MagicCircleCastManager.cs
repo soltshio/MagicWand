@@ -9,7 +9,7 @@ using System.Linq;
 //魔法陣を起動させると、魔法が発動するまで魔法陣をなぞらせる処理をする
 //魔法が発動すると、発動した魔法の内容を通知すると共に魔法陣を非アクティブにする
 
-public class MagicCircleManagerVer3 : MonoBehaviour
+public class MagicCircleCastManager : MonoBehaviour
 {
     [SerializeField]
     MagicSpheresList _magicSpheresList;

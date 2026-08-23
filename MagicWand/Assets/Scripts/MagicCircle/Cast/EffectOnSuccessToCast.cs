@@ -4,7 +4,7 @@ using UnityEngine;
 public class EffectOnSuccessToCast : MonoBehaviour
 {
     [SerializeField]
-    MagicCircleManagerVer3 _magicCircleManager;
+    MagicCircleCastManager _magicCircleCastManager;
 
     [SerializeField]
     AudioSource _audioSource;
@@ -14,7 +14,7 @@ public class EffectOnSuccessToCast : MonoBehaviour
 
     void Awake()
     {
-        _magicCircleManager.OnSuccessToCast += CastEffect;
+        _magicCircleCastManager.OnSuccessToCast += CastEffect;
     }
 
     void CastEffect(EMagic castMagic,int touchedMagicSphereindex)
