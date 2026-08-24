@@ -26,6 +26,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     BigCreatureStatus _bigCreatureStatus;
 
     [SerializeField]
+    BigCreatureSleepPlayer _bigCreatureSleepPlayer;
+
+    [SerializeField]
     float _delayDuration=0.5f;
 
     public override void OnEnter(GamePhaseStateMachine stateMachine)
@@ -45,7 +48,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
 
     async UniTask GameStateAsync(GamePhaseStateMachine stateMachine,CancellationToken token)
     {
-        while(true)
+        _bigCreatureSleepPlayer.Play();
+
+        while (true)
         {
             //魔法陣を展開
             await _magicCircleDeploymentManager.DeployAsync();
@@ -56,8 +61,14 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             //魔法陣を閉じる
             await _magicCircleCloseManager.CloseAsync();
 
+            //一度、巨大生物の睡眠演出を止める
+            _bigCreatureSleepPlayer.Stop();
+
             //魔法を発動
             await _magicInvoker.InvokeMagicAsync(invokableMagics);
+
+            //巨大生物の睡眠演出を再度流す
+            if (!_bigCreatureStatus.IsWakeUp) _bigCreatureSleepPlayer.Play();
 
             //一応少しだけ待つ
             await UniTask.Delay(TimeSpan.FromSeconds(_delayDuration), cancellationToken: token);

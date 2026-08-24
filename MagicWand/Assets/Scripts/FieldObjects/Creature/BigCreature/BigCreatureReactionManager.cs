@@ -17,9 +17,6 @@ public class BigCreatureReactionManager : MonoBehaviour
     [Tooltip("でかい生き物の歩行演出")] [SerializeField]
     BigCreatureWalking _bigCreatureWalking;
 
-    [Tooltip("でかい生き物の睡眠演出")] [SerializeField]
-    SleepReaction _sleepZZZReaction;
-
     [Tooltip("巨大生物のステータス")] [SerializeField]
     BigCreatureStatus _bigCreatureStatus;
 
@@ -41,17 +38,11 @@ public class BigCreatureReactionManager : MonoBehaviour
 
         await reaction.TakeReactionAsync(_bigCreatureStatus);
 
-        
-        if (!_bigCreatureStatus.IsWakeUp)
-        {
-            //体力が0じゃない間は眠る演出
-            await _sleepZZZReaction.TakeSleepReactionAsunc(_bigCreatureStatus.HP,token);
-        }
-        else
-        {
-            //体力が0になったら起きて道を譲る演出を入れる
-            await _bigCreatureWalking.WalkAsync(token);
-        }
+
+        if (!_bigCreatureStatus.IsWakeUp) return;
+
+        //体力が0になったら起きて道を譲る演出を入れる
+        await _bigCreatureWalking.WalkAsync(token);
     }
 
     bool IsCorrectMagic(EMagic magic)
