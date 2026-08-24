@@ -16,4 +16,11 @@ public class SingleTaskCancellation
 
         return _linkedCts.Token;
     }
+
+    public void Cancel()
+    {
+        _linkedCts?.Cancel();
+        _linkedCts?.Dispose();
+        _linkedCts = null;
+    }
 }
