@@ -2723,6 +2723,7 @@ MonoBehaviour:
   _leadEffectController:
     _leadEffectPrefab: {fileID: 9158732050661789252, guid: 89ee62085d709b140bfcf51121d1d66c, type: 3}
     _magicCircleCenter: {fileID: 1118699960}
+    magicInvoker: {fileID: 446498116}
   _activeDuration: 1
   _deactiveDuration: 0.15
   _magicSpheresList: {fileID: 741445577}
