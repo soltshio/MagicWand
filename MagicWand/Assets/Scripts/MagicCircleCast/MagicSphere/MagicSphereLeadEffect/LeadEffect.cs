@@ -17,17 +17,25 @@ public class LeadEffect : MonoBehaviour
     Vector3 _start;
     Vector3 _end;
 
+    MagicInvoker _magicInvoker;
+
     static readonly int _emissionColorID = Shader.PropertyToID("_EmissionColor");
 
-    public void Initialize(float moveDuration, Vector3 start,Vector3 end,Color leadEffectEmissionColor)
+    public void Initialize(float moveDuration, Vector3 start,Vector3 end,Color leadEffectEmissionColor,MagicInvoker magicInvoker)
     {
+        //変数の初期化
         _start = start;
         _end = end;
         _moveDuration = moveDuration;
+        _magicInvoker = magicInvoker;
 
         SetLeadEffectEmissionColor(leadEffectEmissionColor);
 
+        //位置の初期化
         transform.position = start;
+
+        //魔法発動時にエフェクトが見えなくなるようにする
+        _magicInvoker.OnMagicInvoked += HideEffect;
     }
 
     async void Start()
@@ -62,6 +70,16 @@ public class LeadEffect : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    void OnDestroy()
+    {
+        _magicInvoker.OnMagicInvoked -= HideEffect;
+    }
+
+    void HideEffect()
+    {
+        _leadParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     //progressが0の時はstart、1の時はendの位置になるように移動させる

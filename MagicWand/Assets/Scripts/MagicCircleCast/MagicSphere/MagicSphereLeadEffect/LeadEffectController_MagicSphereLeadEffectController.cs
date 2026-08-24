@@ -15,6 +15,9 @@ public partial class MagicSphereLeadEffectController
         [Tooltip("魔法陣の中心位置")] [SerializeField]
         Transform _magicCircleCenter;
 
+        [SerializeField]
+        MagicInvoker magicInvoker;
+
         MagicSpheresList _magicSpheresList;
         SpellCastList _spellCastList;
 
@@ -63,7 +66,7 @@ public partial class MagicSphereLeadEffectController
                 Vector3 end = CalcEndPos(activeSphereIndex_MagicList[i].index);
 
                 var leadEffectInstance = Instantiate(_leadEffectPrefab);
-                leadEffectInstance.Initialize(activeDuration,start, end,leadEffectEmissionColor);
+                leadEffectInstance.Initialize(activeDuration,start, end,leadEffectEmissionColor,magicInvoker);
             }
         }
     }

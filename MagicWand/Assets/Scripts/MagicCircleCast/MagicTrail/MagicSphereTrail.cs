@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //作成者:杉山
@@ -66,26 +67,20 @@ public class MagicSphereTrail : MonoBehaviour
     {
         var ct = this.GetCancellationTokenOnDestroy();
 
-        try
+        ProgressTimer progressTimer = new(fadeOutDuration);
+
+        while (!progressTimer.IsFinished)
         {
-            ProgressTimer progressTimer = new(fadeOutDuration);
+            progressTimer.Tick();
 
-            while (!progressTimer.IsFinished)
-            {
-                progressTimer.Tick();
+            float progress = progressTimer.CalcProgress();
 
-                float progress = progressTimer.CalcProgress();
+            float newAlphaClipThreshold = Mathf.Lerp(_visibleAlphaClipThreshold, _invisibleAlphaClipThreshold, progress);
+            _lineMat.SetFloat(_alphaClipThresholdID, newAlphaClipThreshold);
 
-                float newAlphaClipThreshold = Mathf.Lerp(_visibleAlphaClipThreshold, _invisibleAlphaClipThreshold, progress);
-                _lineMat.SetFloat(_alphaClipThresholdID, newAlphaClipThreshold);
-
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
-            }
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
-        finally
-        {
-            _lineMat.SetFloat(_alphaClipThresholdID, _invisibleAlphaClipThreshold);
-        }
-        
+
+        _lineMat.SetFloat(_alphaClipThresholdID, _invisibleAlphaClipThreshold);
     }
 }
