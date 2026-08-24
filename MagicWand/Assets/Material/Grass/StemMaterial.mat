@@ -101,7 +101,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Height: 0.6
+    - _Height: 1.9
     - _MaskEdge1: 0.15
     - _MaskEdge2: 1
     - _Metallic: 0
