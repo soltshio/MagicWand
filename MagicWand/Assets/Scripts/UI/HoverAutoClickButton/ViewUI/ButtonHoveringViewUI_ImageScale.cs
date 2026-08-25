@@ -1,12 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class ClickTest : MonoBehaviour
+public class ButtonHoveringViewUI_ImageScale : MonoBehaviour
 {
-    public void OnClick()
-    {
-        Debug.Log("Clicked!");
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
