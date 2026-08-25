@@ -10460,6 +10460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicCircleDeploymentManager
   _magicSphereTrail: {fileID: 241167068}
   _magicCircleActiveHandler: {fileID: 741445576}
+  _deployButton:
+    _deployButton_HoverAutoClickButton: {fileID: 6019560233171589484}
+    _deployButton_Button: {fileID: 6019560233171589487}
 --- !u!1 &1531092903
 GameObject:
   m_ObjectHideFlags: 0
@@ -13969,6 +13972,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1531600714571381726, guid: 99a9c1a48599149489c022607ec7eb84, type: 3}
   m_PrefabInstance: {fileID: 2781774047894341349}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6019560233171589484 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5153576235501136346, guid: 99a9c1a48599149489c022607ec7eb84, type: 3}
+  m_PrefabInstance: {fileID: 2781774047894341349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76985033a915aa64aa25648017718d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverAutoClickButton
+--- !u!114 &6019560233171589487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7424592317645313376, guid: 99a9c1a48599149489c022607ec7eb84, type: 3}
+  m_PrefabInstance: {fileID: 2781774047894341349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &6568368034056223939
 GameObject:
   m_ObjectHideFlags: 0
