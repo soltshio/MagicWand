@@ -1,4 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
@@ -10,7 +12,12 @@ public class CursorTrailEffectController : MonoBehaviour
     [SerializeField]
     ParticleSystem _trailEffect;
 
+    [SerializeField]
+    float _replayEffectWaitDuration = 0.2f;
+
     HokuyoDataReceiver _hokuyoDataReceiver;
+
+    SingleTaskCancellation _singleTaskCancellation = new();
 
     async void OnEnable()
     {
@@ -23,7 +30,18 @@ public class CursorTrailEffectController : MonoBehaviour
     {
         if (!isExistObject) return;
 
+        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
+
+        RemoveTrailAsync(ct).Forget();
+    }
+
+    async UniTask RemoveTrailAsync(CancellationToken ct)
+    {
         _trailEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        //ほんの一瞬だけ待ってからエフェクトを再生し始める
+        await UniTask.Delay(TimeSpan.FromSeconds(_replayEffectWaitDuration), cancellationToken: ct);
+
         _trailEffect.Play();
     }
 }
