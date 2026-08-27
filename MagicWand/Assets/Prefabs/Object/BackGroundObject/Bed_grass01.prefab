@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2908517126506614037}
   - component: {fileID: 1211343136153549933}
   m_Layer: 0
-  m_Name: polySurface14
+  m_Name: leaf01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.6299503, y: 0, z: -1.9767685}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.474359, y: 0.474359, z: 0.474359}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6144569433121406777}
@@ -459,6 +459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6144569433121406777}
+  - component: {fileID: 6051761038016812848}
   m_Layer: 0
   m_Name: Bed_grass01
   m_TagString: Untagged
@@ -486,3 +487,35 @@ Transform:
   - {fileID: 3999334252712273464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6051761038016812848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8802780000108704492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
+  _leaveGrowthSegments:
+  - leaveRenderer: {fileID: 1211343136153549933}
+    startRate: 0.133
+    rangeRate: 0.299
+    maxScale: 1
+  - leaveRenderer: {fileID: 2636950037854300010}
+    startRate: 0.26
+    rangeRate: 0.308
+    maxScale: 1
+  - leaveRenderer: {fileID: 852843521785655261}
+    startRate: 0.4
+    rangeRate: 0.549
+    maxScale: 1
+  - leaveRenderer: {fileID: 6878038536847283100}
+    startRate: 0.63
+    rangeRate: 0.78
+    maxScale: 1
+  _stemRenderer: {fileID: 335345579828149051}
+  _height: 0
+  _defaultGrowthRate: 1
