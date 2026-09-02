@@ -3510,7 +3510,7 @@ Transform:
   m_GameObject: {fileID: 305296926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.03999996, y: 3.77, z: -0.3700003}
+  m_LocalPosition: {x: -0, y: 3.69, z: -0.3700003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5200,7 +5200,7 @@ Transform:
   m_GameObject: {fileID: 549293269}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.87, y: 0.71, z: -0.41}
+  m_LocalPosition: {x: -3.69, y: 0.99, z: -0.41}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5909,8 +5909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicCircleActiveHandler
   _fadeDuration: 1.5
   _magicCircleRendererActivator:
-    _magicCircleRenderer: {fileID: 1118699961}
-    _magicCircleAlpha_Active: 0.3
+    _magicCircleAnimator: {fileID: 1213656359}
   _magicSphereRendererActivator:
     _magicSphereList: {fileID: 741445577}
     _activeBaseAlphaClipThreshold: 0.61
@@ -6546,7 +6545,7 @@ Transform:
   m_GameObject: {fileID: 993358635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.46, y: -3.53, z: -0.1800003}
+  m_LocalPosition: {x: -2.32, y: -3.35, z: -0.1800003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11153,7 +11152,7 @@ Transform:
   m_GameObject: {fileID: 1579516459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.79, y: 0.71, z: -0.3300003}
+  m_LocalPosition: {x: 3.71, y: 0.94, z: -0.3300003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13455,7 +13454,7 @@ Transform:
   m_GameObject: {fileID: 2118804864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.46, y: -3.53, z: -0.1800003}
+  m_LocalPosition: {x: 2.31, y: -3.36, z: -0.1800003}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
