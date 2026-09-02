@@ -21,8 +21,15 @@ public class MagicCircleRendererActivator_MagicCircleActiveHandler
         _magicCircleAnimator.SetBool(MagicCircleAnimatorProperty.IsVisibleBoolName, true);
     }
 
-    public void Hide()
+    //魔法陣を隠し始める
+    public void StartHide()
     {
         _magicCircleAnimator.SetBool(MagicCircleAnimatorProperty.IsVisibleBoolName, false);
+    }
+
+    //魔法陣を完全に隠す(収納アニメーションをさせてから隠す)
+    public void CompleteHide()
+    {
+        _magicCircleAnimator.gameObject.SetActive(false);
     }
 }

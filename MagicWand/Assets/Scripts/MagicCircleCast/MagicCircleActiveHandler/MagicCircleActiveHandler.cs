@@ -64,8 +64,8 @@ public class MagicCircleActiveHandler : MonoBehaviour
         if (_isProcessing) return;
         _isProcessing = true;
 
-        //魔法陣を表示
-        _magicCircleRendererActivator.Hide();
+        //魔法陣の非表示アニメーションを開始する
+        _magicCircleRendererActivator.StartHide();
 
         //球の当たり判定をオフにする
         _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
@@ -85,6 +85,9 @@ public class MagicCircleActiveHandler : MonoBehaviour
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
+
+        //魔法陣を完全に非表示にする
+        _magicCircleRendererActivator.CompleteHide();
 
         _isProcessing = false;
     }
