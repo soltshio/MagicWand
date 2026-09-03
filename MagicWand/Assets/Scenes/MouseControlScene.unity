@@ -3418,7 +3418,7 @@ GameObject:
   - component: {fileID: 305296936}
   m_Layer: 3
   m_Name: Sphere (4)
-  m_TagString: MagicSphere
+  m_TagString: RaycastableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5141,7 +5141,7 @@ GameObject:
   - component: {fileID: 549293279}
   m_Layer: 3
   m_Name: Sphere (1)
-  m_TagString: MagicSphere
+  m_TagString: RaycastableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6486,7 +6486,7 @@ GameObject:
   - component: {fileID: 993358645}
   m_Layer: 3
   m_Name: Sphere (2)
-  m_TagString: MagicSphere
+  m_TagString: RaycastableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11142,7 +11142,7 @@ GameObject:
   - component: {fileID: 1579516469}
   m_Layer: 3
   m_Name: Sphere
-  m_TagString: MagicSphere
+  m_TagString: RaycastableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13444,7 +13444,7 @@ GameObject:
   - component: {fileID: 2118804874}
   m_Layer: 3
   m_Name: Sphere (3)
-  m_TagString: MagicSphere
+  m_TagString: RaycastableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
