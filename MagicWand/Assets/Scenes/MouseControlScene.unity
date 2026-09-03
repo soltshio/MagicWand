@@ -174,7 +174,7 @@ MonoBehaviour:
     markTexture: {fileID: 2800000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
     baseInEmissionColor: {r: 2.670157, g: 0.17379397, b: 0, a: 1}
     baseOutEmissionColor: {r: 2.9960787, g: 0, b: 0.036414288, a: 1}
-    markEmissionColor: {r: 11.984314, g: 4.2666664, b: 4.314065, a: 1}
+    markEmissionColor: {r: 5.992157, g: 2.1333332, b: 2.1570325, a: 1}
 --- !u!82 &525953
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6951,9 +6951,9 @@ MonoBehaviour:
   _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 359.87543, a: 1}
   _activeMagicSphereMaterialProperty:
     markTexture: {fileID: 2800000, guid: c016c874d6bb1e84ca1726814ce3bb25, type: 3}
-    baseInEmissionColor: {r: 0.59607846, g: 0.0627451, b: 0.8784314, a: 1}
-    baseOutEmissionColor: {r: 2.220284, g: 0, b: 2.9960785, a: 1}
-    markEmissionColor: {r: 11.984314, g: 4.2666664, b: 10.650709, a: 1}
+    baseInEmissionColor: {r: 0.13564637, g: 0.06274507, b: 0.8784314, a: 1}
+    baseOutEmissionColor: {r: 0.027415274, g: 0, b: 2.9960785, a: 1}
+    markEmissionColor: {r: 9.0587225, g: 4.2666664, b: 11.984314, a: 1}
 --- !u!114 &1040190901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8118,7 +8118,7 @@ MonoBehaviour:
     markTexture: {fileID: 2800000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
     baseInEmissionColor: {r: 0.85490197, g: 1, b: 0, a: 1}
     baseOutEmissionColor: {r: 2.64722, g: 2.9960785, b: 0, a: 1}
-    markEmissionColor: {r: 7.1990333, g: 7.9066997, b: 2.7897224, a: 1}
+    markEmissionColor: {r: 4.4315248, g: 4.8671446, b: 1.7172756, a: 1}
 --- !u!114 &1138852485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12476,7 +12476,7 @@ MonoBehaviour:
     markTexture: {fileID: 2800000, guid: 3a2f149c756d1a14499ea6a0492bff97, type: 3}
     baseInEmissionColor: {r: 0.14117648, g: 0.8784314, b: 0.0627451, a: 1}
     baseOutEmissionColor: {r: 0, g: 2.380148, b: 0.55385345, a: 1}
-    markEmissionColor: {r: 0.3391767, g: 11.984316, b: 0.4611135, a: 1}
+    markEmissionColor: {r: 0.6783532, g: 23.968624, b: 0.92222667, a: 1}
 --- !u!82 &1910504422
 AudioSource:
   m_ObjectHideFlags: 0
