@@ -30,9 +30,11 @@ public class TouchedReceiver : MonoBehaviour
         }
     }
 
-    //魔法球に触れていることを通知する
+    //オブジェクトに触れていることを通知する
     public void InformTouch()
     {
+        if(!isActiveAndEnabled) return;
+
         var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
         TouchUpdateAsync(newCt).Forget();
