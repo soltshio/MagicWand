@@ -4,9 +4,9 @@ using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
-//プレイヤーが魔法球に触れたことを受け取り通知するクラス
+//何かがオブジェクト(自分)に触れたことを受け取り通知するクラス(レイなどがこのオブジェクトに当たった時にInformTouch()を呼ぶことでこのオブジェクトに触れたことを伝える)
 
-public class MagicSphereTouchedReceiver : MonoBehaviour
+public class TouchedReceiver : MonoBehaviour
 {
     [SerializeField]
     float _timeOutDurationToResetIsTouched = 0.1f;
@@ -30,9 +30,11 @@ public class MagicSphereTouchedReceiver : MonoBehaviour
         }
     }
 
-    //魔法球に触れていることを通知する
+    //オブジェクトに触れていることを通知する
     public void InformTouch()
     {
+        if(!isActiveAndEnabled) return;
+
         var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
         TouchUpdateAsync(newCt).Forget();

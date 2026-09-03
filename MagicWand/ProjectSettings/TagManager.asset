@@ -5,10 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Wand
-  - MagicSphere
   - UICamera
   - OSCReceiver
   - Canvas
+  - RaycastableObject
   layers:
   - Default
   - TransparentFX

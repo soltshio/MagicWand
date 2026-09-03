@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 //作成者：杉山
-//魔法陣をなぞるカーソルの動き
-//レイを飛ばして、魔法陣上の球との当たり判定をとる
+//レイを飛ばして、カーソルとオブジェクトの当たり判定をする
 
-public class MagicCircleTracerCursor : MonoBehaviour
+public class CursorHitChecker : MonoBehaviour
 {
     [SerializeField]
     Camera _magicCircleCamera;
@@ -67,12 +66,12 @@ public class MagicCircleTracerCursor : MonoBehaviour
 
         if (!Physics.Raycast(ray, out hit)) return;
 
-        if (!hit.collider.CompareTag(TagNameList.MagicSphere)) return;
+        if (!hit.collider.CompareTag(TagNameList.RaycastableObject)) return;
 
-        var magicSphere = hit.collider.GetComponent<MagicSphereTouchedReceiver>();
+        var touchedReceiver = hit.collider.GetComponent<TouchedReceiver>();
 
-        if(magicSphere == null) return;
+        if(touchedReceiver == null) return;
 
-        magicSphere.InformTouch();
+        touchedReceiver.InformTouch();
     }
 }

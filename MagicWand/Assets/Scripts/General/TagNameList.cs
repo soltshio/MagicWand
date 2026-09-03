@@ -6,8 +6,8 @@ public static class TagNameList
 {
     //杖
     public const string Wand = "Wand";
-    //魔法陣上の球
-    public const string MagicSphere = "MagicSphere";
+    //Raycastで当たるオブジェクト
+    public const string RaycastableObject = "RaycastableObject";
     //UIカメラ
     public const string UICamera = "UICamera";
     //Canvas
