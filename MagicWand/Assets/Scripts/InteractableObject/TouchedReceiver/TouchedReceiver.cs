@@ -21,9 +21,11 @@ public class TouchedReceiver : MonoBehaviour
     public bool IsTouched
     {
         get { return _isTouched; }
-        set
+        private set
         {
             if (value == _isTouched) return;
+
+            _isTouched = value;
 
             if (value == true) OnTouchedEnter?.Invoke();
             else OnTouchedExit?.Invoke();

@@ -10,6 +10,12 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     [SerializeField]
     TouchedReceiver _touchedReceiver;
 
+    [SerializeField]
+    GameObject _triggerGaugeMesh;
+
+    [SerializeField]
+    DeployMagicCircleTriggerHoverGauge _deployMagicCircleTriggerHoverGauge;
+
     [Tooltip("展開までにカーソルを合わせ続けるボタン")] [SerializeField]
     float _hoverDurationToDeploy=2f;
 
@@ -28,6 +34,8 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         _touchedReceiver.OnTouchedEnter += OnEnter;
         _touchedReceiver.OnTouchedExit += OnExit;
 
+        _triggerGaugeMesh.SetActive(true);
+
         //決定されるまで待つ
         var ct = this.GetCancellationTokenOnDestroy();
 
@@ -36,6 +44,8 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         //トリガーを隠す
         _touchedReceiver.OnTouchedEnter -= OnEnter;
         _touchedReceiver.OnTouchedExit -= OnExit;
+
+        _triggerGaugeMesh.SetActive(false);
     }
 
     void OnEnter()
@@ -73,10 +83,16 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         value = Mathf.Clamp01(value);
 
         _progress = value;
+        _deployMagicCircleTriggerHoverGauge.SetGauge(value);
     }
 
     bool IsSubmitted()
     {
         return _progress >= _maxProgress;
+    }
+
+    void Start()
+    {
+        _triggerGaugeMesh.SetActive(false);
     }
 }

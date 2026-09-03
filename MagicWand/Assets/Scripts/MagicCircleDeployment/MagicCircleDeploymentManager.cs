@@ -11,39 +11,6 @@ using UnityEngine.UI;
 
 public class MagicCircleDeploymentManager : MonoBehaviour
 {
-    [System.Serializable]
-    class DeployButton
-    {
-        [SerializeField]
-        HoverAutoClickButton _deployButton_HoverAutoClickButton;
-
-        [SerializeField]
-        Button _deployButton_Button;
-
-        public event Action OnPushed;
-
-        public void OnEnable()
-        {
-            _deployButton_Button.onClick.AddListener(()=>OnPushed());
-        }
-
-        public void OnDisable()
-        {
-            _deployButton_Button.onClick.RemoveListener(() => OnPushed());
-        }
-
-        public void SwitchButtonEnabled(bool enabled)
-        {
-            _deployButton_Button.enabled = enabled;
-            _deployButton_HoverAutoClickButton.enabled = enabled;
-        }
-
-        public void SwitchVisible(bool isVisible)
-        {
-            _deployButton_Button.gameObject.SetActive(isVisible);
-        }
-    }
-
     [Tooltip("魔法陣のなぞった線を描画する機能")] [SerializeField]
     MagicSphereTrail _magicSphereTrail;
 
@@ -51,40 +18,17 @@ public class MagicCircleDeploymentManager : MonoBehaviour
     MagicCircleActiveHandler _magicCircleActiveHandler;
 
     [SerializeField]
-    DeployButton _deployButton;
-
-    bool _isPushed = false;
+    DeployMagicCircleTrigger _deployMagicCircleTrigger;
 
     public async UniTask DeployAsync()
     {
         var token = this.GetCancellationTokenOnDestroy();
 
-        _isPushed = false;
-
-        //ボタンを表示・有効化
-        _deployButton.SwitchVisible(true);
-        _deployButton.SwitchButtonEnabled(true);
-
-        //ボタンが押されるまで待つ
-        await WaitForButtonPushedAsync(token);
-
-        //一度ボタンを無効化
-        _deployButton.SwitchButtonEnabled(false);
+        //魔法陣展開のトリガーが押されるまで待つ
+        await _deployMagicCircleTrigger.WaitForSubmitAsync();
 
         //魔法陣を表示(展開)する
         await DeployMagicCircleAsync(token);
-
-        //ボタンを非表示
-        _deployButton.SwitchVisible(false);
-    }
-
-    async UniTask WaitForButtonPushedAsync(CancellationToken ct)
-    {
-        _deployButton.OnPushed += ReceiveIsPushed;
-
-        await UniTask.WaitUntil(() => _isPushed, cancellationToken:ct);
-
-        _deployButton.OnPushed -= ReceiveIsPushed;
     }
 
     async UniTask DeployMagicCircleAsync(CancellationToken ct)
@@ -94,20 +38,5 @@ public class MagicCircleDeploymentManager : MonoBehaviour
 
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(ct);
-    }
-
-    void ReceiveIsPushed()
-    {
-        _isPushed = true;
-    }
-
-    void OnEnable()
-    {
-        _deployButton.OnEnable();
-    }
-
-    void OnDisable()
-    {
-        _deployButton.OnDisable();
     }
 }
