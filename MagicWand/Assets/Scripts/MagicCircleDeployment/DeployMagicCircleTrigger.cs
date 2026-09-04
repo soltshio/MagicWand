@@ -14,6 +14,9 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     GameObject _triggerGaugeMesh;
 
     [SerializeField]
+    AudioSource _hoverAudioSource;
+
+    [SerializeField]
     DeployMagicCircleTriggerHoverGauge _deployMagicCircleTriggerHoverGauge;
 
     [Tooltip("展開までにカーソルを合わせ続けるボタン")] [SerializeField]
@@ -52,12 +55,16 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     {
         var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
+        _hoverAudioSource.Play();
+
         HoverAsync(ct).Forget();
     }
 
     void OnExit()
     {
         _singleTaskCancellation.Cancel();
+
+        _hoverAudioSource.Stop();
         UpdateProgress(_minProgress);
     }
 
@@ -76,6 +83,7 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         }
 
         UpdateProgress(_maxProgress);
+        _hoverAudioSource.Stop();
     }
 
     void UpdateProgress(float value)

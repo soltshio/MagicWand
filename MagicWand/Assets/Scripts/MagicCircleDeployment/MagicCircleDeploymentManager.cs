@@ -24,6 +24,12 @@ public class MagicCircleDeploymentManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _deployManualText;
 
+    [SerializeField]
+    AudioClip _deploySE;
+
+    [SerializeField]
+    AudioSource _audioSource;
+
     public async UniTask DeployAsync()
     {
         var token = this.GetCancellationTokenOnDestroy();
@@ -43,6 +49,9 @@ public class MagicCircleDeploymentManager : MonoBehaviour
 
     async UniTask DeployMagicCircleAsync(CancellationToken ct)
     {
+        //展開の効果音を流す
+        _audioSource.PlayOneShot(_deploySE);
+
         //魔法陣の線を消す
         _magicSphereTrail.ResetTrail();
 
