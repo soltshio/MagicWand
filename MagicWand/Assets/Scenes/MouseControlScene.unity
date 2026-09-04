@@ -11203,6 +11203,7 @@ MonoBehaviour:
   _magicCircleActiveHandler: {fileID: 741445576}
   _deployMagicCircleTrigger: {fileID: 88260669}
   _deployManualText: {fileID: 1835198329}
+  _startDeployControlSE: {fileID: 8300000, guid: 6f67e752d1cb56e4e8f9584bd49eae34, type: 3}
   _deploySE: {fileID: 8300000, guid: bd4ab177c28dd8d4abdf33e626174a7d, type: 3}
   _audioSource: {fileID: 1458048156}
 --- !u!82 &1458048156
