@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     TouchedReceiver _touchedReceiver;
 
     [SerializeField]
-    GameObject _triggerGaugeMesh;
+    Animator _triggerGaugeAnimator;
 
     [SerializeField]
     AudioSource _hoverAudioSource;
@@ -19,8 +20,11 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     [SerializeField]
     DeployMagicCircleTriggerHoverGauge _deployMagicCircleTriggerHoverGauge;
 
-    [Tooltip("展開までにカーソルを合わせ続けるボタン")] [SerializeField]
+    [Tooltip("展開までにカーソルを合わせ続ける秒数")] [SerializeField]
     float _hoverDurationToDeploy=2f;
+
+    [Tooltip("ゲージを非表示アニメーションを開始してから完全に非表示にするまでの時間")] [SerializeField]
+    float _waitDurationToDeactiveGauge = 1.5f;
 
     float _progress = 0f;
     const float _minProgress = 0f;
@@ -31,13 +35,14 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     //展開操作が決定されるまで待つ
     public async UniTask WaitForSubmitAsync()
     {
-        //初期化&トリガーを表示
+        //初期化
         UpdateProgress(_minProgress);
 
         _touchedReceiver.OnTouchedEnter += OnEnter;
         _touchedReceiver.OnTouchedExit += OnExit;
 
-        _triggerGaugeMesh.SetActive(true);
+        //トリガーを表示
+        ShowGauge();
 
         //決定されるまで待つ
         var ct = this.GetCancellationTokenOnDestroy();
@@ -48,7 +53,8 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         _touchedReceiver.OnTouchedEnter -= OnEnter;
         _touchedReceiver.OnTouchedExit -= OnExit;
 
-        _triggerGaugeMesh.SetActive(false);
+        //トリガーを隠す
+        HideGaugeAsync(ct).Forget();
     }
 
     void OnEnter()
@@ -86,6 +92,22 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         _hoverAudioSource.Stop();
     }
 
+    void ShowGauge()
+    {
+        _triggerGaugeAnimator.gameObject.SetActive(true);
+        _triggerGaugeAnimator.SetTrigger(DeployTriggerGaugeAnimatorProperty.ShowTriggerName);
+    }
+
+    async UniTask HideGaugeAsync(CancellationToken ct)
+    {
+        _triggerGaugeAnimator.SetTrigger(DeployTriggerGaugeAnimatorProperty.HideTriggerName);
+
+        //少し待ってからゲージを完全に非表示にする
+        await UniTask.Delay(TimeSpan.FromSeconds(_waitDurationToDeactiveGauge), cancellationToken: ct);
+
+        _triggerGaugeAnimator.gameObject.SetActive(false);
+    }
+
     void UpdateProgress(float value)
     {
         value = Mathf.Clamp01(value);
@@ -101,6 +123,6 @@ public class DeployMagicCircleTrigger : MonoBehaviour
 
     void Start()
     {
-        _triggerGaugeMesh.SetActive(false);
+        _triggerGaugeAnimator.gameObject.SetActive(false);
     }
 }

@@ -900,12 +900,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeployMagicCircleTrigger
   _touchedReceiver: {fileID: 88260668}
-  _triggerGaugeMesh: {fileID: 1032977891}
+  _triggerGaugeAnimator: {fileID: 1032977893}
   _hoverAudioSource: {fileID: 88260670}
   _deployMagicCircleTriggerHoverGauge:
     _hoverGauge: {fileID: 238534251}
     _maxLocalScale: 0.1
   _hoverDurationToDeploy: 2
+  _waitDurationToDeactiveGauge: 1.5
 --- !u!82 &88260670
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7261,7 +7262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1032977892
 Transform:
   m_ObjectHideFlags: 0
