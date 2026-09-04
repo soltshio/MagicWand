@@ -12,9 +12,13 @@ public class MagicCircleCloseManager : MonoBehaviour
     [Tooltip("魔法陣の表示・非表示をする機能")] [SerializeField]
     MagicCircleActiveHandler _magicCircleActiveHandler;
 
-    public async UniTask CloseAsync()
+    public async UniTask CloseAsync(EMagic invokedMagic)
     {
         var token = this.GetCancellationTokenOnDestroy();
+
+        //発動した魔法のアイコンを表示する
+
+        //少し遅らせる
 
         //魔法陣の線を目立たせる
         _magicSphereTrail.Activate();

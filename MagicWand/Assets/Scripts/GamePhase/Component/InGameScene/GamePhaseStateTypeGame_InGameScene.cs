@@ -56,16 +56,16 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             await _magicCircleDeploymentManager.DeployAsync();
 
             //魔法陣をなぞる
-            var invokableMagics = await _magicCircleCastManager.MagicCircleAsync();
+            var invokableMagic = await _magicCircleCastManager.MagicCircleAsync();
 
             //魔法陣を閉じる
-            await _magicCircleCloseManager.CloseAsync();
+            await _magicCircleCloseManager.CloseAsync(invokableMagic);
 
             //一度、巨大生物の睡眠演出を止める
             _bigCreatureSleepPlayer.Stop();
 
             //魔法を発動
-            await _magicInvoker.InvokeMagicAsync(invokableMagics);
+            await _magicInvoker.InvokeMagicAsync(invokableMagic);
 
             //巨大生物の睡眠演出を再度流す
             if (!_bigCreatureStatus.IsWakeUp) _bigCreatureSleepPlayer.Play();

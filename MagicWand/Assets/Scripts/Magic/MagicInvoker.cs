@@ -18,7 +18,7 @@ public class MagicInvoker : MonoBehaviour
 
     public bool IsPlayingEvent { get => _isPlayingEvent; }
 
-    public async UniTask InvokeMagicAsync(EMagic[] invokableMagics)
+    public async UniTask InvokeMagicAsync(EMagic invokableMagic)
     {
         if (_isPlayingEvent) return;
 
@@ -29,12 +29,9 @@ public class MagicInvoker : MonoBehaviour
 
         List<UniTask> runningTasks =new();
 
-        for(int i=0; i<invokableMagics.Length ;i++)
-        {
-            if (!_magicContents.TryGetValue(invokableMagics[i], out var value)) continue;
+        if (!_magicContents.TryGetValue(invokableMagic, out var value)) return;
 
-            runningTasks.Add(value.ActivateAsync(token));
-        }
+        runningTasks.Add(value.ActivateAsync(token));
 
         await UniTask.WhenAll(runningTasks);
 

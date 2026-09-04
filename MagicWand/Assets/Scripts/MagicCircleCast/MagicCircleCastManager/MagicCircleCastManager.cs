@@ -34,7 +34,7 @@ public class MagicCircleCastManager : MonoBehaviour
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
     //魔法陣の処理、処理が終わったら魔法の内容を返す
-    public async UniTask<EMagic[]> MagicCircleAsync()
+    public async UniTask<EMagic> MagicCircleAsync()
     {
         var token = this.GetCancellationTokenOnDestroy();
 
@@ -48,12 +48,12 @@ public class MagicCircleCastManager : MonoBehaviour
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
-        var invokableMagics = await CastMagicAsync(token);
+        var invokableMagic = await CastMagicAsync(token);
 
-        return invokableMagics;
+        return invokableMagic;
     }
 
-    async UniTask<EMagic[]> CastMagicAsync(CancellationToken token)
+    async UniTask<EMagic> CastMagicAsync(CancellationToken token)
     {
         //現在発動の可能性がある魔法リストの作成
         CastableMagics castableMagics = new(_spellCastList.SpellCasts);
@@ -75,7 +75,7 @@ public class MagicCircleCastManager : MonoBehaviour
             _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
 
             //杖が触れた球のインデックスを魔法に伝える
-            var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
+            var invokableMagic = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
@@ -84,9 +84,9 @@ public class MagicCircleCastManager : MonoBehaviour
             _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
 
             //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
-            if (invokableMagics.Length > 0)
+            if (invokableMagic != EMagic.None)
             {
-                return invokableMagics;
+                return invokableMagic;
             }
 
             //発動可能性のない魔法をリストから消す
