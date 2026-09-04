@@ -24,7 +24,10 @@ public class MagicCircleDeploymentManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _deployManualText;
 
-    [SerializeField]
+    [Tooltip("展開操作が始まった時に流す効果音")] [SerializeField]
+    AudioClip _startDeployControlSE;
+
+    [Tooltip("魔法陣展開時に流す効果音")] [SerializeField]
     AudioClip _deploySE;
 
     [SerializeField]
@@ -36,6 +39,7 @@ public class MagicCircleDeploymentManager : MonoBehaviour
 
         //操作方法を表示
         _deployManualText.enabled = true;
+        _audioSource.PlayOneShot(_startDeployControlSE);
 
         //魔法陣展開のトリガーが押されるまで待つ
         await _deployMagicCircleTrigger.WaitForSubmitAsync();
@@ -49,7 +53,7 @@ public class MagicCircleDeploymentManager : MonoBehaviour
 
     async UniTask DeployMagicCircleAsync(CancellationToken ct)
     {
-        //展開の効果音を流す
+        //魔法陣展開の効果音を流す
         _audioSource.PlayOneShot(_deploySE);
 
         //魔法陣の線を消す
