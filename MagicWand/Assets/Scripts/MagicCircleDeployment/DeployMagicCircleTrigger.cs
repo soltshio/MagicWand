@@ -38,6 +38,7 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         //初期化
         UpdateProgress(_minProgress);
 
+        _touchedReceiver.enabled = true;
         _touchedReceiver.OnTouchedEnter += OnEnter;
         _touchedReceiver.OnTouchedExit += OnExit;
 
@@ -49,7 +50,7 @@ public class DeployMagicCircleTrigger : MonoBehaviour
 
         await UniTask.WaitUntil(() => IsSubmitted(), cancellationToken: ct);
 
-        //トリガーを隠す
+        _touchedReceiver.enabled = false;
         _touchedReceiver.OnTouchedEnter -= OnEnter;
         _touchedReceiver.OnTouchedExit -= OnExit;
 
@@ -124,5 +125,6 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     void Start()
     {
         _triggerGaugeAnimator.gameObject.SetActive(false);
+        _touchedReceiver.enabled = false;
     }
 }

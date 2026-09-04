@@ -51,4 +51,9 @@ public class TouchedReceiver : MonoBehaviour
 
         IsTouched = false;
     }
+
+    private void OnDisable()
+    {
+        IsTouched = false;
+    }
 }
