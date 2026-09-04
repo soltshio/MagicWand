@@ -2,6 +2,7 @@
 using DG.Tweening;
 using System;
 using System.Threading;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +21,21 @@ public class MagicCircleDeploymentManager : MonoBehaviour
     [SerializeField]
     DeployMagicCircleTrigger _deployMagicCircleTrigger;
 
+    [SerializeField]
+    TextMeshProUGUI _deployManualText;
+
     public async UniTask DeployAsync()
     {
         var token = this.GetCancellationTokenOnDestroy();
 
+        //操作方法を表示
+        _deployManualText.enabled = true;
+
         //魔法陣展開のトリガーが押されるまで待つ
         await _deployMagicCircleTrigger.WaitForSubmitAsync();
+
+        //操作方法を非表示
+        _deployManualText.enabled = false;
 
         //魔法陣を表示(展開)する
         await DeployMagicCircleAsync(token);
@@ -38,5 +48,10 @@ public class MagicCircleDeploymentManager : MonoBehaviour
 
         //魔法陣を表示する
         await _magicCircleActiveHandler.ActivateMagicCircleAsync(ct);
+    }
+
+    void Start()
+    {
+        _deployManualText.enabled = false;
     }
 }
