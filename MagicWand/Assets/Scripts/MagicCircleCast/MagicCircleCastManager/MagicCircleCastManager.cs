@@ -21,7 +21,7 @@ public class MagicCircleCastManager : MonoBehaviour
     MagicSphereTrail _magicSphereTrail;
 
     [Tooltip("魔法一覧")] [SerializeField]
-    SpellCastList _spellCastList;
+    MagicList _spellCastList;
 
     [Tooltip("誘導エフェクトをコントロールする機能")] [SerializeField]
     MagicSphereLeadEffectController _magicSphereLeadEffectController;

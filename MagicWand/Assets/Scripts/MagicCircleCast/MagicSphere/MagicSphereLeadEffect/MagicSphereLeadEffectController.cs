@@ -25,7 +25,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
     MagicSpheresList _magicSpheresList;
 
     [SerializeField]
-    SpellCastList _spellCastList;
+    MagicList _spellCastList;
 
     [SerializeField]
     AudioSource _leadEffectAudioSource;

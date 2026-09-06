@@ -19,9 +19,9 @@ public partial class MagicSphereLeadEffectController
         MagicInvoker magicInvoker;
 
         MagicSpheresList _magicSpheresList;
-        SpellCastList _spellCastList;
+        MagicList _spellCastList;
 
-        public void Awake(MagicSpheresList magicSpheresList,SpellCastList spellCastList)
+        public void Awake(MagicSpheresList magicSpheresList,MagicList spellCastList)
         {
             _magicSpheresList = magicSpheresList;
             _spellCastList = spellCastList;
