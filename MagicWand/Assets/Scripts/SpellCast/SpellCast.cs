@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 
 //作成者:杉山
-//魔法の発動管理
+//魔法の発動と詠唱の管理
 
 public class SpellCast : MonoBehaviour
 {
     [SerializeField] [ColorUsage(true, true)]
     Color _leadEffectEmissionColor;
-
-    [SerializeField]
-    MagicSphereMaterialProperty _activeMagicSphereMaterialProperty;
 
     int[] _activeOrderIndexs;
 
@@ -18,8 +15,6 @@ public class SpellCast : MonoBehaviour
 
     public bool SpellIsValid { get { return _spellIsValid; } }//魔法の発動手順が合っているか
     public bool IsReadyToInvoke { get { return _currentIndex >= _activeOrderIndexs.Length; } }//魔法が発動可能か
-
-    public MagicSphereMaterialProperty ActiveMagicSphereMaterialProperty { get { return _activeMagicSphereMaterialProperty; } }//魔法球の色
     public Color LeadEffectEmissionColor { get { return _leadEffectEmissionColor; } }//誘導エフェクトの色
 
     //初期化
