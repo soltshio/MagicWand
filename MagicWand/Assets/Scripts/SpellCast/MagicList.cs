@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //作成者:杉山
@@ -9,25 +10,38 @@ public class MagicList : MonoBehaviour
     [SerializeField]
     SerializableDictionary<EMagic, GameObject> _magicObjsDic;
 
-    [SerializeField]
-    SerializableDictionary<EMagic, SpellCast> _spellCastsDictionary;
+    Dictionary<EMagic, ComponentCache> _magicComponentCacheDic = new();
 
-    public Dictionary<EMagic, SpellCast> SpellCasts { get { return _spellCastsDictionary; } }
+    ComponentsDictionaryCache<EMagic> _componentsEMagicDictionaryCache;
 
-    Dictionary<EMagic, ComponentCache> _magicComponentCacheDic;
-
-    public bool TryGetSpellCast(EMagic keyMagic,out SpellCast spellCast)
+    //指定の番号の魔法球からコンポーネントを取得
+    public T GetComponentFromMagic<T>(EMagic magic) where T : Component
     {
-        return _spellCastsDictionary.TryGetValue(keyMagic, out spellCast);
+        if (_magicComponentCacheDic.TryGetValue(magic, out var cache)) return null;
+
+        return cache?.GetComponent<T>();
+    }
+
+    //全ての魔法からコンポーネントの配列を取得
+    public Dictionary<EMagic,T> GetComponentsDictionaryFromMagics<T>() where T : Component
+    {
+        return _componentsEMagicDictionaryCache.GetOrCreateCache<T>();
     }
 
     void Awake()
     {
+        InitMagicComponentCache();
 
+        _componentsEMagicDictionaryCache = new ComponentsDictionaryCache<EMagic>(_magicComponentCacheDic);
     }
 
     void InitMagicComponentCache()
     {
+        foreach(var magicObj in _magicObjsDic)
+        {
+            ComponentCache componentCache = new(magicObj.Value);
 
+            _magicComponentCacheDic.Add(magicObj.Key, componentCache);
+        }
     }
 }

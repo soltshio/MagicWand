@@ -4,6 +4,7 @@ using UnityEngine;
 
 //作成者:杉山
 //なぞる誘導演出の魔法球の色をコントロールする機能
+//TODO:MagicListから色を取得するようにする
 
 public partial class MagicSphereLeadEffectController
 {

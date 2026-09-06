@@ -2963,7 +2963,7 @@ MonoBehaviour:
   _activeDuration: 1
   _deactiveDuration: 0.15
   _magicSpheresList: {fileID: 741445577}
-  _spellCastList: {fileID: 446498117}
+  _magicList: {fileID: 446498117}
   _leadEffectAudioSource: {fileID: 214072087}
   _leadSE: {fileID: 8300000, guid: 293a96d307893704fb1444e91e43c5aa, type: 3}
 --- !u!82 &214072087
@@ -4987,21 +4987,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 446498114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c81ee3c8218e16f4e92ba8d0b0baffac, type: 3}
+  m_Script: {fileID: 11500000, guid: f670a6977d031ad4e8b4cb34be6deb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCastList
-  _spellCastsDictionary:
+  _magicObjsDic:
     _list:
     - key: 0
-      value: {fileID: 1138852482}
+      value: {fileID: 1138852477}
     - key: 1
-      value: {fileID: 52058001}
+      value: {fileID: 52057997}
     - key: 2
-      value: {fileID: 1910504421}
+      value: {fileID: 1910504417}
     - key: 3
-      value: {fileID: 1040190900}
+      value: {fileID: 1040190897}
     - key: 4
-      value: {fileID: 525952}
+      value: {fileID: 525949}
 --- !u!1 &447535806
 GameObject:
   m_ObjectHideFlags: 0
@@ -11713,7 +11713,7 @@ MonoBehaviour:
   _magicSpheresList: {fileID: 741445577}
   _castPatternManager: {fileID: 1557604845}
   _magicSphereTrail: {fileID: 241167068}
-  _spellCastList: {fileID: 446498117}
+  _magicList: {fileID: 446498117}
   _magicSphereLeadEffectController: {fileID: 214072086}
 --- !u!4 &1570316130 stripped
 Transform:

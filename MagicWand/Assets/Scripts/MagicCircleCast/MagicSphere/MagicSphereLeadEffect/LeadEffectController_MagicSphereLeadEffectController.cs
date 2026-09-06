@@ -19,12 +19,12 @@ public partial class MagicSphereLeadEffectController
         MagicInvoker magicInvoker;
 
         MagicSpheresList _magicSpheresList;
-        MagicList _spellCastList;
+        MagicList _magicList;
 
         public void Awake(MagicSpheresList magicSpheresList,MagicList spellCastList)
         {
             _magicSpheresList = magicSpheresList;
-            _spellCastList = spellCastList;
+            _magicList = spellCastList;
         }
 
         //誘導エフェクトを動かす前にする初期化
@@ -59,7 +59,7 @@ public partial class MagicSphereLeadEffectController
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
                 //パーティクルのエミッションの色を取得する
-                if (!_spellCastList.TryGetSpellCast(activeSphereIndex_MagicList[i].magic, out var spellCast)) continue;
+                if (!TryGetSpellCast(activeSphereIndex_MagicList[i].magic, out var spellCast)) continue;
                 Color leadEffectEmissionColor = spellCast.LeadEffectEmissionColor;
 
                 //終点を求める
@@ -68,6 +68,14 @@ public partial class MagicSphereLeadEffectController
                 var leadEffectInstance = Instantiate(_leadEffectPrefab);
                 leadEffectInstance.Initialize(activeDuration,start, end,leadEffectEmissionColor,magicInvoker);
             }
+        }
+
+        //特定魔法の詠唱の機能を取得、取得に失敗した場合はfalseを返す
+        bool TryGetSpellCast(EMagic magic, out SpellCast spellCast)
+        {
+            spellCast = _magicList.GetComponentFromMagic<SpellCast>(magic);
+
+            return spellCast != null;
         }
     }
 }

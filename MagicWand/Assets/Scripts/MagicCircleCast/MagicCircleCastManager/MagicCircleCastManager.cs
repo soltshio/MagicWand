@@ -21,7 +21,7 @@ public class MagicCircleCastManager : MonoBehaviour
     MagicSphereTrail _magicSphereTrail;
 
     [Tooltip("魔法一覧")] [SerializeField]
-    MagicList _spellCastList;
+    MagicList _magicList;
 
     [Tooltip("誘導エフェクトをコントロールする機能")] [SerializeField]
     MagicSphereLeadEffectController _magicSphereLeadEffectController;
@@ -56,7 +56,9 @@ public class MagicCircleCastManager : MonoBehaviour
     async UniTask<EMagic> CastMagicAsync(CancellationToken token)
     {
         //現在発動の可能性がある魔法リストの作成
-        CastableMagics castableMagics = new(_spellCastList.SpellCasts);
+        if (!TryGetSpellCasts(out var spellCasts)) return EMagic.None;
+
+        CastableMagics castableMagics = new(spellCasts);
         castableMagics.OnSuccessToCast += OnSuccessToCast;
 
         while (true)
@@ -105,7 +107,9 @@ public class MagicCircleCastManager : MonoBehaviour
         //発動パターンを決定
         var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
 
-        foreach (var spellCast in _spellCastList.SpellCasts)
+        if (!TryGetSpellCasts(out var spellCasts)) return;
+
+        foreach (var spellCast in spellCasts)
         {
             if(!castPatterns.TryGetValue(spellCast.Key,out var orderIndexs))
             {
@@ -115,6 +119,14 @@ public class MagicCircleCastManager : MonoBehaviour
 
             spellCast.Value.Initialize(orderIndexs);
         }
+    }
+
+    //全魔法の詠唱の機能を取得、取得に失敗した場合はfalseを返す
+    bool TryGetSpellCasts(out Dictionary<EMagic, SpellCast> spellCasts)
+    {
+        spellCasts = _magicList.GetComponentsDictionaryFromMagics<SpellCast>();
+
+        return spellCasts != null && spellCasts.Count != 0;
     }
 
     int? PreActiveSphereIndex()

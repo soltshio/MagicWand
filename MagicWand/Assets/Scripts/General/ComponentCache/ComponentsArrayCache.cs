@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//コンポーネントを配列としてキャッシュする機能
+
 public class ComponentsArrayCache
 {
     readonly ComponentCache[] _componentCaches;
