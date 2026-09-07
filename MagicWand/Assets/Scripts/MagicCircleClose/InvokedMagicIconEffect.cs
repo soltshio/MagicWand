@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 //作成者:杉山
@@ -24,8 +23,10 @@ public class InvokedMagicIconEffect : MonoBehaviour
     {
         var ct = this.GetCancellationTokenOnDestroy();
 
+        if (!TryGetIconEffectProperty(invokedMagic, out var property)) return;
+
         //アイコンの色を変えておく
-        SetIconColor(invokedMagic);
+        SetIconColor(property);
 
         _iconAnimator.gameObject.SetActive(true);
 
@@ -34,15 +35,18 @@ public class InvokedMagicIconEffect : MonoBehaviour
         _iconAnimator.gameObject.SetActive(false);
     }
 
-    void SetIconColor(EMagic invokedMagic)
+    void SetIconColor(InvokedMagicIconEffectProperty property)
     {
-        //アイコンの色やテクスチャなどを取得
-        var invokedMagicIconEffectProperty = _magicList.GetComponentFromMagic<InvokedMagicIconEffectProperty>(invokedMagic);
+        _iconRenderer.color = property.IconColor;
+        _iconRenderer.sprite = property.IconSprite;
+    }
 
-        if (invokedMagicIconEffectProperty == null) return;
+    //アイコンエフェクトのプロパティを取得、失敗したらfalseを返す
+    bool TryGetIconEffectProperty(EMagic invokedMagic,out InvokedMagicIconEffectProperty property)
+    {
+        property = _magicList.GetComponentFromMagic<InvokedMagicIconEffectProperty>(invokedMagic);
 
-        _iconRenderer.color = invokedMagicIconEffectProperty.IconColor;
-        _iconRenderer.sprite = invokedMagicIconEffectProperty.IconSprite;
+        return property != null;
     }
 
     void Start()
