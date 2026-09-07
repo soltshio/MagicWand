@@ -21,7 +21,7 @@ public class MagicCircleCastManager : MonoBehaviour
     MagicSphereTrail _magicSphereTrail;
 
     [Tooltip("魔法一覧")] [SerializeField]
-    SpellCastList _spellCastList;
+    MagicList _magicList;
 
     [Tooltip("誘導エフェクトをコントロールする機能")] [SerializeField]
     MagicSphereLeadEffectController _magicSphereLeadEffectController;
@@ -34,7 +34,7 @@ public class MagicCircleCastManager : MonoBehaviour
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
     //魔法陣の処理、処理が終わったら魔法の内容を返す
-    public async UniTask<EMagic[]> MagicCircleAsync()
+    public async UniTask<EMagic> MagicCircleAsync()
     {
         var token = this.GetCancellationTokenOnDestroy();
 
@@ -48,15 +48,17 @@ public class MagicCircleCastManager : MonoBehaviour
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
-        var invokableMagics = await CastMagicAsync(token);
+        var invokableMagic = await CastMagicAsync(token);
 
-        return invokableMagics;
+        return invokableMagic;
     }
 
-    async UniTask<EMagic[]> CastMagicAsync(CancellationToken token)
+    async UniTask<EMagic> CastMagicAsync(CancellationToken token)
     {
         //現在発動の可能性がある魔法リストの作成
-        CastableMagics castableMagics = new(_spellCastList.SpellCasts);
+        if (!TryGetSpellCasts(out var spellCasts)) return EMagic.None;
+
+        CastableMagics castableMagics = new(spellCasts);
         castableMagics.OnSuccessToCast += OnSuccessToCast;
 
         while (true)
@@ -75,7 +77,7 @@ public class MagicCircleCastManager : MonoBehaviour
             _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
 
             //杖が触れた球のインデックスを魔法に伝える
-            var invokableMagics = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
+            var invokableMagic = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
 
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
@@ -84,9 +86,9 @@ public class MagicCircleCastManager : MonoBehaviour
             _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
 
             //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
-            if (invokableMagics.Length > 0)
+            if (invokableMagic != EMagic.None)
             {
-                return invokableMagics;
+                return invokableMagic;
             }
 
             //発動可能性のない魔法をリストから消す
@@ -105,7 +107,9 @@ public class MagicCircleCastManager : MonoBehaviour
         //発動パターンを決定
         var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
 
-        foreach (var spellCast in _spellCastList.SpellCasts)
+        if (!TryGetSpellCasts(out var spellCasts)) return;
+
+        foreach (var spellCast in spellCasts)
         {
             if(!castPatterns.TryGetValue(spellCast.Key,out var orderIndexs))
             {
@@ -115,6 +119,14 @@ public class MagicCircleCastManager : MonoBehaviour
 
             spellCast.Value.Initialize(orderIndexs);
         }
+    }
+
+    //全魔法の詠唱の機能を取得、取得に失敗した場合はfalseを返す
+    bool TryGetSpellCasts(out Dictionary<EMagic, SpellCast> spellCasts)
+    {
+        spellCasts = _magicList.GetComponentsDictionaryFromMagics<SpellCast>();
+
+        return spellCasts != null && spellCasts.Count != 0;
     }
 
     int? PreActiveSphereIndex()

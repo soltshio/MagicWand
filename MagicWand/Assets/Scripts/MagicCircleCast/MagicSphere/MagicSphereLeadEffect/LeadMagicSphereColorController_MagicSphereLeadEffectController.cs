@@ -4,6 +4,7 @@ using UnityEngine;
 
 //作成者:杉山
 //なぞる誘導演出の魔法球の色をコントロールする機能
+//TODO:MagicListから色を取得するようにする
 
 public partial class MagicSphereLeadEffectController
 {
@@ -11,13 +12,12 @@ public partial class MagicSphereLeadEffectController
     class LeadMagicSphereColorController
     {
         MagicSpheresList _magicSpheresList;
+        MagicList _magicList;
 
-        SpellCastList _spellCastList;
-
-        public void Awake(MagicSpheresList magicSpheresList, SpellCastList spellCastList)
+        public void Awake(MagicSpheresList magicSpheresList,MagicList magicList)
         {
             _magicSpheresList = magicSpheresList;
-            _spellCastList = spellCastList;
+            _magicList = magicList;
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
@@ -28,16 +28,14 @@ public partial class MagicSphereLeadEffectController
                 var index = activeSphereIndex_MagicList[i].index;
                 var magic = activeSphereIndex_MagicList[i].magic;
 
-                //色を取得
-                if (!_spellCastList.TryGetSpellCast(magic, out var spellCast)) continue;
-
-                var activeMagicSphereMaterialProperty = spellCast.ActiveMagicSphereMaterialProperty;
-
+                var activeMagicSphereMaterialProperty = _magicList.GetComponentFromMagic<ActiveMagicSphereMaterialProperty>(magic);
                 var magicSphereElementColorController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereElementColorController>(index);
 
+                if (activeMagicSphereMaterialProperty == null) continue;
                 if (magicSphereElementColorController == null) continue;
 
-                magicSphereElementColorController.ToActiveAsync(activeMagicSphereMaterialProperty).Forget();
+                //魔法球の色を変える
+                magicSphereElementColorController.ToActiveAsync(activeMagicSphereMaterialProperty.ActiveMaterialProperty).Forget();
             }
         }
 

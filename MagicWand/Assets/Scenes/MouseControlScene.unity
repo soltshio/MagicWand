@@ -129,6 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 525950}
   - component: {fileID: 525952}
+  - component: {fileID: 525959}
+  - component: {fileID: 525958}
   - component: {fileID: 525954}
   - component: {fileID: 525953}
   - component: {fileID: 525955}
@@ -169,12 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 44.62176, a: 1}
-  _activeMagicSphereMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
-    baseInEmissionColor: {r: 2.670157, g: 0.17379397, b: 0, a: 1}
-    baseOutEmissionColor: {r: 2.9960787, g: 0, b: 0.036414288, a: 1}
-    markEmissionColor: {r: 5.992157, g: 2.1333332, b: 2.1570325, a: 1}
 --- !u!82 &525953
 AudioSource:
   m_ObjectHideFlags: 0
@@ -403,6 +399,36 @@ PlayableDirector:
     m_References:
     - cd550e0e8e5466c41a87efb66f48e34d: {fileID: 136774160}
     - 7e0de6da3412ee64898a9f96670f96c7: {fileID: 136774160}
+--- !u!114 &525958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d7d193dca114a48b318be04b907d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveMagicSphereMaterialProperty
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
+    baseInEmissionColor: {r: 2.670157, g: 0.17379397, b: 0, a: 1}
+    baseOutEmissionColor: {r: 2.9960787, g: 0, b: 0.036414288, a: 1}
+    markEmissionColor: {r: 5.992157, g: 2.1333332, b: 2.1570325, a: 1}
+--- !u!114 &525959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff5c4cabb3f42441a6cd5d9dff7736d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
+  _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 44.62176, a: 1}
 --- !u!4 &2114282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
@@ -460,6 +486,8 @@ GameObject:
   - component: {fileID: 52057998}
   - component: {fileID: 52058000}
   - component: {fileID: 52058001}
+  - component: {fileID: 52058006}
+  - component: {fileID: 52058005}
   - component: {fileID: 52058002}
   - component: {fileID: 52058004}
   - component: {fileID: 52058003}
@@ -516,12 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _leadEffectEmissionColor: {r: 32.289646, g: 214.48436, b: 440.52325, a: 1}
-  _activeMagicSphereMaterialProperty:
-    markTexture: {fileID: 2800000, guid: c21aa54705e0b2343afb5f458f49b3b1, type: 3}
-    baseInEmissionColor: {r: 0.023529412, g: 0.2627451, b: 0.8627451, a: 1}
-    baseOutEmissionColor: {r: 0.08175422, g: 1.3780837, b: 2.2307217, a: 1}
-    markEmissionColor: {r: 0.8818634, g: 11.984315, b: 8.972482, a: 1}
 --- !u!82 &52058002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -727,6 +749,36 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - 16156ff9b24786c44ad22a08e298f499: {fileID: 1053061755}
+--- !u!114 &52058005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52057997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d7d193dca114a48b318be04b907d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveMagicSphereMaterialProperty
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: c21aa54705e0b2343afb5f458f49b3b1, type: 3}
+    baseInEmissionColor: {r: 0.023529412, g: 0.2627451, b: 0.8627451, a: 1}
+    baseOutEmissionColor: {r: 0.08175422, g: 1.3780837, b: 2.2307217, a: 1}
+    markEmissionColor: {r: 0.8818634, g: 11.984315, b: 8.972482, a: 1}
+--- !u!114 &52058006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52057997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff5c4cabb3f42441a6cd5d9dff7736d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
+  _leadEffectEmissionColor: {r: 32.289646, g: 214.48436, b: 440.52325, a: 1}
 --- !u!1 &81763183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,8 +1326,9 @@ GameObject:
   m_Component:
   - component: {fileID: 106866428}
   - component: {fileID: 106866429}
+  - component: {fileID: 106866430}
   m_Layer: 3
-  m_Name: MagicContentShow
+  m_Name: InvokedMagicIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1291,7 +1344,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.32, z: -1.61}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.88, y: 0.88, z: 0.88}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 741445575}
@@ -1322,7 +1375,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 8df6dd0f52673d849b583c15bb9b74e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1341,12 +1394,12 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1840740083
-  m_SortingLayer: 2
+  m_SortingLayerID: -1211335169
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
-  m_Color: {r: 1, g: 0.9321854, b: 0, a: 1}
+  m_Color: {r: 0.8490566, g: 0.8047348, b: 0.18422915, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1355,6 +1408,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &106866430
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106866427}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e7305149cc5defe4f8ca0df0af97a804, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &136774159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2914,7 +2989,7 @@ MonoBehaviour:
   _activeDuration: 1
   _deactiveDuration: 0.15
   _magicSpheresList: {fileID: 741445577}
-  _spellCastList: {fileID: 446498117}
+  _magicList: {fileID: 446498117}
   _leadEffectAudioSource: {fileID: 214072087}
   _leadSE: {fileID: 8300000, guid: 293a96d307893704fb1444e91e43c5aa, type: 3}
 --- !u!82 &214072087
@@ -4938,21 +5013,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 446498114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c81ee3c8218e16f4e92ba8d0b0baffac, type: 3}
+  m_Script: {fileID: 11500000, guid: f670a6977d031ad4e8b4cb34be6deb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCastList
-  _spellCastsDictionary:
+  _magicObjsDic:
     _list:
     - key: 0
-      value: {fileID: 1138852482}
+      value: {fileID: 1138852477}
     - key: 1
-      value: {fileID: 52058001}
+      value: {fileID: 52057997}
     - key: 2
-      value: {fileID: 1910504421}
+      value: {fileID: 1910504417}
     - key: 3
-      value: {fileID: 1040190900}
+      value: {fileID: 1040190897}
     - key: 4
-      value: {fileID: 525952}
+      value: {fileID: 525949}
 --- !u!1 &447535806
 GameObject:
   m_ObjectHideFlags: 0
@@ -6708,8 +6783,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1840740083
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: c9656c4300126044c9c59486e85316a1, type: 3}
@@ -7328,6 +7403,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1040190898}
   - component: {fileID: 1040190900}
+  - component: {fileID: 1040190906}
+  - component: {fileID: 1040190905}
   - component: {fileID: 1040190901}
   - component: {fileID: 1040190903}
   - component: {fileID: 1040190904}
@@ -7368,12 +7445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 359.87543, a: 1}
-  _activeMagicSphereMaterialProperty:
-    markTexture: {fileID: 2800000, guid: c016c874d6bb1e84ca1726814ce3bb25, type: 3}
-    baseInEmissionColor: {r: 0.13564637, g: 0.06274507, b: 0.8784314, a: 1}
-    baseOutEmissionColor: {r: 0.027415274, g: 0, b: 2.9960785, a: 1}
-    markEmissionColor: {r: 9.0587225, g: 4.2666664, b: 11.984314, a: 1}
 --- !u!114 &1040190901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7462,6 +7533,36 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1040190905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040190897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d7d193dca114a48b318be04b907d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveMagicSphereMaterialProperty
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: c016c874d6bb1e84ca1726814ce3bb25, type: 3}
+    baseInEmissionColor: {r: 0.13564637, g: 0.06274507, b: 0.8784314, a: 1}
+    baseOutEmissionColor: {r: 0.027415274, g: 0, b: 2.9960785, a: 1}
+    markEmissionColor: {r: 9.0587225, g: 4.2666664, b: 11.984314, a: 1}
+--- !u!114 &1040190906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040190897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff5c4cabb3f42441a6cd5d9dff7736d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
+  _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 359.87543, a: 1}
 --- !u!1 &1053061755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1122004591101654085, guid: 14a635aeedcdc5e4da4a52a1a34d8719, type: 3}
@@ -7815,8 +7916,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1840740083
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: eceb1855a269ab7499967db835b22a4e, type: 3}
@@ -7906,8 +8007,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1840740083
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: bb9abda53d738b2478b306408d1294e7, type: 3}
@@ -8382,6 +8483,8 @@ GameObject:
   - component: {fileID: 1138852481}
   - component: {fileID: 1138852480}
   - component: {fileID: 1138852482}
+  - component: {fileID: 1138852489}
+  - component: {fileID: 1138852488}
   - component: {fileID: 1138852485}
   - component: {fileID: 1138852487}
   - component: {fileID: 1138852486}
@@ -8533,12 +8636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _leadEffectEmissionColor: {r: 421.3235, g: 440.52325, b: 32.289646, a: 1}
-  _activeMagicSphereMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
-    baseInEmissionColor: {r: 0.85490197, g: 1, b: 0, a: 1}
-    baseOutEmissionColor: {r: 2.64722, g: 2.9960785, b: 0, a: 1}
-    markEmissionColor: {r: 4.4315248, g: 4.8671446, b: 1.7172756, a: 1}
 --- !u!114 &1138852485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8965,6 +9062,36 @@ PlayableDirector:
     - 2a03beb84bb945a448d2d84d57b95906: {fileID: 1371745699}
     - dd9a34d120a2d304caa8b7ca25df57ad: {fileID: 350216447}
     - 9a1cc231e3108374697e9ff94c814b04: {fileID: 667172822}
+--- !u!114 &1138852488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d7d193dca114a48b318be04b907d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveMagicSphereMaterialProperty
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
+    baseInEmissionColor: {r: 0.85490197, g: 1, b: 0, a: 1}
+    baseOutEmissionColor: {r: 2.64722, g: 2.9960785, b: 0, a: 1}
+    markEmissionColor: {r: 4.4315248, g: 4.8671446, b: 1.7172756, a: 1}
+--- !u!114 &1138852489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff5c4cabb3f42441a6cd5d9dff7736d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
+  _leadEffectEmissionColor: {r: 421.3235, g: 440.52325, b: 32.289646, a: 1}
 --- !u!1 &1148722369
 GameObject:
   m_ObjectHideFlags: 0
@@ -11638,7 +11765,7 @@ MonoBehaviour:
   _magicSpheresList: {fileID: 741445577}
   _castPatternManager: {fileID: 1557604845}
   _magicSphereTrail: {fileID: 241167068}
-  _spellCastList: {fileID: 446498117}
+  _magicList: {fileID: 446498117}
   _magicSphereLeadEffectController: {fileID: 214072086}
 --- !u!4 &1570316130 stripped
 Transform:
@@ -13071,6 +13198,8 @@ GameObject:
   - component: {fileID: 1910504420}
   - component: {fileID: 1910504426}
   - component: {fileID: 1910504421}
+  - component: {fileID: 1910504428}
+  - component: {fileID: 1910504427}
   - component: {fileID: 1910504422}
   - component: {fileID: 1910504423}
   - component: {fileID: 1910504424}
@@ -13128,12 +13257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8672a57ff085f7846b92c9701cd4bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCast
-  _leadEffectEmissionColor: {r: 68.961555, g: 440.52325, b: 32.289646, a: 1}
-  _activeMagicSphereMaterialProperty:
-    markTexture: {fileID: 2800000, guid: 3a2f149c756d1a14499ea6a0492bff97, type: 3}
-    baseInEmissionColor: {r: 0.14117648, g: 0.8784314, b: 0.0627451, a: 1}
-    baseOutEmissionColor: {r: 0, g: 2.380148, b: 0.55385345, a: 1}
-    markEmissionColor: {r: 0.6783532, g: 23.968624, b: 0.92222667, a: 1}
 --- !u!82 &1910504422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13387,6 +13510,36 @@ MonoBehaviour:
   _groundGrassAlphaController: {fileID: 1531092908}
   _alphaDeltaRate: 0.429
   _shiftGrassAmountDuration: 6
+--- !u!114 &1910504427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d7d193dca114a48b318be04b907d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveMagicSphereMaterialProperty
+  _activeMagicSphereMaterialProperty:
+    markTexture: {fileID: 2800000, guid: 3a2f149c756d1a14499ea6a0492bff97, type: 3}
+    baseInEmissionColor: {r: 0.14117648, g: 0.8784314, b: 0.0627451, a: 1}
+    baseOutEmissionColor: {r: 0, g: 2.380148, b: 0.55385345, a: 1}
+    markEmissionColor: {r: 0.6783532, g: 23.968624, b: 0.92222667, a: 1}
+--- !u!114 &1910504428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff5c4cabb3f42441a6cd5d9dff7736d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
+  _leadEffectEmissionColor: {r: 68.961555, g: 440.52325, b: 32.289646, a: 1}
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0

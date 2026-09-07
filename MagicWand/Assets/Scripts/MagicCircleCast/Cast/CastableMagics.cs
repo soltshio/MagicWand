@@ -36,10 +36,8 @@ public class CastableMagics
 
     //杖が触れた球のインデックスを魔法に伝える(それにより次になぞる球の番号の更新、魔法の発動処理を行う)
     //発動可能な魔法を返す
-    public EMagic[] CastTouchedIndexToMagics(int touchedMagicSphereindex)
+    public EMagic CastTouchedIndexToMagics(int touchedMagicSphereindex)
     {
-        List<EMagic> invokableMagicsList = new();
-
         foreach (var spellCastPair in _castableMagicDic)
         {
             bool castResult = spellCastPair.Value.Cast(touchedMagicSphereindex);//触れた球のインデックスを魔法に伝える
@@ -49,13 +47,13 @@ public class CastableMagics
                 OnSuccessToCast?.Invoke(spellCastPair.Key, touchedMagicSphereindex);
             }
 
-            if (spellCastPair.Value.IsReadyToInvoke)//発動可能な魔法を追加
+            if (spellCastPair.Value.IsReadyToInvoke)//魔法が既に発動可能であればその魔法を返す
             {
-                invokableMagicsList.Add(spellCastPair.Key);
+                return spellCastPair.Key;
             }
         }
 
-        return invokableMagicsList.ToArray();
+        return EMagic.None;
     }
 
     //発動可能性の無い魔法を発動可能性のある魔法リストから消す
