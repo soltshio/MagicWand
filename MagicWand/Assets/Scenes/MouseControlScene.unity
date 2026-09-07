@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 525952}
   - component: {fileID: 525959}
   - component: {fileID: 525958}
+  - component: {fileID: 525960}
   - component: {fileID: 525954}
   - component: {fileID: 525953}
   - component: {fileID: 525955}
@@ -429,6 +430,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
   _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 44.62176, a: 1}
+--- !u!114 &525960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c8d7ecf64b0a4ea9bcd1cd2ad3124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokedMagicIconEffectProperty
+  _iconColor: {r: 0.87058824, g: 0.17254902, b: 0.08235294, a: 1}
+  _iconSprite: {fileID: 21300000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
 --- !u!4 &2114282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
@@ -488,6 +503,7 @@ GameObject:
   - component: {fileID: 52058001}
   - component: {fileID: 52058006}
   - component: {fileID: 52058005}
+  - component: {fileID: 52058007}
   - component: {fileID: 52058002}
   - component: {fileID: 52058004}
   - component: {fileID: 52058003}
@@ -779,6 +795,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
   _leadEffectEmissionColor: {r: 32.289646, g: 214.48436, b: 440.52325, a: 1}
+--- !u!114 &52058007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52057997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c8d7ecf64b0a4ea9bcd1cd2ad3124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokedMagicIconEffectProperty
+  _iconColor: {r: 0.18431373, g: 0.8509804, b: 0.7529412, a: 1}
+  _iconSprite: {fileID: 21300000, guid: c21aa54705e0b2343afb5f458f49b3b1, type: 3}
 --- !u!1 &81763183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,8 +1428,8 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
-  m_Color: {r: 0.8490566, g: 0.8047348, b: 0.18422915, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
+  m_Color: {r: 0.87169814, g: 0.17100291, b: 0.08388037, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6292,6 +6322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 713691837}
   - component: {fileID: 713691838}
+  - component: {fileID: 713691839}
   m_Layer: 0
   m_Name: Close
   m_TagString: Untagged
@@ -6328,6 +6359,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicCircleCloseManager
   _magicSphereTrail: {fileID: 241167068}
   _magicCircleActiveHandler: {fileID: 741445576}
+  _invokedMagicIconEffect: {fileID: 713691839}
+  _delayDurationFromInvokedMagicIconEffectFromHideMagicCircle: 1
+--- !u!114 &713691839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713691836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc928e2924027740bfedba5edb3da8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokedMagicIconEffect
+  _magicList: {fileID: 446498117}
+  _iconAnimator: {fileID: 106866430}
+  _iconRenderer: {fileID: 106866429}
+  _activeDuration: 5
 --- !u!1 &741445573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7405,6 +7454,7 @@ GameObject:
   - component: {fileID: 1040190900}
   - component: {fileID: 1040190906}
   - component: {fileID: 1040190905}
+  - component: {fileID: 1040190907}
   - component: {fileID: 1040190901}
   - component: {fileID: 1040190903}
   - component: {fileID: 1040190904}
@@ -7563,6 +7613,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
   _leadEffectEmissionColor: {r: 440.52325, g: 32.289646, b: 359.87543, a: 1}
+--- !u!114 &1040190907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040190897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c8d7ecf64b0a4ea9bcd1cd2ad3124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokedMagicIconEffectProperty
+  _iconColor: {r: 0.29411766, g: 0.18431373, b: 0.8509804, a: 1}
+  _iconSprite: {fileID: 21300000, guid: c016c874d6bb1e84ca1726814ce3bb25, type: 3}
 --- !u!1 &1053061755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1122004591101654085, guid: 14a635aeedcdc5e4da4a52a1a34d8719, type: 3}
@@ -8485,6 +8549,7 @@ GameObject:
   - component: {fileID: 1138852482}
   - component: {fileID: 1138852489}
   - component: {fileID: 1138852488}
+  - component: {fileID: 1138852490}
   - component: {fileID: 1138852485}
   - component: {fileID: 1138852487}
   - component: {fileID: 1138852486}
@@ -9092,6 +9157,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
   _leadEffectEmissionColor: {r: 421.3235, g: 440.52325, b: 32.289646, a: 1}
+--- !u!114 &1138852490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138852477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c8d7ecf64b0a4ea9bcd1cd2ad3124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokedMagicIconEffectProperty
+  _iconColor: {r: 0.8509804, g: 0.8039216, b: 0.18431373, a: 1}
+  _iconSprite: {fileID: 21300000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
 --- !u!1 &1148722369
 GameObject:
   m_ObjectHideFlags: 0
@@ -13200,6 +13279,7 @@ GameObject:
   - component: {fileID: 1910504421}
   - component: {fileID: 1910504428}
   - component: {fileID: 1910504427}
+  - component: {fileID: 1910504429}
   - component: {fileID: 1910504422}
   - component: {fileID: 1910504423}
   - component: {fileID: 1910504424}
@@ -13540,6 +13620,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LeadEffectProperty
   _leadEffectEmissionColor: {r: 68.961555, g: 440.52325, b: 32.289646, a: 1}
+--- !u!114 &1910504429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154c8d7ecf64b0a4ea9bcd1cd2ad3124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokedMagicIconEffectProperty
+  _iconColor: {r: 0.18431373, g: 0.8509804, b: 0.19607843, a: 1}
+  _iconSprite: {fileID: 21300000, guid: 3a2f149c756d1a14499ea6a0492bff97, type: 3}
 --- !u!1 &2021340719
 GameObject:
   m_ObjectHideFlags: 0
