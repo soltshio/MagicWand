@@ -5,9 +5,6 @@
 
 public class SpellCast : MonoBehaviour
 {
-    [SerializeField] [ColorUsage(true, true)]
-    Color _leadEffectEmissionColor;
-
     int[] _activeOrderIndexs;
 
     bool _spellIsValid = true;
@@ -15,7 +12,6 @@ public class SpellCast : MonoBehaviour
 
     public bool SpellIsValid { get { return _spellIsValid; } }//魔法の発動手順が合っているか
     public bool IsReadyToInvoke { get { return _currentIndex >= _activeOrderIndexs.Length; } }//魔法が発動可能か
-    public Color LeadEffectEmissionColor { get { return _leadEffectEmissionColor; } }//誘導エフェクトの色
 
     //初期化
     public void Initialize(int[] activeOrderIndexs)
