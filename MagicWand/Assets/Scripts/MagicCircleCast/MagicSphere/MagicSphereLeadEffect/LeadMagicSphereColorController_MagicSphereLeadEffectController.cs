@@ -12,10 +12,12 @@ public partial class MagicSphereLeadEffectController
     class LeadMagicSphereColorController
     {
         MagicSpheresList _magicSpheresList;
+        MagicList _magicList;
 
-        public void Awake(MagicSpheresList magicSpheresList)
+        public void Awake(MagicSpheresList magicSpheresList,MagicList magicList)
         {
             _magicSpheresList = magicSpheresList;
+            _magicList = magicList;
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
@@ -24,8 +26,9 @@ public partial class MagicSphereLeadEffectController
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
                 var index = activeSphereIndex_MagicList[i].index;
+                var magic = activeSphereIndex_MagicList[i].magic;
 
-                var activeMagicSphereMaterialProperty = _magicSpheresList.GetComponentFromMagicSphere<ActiveMagicSphereMaterialProperty>(index);
+                var activeMagicSphereMaterialProperty = _magicList.GetComponentFromMagic<ActiveMagicSphereMaterialProperty>(magic);
                 var magicSphereElementColorController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereElementColorController>(index);
 
                 if (activeMagicSphereMaterialProperty == null) continue;

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 //作成者:杉山
@@ -17,7 +16,7 @@ public class MagicList : MonoBehaviour
     //指定の番号の魔法球からコンポーネントを取得
     public T GetComponentFromMagic<T>(EMagic magic) where T : Component
     {
-        if (_magicComponentCacheDic.TryGetValue(magic, out var cache)) return null;
+        if (!_magicComponentCacheDic.TryGetValue(magic, out var cache)) return null;
 
         return cache?.GetComponent<T>();
     }

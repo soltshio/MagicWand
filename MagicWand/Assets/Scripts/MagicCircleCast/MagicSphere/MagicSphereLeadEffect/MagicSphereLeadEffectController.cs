@@ -71,7 +71,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
     void Awake()
     {
-        _leadMagicSphereColorController.Awake(_magicSpheresList);
+        _leadMagicSphereColorController.Awake(_magicSpheresList,_magicList);
         _leadEffectController.Awake(_magicSpheresList, _magicList);
     }
 
