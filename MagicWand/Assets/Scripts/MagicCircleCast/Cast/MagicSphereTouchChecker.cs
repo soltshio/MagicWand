@@ -12,10 +12,10 @@ public class MagicSphereTouchChecker
     class MagicSphereTouchedNotifier
     {
         int _index;//魔法球の番号
-        MagicSphereTouchedReceiver _receiver;
+        TouchedReceiver _receiver;
         public event Action<int> ReceiveIndexOnTouch;
 
-        public MagicSphereTouchedNotifier(int index,MagicSphereTouchedReceiver receiver)
+        public MagicSphereTouchedNotifier(int index,TouchedReceiver receiver)
         {
             _index = index;
             _receiver = receiver;
@@ -60,7 +60,7 @@ public class MagicSphereTouchChecker
         {
             var activeMagicSphereIndex = activeMagicSphereIndexList[i];
 
-            var touchedReceiver = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereTouchedReceiver>(activeMagicSphereIndex);
+            var touchedReceiver = _magicSpheresList.GetComponentFromMagicSphere<TouchedReceiver>(activeMagicSphereIndex);
 
             if (touchedReceiver == null) continue;
 

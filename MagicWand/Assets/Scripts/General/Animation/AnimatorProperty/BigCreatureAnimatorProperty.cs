@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-//作成者:杉山
+﻿//作成者:杉山
 //巨大生物(BigNudi)のアニメーションのプロパティ
 
 public class BigCreatureAnimatorProperty

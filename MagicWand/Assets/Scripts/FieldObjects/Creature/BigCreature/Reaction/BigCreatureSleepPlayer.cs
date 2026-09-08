@@ -87,8 +87,6 @@ public class BigCreatureSleepPlayer : MonoBehaviour
 
     private void OnDisable()
     {
-        _singleTaskCancellation.Cancel();
-
         _bigCreatureStatus.OnUpdateHP -= UpdateShowZCount;
     }
 

@@ -25,7 +25,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
     MagicSpheresList _magicSpheresList;
 
     [SerializeField]
-    SpellCastList _spellCastList;
+    MagicList _magicList;
 
     [SerializeField]
     AudioSource _leadEffectAudioSource;
@@ -71,8 +71,8 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
     void Awake()
     {
-        _leadMagicSphereColorController.Awake(_magicSpheresList, _spellCastList);
-        _leadEffectController.Awake(_magicSpheresList, _spellCastList);
+        _leadMagicSphereColorController.Awake(_magicSpheresList,_magicList);
+        _leadEffectController.Awake(_magicSpheresList, _magicList);
     }
 
     public void PlaySound()

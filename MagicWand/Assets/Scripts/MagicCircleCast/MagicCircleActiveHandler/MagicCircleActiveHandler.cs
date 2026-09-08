@@ -37,18 +37,14 @@ public class MagicCircleActiveHandler : MonoBehaviour
         _isProcessing = true;
 
         //魔法陣を表示
-        _magicCircleRendererActivator.MagicCircleSwitchEnable(true);
+        _magicCircleRendererActivator.Show();
 
         ProgressTimer progressTimer = new(_fadeDuration);
 
         while(!progressTimer.IsFinished)
         {
             progressTimer.Tick();
-
             float progress = progressTimer.CalcProgress();
-
-            //魔法陣
-            _magicCircleRendererActivator.ActivateMagicCircle(progress);
 
             //球の表示
             _magicSphereRendererActivator.ActivateMagicSphere(progress);
@@ -68,6 +64,9 @@ public class MagicCircleActiveHandler : MonoBehaviour
         if (_isProcessing) return;
         _isProcessing = true;
 
+        //魔法陣の非表示アニメーションを開始する
+        _magicCircleRendererActivator.StartHide();
+
         //球の当たり判定をオフにする
         _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
 
@@ -79,11 +78,7 @@ public class MagicCircleActiveHandler : MonoBehaviour
         while (!progressTimer.IsFinished)
         {
             progressTimer.Tick();
-
             float progress = progressTimer.CalcProgress();
-
-            //魔法陣
-            _magicCircleRendererActivator.DeactivateMagicCircle(progress);
 
             //魔法陣の球
             _magicSphereRendererActivator.DeactivateMagicSphere(progress);
@@ -91,8 +86,8 @@ public class MagicCircleActiveHandler : MonoBehaviour
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
         }
 
-        //魔法陣を完全に非表示
-        _magicCircleRendererActivator.MagicCircleSwitchEnable(false);
+        //魔法陣を完全に非表示にする
+        _magicCircleRendererActivator.CompleteHide();
 
         _isProcessing = false;
     }
