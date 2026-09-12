@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2910882022290487024}
+  - component: {fileID: 6083091834870411239}
+  - component: {fileID: 3277442389864207902}
   m_Layer: 0
   m_Name: Bed_grass09
   m_TagString: Untagged
@@ -30,12 +32,50 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2351637056325862883}
-  - {fileID: 5741777696308684112}
-  - {fileID: 1563446184900588708}
-  - {fileID: 2257506286947990577}
-  - {fileID: 4140997247143083704}
+  - {fileID: 4389277834004792104}
+  - {fileID: 8393277178213675302}
+  - {fileID: 7805463443050494622}
+  - {fileID: 1567099824442046485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6083091834870411239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495738019159795840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
+  _leaveGrowthSegments: []
+  _stemRenderer: {fileID: 6990474700677594026}
+  _height: 0
+  _defaultGrowthRate: 1
+--- !u!95 &3277442389864207902
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495738019159795840}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f14b8dd468bc49c4a978a3cc5a2134c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &542427658060741076
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,7 +88,7 @@ GameObject:
   - component: {fileID: 3706723666076508714}
   - component: {fileID: 243778070441923393}
   m_Layer: 0
-  m_Name: polySurface117
+  m_Name: leaf03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,12 +102,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542427658060741076}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8103485, y: 1.2726698, z: 4.1853113}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.14265144, y: -0.24333024, z: -0.018688679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2910882022290487024}
+  m_Father: {fileID: 7805463443050494622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3706723666076508714
 MeshFilter:
@@ -126,6 +166,38 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1708635353673571692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567099824442046485}
+  m_Layer: 0
+  m_Name: ConLeaf04
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567099824442046485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708635353673571692}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.968, y: 1.915, z: 4.206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5741777696308684112}
+  m_Father: {fileID: 2910882022290487024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887563869684517818
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +210,7 @@ GameObject:
   - component: {fileID: 3049993270769974227}
   - component: {fileID: 7432691462105810896}
   m_Layer: 0
-  m_Name: polySurface112
+  m_Name: leaf04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,12 +224,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887563869684517818}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7808926, y: 2.13525, z: 4.2238846}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.18710744, y: 0.22025013, z: 0.017884731}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2910882022290487024}
+  m_Father: {fileID: 1567099824442046485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3049993270769974227
 MeshFilter:
@@ -228,7 +300,7 @@ GameObject:
   - component: {fileID: 7982862095825823847}
   - component: {fileID: 5006275712261750486}
   m_Layer: 0
-  m_Name: polySurface118
+  m_Name: leaf02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,12 +314,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4075806015725193648}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9526403, y: 0.5082373, z: 4.1750717}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.058359623, y: -0.2457627, z: -0.019928455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2910882022290487024}
+  m_Father: {fileID: 8393277178213675302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7982862095825823847
 MeshFilter:
@@ -306,6 +378,38 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4523151112652805889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8393277178213675302}
+  m_Layer: 0
+  m_Name: ConLeaf02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8393277178213675302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523151112652805889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.011, y: 0.754, z: 4.195}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2257506286947990577}
+  m_Father: {fileID: 2910882022290487024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5580037297961466946
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +422,7 @@ GameObject:
   - component: {fileID: 2619035629878991266}
   - component: {fileID: 8273024259038588900}
   m_Layer: 0
-  m_Name: polySurface122
+  m_Name: leaf01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,12 +436,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5580037297961466946}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8266414, y: -0.010226092, z: 3.8636365}
+  m_LocalRotation: {x: -0.24436222, y: -0.031768158, z: 0.12494403, w: 0.96107596}
+  m_LocalPosition: {x: -0.034842815, y: -0.17081013, z: -0.069141924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2910882022290487024}
+  m_Father: {fileID: 4389277834004792104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2619035629878991266
 MeshFilter:
@@ -396,6 +500,38 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5924785563878015817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4389277834004792104}
+  m_Layer: 0
+  m_Name: ConLeaf01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4389277834004792104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924785563878015817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.24436222, y: 0.031768158, z: -0.12494403, w: 0.96107596}
+  m_LocalPosition: {x: 1.904, y: 0.094, z: 3.999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 4140997247143083704}
+  m_Father: {fileID: 2910882022290487024}
+  m_LocalEulerAnglesHint: {x: 28.531, y: 0, z: -14.814}
 --- !u!1 &6262065322509814159
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +544,7 @@ GameObject:
   - component: {fileID: 1900587821620473215}
   - component: {fileID: 6990474700677594026}
   m_Layer: 0
-  m_Name: polySurface111
+  m_Name: stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,3 +622,35 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6560816680758187406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7805463443050494622}
+  m_Layer: 0
+  m_Name: ConLeaf03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7805463443050494622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560816680758187406}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.953, y: 1.516, z: 4.204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1563446184900588708}
+  m_Father: {fileID: 2910882022290487024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
