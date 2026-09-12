@@ -11,11 +11,11 @@ public class GrassGrowthController : MonoBehaviour
     {
         public Renderer leaveRenderer;
 
+        public AnimationClip leaveAnimationClip;
+
         [Range(0, 1)] public float startRate;
 
-        [Range(0, 1)] public float rangeRate;
-
-        public float maxScale;
+        [Range(0, 1)] public float finishRate;
     }
 
     [SerializeField]
@@ -24,15 +24,16 @@ public class GrassGrowthController : MonoBehaviour
     [SerializeField]
     Renderer _stemRenderer;
 
-    [SerializeField]
-    float _height;
-
     [SerializeField] [Range(0, 1)]
     float _defaultGrowthRate;
+
+    [SerializeField]
+    float _stemHeight;
 
     float _currentGrowthRate;
 
     static readonly int _displayRateID = Shader.PropertyToID("_DisplayRate");
+    static readonly int _heightID = Shader.PropertyToID("_Height");
 
     public float CurrentGrowthRate { get { return _currentGrowthRate; } }
 
@@ -57,7 +58,21 @@ public class GrassGrowthController : MonoBehaviour
 
         //茎の成長
         SetStemGrowth(newGrowthRate);
+
+        //茎の高さを設定
+        SetStemHeight();
     }
+
+    //現在の茎のMaterialの設定をリセットする
+    [ContextMenu("Clear Material Property Block")]
+    void ClearMaterialPropertyBlock()
+    {
+        if (_stemRenderer == null) return;
+
+        _stemRenderer.SetPropertyBlock(null);
+    }
+
+
 
     void SetLeaveGrowth(float growthRate)
     {
@@ -66,6 +81,8 @@ public class GrassGrowthController : MonoBehaviour
             var growthSegment = _leaveGrowthSegments[i];
 
             if (growthSegment.leaveRenderer == null) continue;
+            if (growthSegment.leaveAnimationClip == null) continue;
+            if (growthSegment.startRate == growthSegment.finishRate) continue;//ゼロ除算を防ぐためにスキップする
 
             //その成長セグメントに達していない場合は非表示にする
             if (growthRate < growthSegment.startRate)
@@ -76,35 +93,27 @@ public class GrassGrowthController : MonoBehaviour
 
             growthSegment.leaveRenderer.enabled = true;
 
-            //位置を設定
-            SetLeavePos(growthSegment, growthRate);
+            //どのくらい成長させるかを決める
+            float range = growthSegment.finishRate - growthSegment.startRate;
+            float time = Mathf.Clamp01((growthRate - growthSegment.startRate) / range);
+            time *= growthSegment.leaveAnimationClip.length;
 
-            //大きさを設定
-            SetLeaveScale(growthSegment, growthRate);
+            //葉っぱの大きさや位置をアニメーションクリップから設定
+            growthSegment.leaveAnimationClip.SampleAnimation(gameObject, time);
         }
     }
 
-    void SetLeavePos(LeaveGrowthSegment growthSegment,float growthRate)
-    {
-        float heightRate = Mathf.Clamp(growthRate, growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate);
-
-        float leavePosY = heightRate * _height;
-        var leaveLocalPos = growthSegment.leaveRenderer.transform.localPosition;
-        leaveLocalPos.y = leavePosY;
-        growthSegment.leaveRenderer.transform.localPosition = leaveLocalPos;
-    }
-
-    void SetLeaveScale(LeaveGrowthSegment growthSegment, float growthRate)
-    {
-        float scaleRate = Mathf.InverseLerp(growthSegment.startRate, growthSegment.startRate + growthSegment.rangeRate, growthRate);
-        scaleRate = Mathf.Clamp01(scaleRate);
-
-        Vector3 leaveScale = new Vector3(scaleRate, scaleRate, scaleRate);
-        leaveScale *= growthSegment.maxScale;
-        growthSegment.leaveRenderer.transform.localScale = leaveScale;
-    }
-
     void SetStemGrowth(float rate)
+    {
+        SetStemMaterialPropertyBlock(_displayRateID, rate);
+    }
+
+    void SetStemHeight()
+    {
+        SetStemMaterialPropertyBlock(_heightID, _stemHeight);
+    }
+
+    void SetStemMaterialPropertyBlock(int propertyID,float value)
     {
         if (_stemRenderer == null) return;
 
@@ -112,7 +121,7 @@ public class GrassGrowthController : MonoBehaviour
 
         _stemRenderer.GetPropertyBlock(block);
 
-        block.SetFloat(_displayRateID, rate);
+        block.SetFloat(propertyID, value);
 
         _stemRenderer.SetPropertyBlock(block);
     }
