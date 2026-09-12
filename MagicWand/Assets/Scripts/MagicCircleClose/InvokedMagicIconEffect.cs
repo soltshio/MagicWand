@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
@@ -17,6 +18,12 @@ public class InvokedMagicIconEffect : MonoBehaviour
     SpriteRenderer _iconRenderer;
 
     [SerializeField]
+    AudioSource _audioSource;
+
+    [SerializeField]
+    AudioClip _effectSE;
+
+    [SerializeField]
     float _activeDuration=5f;
 
     public async UniTask PlayAsync(EMagic invokedMagic)
@@ -28,17 +35,26 @@ public class InvokedMagicIconEffect : MonoBehaviour
         //アイコンの色を変えておく
         SetIconColor(property);
 
-        _iconAnimator.gameObject.SetActive(true);
+        //効果音再生
+        _audioSource.PlayOneShot(_effectSE);
 
-        await UniTask.Delay(TimeSpan.FromSeconds(_activeDuration), cancellationToken:ct);
-
-        _iconAnimator.gameObject.SetActive(false);
+        //アイコンのアニメーションを再生
+        await PlayIconAnimationAsync(ct);
     }
 
     void SetIconColor(InvokedMagicIconEffectProperty property)
     {
         _iconRenderer.color = property.IconColor;
         _iconRenderer.sprite = property.IconSprite;
+    }
+
+    async UniTask PlayIconAnimationAsync(CancellationToken ct)
+    {
+        _iconAnimator.gameObject.SetActive(true);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(_activeDuration), cancellationToken: ct);
+
+        _iconAnimator.gameObject.SetActive(false);
     }
 
     //アイコンエフェクトのプロパティを取得、失敗したらfalseを返す
