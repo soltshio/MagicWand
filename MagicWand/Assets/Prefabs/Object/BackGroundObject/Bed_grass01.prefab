@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 1097305061965165811}
   - component: {fileID: 6878038536847283100}
   m_Layer: 0
-  m_Name: polySurface1
+  m_Name: leaf04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,8 +118,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.6299503, y: 0.21488002, z: -1.9767685}
-  m_LocalScale: {x: 0.002564146, y: 0.002564146, z: 0.002564146}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6144569433121406777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 2427512892030615225}
   - component: {fileID: 2636950037854300010}
   m_Layer: 0
-  m_Name: polySurface11
+  m_Name: leaf02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 2680248048149882126}
   - component: {fileID: 852843521785655261}
   m_Layer: 0
-  m_Name: polySurface5
+  m_Name: leaf03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,21 +501,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
   _leaveGrowthSegments:
   - leaveRenderer: {fileID: 1211343136153549933}
+    leaveAnimationClip: {fileID: 0}
     startRate: 0.133
-    rangeRate: 0.183
-    maxScale: 1
+    finishRate: 0.47
   - leaveRenderer: {fileID: 2636950037854300010}
+    leaveAnimationClip: {fileID: 0}
     startRate: 0.228
-    rangeRate: 0.308
-    maxScale: 1
+    finishRate: 0
   - leaveRenderer: {fileID: 852843521785655261}
+    leaveAnimationClip: {fileID: 0}
     startRate: 0.4
-    rangeRate: 0.549
-    maxScale: 1
+    finishRate: 0
   - leaveRenderer: {fileID: 6878038536847283100}
+    leaveAnimationClip: {fileID: 0}
     startRate: 0.63
-    rangeRate: 0.78
-    maxScale: 1
+    finishRate: 0
   _stemRenderer: {fileID: 335345579828149051}
-  _height: 0.34
-  _defaultGrowthRate: 0.387
+  _defaultGrowthRate: 1
+  _stemHeight: 0.96
