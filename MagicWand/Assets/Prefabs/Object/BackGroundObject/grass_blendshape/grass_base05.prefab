@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019165099908514535}
+  - component: {fileID: 2432166374802586074}
   m_Layer: 0
   m_Name: grass_base05
   m_TagString: Untagged
@@ -36,6 +37,34 @@ Transform:
   - {fileID: 8522022437882374168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2432166374802586074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189187875936044034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
+  _leaveGrowthSegments:
+  - leaveRenderer: {fileID: 7083737731036994155}
+    startRate: 0
+    finishRate: 0.129
+  - leaveRenderer: {fileID: 1913559416945643721}
+    startRate: 0.209
+    finishRate: 0.342
+  - leaveRenderer: {fileID: 6572646271811458660}
+    startRate: 0.417
+    finishRate: 0.542
+  - leaveRenderer: {fileID: 8762607859431108725}
+    startRate: 0.627
+    finishRate: 0.774
+  _stemRenderer: {fileID: 8704105148564689660}
+  _defaultGrowthRate: 1
+  _stemHeight: 1.08
 --- !u!1 &834034195713169091
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +76,7 @@ GameObject:
   - component: {fileID: 8522022437882374168}
   - component: {fileID: 7083737731036994155}
   m_Layer: 0
-  m_Name: polySurface135
+  m_Name: leaf01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +169,7 @@ GameObject:
   - component: {fileID: 4176413205621891934}
   - component: {fileID: 8762607859431108725}
   m_Layer: 0
-  m_Name: polySurface126
+  m_Name: leaf04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +263,7 @@ GameObject:
   - component: {fileID: 1868879285411325399}
   - component: {fileID: 8704105148564689660}
   m_Layer: 0
-  m_Name: polySurface124
+  m_Name: stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +352,7 @@ GameObject:
   - component: {fileID: 2312014347334409443}
   - component: {fileID: 6572646271811458660}
   m_Layer: 0
-  m_Name: polySurface129
+  m_Name: leaf03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,7 +445,7 @@ GameObject:
   - component: {fileID: 8221833532905735960}
   - component: {fileID: 1913559416945643721}
   m_Layer: 0
-  m_Name: polySurface131
+  m_Name: leaf02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

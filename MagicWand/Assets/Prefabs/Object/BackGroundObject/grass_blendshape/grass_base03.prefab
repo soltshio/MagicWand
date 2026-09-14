@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7314306366717846114}
   - component: {fileID: 2971920601207406576}
   m_Layer: 0
-  m_Name: polySurface74
+  m_Name: leaf04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4097475058618532175}
   - component: {fileID: 2427309597956021948}
   m_Layer: 0
-  m_Name: polySurface76
+  m_Name: leaf03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 6004779719965535333}
   - component: {fileID: 4688873692681696959}
   m_Layer: 0
-  m_Name: polySurface72
+  m_Name: stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 4288531923806505931}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 2193454847902826396}
   - component: {fileID: 6910863885935105587}
   m_Layer: 0
-  m_Name: polySurface80
+  m_Name: leaf02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 801797421218618520}
   - component: {fileID: 3407719785570806829}
   m_Layer: 0
-  m_Name: polySurface84
+  m_Name: leaf01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,6 +471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2335717728169852792}
+  - component: {fileID: 3077343606674400864}
   m_Layer: 0
   m_Name: grass_base03
   m_TagString: Untagged
@@ -498,3 +499,31 @@ Transform:
   - {fileID: 801797421218618520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3077343606674400864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384440530883127276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
+  _leaveGrowthSegments:
+  - leaveRenderer: {fileID: 3407719785570806829}
+    startRate: 0
+    finishRate: 0.157
+  - leaveRenderer: {fileID: 6910863885935105587}
+    startRate: 0.234
+    finishRate: 0.361
+  - leaveRenderer: {fileID: 2427309597956021948}
+    startRate: 0.439
+    finishRate: 0.553
+  - leaveRenderer: {fileID: 2971920601207406576}
+    startRate: 0.611
+    finishRate: 0.733
+  _stemRenderer: {fileID: 4688873692681696959}
+  _defaultGrowthRate: 1
+  _stemHeight: 3.84

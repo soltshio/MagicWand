@@ -320,6 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7523344776433710058}
+  - component: {fileID: 3242573306211482161}
   m_Layer: 0
   m_Name: grass_Unmerge
   m_TagString: Untagged
@@ -347,6 +348,34 @@ Transform:
   - {fileID: 8819573809287993537}
   m_Father: {fileID: 4119046930676957584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3242573306211482161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6017781429602877868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
+  _leaveGrowthSegments:
+  - leaveRenderer: {fileID: 2432992023865566888}
+    startRate: 0
+    finishRate: 0.151
+  - leaveRenderer: {fileID: 2534016734656601988}
+    startRate: 0.229
+    finishRate: 0.367
+  - leaveRenderer: {fileID: 1288944561552039841}
+    startRate: 0.434
+    finishRate: 0.594
+  - leaveRenderer: {fileID: 3305019267167010031}
+    startRate: 0.675
+    finishRate: 0.794
+  _stemRenderer: {fileID: 1627533181827616717}
+  _defaultGrowthRate: 1
+  _stemHeight: 0.69
 --- !u!1 &7826667229570088130
 GameObject:
   m_ObjectHideFlags: 0

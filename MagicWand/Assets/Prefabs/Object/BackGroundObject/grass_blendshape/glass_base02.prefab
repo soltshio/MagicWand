@@ -285,6 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1619323900764153130}
+  - component: {fileID: 6443429506462249451}
   m_Layer: 0
   m_Name: glass_base02
   m_TagString: Untagged
@@ -312,6 +313,34 @@ Transform:
   - {fileID: 86528459212392158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6443429506462249451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194004962742672192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9742557566154ea0e808acb22ab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
+  _leaveGrowthSegments:
+  - leaveRenderer: {fileID: 1004916308631277968}
+    startRate: 0
+    finishRate: 0.151
+  - leaveRenderer: {fileID: 6496940198555496881}
+    startRate: 0.234
+    finishRate: 0.384
+  - leaveRenderer: {fileID: 1194391100667172888}
+    startRate: 0.47
+    finishRate: 0.614
+  - leaveRenderer: {fileID: 544364736438076513}
+    startRate: 0.741
+    finishRate: 0.835
+  _stemRenderer: {fileID: 485208492367005186}
+  _defaultGrowthRate: 1
+  _stemHeight: 0.74
 --- !u!1 &6974923843534080951
 GameObject:
   m_ObjectHideFlags: 0
