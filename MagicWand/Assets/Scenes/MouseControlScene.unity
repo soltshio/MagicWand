@@ -15826,6 +15826,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5473593500522609887, guid: 15b8083c388098f41b41dc463aac8fad, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8346267052384457821, guid: 15b8083c388098f41b41dc463aac8fad, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.1213
