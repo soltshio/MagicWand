@@ -9,9 +9,7 @@ public class GrassGrowthController : MonoBehaviour
     [System.Serializable]
     struct LeaveGrowthSegment//葉っぱの成長区間
     {
-        public Renderer leaveRenderer;
-
-        public AnimationClip leaveAnimationClip;
+        public SkinnedMeshRenderer leaveRenderer;
 
         [Range(0, 1)] public float startRate;
 
@@ -34,6 +32,11 @@ public class GrassGrowthController : MonoBehaviour
 
     static readonly int _displayRateID = Shader.PropertyToID("_DisplayRate");
     static readonly int _heightID = Shader.PropertyToID("_Height");
+
+    //BlendShape関係の定数
+    const float _minShapeValue = 0;
+    const float _maxShapeValue = 100;
+    const int _blendShapeIndex = 0;
 
     public float CurrentGrowthRate { get { return _currentGrowthRate; } }
 
@@ -81,7 +84,6 @@ public class GrassGrowthController : MonoBehaviour
             var growthSegment = _leaveGrowthSegments[i];
 
             if (growthSegment.leaveRenderer == null) continue;
-            if (growthSegment.leaveAnimationClip == null) continue;
             if (growthSegment.startRate == growthSegment.finishRate) continue;//ゼロ除算を防ぐためにスキップする
 
             //その成長セグメントに達していない場合は非表示にする
@@ -96,10 +98,10 @@ public class GrassGrowthController : MonoBehaviour
             //どのくらい成長させるかを決める
             float range = growthSegment.finishRate - growthSegment.startRate;
             float time = Mathf.Clamp01((growthRate - growthSegment.startRate) / range);
-            time *= growthSegment.leaveAnimationClip.length;
+            float shapeValue = Mathf.Lerp(_maxShapeValue, _minShapeValue, time);
 
             //葉っぱの大きさや位置をアニメーションクリップから設定
-            growthSegment.leaveAnimationClip.SampleAnimation(gameObject, time);
+            growthSegment.leaveRenderer.SetBlendShapeWeight(_blendShapeIndex, shapeValue);
         }
     }
 
