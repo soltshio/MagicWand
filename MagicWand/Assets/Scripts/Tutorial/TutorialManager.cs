@@ -23,7 +23,7 @@ public class TutorialManager : MonoBehaviour
     {
         try
         {
-            _tutorialCanvas.gameObject.SetActive(true);//チュートリアル関係のUIを表示
+            _tutorialCanvas.enabled = true;//チュートリアル関係のUIを表示
 
             var ct = InitSkipButtonAndCreateToken();
 
@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour
         finally
         {
             //チュートリアル用のUIを非表示にする
-            if (_tutorialCanvas != null) _tutorialCanvas.gameObject.SetActive(false);
+            if (_tutorialCanvas != null) _tutorialCanvas.enabled =false;
         }
     }
 
@@ -53,6 +53,6 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        _tutorialCanvas.gameObject.SetActive(false);
+        _tutorialCanvas.enabled = false;
     }
 }

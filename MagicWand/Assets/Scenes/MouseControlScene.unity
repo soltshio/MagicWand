@@ -6370,7 +6370,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605361609}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 264236207}
@@ -12514,7 +12514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeStart_InGameScene
   _fadeInOutPanel: {fileID: 1124889694}
-  _waitDurationFromFadeInToTutorial: 1.5
+  _waitDurationFromFadeInToTutorial: 0.5
   _tutorialManager: {fileID: 1394882910}
 --- !u!114 &1394882910
 MonoBehaviour:
@@ -12618,7 +12618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\u3046\u304A\uFF57"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54edb42b6ada7cf4abb5bd1fb57a9d97, type: 2}
   m_sharedMaterial: {fileID: 8012339011612505995, guid: 54edb42b6ada7cf4abb5bd1fb57a9d97, type: 2}
