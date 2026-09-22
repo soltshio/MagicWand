@@ -12514,6 +12514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeStart_InGameScene
   _fadeInOutPanel: {fileID: 1124889694}
+  _waitDurationFromFadeInToTutorial: 1.5
+  _tutorialManager: {fileID: 1394882910}
 --- !u!114 &1394882910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14460,6 +14462,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 605361610}
     m_Modifications:
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1394882910}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Skip
+      objectReference: {fileID: 0}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5163555855531483130, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_Name
       value: SkipButton
