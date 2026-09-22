@@ -38,15 +38,9 @@ public class TutorialTextPlayer
 
     async UniTask DisplayTextLetterByLetter(CancellationToken ct,string text)
     {
-        //一旦、文字の表示数を0に
-        _tutorialText.maxVisibleCharacters = 0;
-
         for (int i = 0; i < text.Length; i++)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(_intervalPerCharacter), cancellationToken: ct);
-
-            //順に文字の表示数を増やしていく
-            _tutorialText.maxVisibleCharacters++;
 
             _tutorialText.text += text[i];
         }

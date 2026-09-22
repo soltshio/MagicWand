@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using System.Threading;
+using System;
 using UnityEngine;
 
 //作成者:杉山
@@ -25,25 +25,20 @@ public class TutorialManager : MonoBehaviour
         {
             _tutorialCanvas.enabled = true;//チュートリアル関係のUIを表示
 
-            var ct = InitSkipButtonAndCreateToken();
+            var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
             //チュートリアルのセリフを流す
             await _tutorialTextPlayer.PlayTextAsync(ct,_lineContents);
         }
+        catch (OperationCanceledException)
+        {
+            //発生した例外をSkip()によるものとして扱い終了する(そうすることによって呼び出し元の方で例外が発生してその後の処理がされなくなるということを防ぐ)
+        }
         finally
         {
             //チュートリアル用のUIを非表示にする
-            if (_tutorialCanvas != null) _tutorialCanvas.enabled =false;
+            if (_tutorialCanvas != null) _tutorialCanvas.enabled = false;
         }
-    }
-
-    //スキップボタンの初期化処理(スキップボタンを押した時にチュートリアルがスキップ出来るようにトークンを生成する)
-    CancellationToken InitSkipButtonAndCreateToken()
-    {
-        //トークンを作成しておく
-        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
-
-        return ct;
     }
 
     public void Skip()

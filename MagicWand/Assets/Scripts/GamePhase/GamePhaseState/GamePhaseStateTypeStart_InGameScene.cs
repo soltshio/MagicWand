@@ -1,10 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 //作成者:杉山
 //インゲームシーンの開始タイミング
