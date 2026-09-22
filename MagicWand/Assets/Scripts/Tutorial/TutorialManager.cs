@@ -10,6 +10,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     Canvas _tutorialCanvas;
 
+    [SerializeField]
+    TutorialTextPlayer _tutorialTextPlayer;
+
+    [TextArea(2, 10)]
+    [SerializeField]
+    string[] _lineContents;
+
     SingleTaskCancellation _singleTaskCancellation = new();
 
     public async UniTask PlayTutorialAsync()
@@ -21,6 +28,7 @@ public class TutorialManager : MonoBehaviour
             var ct = InitSkipButtonAndCreateToken();
 
             //チュートリアルのセリフを流す
+            await _tutorialTextPlayer.PlayTextAsync(ct,_lineContents);
         }
         finally
         {
