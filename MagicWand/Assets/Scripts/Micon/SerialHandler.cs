@@ -11,6 +11,7 @@ using System.Threading;
 using System;
 
 //通信を接続や切断を行う基本のクラス
+//参考サイト https://github.com/soltshio/UnityHaraZemi1/blob/main/haraZemiUnityTest/Assets/Scripts/Component/Micon/SerialHandler.cs
 
 public class SerialHandler : MonoBehaviour
 {
