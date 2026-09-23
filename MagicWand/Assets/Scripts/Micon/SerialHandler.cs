@@ -10,16 +10,12 @@ using System.IO.Ports; // これを通すために、Api Compatibility Levelの�
 using System.Threading;
 using System;
 
+//通信を接続や切断を行う基本のクラス
+
 public class SerialHandler : MonoBehaviour
 {
     public delegate void SerialDataReceivedEventHandler(string message);
     public event SerialDataReceivedEventHandler OnDataReceived;
-
-    [Tooltip("マイコンを使用しないか\nしないならチェックを入れる")] [SerializeField]
-    bool _dontUseMicon=false;
-
-    [Tooltip("ポート番号")] [SerializeField]
-    int _portNum=3;
 
     [SerializeField]
     int _bitRate = 115200;
@@ -27,103 +23,114 @@ public class SerialHandler : MonoBehaviour
     // COM10以上は\\\\.\\を付加しないと開けない。
     // portNameに直接代入すると失敗するので、ここでいったん別の変数に代入し、AwakeでportNameに代入
 	// myPortNameが空文字列であればOpenを呼ばない＝デバイスがなくてもアプリケーションを実行することができる
-    const string myPortName = "\\\\.\\COM";
+    const string _myPortName = "\\\\.\\COM";
     
-    SerialPort serialPort_;
-    Thread thread_;
-    bool isRunning_ = false;
+    SerialPort _serialPort;
+    Thread _thread;
+    bool _isRunning = false;
 
-    string message_;
-    bool isNewMessageReceived_ = false;
+    string _message;
+    bool _isNewMessageReceived = false;
 
     public static SerialHandler Instance { get; private set; }
 
-    public bool DontUseMicon
+    public bool IsRunning => _isRunning;// シリアル通信が実行中かどうかを返すプロパティ
+
+    //通信を始める
+    public void Open(int portNum)
     {
-        get { return _dontUseMicon; }
+        if(_isRunning)
+        {
+            Debug.LogWarning("既に通信中です。");
+            return;
+        }
+
+        string portName = _myPortName + portNum.ToString();
+
+        _serialPort = new SerialPort(portName, _bitRate, Parity.None, 8, StopBits.One);
+
+        _serialPort.RtsEnable = true;
+        _serialPort.DtrEnable = true;
+
+        _serialPort.Open();
+
+        _isRunning = true;
+
+        _thread = new Thread(Read);
+        _thread.Start();
+    }
+
+    //通常を終了する
+    public void Close()
+    {
+        if (!_isRunning)
+        {
+            Debug.LogWarning("通信が開始されていません。");
+            return;
+        }
+
+        _isNewMessageReceived = false;
+        _isRunning = false;
+
+        if (_serialPort != null && _serialPort.IsOpen)
+        {
+            _serialPort.Close();
+        }
+
+        if (_thread != null && _thread.IsAlive)
+        {
+            if (!_thread.Join(500)) // 500msは適当な時間
+            {
+                // 少し待って応答がなければ強制終了
+                Debug.LogWarning("from SerialHandler.cs Close(): Abort");
+                _thread.Abort();
+            }
+        }
+
+        if (_serialPort != null)
+        {
+            _serialPort.Dispose();
+        }
     }
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        //インスタンスを生成しておく(シングルトン)
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        if (_dontUseMicon) return;
-        Open(myPortName + _portNum.ToString());
     }
 
     void Update()
     {
-        if (isNewMessageReceived_)
-        {
-            OnDataReceived(message_);
-        }
-        isNewMessageReceived_ = false;
+        if (!_isNewMessageReceived) return;
+
+        OnDataReceived(_message);
+        _isNewMessageReceived = false;
     }
 
     void OnDestroy()
     {
-        if (isRunning_)
+        if (_isRunning)
         {
             Close();
         }
     }
 
-    private void Open(string portName)
-    {
-        serialPort_ = new SerialPort(portName, _bitRate, Parity.None, 8, StopBits.One);
-
-        serialPort_.RtsEnable = true;
-        serialPort_.DtrEnable = true;
-
-        serialPort_.Open();
-
-        isRunning_ = true;
-
-        thread_ = new Thread(Read);
-        thread_.Start();
-    }
-
-    private void Close()
-    {
-        isNewMessageReceived_ = false;
-        isRunning_ = false;
-
-        if (serialPort_ != null && serialPort_.IsOpen)
-        {
-            serialPort_.Close();
-        }
-
-        if (thread_ != null && thread_.IsAlive)
-        {
-            if (!thread_.Join(500)) // 500msは適当な時間
-            {
-                // 少し待って応答がなければ強制終了
-                Debug.LogWarning("from SerialHandler.cs Close(): Abort");
-                thread_.Abort();
-            }
-        }
-
-        if (serialPort_ != null)
-        {
-            serialPort_.Dispose();
-        }
-    }
-
     private void Read()
     {
-        while (isRunning_ && serialPort_ != null && serialPort_.IsOpen)
+        while (_isRunning && _serialPort != null && _serialPort.IsOpen)
         {
             try
             {
-                message_ = serialPort_.ReadLine(); // 改行付きデータが送られる前提
-                isNewMessageReceived_ = true;
+                _message = _serialPort.ReadLine(); // 改行付きデータが送られる前提
+                _isNewMessageReceived = true;
             }
             catch (TimeoutException)
             {
@@ -131,7 +138,7 @@ public class SerialHandler : MonoBehaviour
             }
             catch (System.Exception e)
             {
-                if (!isRunning_)
+                if (!_isRunning)
                     break;
 
                 Debug.LogWarning("from SerialHandler.cs Read(): " + e.Message);
@@ -141,11 +148,9 @@ public class SerialHandler : MonoBehaviour
 
     public void Write(string message)
     {
-        if (_dontUseMicon) return;
-
         try
         {
-            serialPort_.Write(message);
+            _serialPort.Write(message);
         }
         catch (System.Exception e)
         {
