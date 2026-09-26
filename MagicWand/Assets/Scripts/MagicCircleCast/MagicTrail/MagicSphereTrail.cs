@@ -63,6 +63,7 @@ public class MagicSphereTrail : MonoBehaviour
         _lineMat.SetColor(_baseEmissionColorID, _activeEmissionColor);
     }
 
+    //だんだん透明にする(fadeOutDurationはフェードアウトにかかる時間)
     public async UniTask HideAsync(float fadeOutDuration)
     {
         var ct = this.GetCancellationTokenOnDestroy();

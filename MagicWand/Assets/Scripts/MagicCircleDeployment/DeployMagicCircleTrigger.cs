@@ -33,7 +33,7 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     SingleTaskCancellation _singleTaskCancellation = new();
 
     //展開操作が決定されるまで待つ
-    public async UniTask WaitForSubmitAsync()
+    public async UniTask WaitForSubmitAsync(CancellationToken ct)
     {
         //初期化
         UpdateProgress(_minProgress);
@@ -46,8 +46,6 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         ShowGauge();
 
         //決定されるまで待つ
-        var ct = this.GetCancellationTokenOnDestroy();
-
         await UniTask.WaitUntil(() => IsSubmitted(), cancellationToken: ct);
 
         _touchedReceiver.enabled = false;
