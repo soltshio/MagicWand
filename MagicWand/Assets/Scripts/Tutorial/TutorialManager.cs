@@ -46,6 +46,11 @@ public class TutorialManager : MonoBehaviour
         catch (OperationCanceledException)
         {
             //発生した例外をSkip()によるものとして扱い終了する(そうすることによって呼び出し元の方で例外が発生してその後の処理がされなくなるということを防ぐ)
+            //TODO:画面暗転した後に初期化した後、画面を明転させて本編を始める
+            //行わなければいけない初期化処理
+            //1.魔法陣の線のリセット
+            //2.球を全て非アクティブに
+            //3.魔法陣の非表示
         }
         finally
         {

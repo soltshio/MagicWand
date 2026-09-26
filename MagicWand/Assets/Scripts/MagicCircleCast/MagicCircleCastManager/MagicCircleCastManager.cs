@@ -33,29 +33,30 @@ public class MagicCircleCastManager : MonoBehaviour
 
     //魔法陣の処理、処理が終わったら魔法の内容を返す
     //TODO:キャストパターンを引数に入れることで指定出来るようにする
-    public async UniTask<EMagic> MagicCircleAsync(Dictionary<EMagic, int[]> castPatterns)
+    public async UniTask<EMagic> MagicCircleAsync(Dictionary<EMagic, int[]> castPatterns,CancellationToken ct)
     {
-        var token = this.GetCancellationTokenOnDestroy();
-
         //新しい履歴を作成
         _passedSphereIndexHistory.CreateNewHistory();
 
         OnStartToCast?.Invoke();
 
+        //球を全て非アクティブにする
+        _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
+
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
-        var invokableMagic = await CastMagicAsync(token, castPatterns);
+        var invokableMagic = await CastMagicAsync(ct, castPatterns);
 
         return invokableMagic;
     }
 
-    async UniTask<EMagic> CastMagicAsync(CancellationToken token, Dictionary<EMagic, int[]> castPatterns)
+    async UniTask<EMagic> CastMagicAsync(CancellationToken ct, Dictionary<EMagic, int[]> castPatterns)
     {
         try
         {
-            //現在発動の可能性がある魔法リストの作成
             if(!TryGetCastableSpellCastsFromCastPatterns(castPatterns,out var castableSpellCasts)) return EMagic.None;
 
+            //現在発動の可能性がある魔法リストの作成
             CastableMagics castableMagics = new(castableSpellCasts);
             castableMagics.OnSuccessToCast += OnSuccessToCast;
 
@@ -69,7 +70,7 @@ public class MagicCircleCastManager : MonoBehaviour
 
                 //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
                 List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
-                int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, token);
+                int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, ct);
 
                 //履歴に番号を追加
                 _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
@@ -95,8 +96,6 @@ public class MagicCircleCastManager : MonoBehaviour
         }
         catch(OperationCanceledException)//途中で詠唱がキャンセルされた場合
         {
-            //TODO:詠唱が出来ないようにする(誘導演出も消えるようにする)
-
             return EMagic.None;
         }
     }

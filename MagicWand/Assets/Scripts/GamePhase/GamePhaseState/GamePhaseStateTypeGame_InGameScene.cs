@@ -62,7 +62,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
 
             //魔法陣をなぞる
-            var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns);
+            var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns, token);
 
             //魔法陣を閉じる
             await _magicCircleCloseManager.CloseAsync(invokableMagic,token);

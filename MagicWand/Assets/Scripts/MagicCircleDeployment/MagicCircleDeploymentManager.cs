@@ -36,32 +36,24 @@ public class MagicCircleDeploymentManager : MonoBehaviour
     //魔法陣の展開、展開をキャンセルされたら魔法陣を非表示状態のままにしておく
     public async UniTask DeployAsync(CancellationToken ct)
     {
-        try
-        {
-            //魔法陣の線を消す
-            _magicSphereTrail.ResetTrail();
+        //魔法陣の線を消す
+        _magicSphereTrail.ResetTrail();
 
-            //操作方法を表示
-            _deployManualText.enabled = true;
-            _audioSource.PlayOneShot(_startDeployControlSE);
+        //操作方法を表示
+        _deployManualText.enabled = true;
+        _audioSource.PlayOneShot(_startDeployControlSE);
 
-            //魔法陣展開のトリガーが押されるまで待つ(押されたら魔法陣の展開)
-            await _deployMagicCircleTrigger.WaitForSubmitAsync(ct);
+        //魔法陣展開のトリガーが押されるまで待つ(押されたら魔法陣の展開)
+        await _deployMagicCircleTrigger.WaitForSubmitAsync(ct);
 
-            //操作方法を非表示
-            _deployManualText.enabled = false;
+        //操作方法を非表示
+        _deployManualText.enabled = false;
 
-            //魔法陣展開の効果音を流す
-            _audioSource.PlayOneShot(_deploySE);
+        //魔法陣展開の効果音を流す
+        _audioSource.PlayOneShot(_deploySE);
 
-            //魔法陣を表示する
-            await _magicCircleActiveHandler.ActivateMagicCircleAsync(ct);
-        }
-        catch
-        {
-            //操作方法を非表示
-            _deployManualText.enabled = false;
-        }
+        //魔法陣を表示する
+        await _magicCircleActiveHandler.ActivateMagicCircleAsync(ct);
     }
 
     void Start()
