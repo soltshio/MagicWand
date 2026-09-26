@@ -8,14 +8,12 @@ using System.Linq;
 //作成者:杉山
 //魔法陣を起動させると、魔法が発動するまで魔法陣をなぞらせる処理をする
 //魔法が発動すると、発動した魔法の内容を通知すると共に魔法陣を非アクティブにする
+//TODO処理をキャンセルした場合の処理を書く
 
 public class MagicCircleCastManager : MonoBehaviour
 {
     [SerializeField]
     MagicSpheresList _magicSpheresList;
-
-    [SerializeField]
-    CastPatternManager _castPatternManager;
 
     [Tooltip("魔法陣のなぞった線を描画する機能")] [SerializeField]
     MagicSphereTrail _magicSphereTrail;
@@ -33,17 +31,11 @@ public class MagicCircleCastManager : MonoBehaviour
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
-    SingleTaskCancellation _singleTaskCancellation = new();
-
     //魔法陣の処理、処理が終わったら魔法の内容を返す
-    public async UniTask<EMagic> MagicCircleAsync()
+    //TODO:キャストパターンを引数に入れることで指定出来るようにする
+    public async UniTask<EMagic> MagicCircleAsync(Dictionary<EMagic, int[]> castPatterns)
     {
         var token = this.GetCancellationTokenOnDestroy();
-
-        //トークンを新しく作成
-
-        //魔法発動の初期化
-        InitAllSpellCast();
 
         //新しい履歴を作成
         _passedSphereIndexHistory.CreateNewHistory();
@@ -52,25 +44,25 @@ public class MagicCircleCastManager : MonoBehaviour
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
-        var invokableMagic = await CastMagicAsync(token);
+        var invokableMagic = await CastMagicAsync(token, castPatterns);
 
         return invokableMagic;
     }
 
-    async UniTask<EMagic> CastMagicAsync(CancellationToken token)
+    async UniTask<EMagic> CastMagicAsync(CancellationToken token, Dictionary<EMagic, int[]> castPatterns)
     {
         try
         {
             //現在発動の可能性がある魔法リストの作成
-            if (!TryGetSpellCasts(out var spellCasts)) return EMagic.None;
+            if(!TryGetCastableSpellCastsFromCastPatterns(castPatterns,out var castableSpellCasts)) return EMagic.None;
 
-            CastableMagics castableMagics = new(spellCasts);
+            CastableMagics castableMagics = new(castableSpellCasts);
             castableMagics.OnSuccessToCast += OnSuccessToCast;
 
             while (true)
             {
                 //発動可能性のある魔法から、次になぞるべき球をリストアップする
-                List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
+                List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere();
 
                 //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
                 _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList).Forget();
@@ -103,6 +95,8 @@ public class MagicCircleCastManager : MonoBehaviour
         }
         catch(OperationCanceledException)//途中で詠唱がキャンセルされた場合
         {
+            //TODO:詠唱が出来ないようにする(誘導演出も消えるようにする)
+
             return EMagic.None;
         }
     }
@@ -112,32 +106,30 @@ public class MagicCircleCastManager : MonoBehaviour
         _magicSphereTouchChecker = new(_magicSpheresList);
     }
 
-    //魔法発動の初期化
-    void InitAllSpellCast()
+    //詠唱パターンにある全魔法から、魔法発動状態を取り出し初期化してcastableMagicsに入れて返す
+    bool TryGetCastableSpellCastsFromCastPatterns(Dictionary<EMagic, int[]> castPatterns,out Dictionary<EMagic, SpellCast> castableSpellCasts)
     {
-        //発動パターンを決定
-        var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
+        castableSpellCasts = new();
 
-        if (!TryGetSpellCasts(out var spellCasts)) return;
+        //全魔法の詠唱状況を取得
+        var spellCasts = _magicList.GetComponentsDictionaryFromMagics<SpellCast>();
 
-        foreach (var spellCast in spellCasts)
+        if(spellCasts == null || spellCasts.Count == 0)
         {
-            if(!castPatterns.TryGetValue(spellCast.Key,out var orderIndexs))
-            {
-                Debug.Log("発動パターンの取得に失敗！");
-                continue;
-            }
-
-            spellCast.Value.Initialize(orderIndexs);
+            castableSpellCasts = null;
+            return false;
         }
-    }
 
-    //全魔法の詠唱の機能を取得、取得に失敗した場合はfalseを返す
-    bool TryGetSpellCasts(out Dictionary<EMagic, SpellCast> spellCasts)
-    {
-        spellCasts = _magicList.GetComponentsDictionaryFromMagics<SpellCast>();
+        foreach(var castPattern in castPatterns)
+        {
+            //詠唱パターンごとから、その魔法に対応した詠唱状況を取得する
+            if (!spellCasts.TryGetValue(castPattern.Key, out var spellCast)) continue;
 
-        return spellCasts != null && spellCasts.Count != 0;
+            spellCast.Initialize(castPattern.Value);//詠唱状況の初期化
+            castableSpellCasts.Add(castPattern.Key, spellCast);//詠唱可能な魔法の詠唱状況に追加
+        }
+
+        return true;
     }
 
     int? PreActiveSphereIndex()

@@ -5226,6 +5226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cf720ae4a88184282eb1a79ae7ec3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeGame_InGameScene
+  _castPatternManager: {fileID: 1557604845}
   _magicCircleDeploymentManager: {fileID: 1458048155}
   _magicCircleCastManager: {fileID: 1557604846}
   _magicCircleCloseManager: {fileID: 713691838}
@@ -13240,7 +13241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicCircleManagerVer3
   _magicSpheresList: {fileID: 741445577}
-  _castPatternManager: {fileID: 1557604845}
   _magicSphereTrail: {fileID: 241167068}
   _magicList: {fileID: 446498117}
   _magicSphereLeadEffectController: {fileID: 214072086}

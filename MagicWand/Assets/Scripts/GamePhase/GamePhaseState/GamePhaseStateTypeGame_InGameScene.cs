@@ -11,6 +11,9 @@ using UnityEngine;
 public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
 {
     [SerializeField]
+    CastPatternManager _castPatternManager;
+
+    [SerializeField]
     MagicCircleDeploymentManager _magicCircleDeploymentManager;
 
     [SerializeField]
@@ -55,8 +58,11 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             //魔法陣を展開
             await _magicCircleDeploymentManager.DeployAsync(token);
 
+            //詠唱パターンを生成
+            var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
+
             //魔法陣をなぞる
-            var invokableMagic = await _magicCircleCastManager.MagicCircleAsync();
+            var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns);
 
             //魔法陣を閉じる
             await _magicCircleCloseManager.CloseAsync(invokableMagic,token);
