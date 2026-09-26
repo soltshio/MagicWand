@@ -33,10 +33,14 @@ public class MagicCircleCastManager : MonoBehaviour
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
+    SingleTaskCancellation _singleTaskCancellation = new();
+
     //魔法陣の処理、処理が終わったら魔法の内容を返す
     public async UniTask<EMagic> MagicCircleAsync()
     {
         var token = this.GetCancellationTokenOnDestroy();
+
+        //トークンを新しく作成
 
         //魔法発動の初期化
         InitAllSpellCast();
@@ -55,44 +59,51 @@ public class MagicCircleCastManager : MonoBehaviour
 
     async UniTask<EMagic> CastMagicAsync(CancellationToken token)
     {
-        //現在発動の可能性がある魔法リストの作成
-        if (!TryGetSpellCasts(out var spellCasts)) return EMagic.None;
-
-        CastableMagics castableMagics = new(spellCasts);
-        castableMagics.OnSuccessToCast += OnSuccessToCast;
-
-        while (true)
+        try
         {
-            //発動可能性のある魔法から、次になぞるべき球をリストアップする
-            List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
+            //現在発動の可能性がある魔法リストの作成
+            if (!TryGetSpellCasts(out var spellCasts)) return EMagic.None;
 
-            //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
-            _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList).Forget();
+            CastableMagics castableMagics = new(spellCasts);
+            castableMagics.OnSuccessToCast += OnSuccessToCast;
 
-            //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
-            List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
-            int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, token);
-
-            //履歴に番号を追加
-            _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
-
-            //杖が触れた球のインデックスを魔法に伝える
-            var invokableMagic = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
-
-            //なぞった球の位置を魔法陣の線の描画機能に伝える
-            _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
-
-            //球を全て非アクティブにする
-            _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
-
-            //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
-            if (invokableMagic != EMagic.None)
+            while (true)
             {
-                return invokableMagic;
-            }
+                //発動可能性のある魔法から、次になぞるべき球をリストアップする
+                List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere(_magicSpheresList);
 
-            //発動可能性のない魔法をリストから消す
-            castableMagics.RemoveIncastableMagic();
+                //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
+                _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList).Forget();
+
+                //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
+                List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
+                int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, token);
+
+                //履歴に番号を追加
+                _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);
+
+                //杖が触れた球のインデックスを魔法に伝える
+                var invokableMagic = castableMagics.CastTouchedIndexToMagics(touchedMagicSphereindex);//発動可能な魔法
+
+                //なぞった球の位置を魔法陣の線の描画機能に伝える
+                _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
+
+                //球を全て非アクティブにする
+                _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
+
+                //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
+                if (invokableMagic != EMagic.None)
+                {
+                    return invokableMagic;
+                }
+
+                //発動可能性のない魔法をリストから消す
+                castableMagics.RemoveIncastableMagic();
+            }
+        }
+        catch(OperationCanceledException)//途中で詠唱がキャンセルされた場合
+        {
+            return EMagic.None;
         }
     }
 

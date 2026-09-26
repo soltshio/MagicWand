@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
@@ -19,20 +20,18 @@ public class MagicCircleCloseManager : MonoBehaviour
     [SerializeField]
     float _delayDurationFromInvokedMagicIconEffectFromHideMagicCircle = 1f;
 
-    public async UniTask CloseAsync(EMagic invokedMagic)
+    public async UniTask CloseAsync(EMagic invokedMagic,CancellationToken ct)
     {
-        var token = this.GetCancellationTokenOnDestroy();
-
         //発動した魔法のアイコンを表示する
         _invokedMagicIconEffect.PlayAsync(invokedMagic).Forget();
 
         //少し遅らせる
-        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationFromInvokedMagicIconEffectFromHideMagicCircle), cancellationToken: token);
+        await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationFromInvokedMagicIconEffectFromHideMagicCircle), cancellationToken: ct);
 
         //魔法陣の線を目立たせる
         _magicSphereTrail.Activate();
 
         //魔法陣と魔法陣の線を非表示にする
-        await _magicCircleActiveHandler.DeActivateMagicCircleAsync(token);
+        await _magicCircleActiveHandler.DeActivateMagicCircleAsync(ct);
     }
 }

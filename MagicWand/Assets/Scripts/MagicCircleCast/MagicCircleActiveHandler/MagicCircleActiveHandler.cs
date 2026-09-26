@@ -4,6 +4,7 @@ using UnityEngine;
 
 //作成者:杉山
 //魔法陣の表示・非表示をする
+//TODO:トークンがキャンセルされた場合の挙動を書く
 
 public class MagicCircleActiveHandler : MonoBehaviour
 {
@@ -30,65 +31,79 @@ public class MagicCircleActiveHandler : MonoBehaviour
         _magicSphereRendererActivator.Start();
     }
 
-    //魔法陣の表示
+    //魔法陣の表示、トークンがキャンセルされれば非表示にする
     public async UniTask ActivateMagicCircleAsync(CancellationToken ct)
     {
-        if (_isProcessing) return;
-        _isProcessing = true;
-
-        //魔法陣を表示
-        _magicCircleRendererActivator.Show();
-
-        ProgressTimer progressTimer = new(_fadeDuration);
-
-        while(!progressTimer.IsFinished)
+        try
         {
-            progressTimer.Tick();
-            float progress = progressTimer.CalcProgress();
+            if (_isProcessing) return;
+            _isProcessing = true;
 
-            //球の表示
-            _magicSphereRendererActivator.ActivateMagicSphere(progress);
+            //魔法陣を表示
+            _magicCircleRendererActivator.Show();
 
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+            ProgressTimer progressTimer = new(_fadeDuration);
+
+            while (!progressTimer.IsFinished)
+            {
+                progressTimer.Tick();
+                float progress = progressTimer.CalcProgress();
+
+                //球の表示
+                _magicSphereRendererActivator.ActivateMagicSphere(progress);
+
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+            }
+
+            //球の当たり判定をオンにする
+            _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(true);
+
+            _isProcessing = false;
         }
+        catch//キャンセルされれば非表示にする
+        {
 
-        //球の当たり判定をオンにする
-        _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(true);
-
-        _isProcessing = false;
+        }
     }
 
-    //魔法陣の非表示
+    //魔法陣の非表示、トークンがキャンセルされれば表示にする
     public async UniTask DeActivateMagicCircleAsync(CancellationToken ct)
     {
-        if (_isProcessing) return;
-        _isProcessing = true;
-
-        //魔法陣の非表示アニメーションを開始する
-        _magicCircleRendererActivator.StartHide();
-
-        //球の当たり判定をオフにする
-        _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
-
-        //魔法陣の線を非表示にし始める
-        _magicTrailRendererActivator.HideMagicTrail(_fadeDuration);
-
-        ProgressTimer progressTimer = new(_fadeDuration);
-
-        while (!progressTimer.IsFinished)
+        try
         {
-            progressTimer.Tick();
-            float progress = progressTimer.CalcProgress();
+            if (_isProcessing) return;
+            _isProcessing = true;
 
-            //魔法陣の球
-            _magicSphereRendererActivator.DeactivateMagicSphere(progress);
+            //魔法陣の非表示アニメーションを開始する
+            _magicCircleRendererActivator.StartHide();
 
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+            //球の当たり判定をオフにする
+            _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
+
+            //魔法陣の線を非表示にし始める
+            _magicTrailRendererActivator.HideMagicTrail(_fadeDuration);
+
+            ProgressTimer progressTimer = new(_fadeDuration);
+
+            while (!progressTimer.IsFinished)
+            {
+                progressTimer.Tick();
+                float progress = progressTimer.CalcProgress();
+
+                //魔法陣の球
+                _magicSphereRendererActivator.DeactivateMagicSphere(progress);
+
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+            }
+
+            //魔法陣を完全に非表示にする
+            _magicCircleRendererActivator.CompleteHide();
+
+            _isProcessing = false;
         }
+        catch//キャンセルされれば表示に
+        {
 
-        //魔法陣を完全に非表示にする
-        _magicCircleRendererActivator.CompleteHide();
-
-        _isProcessing = false;
+        }
     }
 }

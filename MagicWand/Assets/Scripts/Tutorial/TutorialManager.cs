@@ -4,6 +4,7 @@ using UnityEngine;
 
 //作成者:杉山
 //チュートリアルのマネージャー
+//TODO:チュートリアル内容の実装
 
 public class TutorialManager : MonoBehaviour
 {
@@ -29,6 +30,18 @@ public class TutorialManager : MonoBehaviour
 
             //チュートリアルのセリフを流す
             await _tutorialTextPlayer.PlayTextAsync(ct,_lineContents);
+
+
+            //TODO:チュートリアルの内容を実装する
+            //セリフを流す
+            //杖を受け取る(光ったりする？)
+            //セリフを流す
+            //振ってみる
+            //セリフを流す
+            //魔法陣の展開
+            //セリフを流す
+            //日魔法だけを詠唱させる(日魔法発動まで)
+            //セリフを流す
         }
         catch (OperationCanceledException)
         {
