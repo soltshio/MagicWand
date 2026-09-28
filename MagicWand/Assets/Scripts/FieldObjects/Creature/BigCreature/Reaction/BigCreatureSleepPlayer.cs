@@ -57,6 +57,8 @@ public class BigCreatureSleepPlayer : MonoBehaviour
             //zを順に表示していく
             for (int i = 0; i < showZCount; i++)
             {
+                if (_zzzTexts[i] == null) return;//もう既に破壊されている場合はシーンを移したかゲームを終了したかなので中断する
+
                 _zzzTexts[i].enabled = true;
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_showInterval), cancellationToken: ct);
@@ -76,7 +78,7 @@ public class BigCreatureSleepPlayer : MonoBehaviour
     {
         for (int i = 0; i < _zzzTexts.Length; i++)
         {
-            if (_zzzTexts[i] == null) continue;
+            if (_zzzTexts[i] == null) return;//もう既に破壊されている場合はシーンを移したかゲームを終了したかなので中断する
 
             _zzzTexts[i].enabled = false;
         }
