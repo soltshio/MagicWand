@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
@@ -18,6 +19,12 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     string[] _lineContents;
 
+    [TextArea(2, 10)] [SerializeField]
+    string[] _startLineContents;
+
+    [TextArea(2, 10)] [SerializeField]
+    string[] _finishLineContents;
+
     SingleTaskCancellation _singleTaskCancellation = new();
 
     public async UniTask PlayTutorialAsync()
@@ -28,20 +35,20 @@ public class TutorialManager : MonoBehaviour
 
             var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
-            //チュートリアルのセリフを流す
-            await _tutorialTextPlayer.PlayTextAsync(ct,_lineContents);
-
-
             //TODO:チュートリアルの内容を実装する
-            //セリフを流す
-            //杖を受け取る(光ったりする？)
-            //セリフを流す
-            //振ってみる
-            //セリフを流す
-            //魔法陣の展開
-            //セリフを流す
-            //日魔法だけを詠唱させる(日魔法発動まで)
-            //セリフを流す
+
+            //チュートリアル開始のセリフを流す
+            await _tutorialTextPlayer.PlayTextAsync(ct, _startLineContents);
+
+            //杖を振って、魔法を発動させるまでのチュートリアルを開始(これが行われている間はスキップ不可にする)
+            _tutorialCanvas.enabled = false;
+
+            await UniTask.Delay(TimeSpan.FromSeconds(2f), cancellationToken: ct);//確認のためにも２秒ほど待ってみる
+
+            _tutorialCanvas.enabled = true;
+
+            //チュートリアル終了のセリフを流す
+            await _tutorialTextPlayer.PlayTextAsync(ct, _finishLineContents);
         }
         catch (OperationCanceledException)
         {

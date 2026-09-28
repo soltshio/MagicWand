@@ -26,10 +26,8 @@ public class InvokedMagicIconEffect : MonoBehaviour
     [SerializeField]
     float _activeDuration=5f;
 
-    public async UniTask PlayAsync(EMagic invokedMagic)
+    public async UniTask PlayAsync(EMagic invokedMagic,CancellationToken ct)
     {
-        var ct = this.GetCancellationTokenOnDestroy();
-
         if (!TryGetIconEffectProperty(invokedMagic, out var property)) return;
 
         //アイコンの色を変えておく

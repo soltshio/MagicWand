@@ -23,7 +23,7 @@ public class MagicCircleCloseManager : MonoBehaviour
     public async UniTask CloseAsync(EMagic invokedMagic,CancellationToken ct)
     {
         //発動した魔法のアイコンを表示する
-        _invokedMagicIconEffect.PlayAsync(invokedMagic).Forget();
+        _invokedMagicIconEffect.PlayAsync(invokedMagic,ct).Forget();
 
         //少し遅らせる
         await UniTask.Delay(TimeSpan.FromSeconds(_delayDurationFromInvokedMagicIconEffectFromHideMagicCircle), cancellationToken: ct);

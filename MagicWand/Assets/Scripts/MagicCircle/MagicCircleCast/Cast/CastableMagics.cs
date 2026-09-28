@@ -11,14 +11,14 @@ public class CastableMagics
 
     public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
 
-    public CastableMagics(Dictionary<EMagic, SpellCast> spellCastsDictionary)
+    public CastableMagics(Dictionary<EMagic, SpellCast> castableMagicDic)
     {
-        _castableMagicDic = new Dictionary<EMagic, SpellCast>(spellCastsDictionary);
+        _castableMagicDic = new Dictionary<EMagic, SpellCast>(castableMagicDic);
     }
 
     //発動可能性のある魔法から、次になぞるべき球をアクティブにする
     //アクティブにした球のインデックスとそれに対応する魔法がセットになったリストを返す
-    public List<(EMagic magic, int index)> ActivateNextTraceMagicSphere(MagicSpheresList magicSpheresList)
+    public List<(EMagic magic, int index)> ActivateNextTraceMagicSphere()
     {
         List<(EMagic magic, int index)> activeMagicSphereIndexList = new();
 
