@@ -12481,6 +12481,7 @@ GameObject:
   - component: {fileID: 1394882909}
   - component: {fileID: 1394882910}
   - component: {fileID: 1394882911}
+  - component: {fileID: 1394882912}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -12540,6 +12541,14 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 109d12df9112fef478ad9eceed3d41ca, type: 3}
     _intervalPerCharacter: 0.1
     _intervalPerString: 2
+  _castPatternForTutorialManager: {fileID: 1394882912}
+  _magicCircleDeploymentManager: {fileID: 1458048155}
+  _magicCircleCastManager: {fileID: 1557604846}
+  _magicCircleCloseManager: {fileID: 713691838}
+  _bigCreatureSleepPlayer: {fileID: 362789704}
+  _magicInvoker: {fileID: 446498116}
+  _bigCreatureStatus: {fileID: 623789240}
+  _delayDuration: 3
   _lineContents:
   - "\u76EE\u304C\u3055\u3081\u305F\u304B\u306E\uFF5E\uFF1F\uFF1F\n\u308F\u3057\u306E\u9B54\u6CD5\u306B\u304A\u3069\u308D\u3044\u3061\u3083\u3063\u305F\u3093\u3058\u3083\u306A\u3001\u3046\u3093\u3046\u3093"
   - "\u4ECA\u65E5\u306F\u3001\u308F\u3057\u306E\u304B\u308F\u308A\u306B\u3000\u304A\u3064\u304B\u3044\u306B\u884C\u3063\u3066\u3082\u3089\u3046\u304B\u3089\n\u9B54\u6CD5\u306E\u3042\u3064\u304B\u3044\u306B\u3064\u3044\u3066\u3000\u304A\u3055\u3089\u3044\u3058\u3083\u3088\uFF01\u3000"
@@ -12663,6 +12672,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1394882912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394882907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001ac74fe2483044f9daaad67203fb99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastPatternManager
+  _castPatternsArray:
+  - _list:
+    - key: 4
+      value: 000000000100000002000000030000000400000000000000
+  _castPatternDecideMode: 0
+  _magicSpheresList: {fileID: 741445577}
 --- !u!1 &1401779426
 GameObject:
   m_ObjectHideFlags: 0
