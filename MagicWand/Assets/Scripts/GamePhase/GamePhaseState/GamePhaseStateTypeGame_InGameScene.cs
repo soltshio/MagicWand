@@ -55,7 +55,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
 
         while (true)
         {
-            //詠唱パターンを生成
+            //詠唱パターン
             var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
 
             //魔法陣を展開
