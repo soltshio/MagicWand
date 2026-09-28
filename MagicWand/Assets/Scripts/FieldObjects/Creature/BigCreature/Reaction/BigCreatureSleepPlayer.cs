@@ -76,6 +76,8 @@ public class BigCreatureSleepPlayer : MonoBehaviour
     {
         for (int i = 0; i < _zzzTexts.Length; i++)
         {
+            if (_zzzTexts[i] == null) continue;
+
             _zzzTexts[i].enabled = false;
         }
     }
