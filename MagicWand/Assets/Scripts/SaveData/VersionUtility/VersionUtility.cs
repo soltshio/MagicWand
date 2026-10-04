@@ -1,6 +1,6 @@
-﻿using System.Security.Policy;
-using UnityEngine;
+﻿using UnityEngine;
 
+//作成者:杉山
 //ゲームのバージョンの変換などのユーティリティクラス
 
 public static class VersionUtility
