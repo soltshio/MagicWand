@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3541289119662972801}
   - component: {fileID: 938351246442486885}
+  - component: {fileID: 7138055032491413619}
   m_Layer: 0
   m_Name: SerialComManager
   m_TagString: Untagged
@@ -44,6 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e0435f8fc5d694d94d44020354521d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SerialHandler
-  _dontUseMicon: 0
-  _portNum: 3
   _bitRate: 115200
+--- !u!114 &7138055032491413619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2735376270659618140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b680312497c244799add47f27c68da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiconConnectStarter
+  _defaultPortNum: 3
