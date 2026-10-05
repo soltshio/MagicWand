@@ -5777,7 +5777,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.4, z: 39.32473}
-  m_LocalScale: {x: 300, y: 300, z: 300}
+  m_LocalScale: {x: 250, y: 250, z: 250}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -12292,7 +12292,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 56.5, z: 0}
-  m_LocalScale: {x: 13.42, y: 13.42, z: 13.42}
+  m_LocalScale: {x: 25.3, y: 25.3, z: 25.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1075675089}
@@ -12800,8 +12800,8 @@ MonoBehaviour:
   m_LensFlareData: {fileID: 11400000, guid: 9199df63c3c4e254cb0c9bfda4ce7714, type: 2}
   version: 0
   intensity: 1.81
-  maxAttenuationDistance: 1062
-  maxAttenuationScale: 633.1
+  maxAttenuationDistance: 772.4
+  maxAttenuationScale: 581.2
   distanceAttenuationCurve:
     serializedVersion: 2
     m_Curve:
@@ -13918,7 +13918,7 @@ Transform:
   m_GameObject: {fileID: 1075675088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 321.5, z: 265.5}
+  m_LocalPosition: {x: 0, y: 281.5, z: 265.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

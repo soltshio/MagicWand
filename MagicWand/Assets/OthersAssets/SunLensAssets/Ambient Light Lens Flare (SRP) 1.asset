@@ -35,7 +35,7 @@ MonoBehaviour:
     preserveAspectRatio: 0
     rotation: 0
     tintColorType: 0
-    tint: {r: 0.25668207, g: 0.7433963, b: 0.5582203, a: 0.53333336}
+    tint: {r: 0.3226415, g: 1, b: 0.85481584, a: 0.53333336}
     tintGradient:
       <textureSize>k__BackingField: 4
       m_Gradient:
