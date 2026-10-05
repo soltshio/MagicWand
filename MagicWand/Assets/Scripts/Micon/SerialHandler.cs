@@ -2,8 +2,6 @@
 // 例えば空のGameObjectを作り、そこにアタッチする
 // 2025_10月Ver.
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using System.IO.Ports; // これを通すために、Api Compatibility Levelの設定を変更
@@ -48,17 +46,39 @@ public class SerialHandler : MonoBehaviour
 
         string portName = _myPortName + portNum.ToString();
 
-        _serialPort = new SerialPort(portName, _bitRate, Parity.None, 8, StopBits.One);
+        try//通信接続処理を試みる
+        {
+            _serialPort = new SerialPort(portName, _bitRate, Parity.None, 8, StopBits.One);
 
-        _serialPort.RtsEnable = true;
-        _serialPort.DtrEnable = true;
+            _serialPort.RtsEnable = true;
+            _serialPort.DtrEnable = true;
 
-        _serialPort.Open();
+            //COMポートを開く(失敗した場合はcatchに)
+            _serialPort.Open();
 
-        _isRunning = true;
+            // Open() 成功後に通信中にする
+            _isRunning = true;
 
-        _thread = new Thread(Read);
-        _thread.Start();
+            // Open() 成功後にのみスレッドを開始する
+            _thread = new Thread(Read);
+            _thread.Start();
+        }
+        catch (Exception)
+        {
+            Debug.Log("シリアル通信失敗");
+
+            // 開けなかったポートを破棄する
+            if (_serialPort != null)
+            {
+                _serialPort.Dispose();
+                _serialPort = null;
+            }
+
+            // 通信を開始しない状態に戻す
+            _isRunning = false;
+
+            return;
+        }
     }
 
     //通常を終了する
