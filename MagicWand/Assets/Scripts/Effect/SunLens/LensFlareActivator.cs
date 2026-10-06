@@ -5,12 +5,15 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 //作成者:杉山
-//太陽光レンズのエフェクトの表示・非表示を行う機能
+//レンズフレアのエフェクトの表示・非表示を行う機能
 
-public class SunLensActivator : MonoBehaviour
+public class LensFlareActivator : MonoBehaviour
 {
-    [Tooltip("何秒かけて太陽光レンズの表示・非表示を行うか")] [SerializeField]
+    [Tooltip("何秒かけてレンズフレアの表示・非表示を行うか")] [SerializeField]
     float _shiftDuration = 1.5f;
+
+    [Tooltip("初期状態のintensity")] [SerializeField]
+    float _defaultIntensity = 0f;
 
     [Tooltip("非表示時のintensity")] [SerializeField]
     float _offIntensity = 0f;
@@ -35,10 +38,7 @@ public class SunLensActivator : MonoBehaviour
 
     void Start()
     {
-        //最初は太陽レンズの光は消しておく
-        _lensFlare.intensity = _offIntensity;
-
-        _lensFlare.enabled = false;
+        _lensFlare.intensity = _defaultIntensity;
     }
 
     async UniTask ShiftIntensityAsync(CancellationToken ct,float fromIntensity,float toIntensity,float duration)

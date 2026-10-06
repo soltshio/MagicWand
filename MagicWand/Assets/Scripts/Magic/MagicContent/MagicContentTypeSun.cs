@@ -23,7 +23,7 @@ public class MagicContentTypeSun : MagicContentTypeBase
     AudioClip _sunSE;
 
     [SerializeField]
-    SunLensActivator _sunLensActivator;
+    LensFlareActivator _sunLensActivator;
 
     [SerializeField]
     ParticleSystem _sunParticle;

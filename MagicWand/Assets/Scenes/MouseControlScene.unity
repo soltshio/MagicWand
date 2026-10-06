@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 525960}
   - component: {fileID: 525954}
   - component: {fileID: 525953}
-  - component: {fileID: 525955}
   - component: {fileID: 525957}
   - component: {fileID: 525956}
   m_Layer: 0
@@ -286,24 +285,8 @@ MonoBehaviour:
     _eventDirecter: {fileID: 525957}
   _sunAudioSource: {fileID: 525953}
   _sunSE: {fileID: 8300000, guid: 4ae975fd8d94443419a321de459816ad, type: 3}
-  _sunLensActivator: {fileID: 525955}
+  _sunLensActivator: {fileID: 1148722372}
   _sunParticle: {fileID: 136774163}
---- !u!114 &525955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e678629d192f86449c5da301e154886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SunLensActivator
-  _shiftDuration: 1.5
-  _offIntensity: 0
-  _onIntensity: 0.8
-  _lensFlare: {fileID: 1148722370}
 --- !u!114 &525956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1763,7 +1746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.5852375
+      value: -8.585241
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12940,9 +12923,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 962548462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30431d2ab1b4c364688765e08ca58bf5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e678629d192f86449c5da301e154886, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LensFlareIntensityFader
+  m_EditorClassIdentifier: Assembly-CSharp::SunLensActivator
+  _shiftDuration: 2
+  _defaultIntensity: 1.81
+  _offIntensity: 0.4
+  _onIntensity: 1.81
   _lensFlare: {fileID: 962548463}
 --- !u!1 &970329698
 GameObject:
@@ -14635,6 +14622,7 @@ MonoBehaviour:
   _bigCreature: {fileID: 623789239}
   _thunderEffectDirecter:
     _eventDirecter: {fileID: 1138852487}
+  _lensFlareActivator: {fileID: 962548465}
 --- !u!114 &1138852482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14988,6 +14976,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ca6ad8b2f2fab624aa38ecb509698188, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
+    - {fileID: 11400000, guid: dafbe8108dd84e848908215baf8c9bd2, type: 2}
+    - {fileID: 11400000, guid: fa82ac1d47fae2746b3f51765c4853ed, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -15036,6 +15026,34 @@ MonoBehaviour:
         - m_Target: {fileID: 1138852481}
           m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
           m_MethodName: AffectToBigCreature
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1138852481}
+          m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
+          m_MethodName: ActivateLensFlare
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1138852481}
+          m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
+          m_MethodName: DeactivateLensFlare
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15127,8 +15145,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1148722371}
   - component: {fileID: 1148722370}
+  - component: {fileID: 1148722372}
   m_Layer: 0
-  m_Name: SunLightLensFlare
+  m_Name: MagicSunLightLensFlare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15279,6 +15298,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148722372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148722369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e678629d192f86449c5da301e154886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SunLensActivator
+  _shiftDuration: 1.5
+  _defaultIntensity: 0
+  _offIntensity: 0
+  _onIntensity: 0.8
+  _lensFlare: {fileID: 1148722370}
 --- !u!1 &1161732787
 GameObject:
   m_ObjectHideFlags: 0

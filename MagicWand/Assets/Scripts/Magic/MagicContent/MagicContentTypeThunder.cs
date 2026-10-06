@@ -16,6 +16,9 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _thunderEffectDirecter;
 
+    [SerializeField]
+    LensFlareActivator _lensFlareActivator;
+
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
     {
@@ -26,6 +29,16 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     {
         //でか生物に魔法を当てる
         _thunderEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Thunder));
+    }
+
+    public void ActivateLensFlare()
+    {
+        _lensFlareActivator.ActivateAsync().Forget();
+    }
+
+    public void DeactivateLensFlare()
+    {
+        _lensFlareActivator.DeactivateAsync().Forget();
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
