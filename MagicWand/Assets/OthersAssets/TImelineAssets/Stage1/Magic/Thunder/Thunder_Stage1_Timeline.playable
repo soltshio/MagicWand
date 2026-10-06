@@ -241,6 +241,22 @@ MonoBehaviour:
     m_DisplayName: MaterialPropertyClip
   m_Markers:
     m_Objects: []
+--- !u!114 &-5316529831386440434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 1.0999999999999999
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: fa82ac1d47fae2746b3f51765c4853ed, type: 2}
 --- !u!114 &-3917575501625958298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -552,6 +568,22 @@ MonoBehaviour:
     m_DisplayName: AttackThunderEffect
   m_Markers:
     m_Objects: []
+--- !u!114 &-1312396279934345056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 5.483333333333333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: dafbe8108dd84e848908215baf8c9bd2, type: 2}
 --- !u!114 &-1182349991395455810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -671,6 +703,8 @@ MonoBehaviour:
     - {fileID: 2779712042382466879}
     - {fileID: 3667713777370029430}
     - {fileID: -7137046483048098740}
+    - {fileID: -5316529831386440434}
+    - {fileID: -1312396279934345056}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
