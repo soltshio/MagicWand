@@ -32,8 +32,6 @@ public class LensFlareActivator : MonoBehaviour
     public async UniTask DeactivateAsync()
     {
         await ShiftIntensityAsync(this.GetCancellationTokenOnDestroy(), _onIntensity, _offIntensity, _shiftDuration);
-
-        _lensFlare.enabled = false;
     }
 
     void Start()
@@ -43,8 +41,6 @@ public class LensFlareActivator : MonoBehaviour
 
     async UniTask ShiftIntensityAsync(CancellationToken ct,float fromIntensity,float toIntensity,float duration)
     {
-        _lensFlare.enabled = true;
-
         float elapsed = 0f;
 
         while(true)
