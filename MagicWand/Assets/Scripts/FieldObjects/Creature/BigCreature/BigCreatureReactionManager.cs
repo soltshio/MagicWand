@@ -15,7 +15,7 @@ public class BigCreatureReactionManager : MonoBehaviour
     SerializableDictionary<EMagic, BigCreatureReactionTypeBase> _bigCreatureReactions;
 
     [Tooltip("でかい生き物の歩行演出")] [SerializeField]
-    BigCreatureWalking _bigCreatureWalking;
+    BigCreatureMoveOut _bigCreatureMoveOut;
 
     [Tooltip("巨大生物のステータス")] [SerializeField]
     BigCreatureStatus _bigCreatureStatus;
@@ -42,7 +42,7 @@ public class BigCreatureReactionManager : MonoBehaviour
         if (!_bigCreatureStatus.IsWakeUp) return;
 
         //体力が0になったら起きて道を譲る演出を入れる
-        await _bigCreatureWalking.WalkAsync(token);
+        await _bigCreatureMoveOut.WalkAsync(token);
     }
 
     bool IsCorrectMagic(EMagic magic)
