@@ -2,6 +2,7 @@
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Splines;
 
 //作成者:杉山
 //でか生き物が道をどく演出
@@ -11,6 +12,22 @@ public class BigCreatureMoveOut : MonoBehaviour
 {
     [SerializeField]
     PlayableDirector _moveOutDirecter;
+
+    [SerializeField]
+    Animator _bigCreatureAnimator;
+
+    [SerializeField]
+    SplineAnimate _splineAnimate;
+
+    public void WakeUp()
+    {
+        _bigCreatureAnimator.SetTrigger(BigCreatureAnimatorProperty.MoveOutTriggerName);
+    }
+
+    public void Fly()
+    {
+        _splineAnimate.Play();
+    }
 
     public async UniTask WalkAsync(CancellationToken ct)
     {
