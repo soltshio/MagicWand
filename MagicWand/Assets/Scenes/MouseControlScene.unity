@@ -1758,23 +1758,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.770003
+      value: -4.7700024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.84000003
+      value: -0.84
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.585241
+      value: -8.5852375
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 3.5527137e-15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1782,7 +1782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -2.842171e-14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3124,6 +3124,7 @@ Transform:
   m_Children:
   - {fileID: 1771374251}
   - {fileID: 362789702}
+  - {fileID: 1952613955}
   m_Father: {fileID: 1736635912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202859450
@@ -7122,7 +7123,7 @@ MonoBehaviour:
       value: {fileID: 696876405}
     - key: 4
       value: {fileID: 1417002369}
-  _bigCreatureWalking: {fileID: 1736635914}
+  _bigCreatureMoveOut: {fileID: 1952613957}
   _bigCreatureStatus: {fileID: 623789240}
 --- !u!114 &623789240
 MonoBehaviour:
@@ -12916,6 +12917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796611147}
+  - component: {fileID: 796611148}
   m_Layer: 0
   m_Name: BigNudiBodyMesh
   m_TagString: Untagged
@@ -12931,14 +12933,37 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796611146}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.8, y: -1.6, z: 32.5}
+  m_LocalRotation: {x: 0.00000018577663, y: 0.74536204, z: -0.000000050188124, w: 0.6666599}
+  m_LocalPosition: {x: 3.9093575, y: -2.3999898, z: 27.132526}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2114282}
   m_Father: {fileID: 623789235}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &796611148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796611146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
+  m_Target: {fileID: 858778809}
+  m_PlayOnAwake: 0
+  m_LoopMode: 0
+  m_Method: 0
+  m_Duration: 10
+  m_MaxSpeed: 74.09572
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1 &802687801
 GameObject:
   m_ObjectHideFlags: 0
@@ -13212,7 +13237,7 @@ GameObject:
   - component: {fileID: 858778810}
   - component: {fileID: 858778809}
   m_Layer: 0
-  m_Name: Spline
+  m_Name: FlySpline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19243,7 +19268,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 255
+    rgba: 4278190335
   m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -21771,7 +21796,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1736635912}
   - component: {fileID: 1736635916}
-  - component: {fileID: 1736635914}
   - component: {fileID: 1736635910}
   - component: {fileID: 1736635911}
   m_Layer: 0
@@ -21914,23 +21938,6 @@ Transform:
   - {fileID: 193202437}
   m_Father: {fileID: 623789235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1736635914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736635909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed3f6521be4ef84c837a7de0b2b44a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureWalking
-  _moveDuration: 3
-  _bigCreatureTrs: {fileID: 796611147}
-  _destination: {fileID: 349517872}
-  _audioSource: {fileID: 1736635911}
-  _walkSE: {fileID: 8300000, guid: 95fd806b30d1bcc4882dc7414ec728d8, type: 3}
 --- !u!114 &1736635916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23286,6 +23293,119 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8346267052384457821, guid: 15b8083c388098f41b41dc463aac8fad, type: 3}
   m_PrefabInstance: {fileID: 862683155}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1952613954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952613955}
+  - component: {fileID: 1952613957}
+  - component: {fileID: 1952613956}
+  - component: {fileID: 1952613958}
+  m_Layer: 0
+  m_Name: MoveOut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952613955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952613954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 193202437}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1952613956
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952613954}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: d3b065ead2233c141b0793b84f4fdc3c, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 774845730}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &1952613957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952613954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed3f6521be4ef84c837a7de0b2b44a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BigCreatureWalking
+  _moveOutDirecter: {fileID: 1952613956}
+  _bigCreatureAnimator: {fileID: 774845730}
+  _splineAnimate: {fileID: 796611148}
+--- !u!114 &1952613958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952613954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 81e499728861b4b4eb489a49061a8f01, type: 2}
+    - {fileID: 11400000, guid: a4b60704c65c3a748a05d8b77ac6d684, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1952613957}
+          m_TargetAssemblyTypeName: BigCreatureMoveOut, Assembly-CSharp
+          m_MethodName: WakeUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1952613957}
+          m_TargetAssemblyTypeName: BigCreatureMoveOut, Assembly-CSharp
+          m_MethodName: Fly
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2020833035 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8689753778537909991, guid: 15b8083c388098f41b41dc463aac8fad, type: 3}

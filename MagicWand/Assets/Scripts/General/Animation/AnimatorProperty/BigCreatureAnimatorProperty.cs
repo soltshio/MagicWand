@@ -3,6 +3,9 @@
 
 public class BigCreatureAnimatorProperty
 {
-    //起き上がる(二度寝)モーションのブール
+    //二度寝モーションのブール
     public static string GoBackToSleepBoolName = "GoBackToSleep";
+
+    //起き上がってどくモーションのトリガー
+    public static string MoveOutTriggerName = "MoveOut";
 }
