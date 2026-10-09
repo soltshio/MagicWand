@@ -29,7 +29,7 @@ public class BigCreatureMoveOut : MonoBehaviour
         _splineAnimate.Play();
     }
 
-    public async UniTask WalkAsync(CancellationToken ct)
+    public async UniTask MoveOutAsync(CancellationToken ct)
     {
         _moveOutDirecter.Play();
 

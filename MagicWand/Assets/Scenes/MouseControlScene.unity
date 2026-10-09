@@ -7123,7 +7123,7 @@ MonoBehaviour:
       value: {fileID: 696876405}
     - key: 4
       value: {fileID: 1417002369}
-  _bigCreatureMoveOut: {fileID: 0}
+  _bigCreatureMoveOut: {fileID: 1952613957}
   _bigCreatureStatus: {fileID: 623789240}
 --- !u!114 &623789240
 MonoBehaviour:
@@ -7137,7 +7137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442aca0bf5f0b5640a26d5d9ba81f301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureStatus
-  _maxHp: 3
+  _maxHp: 1
 --- !u!23 &627117885 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2864764085311837407, guid: 15b8083c388098f41b41dc463aac8fad, type: 3}
@@ -12954,7 +12954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
   m_Target: {fileID: 858778809}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_LoopMode: 0
   m_Method: 0
   m_Duration: 10

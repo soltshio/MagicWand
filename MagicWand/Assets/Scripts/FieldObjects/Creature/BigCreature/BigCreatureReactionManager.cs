@@ -42,7 +42,7 @@ public class BigCreatureReactionManager : MonoBehaviour
         if (!_bigCreatureStatus.IsWakeUp) return;
 
         //体力が0になったら起きて道を譲る演出を入れる
-        await _bigCreatureMoveOut.WalkAsync(token);
+        await _bigCreatureMoveOut.MoveOutAsync(token);
     }
 
     bool IsCorrectMagic(EMagic magic)
