@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StemTest
+  m_Name: StemMat
   m_Shader: {fileID: -6465566751694194690, guid: 32d33f2a370df914b8b68b1923767e22, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

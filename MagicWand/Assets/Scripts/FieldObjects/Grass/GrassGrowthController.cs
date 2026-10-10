@@ -25,13 +25,9 @@ public class GrassGrowthController : MonoBehaviour
     [SerializeField] [Range(0, 1)]
     float _defaultGrowthRate;
 
-    [SerializeField]
-    float _stemHeight;
-
     float _currentGrowthRate;
 
     static readonly int _displayRateID = Shader.PropertyToID("_DisplayRate");
-    static readonly int _heightID = Shader.PropertyToID("_Height");
 
     //BlendShape関係の定数
     const float _minShapeValue = 0;
@@ -61,9 +57,6 @@ public class GrassGrowthController : MonoBehaviour
 
         //茎の成長
         SetStemGrowth(newGrowthRate);
-
-        //茎の高さを設定
-        SetStemHeight();
     }
 
     //現在の茎のMaterialの設定をリセットする
@@ -108,11 +101,6 @@ public class GrassGrowthController : MonoBehaviour
     void SetStemGrowth(float rate)
     {
         SetStemMaterialPropertyBlock(_displayRateID, rate);
-    }
-
-    void SetStemHeight()
-    {
-        SetStemMaterialPropertyBlock(_heightID, _stemHeight);
     }
 
     void SetStemMaterialPropertyBlock(int propertyID,float value)

@@ -19,6 +19,11 @@ public class BigCreatureMoveOut : MonoBehaviour
     [SerializeField]
     SplineAnimate _splineAnimate;
 
+    void Start()
+    {
+        _splineAnimate.enabled = false;
+    }
+
     public void WakeUp()
     {
         _bigCreatureAnimator.SetTrigger(BigCreatureAnimatorProperty.MoveOutTriggerName);
@@ -26,6 +31,7 @@ public class BigCreatureMoveOut : MonoBehaviour
 
     public void Fly()
     {
+        _splineAnimate.enabled = true;
         _splineAnimate.Play();
     }
 
