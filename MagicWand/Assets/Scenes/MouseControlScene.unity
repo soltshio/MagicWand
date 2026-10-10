@@ -1738,15 +1738,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7700024
+      value: -4.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.84
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.5852375
+      value: -8.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3362,7 +3362,7 @@ Transform:
   m_GameObject: {fileID: 236575979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33741, y: -2.4, z: 29.70766}
+  m_LocalPosition: {x: 0.33741, y: -2.4, z: 34.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6412,6 +6412,61 @@ MonoBehaviour:
   _fadeDuration: 0.5
   _defaultMaterialProperty: {fileID: 11400000, guid: 657914eca5350c94ab185d2e2177cec8, type: 2}
   _magicSphereMaterialController: {fileID: 549293277}
+--- !u!1 &550020225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550020227}
+  - component: {fileID: 550020226}
+  m_Layer: 0
+  m_Name: BigNudiSplineAnimate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &550020226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550020225}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
+  m_Target: {fileID: 858778809}
+  m_PlayOnAwake: 0
+  m_LoopMode: 0
+  m_Method: 0
+  m_Duration: 10
+  m_MaxSpeed: 73.776
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
+--- !u!4 &550020227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550020225}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0020631626, y: 0.7322266, z: 0.0019189792, w: 0.68105525}
+  m_LocalPosition: {x: 3.91, y: 5.3099995, z: 27.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 623789235}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &605361609
 GameObject:
   m_ObjectHideFlags: 0
@@ -6594,6 +6649,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 550020227}
+  - {fileID: 858778810}
   - {fileID: 796611147}
   - {fileID: 349517872}
   - {fileID: 1736635912}
@@ -6671,7 +6728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442aca0bf5f0b5640a26d5d9ba81f301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureStatus
-  _maxHp: 3
+  _maxHp: 1
 --- !u!1 &642692357
 GameObject:
   m_ObjectHideFlags: 0
@@ -12293,7 +12350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &741445575
 Transform:
   m_ObjectHideFlags: 0
@@ -12368,7 +12425,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796611147}
-  - component: {fileID: 796611148}
   m_Layer: 0
   m_Name: BigNudiBodyMesh
   m_TagString: Untagged
@@ -12384,37 +12440,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796611146}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000018577663, y: 0.74536204, z: -0.000000050188124, w: 0.6666599}
-  m_LocalPosition: {x: 3.9093575, y: -2.3999898, z: 27.132526}
+  m_LocalRotation: {x: 0.0020631626, y: 0.7322266, z: 0.0019189792, w: 0.68105525}
+  m_LocalPosition: {x: 3.91, y: -2.57, z: 31.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2114282}
   m_Father: {fileID: 623789235}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &796611148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796611146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
-  m_Target: {fileID: 858778809}
-  m_PlayOnAwake: 0
-  m_LoopMode: 0
-  m_Method: 0
-  m_Duration: 10
-  m_MaxSpeed: 74.09572
-  m_EasingMode: 0
-  m_AlignmentMode: 1
-  m_ObjectForwardAxis: 2
-  m_ObjectUpAxis: 1
-  m_StartOffset: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 94.147, z: 0.323}
 --- !u!1 &802687801
 GameObject:
   m_ObjectHideFlags: 0
@@ -12559,19 +12592,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.94
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.94
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6.94
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.106
+      value: -7.48
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12579,7 +12612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.015
+      value: -16.1
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12725,9 +12758,9 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 0
-        y: 0
-        z: 0
+        x: 0.00064253807
+        y: 7.7099895
+        z: -0.002527237
       TangentIn:
         x: 0
         y: 0
@@ -12735,31 +12768,49 @@ MonoBehaviour:
       TangentOut:
         x: 0
         y: 0
-        z: 31.787537
+        z: 16.069988
       Rotation:
         value:
-          x: 0.00000018577666
-          y: 0.74536204
-          z: -0.00000005018812
-          w: 0.66665983
+          x: 0.002063162
+          y: 0.7322266
+          z: 0.0019189797
+          w: 0.68105525
+    - Position:
+        x: 27.910643
+        y: 14.22999
+        z: 5.667473
+      TangentIn:
+        x: -4.6135054
+        y: -0.0022192001
+        z: -12.013016
+      TangentOut:
+        x: 0.00062561035
+        y: -0.004880905
+        z: 10.611771
+      Rotation:
+        value:
+          x: -0.14067687
+          y: 0.30018404
+          z: 0.074814625
+          w: 0.9404799
     - Position:
         x: 41.09064
-        y: 13.09999
+        y: 23.79999
         z: 38.56747
       TangentIn:
         x: -0
         y: -0
-        z: -16.070875
+        z: -12.212337
       TangentOut:
         x: 0
         y: 0
-        z: 14.90311
+        z: 13.492366
       Rotation:
         value:
-          x: -0.22399063
-          y: 0.15716794
-          z: 0.05127829
-          w: 0.96046704
+          x: -0.16537313
+          y: 0.040433988
+          z: 0.07041008
+          w: 0.98288316
     - Position:
         x: 29.790644
         y: 40.29999
@@ -12767,17 +12818,17 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -14.176349
+        z: -13.325407
       TangentOut:
         x: 0
         y: 0
-        z: 16.212309
+        z: 16.057953
       Rotation:
         value:
-          x: -0.14139251
-          y: -0.43603688
-          z: -0.050742205
-          w: 0.88730216
+          x: -0.087470725
+          y: -0.4249685
+          z: -0.026861755
+          w: 0.90057147
     - Position:
         x: -34.60936
         y: 35.49999
@@ -12869,7 +12920,9 @@ MonoBehaviour:
           z: -0.009705793
           w: 0.98032
     m_MetaData:
-    - Mode: 2
+    - Mode: 3
+      Tension: 0.5
+    - Mode: 4
       Tension: 0.5
     - Mode: 0
       Tension: 0.5
@@ -12904,12 +12957,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858778808}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9093575, y: -2.3999898, z: 27.132526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.9093575, y: -2.3999898, z: 31.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 623789235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &906078518
 GameObject:
@@ -16806,7 +16859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.56
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16814,7 +16867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.45
+      value: -17.58
       objectReference: {fileID: 0}
     - target: {fileID: 4119046930676957584, guid: b9ee46dd34ba7e8468adf3a9e32a46b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21874,7 +21927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureWalking
   _moveOutDirecter: {fileID: 1952613956}
   _bigCreatureAnimator: {fileID: 774845730}
-  _splineAnimate: {fileID: 796611148}
+  _splineAnimate: {fileID: 550020226}
 --- !u!114 &1952613958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23535,4 +23588,3 @@ SceneRoots:
   - {fileID: 447535810}
   - {fileID: 623789235}
   - {fileID: 236575981}
-  - {fileID: 858778810}
