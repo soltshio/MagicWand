@@ -487,7 +487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7384440530883127276}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -513,17 +513,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
   _leaveGrowthSegments:
   - leaveRenderer: {fileID: 3407719785570806829}
-    startRate: 0
-    finishRate: 0.157
+    startRate: 0.108
+    finishRate: 0.291
   - leaveRenderer: {fileID: 6910863885935105587}
-    startRate: 0.234
-    finishRate: 0.361
+    startRate: 0.379
+    finishRate: 0.575
   - leaveRenderer: {fileID: 2427309597956021948}
-    startRate: 0.439
-    finishRate: 0.553
+    startRate: 0.693
+    finishRate: 0.807
   - leaveRenderer: {fileID: 2971920601207406576}
-    startRate: 0.611
-    finishRate: 0.733
+    startRate: 0.838
+    finishRate: 1
   _stemRenderer: {fileID: 4688873692681696959}
   _defaultGrowthRate: 1
-  _stemHeight: 3.84
