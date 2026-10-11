@@ -330,16 +330,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrassGrowthController
   _leaveGrowthSegments:
   - leaveRenderer: {fileID: 3406058878624651545}
-    startRate: 0.116
-    finishRate: 0.296
+    startRate: 0.317
+    finishRate: 0.38
   - leaveRenderer: {fileID: 9081023823222458996}
-    startRate: 0.446
-    finishRate: 0.657
+    startRate: 0.539
+    finishRate: 0.678
   - leaveRenderer: {fileID: 6989299978023892315}
-    startRate: 0.82
-    finishRate: 0.941
+    startRate: 0.894
+    finishRate: 0.992
   - leaveRenderer: {fileID: 9155721954019728263}
-    startRate: 0.982
+    startRate: 0.997
     finishRate: 1
   _stemRenderer: {fileID: 5733756969753249271}
   _defaultGrowthRate: 1
@@ -409,7 +409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fbb15346841040f428bae22a05b7d7c4, type: 2}
+  - {fileID: 2100000, guid: d377b08ca4e23534a994ea0cb79531dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
