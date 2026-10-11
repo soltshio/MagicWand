@@ -6809,7 +6809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442aca0bf5f0b5640a26d5d9ba81f301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureStatus
-  _maxHp: 3
+  _maxHp: 2
 --- !u!1 &642692357
 GameObject:
   m_ObjectHideFlags: 0
