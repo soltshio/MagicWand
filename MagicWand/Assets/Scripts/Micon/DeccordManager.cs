@@ -2,6 +2,7 @@
 // 2025_8月Ver.
 
 
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,22 +14,35 @@ using UnityEngine.InputSystem;
 
 public class DeccordManager : MonoBehaviour
 {
+    SerialHandler _serialHandlerInstance;
 
-    const int _errorNum = -1; 
+    SingleTaskCancellation _singleTaskCancellation = new();
 
-    private void OnEnable()
+    async void Start()
     {
-        if (SerialHandler.Instance == null) return;
+        await UniTask.WaitUntil(() => SerialHandler.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
 
-        // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
-        SerialHandler.Instance.OnDataReceived += OnDataReceived;
+        // SerialHandlerのインスタンスを取得
+        _serialHandlerInstance = SerialHandler.Instance;
     }
 
-    private void OnDisable()
+    async void OnEnable()
     {
-        if (SerialHandler.Instance == null) return;
+        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
-        SerialHandler.Instance.OnDataReceived -= OnDataReceived;
+        await UniTask.WaitUntil(() => _serialHandlerInstance != null, cancellationToken: ct);
+
+        // 信号受信時に呼ばれる関数としてOnDataReceived関数を登録
+        _serialHandlerInstance.OnDataReceived += OnDataReceived;
+    }
+
+    async void OnDisable()
+    {
+        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
+
+        await UniTask.WaitUntil(() => _serialHandlerInstance != null, cancellationToken: ct);
+
+        _serialHandlerInstance.OnDataReceived -= OnDataReceived;
     }
 
     //受信した信号(message)に対する処理
@@ -41,6 +55,6 @@ public class DeccordManager : MonoBehaviour
             return;
 
         // ここでデコード処理等を記述
-        //Debug.Log(message);
+        Debug.Log(message);
     }
 }
