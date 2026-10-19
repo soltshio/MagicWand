@@ -8,7 +8,7 @@
 
 CESPNowEZ espnow(0);
 
-uint8_t deviceMacAddr[] = { 0x60, 0x55, 0xf9, 0x96, 0x33, 0x8c }; // ID1
+uint8_t deviceMacAddr[] = { 0x34, 0xb7, 0xda, 0xf2, 0x1b, 0xf8 }; // ID1
 
 ESPNOW_Con2DevData controllerData;
 
@@ -35,19 +35,23 @@ void loop()
   if(outputFlag)
   {
     outputFlag = 0;
-    Serial.println(outputText);
+    Serial.println(deviceData.sw);
   }
 
   //PC(Unity)からデータを受け取ったら、それをデバイスに送る
-  if(Serial.available() > 0)
-  {
-    inputChar = Serial.read();
+  // if(Serial.available() > 0)
+  // {
+  //   inputChar = Serial.read();
     
-    espnow.Send(1, &controllerData, sizeof(controllerData)); // id:1に送る
-  }
+  //   espnow.Send(1, &controllerData, sizeof(controllerData)); // id:1に送る
+  // }
+  controllerData.cmd = 'l';
+  espnow.Send(1, &controllerData, sizeof(controllerData)); // id:1に送る
 
-  // Serial.println(espnow.GetMacAddrChar());
-  // delay(1000);
+  //MACアドレスを知るためのコード
+  //Serial.println(espnow.GetMacAddrChar());
+
+  delay(1000);
 }
 
 void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)

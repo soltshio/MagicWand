@@ -14,20 +14,13 @@
 //デバイスからコントローラーに送るデータ
 typedef struct struct_esp_now_d2c_data {
     uint8_t id; // 必ず被らないこと
-    //加速度センサーのジャイロ
-    int gyroX;
-    int gyroZ;
-    //スイッチ
-    int8_t sw;
-    //ロータリーエンコーダーの変化値
-    int delta;   
+    int sw;
 } ESPNOW_Dev2ConData;
 
 //コントローラーからデバイスに送るデータ
 typedef struct struct_esp_now_c2d_data {
     uint8_t id; // 必ず被らないこと
     char cmd;
-    int rate;
 } ESPNOW_Con2DevData;
 
 #endif
