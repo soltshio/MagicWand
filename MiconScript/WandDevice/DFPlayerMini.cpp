@@ -2,18 +2,14 @@
 #include "Mathf.h"
 
 DFPlayerMini::DFPlayerMini(int ss_RX_PIN,int ss_TX_PIN,int mp3_Busy_PIN):
-_ss_RX_PIN(ss_RX_PIN),
-_ss_TX_PIN(ss_TX_PIN),
-_mySoftwareSerial(_ss_RX_PIN,_ss_TX_PIN),
+_mySoftwareSerial(ss_RX_PIN,ss_TX_PIN),
 _mp3_Busy_PIN(mp3_Busy_PIN)
 {
  
 }
 
 DFPlayerMini::DFPlayerMini(int ss_RX_PIN,int ss_TX_PIN,int mp3_Busy_PIN,int defaultVolume):
-_ss_RX_PIN(ss_RX_PIN),
-_ss_TX_PIN(ss_TX_PIN),
-_mySoftwareSerial(_ss_RX_PIN,_ss_TX_PIN),
+_mySoftwareSerial(ss_RX_PIN,ss_TX_PIN),
 _mp3_Busy_PIN(mp3_Busy_PIN),
 _defaultVolume(Mathf::Clamp(defaultVolume,_minVolume,_maxVolume))
 {

@@ -1,6 +1,8 @@
 //デバイス(杖本体)側のマイコン用
 
 #include "ESPNowEz.h"
+#include "MPU_AccGyro.h"
+#include "DFPlayerMini.h"
 
 //このデバイスのMACアドレス
 //34:b7:da:f2:1b:f8
@@ -15,31 +17,20 @@ ESPNOW_Dev2ConData deviceData;
 ESPNOW_Con2DevData controllerData;
 int outputFlag;
 
-//ボタン
-#define BUTTON_PIN 9
+//加速度センサー関係
+MPU_AccGyro _mpu;
 
-//LED
-#include <Adafruit_NeoPixel.h>
+//DFPlayer(スピーカー)関係
+#define MP3_BUSY_PIN 7//今音を流しているかが分かるようになるピン
+//ピンは逆につなげる
+#define SS_RX_PIN 5
+#define SS_TX_PIN 4
+DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN);
 
-#define LED_PIN 2
-#define NUM_LEDS 1
-
-Adafruit_NeoPixel pixels(
-    NUM_LEDS,
-    LED_PIN,
-    NEO_GRB + NEO_KHZ800
-);
 
 void setup()
 {
-  //LED
-  pixels.begin();
-  pixels.clear();
-  pixels.show();
-
-  //ボタン
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-
+  //通信のセットアップ処理
   espnow.Initialize(OnDataReceived, nullptr);
   espnow.SetControllerMacAddr(controllerAddress);
   Serial.begin(115200);
@@ -52,24 +43,11 @@ void loop()
   {
     outputFlag = 0;
 
-    //出力(LED)
-    if(controllerData.cmd == 'l')
-    {
-      pixels.setPixelColor(0, pixels.Color(255, 0, 0));
-      pixels.show();
-    }
+    
   }
 
 
   //入力
-  if (digitalRead(BUTTON_PIN) == LOW) 
-  {
-    deviceData.sw=1;
-  }
-  else
-  {
-    deviceData.sw=0;
-  }
 
   //データ送信
   espnow.Send(&deviceData, sizeof(deviceData));
