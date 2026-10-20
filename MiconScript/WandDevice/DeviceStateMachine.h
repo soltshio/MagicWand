@@ -1,0 +1,6 @@
+#ifndef _DEVICESTATEMACHINE_H_
+#define _DEVICESTATEMACHINE_H_
+
+
+
+#endif
