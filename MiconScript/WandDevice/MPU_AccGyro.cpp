@@ -1,9 +1,9 @@
 #include "MPU_AccGyro.h"
 
-MPU_AccGyro::MPU_AccGyro()
-:_maAccX(_maN),
- _maAccY(_maN),
- _maAccZ(_maN)
+MPU_AccGyro::MPU_AccGyro():
+_maAccX(_maN),
+_maAccY(_maN),
+_maAccZ(_maN)
 {
 
 }
