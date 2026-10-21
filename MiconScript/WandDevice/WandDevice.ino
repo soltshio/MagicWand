@@ -3,6 +3,7 @@
 #include "ESPNowEz.h"
 #include "MPU_AccGyro.h"
 #include "DFPlayerMini.h"
+//#include "DeviceStateMachine.h"
 
 //このデバイスのMACアドレス
 //34:b7:da:f2:1b:f8
@@ -27,9 +28,15 @@ MPU_AccGyro _mpu;
 #define SS_TX_PIN 4
 DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN);
 
+//ステートマシン関係
+//DeviceStateMachine _deviceStateMachine;
+
 
 void setup()
 {
+  //スピーカーの初期化処理
+  _dfPlayerMini.Setup();
+
   //通信のセットアップ処理
   espnow.Initialize(OnDataReceived, nullptr);
   espnow.SetControllerMacAddr(controllerAddress);
@@ -39,12 +46,12 @@ void setup()
 void loop() 
 {
   //データ受取
-  if(outputFlag)
-  {
-    outputFlag = 0;
+  // if(outputFlag)
+  // {
+  //   outputFlag = 0;
 
     
-  }
+  // }
 
 
   //入力
@@ -52,8 +59,15 @@ void loop()
   //データ送信
   espnow.Send(&deviceData, sizeof(deviceData));
 
+  //スピーカーの処理
+  _dfPlayerMini.Tick();
+  _dfPlayerMini.PlaySound(ESoundNum::Water);
+  delay(1000);
+  _dfPlayerMini.Tick();
+
+  //Serial.println("Sounding");
   // loop内に適切なdeleyを付加
-  delay(10);
+  delay(5000);
 
   //MACアドレスを知るためのコード
   //Serial.println(espnow.GetMacAddrChar());

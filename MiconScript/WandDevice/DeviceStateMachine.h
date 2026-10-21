@@ -23,12 +23,12 @@ public:
     void ChangeState(IDeviceState& nextState);
 
     //ステートの取得
-    NormalState& GetNormalState();
-    SunState& GetSunState();
-    StarState& GetStarState();
-    WaterState& GetWaterState();
-    ThunderState& GetThunderState();
-    TimeState& GetTimeState();
+    NormalState& GetNormalState() {return _normalState;};
+    SunState& GetSunState() {return _sunState;};
+    StarState& GetStarState() {return _starState;};
+    WaterState& GetWaterState() {return _waterState;};
+    ThunderState& GetThunderState() {return _thunderState;};
+    TimeState& GetTimeState() {return _timeState;};
 };
 
 #endif

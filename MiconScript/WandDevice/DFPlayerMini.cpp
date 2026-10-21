@@ -16,9 +16,10 @@ _defaultVolume(Mathf::Clamp(defaultVolume,_minVolume,_maxVolume))
   
 }
 
+//メモ：音を流す前に音量を動かすと音が流れない場合があるらしい
 void DFPlayerMini::PlaySound(ESoundNum soundNum)
 {
-  _myDFPlayer.volume(_defaultVolume);
+  //_myDFPlayer.volume(_defaultVolume);
 
   int fn = static_cast<int>(soundNum);//音声ファイルの番号
   _myDFPlayer.playFolder(_dn, fn); // 曲を再生
@@ -31,6 +32,11 @@ void DFPlayerMini::PlaySound(ESoundNum soundNum,int volume)
 
   int fn = static_cast<int>(soundNum);//音声ファイルの番号
   _myDFPlayer.playFolder(_dn, fn); // 曲を再生
+}
+
+void DFPlayerMini::Stop()
+{
+  _myDFPlayer.stop();
 }
 
 void DFPlayerMini::Setup()
@@ -49,5 +55,6 @@ void DFPlayerMini::Setup()
 void DFPlayerMini::Tick()
 {
   _mp3_busy=digitalRead(_mp3_Busy_PIN); // HIGHで再生していない
+  Serial.println(_mp3_busy);
 }
 

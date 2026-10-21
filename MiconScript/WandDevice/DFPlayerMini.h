@@ -29,7 +29,7 @@ enum class ESoundNum
   Star,//星魔法の音
   Thunder,//雷魔法の音
   Water,//水魔法の音
-  Time//時魔法の音
+  Time,//時魔法の音
 };
 
 
@@ -61,6 +61,9 @@ public:
   //効果音を再生
   void PlaySound(ESoundNum soundNum);
   void PlaySound(ESoundNum soundNum,int volume);//音量の指定が可能(音量は0～30)
+
+  //効果音を止める
+  void Stop();
 
   //効果音を流しているか
   bool IsPlaying() const{return (_mp3_busy==LOW);}
