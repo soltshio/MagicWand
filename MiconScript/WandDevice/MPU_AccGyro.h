@@ -39,6 +39,8 @@ class MPU_AccGyro
   short int _temp;
   short int _gyroX, _gyroY, _gyroZ;
 
+  void DebugPrintln();//加速度・ジャイロの値をシリアルプロッタで見えるようにするもの
+
 public:
   MPU_AccGyro(int sdaPin,int sclPin);
 

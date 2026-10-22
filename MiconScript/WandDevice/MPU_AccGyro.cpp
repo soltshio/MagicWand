@@ -42,4 +42,18 @@ void MPU_AccGyro::Tick()
   _accX_ma=_maAccX.Add(_accX);
   _accY_ma=_maAccY.Add(_accY);
   _accZ_ma=_maAccZ.Add(_accZ);
+
+  //DebugPrintln();//値のデバッグ表示
+}
+
+void MPU_AccGyro::DebugPrintln()
+{
+  Serial.print("  DEBUG:"); Serial.print("30000, -30000,");
+  Serial.print("  ACCX:"); Serial.print(AccX_ma);
+  Serial.print("  ACCY:"); Serial.print(AccY_ma);
+  Serial.print("  ACCZ:"); Serial.print(AccZ_ma);
+  Serial.print("  TEMP:"); Serial.print(Temp);
+  Serial.print("  GYROX:"); Serial.print(GyroX_ma);
+  Serial.print("  GYROY:"); Serial.print(GyroY_ma);
+  Serial.print("  GYROZ:"); Serial.println(GyroZ_ma); 
 }
