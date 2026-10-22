@@ -18,34 +18,37 @@
 
 class MPU_AccGyro
 {
+  //ピン番号
+  const int _sdaPin;
+  const int _sclPin;
 
-//移動平均処理をした加速度の値
-int _accX_ma=0;
-int _accY_ma=0;
-int _accZ_ma=0;
+  //移動平均処理をした加速度の値
+  int _accX_ma=0;
+  int _accY_ma=0;
+  int _accZ_ma=0;
 
-const int _maN=35;
+  const int _maN=35;
 
-//移動平均クラス
-MovingAverage _maAccX;
-MovingAverage _maAccY;
-MovingAverage _maAccZ;
+  //移動平均クラス
+  MovingAverage _maAccX;
+  MovingAverage _maAccY;
+  MovingAverage _maAccZ;
 
-//加速度・ジャイロセンサーの生の値
-short int _accX, _accY, _accZ;
-short int _temp;
-short int _gyroX, _gyroY, _gyroZ;
+  //加速度・ジャイロセンサーの生の値
+  short int _accX, _accY, _accZ;
+  short int _temp;
+  short int _gyroX, _gyroY, _gyroZ;
 
 public:
-MPU_AccGyro();
+  MPU_AccGyro(int sdaPin,int sclPin);
 
-//移動平均処理を施した加速度の値を取得
-int AccX() const{return _accX_ma;};
-int AccY() const{return _accY_ma;};
-int AccZ() const{return _accZ_ma;};
+  //移動平均処理を施した加速度の値を取得
+  int AccX() const{return _accX_ma;};
+  int AccY() const{return _accY_ma;};
+  int AccZ() const{return _accZ_ma;};
 
-void Setup();
-void Tick();
+  void Setup();
+  void Tick();
 };
 
 #endif

@@ -1,16 +1,18 @@
 #include "MPU_AccGyro.h"
 
-MPU_AccGyro::MPU_AccGyro()
-:_maAccX(_maN),
- _maAccY(_maN),
- _maAccZ(_maN)
+MPU_AccGyro::MPU_AccGyro(int sdaPin,int sclPin):
+_maAccX(_maN),
+_maAccY(_maN),
+_maAccZ(_maN),
+_sdaPin(sdaPin),
+_sclPin(sclPin)
 {
 
 }
 
 void MPU_AccGyro::Setup()
 {
-  Wire.begin();
+  Wire.begin(_sdaPin,_sclPin);
 
   Wire.beginTransmission(MPU6050_ADDR);
   Wire.write(0x6B);
