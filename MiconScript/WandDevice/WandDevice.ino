@@ -50,6 +50,9 @@ void setup()
   //LEDの初期化処理
   //_led12Ring.Setup();
 
+  //ステートマシンの初期化処理
+  _deviceStateMachine.Initialize();
+
   //通信のセットアップ処理
   espnow.Initialize(OnDataReceived, nullptr);
   espnow.SetControllerMacAddr(controllerAddress);
@@ -62,22 +65,20 @@ void loop()
   // if(outputFlag)
   // {
   //   outputFlag = 0;
-
-    
   // }
-
-
-  //入力
 
   //データ送信
   espnow.Send(&deviceData, sizeof(deviceData));
+
+  //ステートマシンの更新処理
+  _deviceStateMachine.Update();
 
   //スピーカーのTick処理
   _dfPlayerMini.PlaySound(ESoundNum::Water);
   //Serial.println("Sounding");
   
   //加速度センサーのTick処理
-  _mpu.Tick();
+  //_mpu.Tick();
 
 
   //MACアドレスを知るためのコード

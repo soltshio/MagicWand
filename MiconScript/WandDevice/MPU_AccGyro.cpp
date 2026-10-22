@@ -1,9 +1,13 @@
 #include "MPU_AccGyro.h"
+#include <Arduino.h>
 
 MPU_AccGyro::MPU_AccGyro(int sdaPin,int sclPin):
 _maAccX(_maN),
 _maAccY(_maN),
 _maAccZ(_maN),
+_maGyroX(_maN),
+_maGyroY(_maN),
+_maGyroZ(_maN),
 _sdaPin(sdaPin),
 _sclPin(sclPin)
 {
@@ -42,6 +46,9 @@ void MPU_AccGyro::Tick()
   _accX_ma=_maAccX.Add(_accX);
   _accY_ma=_maAccY.Add(_accY);
   _accZ_ma=_maAccZ.Add(_accZ);
+  _gyroX_ma=_maGyroX.Add(_gyroX);
+  _gyroY_ma=_maGyroY.Add(_gyroY);
+  _gyroZ_ma=_maGyroZ.Add(_gyroZ);
 
   //DebugPrintln();//値のデバッグ表示
 }
@@ -49,11 +56,11 @@ void MPU_AccGyro::Tick()
 void MPU_AccGyro::DebugPrintln()
 {
   Serial.print("  DEBUG:"); Serial.print("30000, -30000,");
-  Serial.print("  ACCX:"); Serial.print(AccX_ma);
-  Serial.print("  ACCY:"); Serial.print(AccY_ma);
-  Serial.print("  ACCZ:"); Serial.print(AccZ_ma);
-  Serial.print("  TEMP:"); Serial.print(Temp);
-  Serial.print("  GYROX:"); Serial.print(GyroX_ma);
-  Serial.print("  GYROY:"); Serial.print(GyroY_ma);
-  Serial.print("  GYROZ:"); Serial.println(GyroZ_ma); 
+  Serial.print("  ACCX:"); Serial.print(_accX_ma);
+  Serial.print("  ACCY:"); Serial.print(_accY_ma);
+  Serial.print("  ACCZ:"); Serial.print(_accZ_ma);
+  Serial.print("  TEMP:"); Serial.print(_temp);
+  Serial.print("  GYROX:"); Serial.print(_gyroX_ma);
+  Serial.print("  GYROY:"); Serial.print(_gyroY_ma);
+  Serial.print("  GYROZ:"); Serial.println(_gyroZ_ma); 
 }

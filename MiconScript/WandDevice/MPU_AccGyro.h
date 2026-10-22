@@ -14,7 +14,6 @@
 #define MPU6050_GZ  0x47
 
 //加速度・ジャイロセンサー
-//加速度のX、Y、Zのみ使用するので、その値を取得できるようにした。
 
 class MPU_AccGyro
 {
@@ -26,13 +25,22 @@ class MPU_AccGyro
   int _accX_ma=0;
   int _accY_ma=0;
   int _accZ_ma=0;
+  //移動平均処理をしたジャイロの値
+  int _gyroX_ma=0;
+  int _gyroY_ma=0;
+  int _gyroZ_ma=0;
 
   const int _maN=35;
 
   //移動平均クラス
+  //加速度
   MovingAverage _maAccX;
   MovingAverage _maAccY;
   MovingAverage _maAccZ;
+  //ジャイロ
+  MovingAverage _maGyroX;
+  MovingAverage _maGyroY;
+  MovingAverage _maGyroZ;
 
   //加速度・ジャイロセンサーの生の値
   short int _accX, _accY, _accZ;
@@ -45,9 +53,13 @@ public:
   MPU_AccGyro(int sdaPin,int sclPin);
 
   //移動平均処理を施した加速度の値を取得
-  int AccX() const{return _accX_ma;};
-  int AccY() const{return _accY_ma;};
-  int AccZ() const{return _accZ_ma;};
+  int AccX() const{return _accX_ma;}
+  int AccY() const{return _accY_ma;}
+  int AccZ() const{return _accZ_ma;}
+  //移動平均処理を施したジャイロの値を取得
+  int GyroX() const{return _gyroX_ma;}
+  int GyroY() const{return _gyroY_ma;}
+  int GyroZ() const{return _gyroZ_ma;}
 
   void Setup();
   void Tick();
