@@ -39,9 +39,6 @@ class DFPlayerMini
   SoftwareSerial _mySoftwareSerial;
   DFPlayerMini_Fast _myDFPlayer;
 
-  //効果音を流しているか(HIGHで再生していない)
-  int _mp3_busy=HIGH;
-
   //ピン
   const int _mp3_Busy_PIN;
 
@@ -66,10 +63,13 @@ public:
   void Stop();
 
   //効果音を流しているか
-  bool IsPlaying() const{return (_mp3_busy==LOW);}
+  bool IsPlaying() const
+  {
+    int mp3_busy=digitalRead(_mp3_Busy_PIN); // HIGHで再生していない
+    return (mp3_busy==LOW);
+  }
 
   void Setup();
-  void Tick();
 };
 
 #endif

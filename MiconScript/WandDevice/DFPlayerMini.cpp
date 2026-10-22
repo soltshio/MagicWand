@@ -52,9 +52,3 @@ void DFPlayerMini::Setup()
   Serial.println("DFPlayer Mini online.");
 }
 
-void DFPlayerMini::Tick()
-{
-  _mp3_busy=digitalRead(_mp3_Busy_PIN); // HIGHで再生していない
-  Serial.println(_mp3_busy);
-}
-

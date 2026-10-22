@@ -18,6 +18,10 @@
 
 class MPU_AccGyro
 {
+  //ピン番号
+  const int _sdaPin;
+  const int _sclPin;
+
   //移動平均処理をした加速度の値
   int _accX_ma=0;
   int _accY_ma=0;
@@ -36,7 +40,7 @@ class MPU_AccGyro
   short int _gyroX, _gyroY, _gyroZ;
 
 public:
-  MPU_AccGyro();
+  MPU_AccGyro(int sdaPin,int sclPin);
 
   //移動平均処理を施した加速度の値を取得
   int AccX() const{return _accX_ma;};

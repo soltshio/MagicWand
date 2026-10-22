@@ -3,7 +3,7 @@
 #include "ESPNowEz.h"
 #include "MPU_AccGyro.h"
 #include "DFPlayerMini.h"
-//#include "DeviceStateMachine.h"
+#include "DeviceStateMachine.h"
 
 //このデバイスのMACアドレス
 //34:b7:da:f2:1b:f8
@@ -19,7 +19,9 @@ ESPNOW_Con2DevData controllerData;
 int outputFlag;
 
 //加速度センサー関係
-MPU_AccGyro _mpu;
+#define SDA_PIN 1
+#define SCL_PIN 0
+MPU_AccGyro _mpu(SDA_PIN,SCL_PIN);
 
 //DFPlayer(スピーカー)関係
 #define MP3_BUSY_PIN 7//今音を流しているかが分かるようになるピン
@@ -29,7 +31,7 @@ MPU_AccGyro _mpu;
 DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN);
 
 //ステートマシン関係
-//DeviceStateMachine _deviceStateMachine;
+DeviceStateMachine _deviceStateMachine;
 
 
 void setup()
@@ -60,10 +62,8 @@ void loop()
   espnow.Send(&deviceData, sizeof(deviceData));
 
   //スピーカーの処理
-  _dfPlayerMini.Tick();
   _dfPlayerMini.PlaySound(ESoundNum::Water);
   delay(1000);
-  _dfPlayerMini.Tick();
 
   //Serial.println("Sounding");
   // loop内に適切なdeleyを付加
