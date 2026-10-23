@@ -2,7 +2,10 @@
 
 //---通常時のステート---
 
-NormalState::NormalState()
+NormalState::NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_mpu(&mpu),
+_dfPlayerMini(&dfPlayerMini),
+_led12Ring(&led12Ring)
 {
 
 }

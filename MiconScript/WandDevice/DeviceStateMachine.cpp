@@ -1,7 +1,7 @@
 #include "DeviceStateMachine.h"
 
-DeviceStateMachine::DeviceStateMachine():
-_normalState(),
+DeviceStateMachine::DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_normalState(mpu,dfPlayerMini,led12Ring),
 _sunState(),
 _starState(),
 _waterState(),
@@ -13,7 +13,8 @@ _timeState()
 
 void DeviceStateMachine::Initialize() 
 {
-    
+  //最初のステート
+  ChangeState(_normalState);
 }
 
 void DeviceStateMachine::Update()

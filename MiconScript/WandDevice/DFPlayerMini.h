@@ -45,7 +45,7 @@ class DFPlayerMini
   //デフォルトの音量(0～30まで)
   const int _minVolume =0;
   const int _maxVolume=30;
-  const int _defaultVolume=30;
+  const int _defaultVolume=15;
 
   //フォルダの番号(フォルダ01の中に全ての音声ファイルを入れている)
   const int _dn = 1; 

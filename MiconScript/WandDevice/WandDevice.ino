@@ -36,7 +36,7 @@ DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN);
 LED12Ring _led12Ring(LED_PIN);
 
 //ステートマシン関係
-DeviceStateMachine _deviceStateMachine;
+DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring);
 
 
 void setup()
@@ -45,18 +45,23 @@ void setup()
   _dfPlayerMini.Setup();
 
   //加速度センサーの初期化処理
-  //_mpu.Setup();
+  _mpu.Setup();
 
   //LEDの初期化処理
   //_led12Ring.Setup();
 
   //ステートマシンの初期化処理
-  _deviceStateMachine.Initialize();
+  //_deviceStateMachine.Initialize();
 
   //通信のセットアップ処理
   espnow.Initialize(OnDataReceived, nullptr);
   espnow.SetControllerMacAddr(controllerAddress);
   Serial.begin(115200);
+
+
+  //テストで音を鳴らしてみる
+  delay(1000);
+  _dfPlayerMini.PlaySound(ESoundNum::Water);
 }
 
 void loop() 
@@ -71,21 +76,21 @@ void loop()
   espnow.Send(&deviceData, sizeof(deviceData));
 
   //ステートマシンの更新処理
-  _deviceStateMachine.Update();
+  //_deviceStateMachine.Update();
 
   //スピーカーのTick処理
-  _dfPlayerMini.PlaySound(ESoundNum::Water);
+  //_dfPlayerMini.PlaySound(ESoundNum::Water);
   //Serial.println("Sounding");
   
   //加速度センサーのTick処理
-  //_mpu.Tick();
+  _mpu.Tick();
 
 
   //MACアドレスを知るためのコード
   //Serial.println(espnow.GetMacAddrChar());
   
   // loop内に適切なdeleyを付加
-  delay(5000);
+  delay(30);
 }
 
 void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)

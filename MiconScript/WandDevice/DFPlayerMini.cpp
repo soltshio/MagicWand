@@ -50,5 +50,6 @@ void DFPlayerMini::Setup()
       ; // モジュールが動作しなければ先に進めない
   }
   Serial.println("DFPlayer Mini online.");
+  _myDFPlayer.volume(_defaultVolume);
 }
 

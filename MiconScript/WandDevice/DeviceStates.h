@@ -1,6 +1,10 @@
 #ifndef _DEVICESTATES_H_
 #define _DEVICESTATES_H_
 
+#include "MPU_AccGyro.h"
+#include "DFPlayerMini.h"
+#include "LED12Ring.h"
+
 class DeviceStateMachine;
 
 //ステートの基底クラス
@@ -17,8 +21,18 @@ public:
 //通常時のステート
 class NormalState : public IDeviceState
 {
+  //加速度センサー
+  MPU_AccGyro* _mpu;
+  //スピーカープレイヤー
+  DFPlayerMini* _dfPlayerMini;
+  //LED
+  LED12Ring* _led12Ring;
+
+  //音を鳴らす加速度センサーの大きさの閾値
+  const int _accMagnitudeThresholdToPlaySound =10;
+
 public:
-  NormalState();
+  NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;

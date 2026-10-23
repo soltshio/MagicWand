@@ -21,16 +21,27 @@ class MPU_AccGyro
   const int _sdaPin;
   const int _sclPin;
 
-  //移動平均処理をした加速度の値
-  int _accX_ma=0;
-  int _accY_ma=0;
-  int _accZ_ma=0;
-  //移動平均処理をしたジャイロの値
-  int _gyroX_ma=0;
-  int _gyroY_ma=0;
-  int _gyroZ_ma=0;
+  //現在の加速度の値(移動平均処理済み)
+  int _accX=0;
+  int _accY=0;
+  int _accZ=0;
+  //前の加速度の値(移動平均処理済み)
+  int _accXPrev=0;
+  int _accYPrev=0;
+  int _accZPrev=0;
 
-  const int _maN=35;
+  //現在のジャイロの値(移動平均処理済み)
+  int _gyroX=0;
+  int _gyroY=0;
+  int _gyroZ=0;
+  //前のジャイロの値(移動平均処理済み)
+  int _gyroXPrev=0;
+  int _gyroYPrev=0;
+  int _gyroZPrev=0;
+
+  const int _maN=50;
+
+  const int _divValueCoefficient =10;//大きすぎる加速度・ジャイロの値を小さく丸めるための係数
 
   //移動平均クラス
   //加速度
@@ -42,24 +53,21 @@ class MPU_AccGyro
   MovingAverage _maGyroY;
   MovingAverage _maGyroZ;
 
-  //加速度・ジャイロセンサーの生の値
-  short int _accX, _accY, _accZ;
-  short int _temp;
-  short int _gyroX, _gyroY, _gyroZ;
-
   void DebugPrintln();//加速度・ジャイロの値をシリアルプロッタで見えるようにするもの
 
 public:
   MPU_AccGyro(int sdaPin,int sclPin);
 
-  //移動平均処理を施した加速度の値を取得
-  int AccX() const{return _accX_ma;}
-  int AccY() const{return _accY_ma;}
-  int AccZ() const{return _accZ_ma;}
-  //移動平均処理を施したジャイロの値を取得
-  int GyroX() const{return _gyroX_ma;}
-  int GyroY() const{return _gyroY_ma;}
-  int GyroZ() const{return _gyroZ_ma;}
+  //移動平均処理を施した上で通常時の値との差を取得
+  //加速度の値を取得
+  int AccXVal() const{return (_accX-_accXPrev)/_divValueCoefficient;}
+  int AccYVal() const{return (_accY-_accYPrev)/_divValueCoefficient;}
+  int AccZVal() const{return (_accZ-_accZPrev)/_divValueCoefficient;}
+  //ジャイロの値を取得
+  int GyroXVal() const{return (_gyroX-_gyroXPrev)/_divValueCoefficient;}
+  int GyroYVal() const{return (_gyroY-_gyroYPrev)/_divValueCoefficient;}
+  int GyroZVal() const{return (_gyroZ-_gyroZPrev)/_divValueCoefficient;}
+
 
   void Setup();
   void Tick();
