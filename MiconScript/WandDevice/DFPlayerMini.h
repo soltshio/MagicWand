@@ -36,9 +36,6 @@ enum class ESoundNum
 
 class DFPlayerMini
 {
-  SoftwareSerial _mySoftwareSerial;
-  DFPlayerMini_Fast _myDFPlayer;
-
   //ピン
   const int _mp3_Busy_PIN;
 
@@ -49,6 +46,9 @@ class DFPlayerMini
 
   //フォルダの番号(フォルダ01の中に全ての音声ファイルを入れている)
   const int _dn = 1; 
+
+  SoftwareSerial _mySoftwareSerial;
+  DFPlayerMini_Fast _myDFPlayer;
 
 public:
 

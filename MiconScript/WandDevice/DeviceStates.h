@@ -21,15 +21,15 @@ public:
 //通常時のステート
 class NormalState : public IDeviceState
 {
+  //音を鳴らす加速度センサーの大きさの閾値
+  const int _accMagnitudeThresholdToPlaySound =10;
+
   //加速度センサー
   MPU_AccGyro* _mpu;
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
-
-  //音を鳴らす加速度センサーの大きさの閾値
-  const int _accMagnitudeThresholdToPlaySound =10;
 
 public:
   NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);

@@ -21,6 +21,10 @@ class MPU_AccGyro
   const int _sdaPin;
   const int _sclPin;
 
+  const int _maN=50;
+
+  const int _divValueCoefficient =10;//大きすぎる加速度・ジャイロの値を小さく丸めるための係数
+
   //現在の加速度の値(移動平均処理済み)
   int _accX=0;
   int _accY=0;
@@ -39,10 +43,6 @@ class MPU_AccGyro
   int _gyroYPrev=0;
   int _gyroZPrev=0;
 
-  const int _maN=50;
-
-  const int _divValueCoefficient =10;//大きすぎる加速度・ジャイロの値を小さく丸めるための係数
-
   //移動平均クラス
   //加速度
   MovingAverage _maAccX;
@@ -52,6 +52,9 @@ class MPU_AccGyro
   MovingAverage _maGyroX;
   MovingAverage _maGyroY;
   MovingAverage _maGyroZ;
+
+  bool ReadSensor();
+  static int16_t ReadInt16();
 
   void DebugPrintln();//加速度・ジャイロの値をシリアルプロッタで見えるようにするもの
 

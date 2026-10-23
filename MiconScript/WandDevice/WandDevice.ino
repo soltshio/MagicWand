@@ -5,6 +5,7 @@
 #include "DFPlayerMini.h"
 #include "DeviceStateMachine.h"
 #include "LED12Ring.h"
+#include "Color.h"
 
 //このデバイスのMACアドレス
 //34:b7:da:f2:1b:f8
@@ -48,7 +49,7 @@ void setup()
   _mpu.Setup();
 
   //LEDの初期化処理
-  //_led12Ring.Setup();
+  _led12Ring.Setup();
 
   //ステートマシンの初期化処理
   //_deviceStateMachine.Initialize();
@@ -66,7 +67,32 @@ void setup()
 
 void loop() 
 {
-  //データ受取
+  //テストでLED光らせてみる
+  Color colors[12] = {
+  {255,  0,  0},//赤
+  {255, 80,  8},//赤とオレンジの間
+  {255,160, 16},//オレンジ
+  {255,224, 32},//黄
+  { 96,255,128},//黄緑
+  {  0,192,  0},//緑
+  { 40,200,127},//緑と水色の間
+  { 80,208,255},//水色
+  {  0, 32,255},//青
+  { 80, 32,255},//青紫
+  {160, 32,255},//紫
+  {255, 96,208},//ピンク
+  };
+
+  _led12Ring.Clear();
+  for(int i=0; i<12;i++)
+  {
+    _led12Ring.SetColor(i,colors[i],0.05);
+  }
+  _led12Ring.Show();
+
+  while(true)
+  {
+    //データ受取
   // if(outputFlag)
   // {
   //   outputFlag = 0;
@@ -83,14 +109,15 @@ void loop()
   //Serial.println("Sounding");
   
   //加速度センサーのTick処理
-  _mpu.Tick();
+  //_mpu.Tick();
 
 
   //MACアドレスを知るためのコード
   //Serial.println(espnow.GetMacAddrChar());
   
   // loop内に適切なdeleyを付加
-  delay(30);
+  delay(30);  
+  }
 }
 
 void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)

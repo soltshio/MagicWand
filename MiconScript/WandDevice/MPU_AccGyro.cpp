@@ -26,35 +26,8 @@ void MPU_AccGyro::Setup()
 
   delay(1000);
 
-  //  send start address
-  Wire.beginTransmission(MPU6050_ADDR);
-  Wire.write(MPU6050_AX);
-  Wire.endTransmission();
-
-  //値の初期化
-  Wire.requestFrom(MPU6050_ADDR, 14);
-
-  //加速度・ジャイロセンサーの生の値
-  short int accX_raw, accY_raw, accZ_raw;
-  short int temp_raw;
-  short int gyroX_raw, gyroY_raw, gyroZ_raw;
-
-  //  get 14bytes
-  accX_raw = Wire.read() << 8;  accX_raw |= Wire.read();
-  accY_raw = Wire.read() << 8;  accY_raw |= Wire.read();
-  accZ_raw = Wire.read() << 8;  accZ_raw |= Wire.read();
-  temp_raw = Wire.read() << 8;  temp_raw |= Wire.read();  //  (Temp-12421)/340.0 [degC]
-  gyroX_raw = Wire.read() << 8; gyroX_raw |= Wire.read();
-  gyroY_raw = Wire.read() << 8; gyroY_raw |= Wire.read();
-  gyroZ_raw = Wire.read() << 8; gyroZ_raw |= Wire.read();
-
-  //値の更新
-  _accX=_maAccX.Add(accX_raw);
-  _accY=_maAccY.Add(accY_raw);
-  _accZ=_maAccZ.Add(accZ_raw);
-  _gyroX=_maGyroX.Add(gyroX_raw);
-  _gyroY=_maGyroY.Add(gyroY_raw);
-  _gyroZ=_maGyroZ.Add(gyroZ_raw);
+  // 初回のセンサーデータを取得
+  ReadSensor();
 
   //前の値と今の値を同じにしておく
   _accXPrev = _accX;
@@ -67,28 +40,7 @@ void MPU_AccGyro::Setup()
 
 void MPU_AccGyro::Tick()
 {
-  //  send start address
-  Wire.beginTransmission(MPU6050_ADDR);
-  Wire.write(MPU6050_AX);
-  Wire.endTransmission();
-
-  Wire.requestFrom(MPU6050_ADDR, 14);
-
-  //加速度・ジャイロセンサーの生の値
-  short int accX_raw, accY_raw, accZ_raw;
-  short int temp_raw;
-  short int gyroX_raw, gyroY_raw, gyroZ_raw;
-
-  //  get 14bytes
-  accX_raw = Wire.read() << 8;  accX_raw |= Wire.read();
-  accY_raw = Wire.read() << 8;  accY_raw |= Wire.read();
-  accZ_raw = Wire.read() << 8;  accZ_raw |= Wire.read();
-  temp_raw = Wire.read() << 8;  temp_raw |= Wire.read();  //  (Temp-12421)/340.0 [degC]
-  gyroX_raw = Wire.read() << 8; gyroX_raw |= Wire.read();
-  gyroY_raw = Wire.read() << 8; gyroY_raw |= Wire.read();
-  gyroZ_raw = Wire.read() << 8; gyroZ_raw |= Wire.read();
-
-  //前の値を保存
+  // 前の値を保存
   _accXPrev = _accX;
   _accYPrev = _accY;
   _accZPrev = _accZ;
@@ -96,15 +48,48 @@ void MPU_AccGyro::Tick()
   _gyroYPrev = _gyroY;
   _gyroZPrev = _gyroZ;
 
-  //値の更新
-  _accX=_maAccX.Add(accX_raw);
-  _accY=_maAccY.Add(accY_raw);
-  _accZ=_maAccZ.Add(accZ_raw);
-  _gyroX=_maGyroX.Add(gyroX_raw);
-  _gyroY=_maGyroY.Add(gyroY_raw);
-  _gyroZ=_maGyroZ.Add(gyroZ_raw);
+  if (ReadSensor()) 
+  {
+    DebugPrintln(); // 値のデバッグ表示
+  }
+}
 
-  DebugPrintln();//値のデバッグ表示
+int16_t MPU_AccGyro::ReadInt16()
+{
+  // 上位8ビットのデータを読み取る
+  int16_t high = Wire.read();
+
+  // 下位8ビットのデータを読み取る
+  int16_t low = Wire.read();
+
+  // 上位8ビットを左に8ビットずらし、
+  // 下位8ビットと結合して16ビットの値にする
+  return (high << 8) | low;
+}
+
+bool MPU_AccGyro::ReadSensor()
+{
+  Wire.beginTransmission(MPU6050_ADDR);
+  Wire.write(MPU6050_AX);
+  if (Wire.endTransmission(false) != 0) return false;
+
+  if (Wire.requestFrom(MPU6050_ADDR, 14) != 14) return false;
+
+  int16_t accX_raw = ReadInt16();
+  int16_t accY_raw = ReadInt16();
+  int16_t accZ_raw = ReadInt16();
+  ReadInt16(); // 温度データ（未使用）
+  int16_t gyroX_raw = ReadInt16();
+  int16_t gyroY_raw = ReadInt16();
+  int16_t gyroZ_raw = ReadInt16();
+
+  _accX = _maAccX.Add(accX_raw);
+  _accY = _maAccY.Add(accY_raw);
+  _accZ = _maAccZ.Add(accZ_raw);
+  _gyroX = _maGyroX.Add(gyroX_raw);
+  _gyroY = _maGyroY.Add(gyroY_raw);
+  _gyroZ = _maGyroZ.Add(gyroZ_raw);
+  return true;
 }
 
 void MPU_AccGyro::DebugPrintln()
@@ -129,7 +114,7 @@ void MPU_AccGyro::DebugPrintln()
   // Serial.print("  GYROZ:"); Serial.println(GyroZVal());
 
   //加速度の大きさを取得
-  Serial.print("  DEBUG:"); Serial.print("30000, -30000,");
+  Serial.print("  DEBUG:"); Serial.print("10000, -10000,");
   int mag = Mathf::Vector3MagnitudeSq(AccXVal(),AccYVal(),AccZVal());
   Serial.print("  MAG:"); Serial.println(mag);
 }
