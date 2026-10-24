@@ -3,10 +3,11 @@
 
 //---通常時のステート---
 
-NormalState::NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+NormalState::NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _mpu(&mpu),
 _dfPlayerMini(&dfPlayerMini),
-_led12Ring(&led12Ring)
+_led12Ring(&led12Ring),
+_commandManager(&commandManager)
 {
 
 }
@@ -51,9 +52,10 @@ void NormalState::Exit(DeviceStateMachine& machine)
 
 //---太陽魔法のステート---
 
-SunState::SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+SunState::SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
-_led12Ring(&led12Ring)
+_led12Ring(&led12Ring),
+_commandManager(&commandManager)
 {
 
 }
@@ -102,9 +104,10 @@ void SunState::PlaySound(int elapsed)
 
 //---星魔法のステート---
 
-StarState::StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+StarState::StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
-_led12Ring(&led12Ring)
+_led12Ring(&led12Ring),
+_commandManager(&commandManager)
 {
 
 }
@@ -128,9 +131,10 @@ void StarState::Exit(DeviceStateMachine& machine)
 
 //---雷魔法のステート---
 
-ThunderState::ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+ThunderState::ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
-_led12Ring(&led12Ring)
+_led12Ring(&led12Ring),
+_commandManager(&commandManager)
 {
 
 }
@@ -154,9 +158,10 @@ void ThunderState::Exit(DeviceStateMachine& machine)
 
 //---水魔法のステート---
 
-WaterState::WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+WaterState::WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
-_led12Ring(&led12Ring)
+_led12Ring(&led12Ring),
+_commandManager(&commandManager)
 {
 
 }
@@ -180,9 +185,10 @@ void WaterState::Exit(DeviceStateMachine& machine)
 
 //---時魔法のステート---
 
-TimeState::TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+TimeState::TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
-_led12Ring(&led12Ring)
+_led12Ring(&led12Ring),
+_commandManager(&commandManager)
 {
 
 }

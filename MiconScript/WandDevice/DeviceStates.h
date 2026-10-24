@@ -4,6 +4,7 @@
 #include "MPU_AccGyro.h"
 #include "DFPlayerMini.h"
 #include "LED12Ring.h"
+#include "CommandManager.h"
 
 class DeviceStateMachine;
 
@@ -52,9 +53,11 @@ class NormalState : public IDeviceState
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+  //コマンドの管理クラス
+  CommandManager* _commandManager;
 
 public:
-  NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
+  NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -94,11 +97,13 @@ class SunState : public IDeviceState
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+  //コマンドの管理クラス
+  CommandManager* _commandManager;
 
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound(int elapsed);//効果音の再生
 public:
-  SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
+  SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -112,8 +117,10 @@ class StarState : public IDeviceState
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+  //コマンドの管理クラス
+  CommandManager* _commandManager;
 public:
-  StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
+  StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -127,8 +134,10 @@ class ThunderState : public IDeviceState
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+  //コマンドの管理クラス
+  CommandManager* _commandManager;
 public:
-  ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
+  ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -142,8 +151,10 @@ class WaterState : public IDeviceState
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+  //コマンドの管理クラス
+  CommandManager* _commandManager;
 public:
-  WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
+  WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -157,8 +168,10 @@ class TimeState : public IDeviceState
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+  //コマンドの管理クラス
+  CommandManager* _commandManager;
 public:
-  TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
+  TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;

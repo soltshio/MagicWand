@@ -40,7 +40,7 @@ DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN,_volume);
 LED12Ring _led12Ring(LED_PIN);
 
 //ステートマシン関係
-DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring);
+DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring,_commandManager);
 
 
 void setup()
@@ -71,6 +71,7 @@ void loop()
   //データ受取
   if(outputFlag)
   {
+    //TODO:CommandManagerに受けとったコマンドを入れる
     outputFlag = 0;
   }
 
