@@ -60,21 +60,44 @@ _led12Ring(&led12Ring)
 
 void SunState::Enter(DeviceStateMachine& machine)
 {
-  _previous=millis();
+  _currentLEDCycleZeroNum=0;
+  _isStartedPlaying = false;
+
+  _previous_ms=millis();
 }
 
 void SunState::Update(DeviceStateMachine& machine)
 {
   //経過時間の算出
   unsigned long now = millis();
-  int elapsed= now - _previous;
+  int elapsed= now - _previous_ms;
+
+  //効果音の再生
+  PlaySound(elapsed);
+
+  //LEDの色の書き換え
+  SetLEDColors(elapsed);
 }
 
 void SunState::Exit(DeviceStateMachine& machine)
 {
+  //LEDを消しておく
+  _led12Ring->Clear();
+
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
+
+void SunState::SetLEDColors(int elapsed)
+{
 
 }
 
+void SunState::PlaySound(int elapsed)
+{
+  if(_isStartedPlaying) return;//既に再生していたら無視
+  
+}
 
 
 //---星魔法のステート---

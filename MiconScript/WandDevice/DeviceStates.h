@@ -64,6 +64,7 @@ public:
 //太陽魔法のステート
 class SunState : public IDeviceState
 {
+  //LED関係
   //ライトの色
   const Color _ledColors[12] = {
   {255,  0,  0},//赤
@@ -81,14 +82,21 @@ class SunState : public IDeviceState
   };
 
   const int _cycleLED_ms = 2000;//LEDのライトの光り方が一周するのにかける時間(ms)
-  const int _playSoundTime_ms;//音を鳴らし始める時間
+  int _currentLEDCycleZeroNum;//回転時の０地点(どこをLED色の０番の色を割り当てるか)
+  
+  //スピーカー関係
+  bool _isStartedPlaying = false;//効果音の再生を始めたか
 
+  //その他
   unsigned long _previous_ms=0;
 
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
   //LED
   LED12Ring* _led12Ring;
+
+  void SetLEDColors(int elapsed);//LEDの色の書き換え
+  void PlaySound(int elapsed);//効果音の再生
 public:
   SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring);
 
