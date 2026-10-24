@@ -171,6 +171,8 @@ public class SerialHandler : MonoBehaviour
     {
         try
         {
+            if (!_isRunning) return;
+
             _serialPort.Write(message);
         }
         catch (System.Exception e)

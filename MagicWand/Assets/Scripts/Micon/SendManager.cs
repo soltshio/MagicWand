@@ -12,8 +12,19 @@ public class SendManager : MonoBehaviour
 
     Queue<string> _messageQueue = new Queue<string>();
 
-    public void AddMessage(string message)
+    //コマンドごとのマイコンに送るメッセージ(英語大文字2文字、数字１文字の合計３文字)
+    Dictionary<EMiconCommand, string> _commandToMessageMap = new Dictionary<EMiconCommand, string>
     {
+        { EMiconCommand.ChangeToSun, "SN0" },
+        { EMiconCommand.PlaySunSound, "SN1" },
+        { EMiconCommand.FinishSun, "SN2" },
+    };
+
+
+    public void AddMessage(EMiconCommand command)
+    {
+        if (!_commandToMessageMap.TryGetValue(command, out string message)) return;
+        
         _messageQueue.Enqueue(message);
     }
 
