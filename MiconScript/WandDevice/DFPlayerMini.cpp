@@ -19,17 +19,6 @@ _defaultVolume(Mathf::Clamp(defaultVolume,_minVolume,_maxVolume))
 //メモ：音を流す前に音量を動かすと音が流れない場合があるらしい
 void DFPlayerMini::PlaySound(ESoundNum soundNum)
 {
-  //_myDFPlayer.volume(_defaultVolume);
-
-  int fn = static_cast<int>(soundNum);//音声ファイルの番号
-  _myDFPlayer.playFolder(_dn, fn); // 曲を再生
-}
-
-void DFPlayerMini::PlaySound(ESoundNum soundNum,int volume)
-{
-  volume =Mathf::Clamp(volume,_minVolume,_maxVolume);
-  _myDFPlayer.volume(volume);
-
   int fn = static_cast<int>(soundNum);//音声ファイルの番号
   _myDFPlayer.playFolder(_dn, fn); // 曲を再生
 }

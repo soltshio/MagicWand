@@ -42,7 +42,7 @@ class DFPlayerMini
   //デフォルトの音量(0～30まで)
   const int _minVolume =0;
   const int _maxVolume=30;
-  const int _defaultVolume=15;
+  const int _defaultVolume=30;
 
   //フォルダの番号(フォルダ01の中に全ての音声ファイルを入れている)
   const int _dn = 1; 
@@ -53,11 +53,10 @@ class DFPlayerMini
 public:
 
   DFPlayerMini(int ss_RX_PIN,int ss_TX_PIN,int mp3_Busy_PIN);
-  DFPlayerMini(int ss_RX_PIN,int ss_TX_PIN,int mp3_Busy_PIN,int defaultVolume);//defaultVolumeで音量の指定が可能だが0～30まで
+  DFPlayerMini(int ss_RX_PIN,int ss_TX_PIN,int mp3_Busy_PIN,int volume);//volumeで音量の指定が可能だが0～30まで
 
   //効果音を再生
   void PlaySound(ESoundNum soundNum);
-  void PlaySound(ESoundNum soundNum,int volume);//音量の指定が可能(音量は0～30)
 
   //効果音を止める
   void Stop();

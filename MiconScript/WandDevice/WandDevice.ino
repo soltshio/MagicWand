@@ -6,6 +6,7 @@
 #include "DeviceStateMachine.h"
 #include "LED12Ring.h"
 #include "Color.h"
+#include "CommandManager.h"
 
 //このデバイスのMACアドレス
 //34:b7:da:f2:1b:f8
@@ -19,6 +20,7 @@ ESPNOW_Dev2ConData deviceData;
 //unity側からの通信を受け取るための機能
 ESPNOW_Con2DevData controllerData;
 int outputFlag;
+CommandManager _commandManager;//受け取ったコマンドを管理する機能
 
 //加速度センサー関係
 #define SDA_PIN 1
@@ -30,7 +32,8 @@ MPU_AccGyro _mpu(SDA_PIN,SCL_PIN);
 //以下の二つのピンは逆につなげる
 #define SS_RX_PIN 5
 #define SS_TX_PIN 4
-DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN);
+const int _volume = 15;
+DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN,_volume);
 
 //LED関係
 #define LED_PIN 6
@@ -44,15 +47,13 @@ void setup()
 {
   //スピーカーの初期化処理
   _dfPlayerMini.Setup();
-
   //加速度センサーの初期化処理
   _mpu.Setup();
-
   //LEDの初期化処理
   _led12Ring.Setup();
 
   //ステートマシンの初期化処理
-  //_deviceStateMachine.Initialize();
+  _deviceStateMachine.Initialize();
 
   //通信のセットアップ処理
   espnow.Initialize(OnDataReceived, nullptr);
@@ -67,57 +68,25 @@ void setup()
 
 void loop() 
 {
-  //テストでLED光らせてみる
-  Color colors[12] = {
-  {255,  0,  0},//赤
-  {255, 80,  8},//赤とオレンジの間
-  {255,160, 16},//オレンジ
-  {255,224, 32},//黄
-  { 96,255,128},//黄緑
-  {  0,192,  0},//緑
-  { 40,200,127},//緑と水色の間
-  { 80,208,255},//水色
-  {  0, 32,255},//青
-  { 80, 32,255},//青紫
-  {160, 32,255},//紫
-  {252, 15,192},//ピンク
-  };
-
-  _led12Ring.Clear();
-  for(int i=0; i<12;i++)
+  //データ受取
+  if(outputFlag)
   {
-    _led12Ring.SetColor(i,colors[i],0.3);
+    outputFlag = 0;
   }
-  _led12Ring.Show();
-
-  while(true)
-  {
-    //データ受取
-  // if(outputFlag)
-  // {
-  //   outputFlag = 0;
-  // }
 
   //データ送信
   espnow.Send(&deviceData, sizeof(deviceData));
 
-  //ステートマシンの更新処理
-  //_deviceStateMachine.Update();
-
-  //スピーカーのTick処理
-  //_dfPlayerMini.PlaySound(ESoundNum::Water);
-  //Serial.println("Sounding");
-  
   //加速度センサーのTick処理
-  //_mpu.Tick();
+  _mpu.Tick();
 
+  //ステートマシンの更新処理
+  _deviceStateMachine.Update();
 
-  //MACアドレスを知るためのコード
-  //Serial.println(espnow.GetMacAddrChar());
+  ShowMACAddress();//MACアドレスをシリアルモニタに表示
   
   // loop内に適切なdeleyを付加
-  delay(30);  
-  }
+  delay(30);
 }
 
 void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)
@@ -125,4 +94,9 @@ void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data
    // 受信時の処理
    memcpy(&controllerData, data, data_len);
    outputFlag = 1;
+}
+
+void ShowMACAddress()//MACアドレスをシリアルモニタに表示
+{
+  Serial.println(espnow.GetMacAddrChar());
 }
