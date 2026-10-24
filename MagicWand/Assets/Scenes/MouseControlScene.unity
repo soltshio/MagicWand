@@ -287,6 +287,7 @@ MonoBehaviour:
   _sunSE: {fileID: 8300000, guid: 4ae975fd8d94443419a321de459816ad, type: 3}
   _sunLensActivator: {fileID: 1148722372}
   _sunParticle: {fileID: 136774163}
+  _sendManager: {fileID: 485933971}
 --- !u!114 &525956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +306,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: 25089268d87a5ed46a0dab69121d2f70, type: 2}
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
+    - {fileID: 11400000, guid: 84255bd99e3bd964c834a3f5a4589275, type: 2}
+    - {fileID: 11400000, guid: 6c70bcf4a250ccb40af10fcf0fea2d6f, type: 2}
+    - {fileID: 11400000, guid: 20d9402a808812f49864cb118ab1d097, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -353,6 +357,48 @@ MonoBehaviour:
         - m_Target: {fileID: 525954}
           m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
           m_MethodName: AffectToBigCreature
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525954}
+          m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
+          m_MethodName: SendFinishSunCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525954}
+          m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
+          m_MethodName: SendPlaySunSoundCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525954}
+          m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
+          m_MethodName: SendChangeToSunCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1738,15 +1784,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7699966
+      value: -4.769993
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.09999998
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589999
+      value: -8.589997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1754,7 +1800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -2.1827874e-10
+      value: -1.4551915e-10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1762,7 +1808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.3283067e-10
+      value: 2.3283064e-10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8170efb38e1fa7f44aed0b600a1e5769, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6071,6 +6117,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &485933969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 485933970}
+  - component: {fileID: 485933971}
+  m_Layer: 0
+  m_Name: SendManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &485933970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485933969}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 537828264}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485933971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485933969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a094f779c2d5249a9e715734ffb3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SendManager
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
@@ -6263,6 +6353,7 @@ Transform:
   - {fileID: 1015091474}
   - {fileID: 332800073}
   - {fileID: 189164087}
+  - {fileID: 485933970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &549293269
@@ -12547,7 +12638,7 @@ MonoBehaviour:
   m_LoopMode: 0
   m_Method: 0
   m_Duration: 10
-  m_MaxSpeed: 73.776
+  m_MaxSpeed: 73.23472
   m_EasingMode: 0
   m_AlignmentMode: 1
   m_ObjectForwardAxis: 2

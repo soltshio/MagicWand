@@ -28,6 +28,9 @@ public class MagicContentTypeSun : MagicContentTypeBase
     [SerializeField]
     ParticleSystem _sunParticle;
 
+    [SerializeField]
+    SendManager _sendManager;
+
     public void SunLensActivate()
     {
         _sunLensActivator.ActivateAsync().Forget();
@@ -51,6 +54,24 @@ public class MagicContentTypeSun : MagicContentTypeBase
     {
         //でか生物に魔法を当てる
         _sunEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Sun));
+    }
+
+    //太陽のステートに入るようマイコンに指示を送る
+    public void SendChangeToSunCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.ChangeToSun);
+    }
+
+    //太陽の効果音を鳴らすようマイコンに指示を送る
+    public void SendPlaySunSoundCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.PlaySunSound);
+    }
+
+    //太陽のステートを終わるようマイコンに指示を送る
+    public void SendFinishSunCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.FinishSun);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
