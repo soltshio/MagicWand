@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 //作成者:杉山
@@ -7,13 +8,30 @@ using UnityEngine;
 
 public class SendManager : MonoBehaviour
 {
-    void Update()
+    SerialHandler _serialHandlerInstance;
+
+    Queue<string> _messageQueue = new Queue<string>();
+
+    public void AddMessage(string message)
     {
-        
+        _messageQueue.Enqueue(message);
     }
 
-    private void OnDisable()
+    async void Start()
     {
-       
+        await UniTask.WaitUntil(() => SerialHandler.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        // SerialHandlerのインスタンスを取得
+        _serialHandlerInstance = SerialHandler.Instance;
+    }
+
+    void Update()
+    {
+        if (_serialHandlerInstance == null) return;
+        if (_messageQueue.Count == 0) return;
+
+        //毎フレームに1つずつメッセージを送る
+        string message = _messageQueue.Dequeue();
+        _serialHandlerInstance.Write(message);
     }
 }
