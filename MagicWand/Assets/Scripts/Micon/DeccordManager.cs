@@ -3,10 +3,7 @@
 
 
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 //マイコンから来るメッセージをデコードする
 //作成者:杉山
