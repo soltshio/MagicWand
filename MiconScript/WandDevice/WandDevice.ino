@@ -71,7 +71,7 @@ void loop()
   //データ受取
   if(outputFlag)
   {
-    //TODO:CommandManagerに受けとったコマンドを入れる
+    _commandManager.SetCommand(controllerData.cmd);
     outputFlag = 0;
   }
 

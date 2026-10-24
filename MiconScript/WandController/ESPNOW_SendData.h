@@ -14,13 +14,12 @@
 //デバイスからコントローラーに送るデータ
 typedef struct struct_esp_now_d2c_data {
     uint8_t id; // 必ず被らないこと
-    int sw;
 } ESPNOW_Dev2ConData;
 
 //コントローラーからデバイスに送るデータ
 typedef struct struct_esp_now_c2d_data {
     uint8_t id; // 必ず被らないこと
-    char cmd;
+    char cmd[4];
 } ESPNOW_Con2DevData;
 
 #endif
