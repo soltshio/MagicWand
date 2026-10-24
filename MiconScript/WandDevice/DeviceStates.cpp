@@ -1,4 +1,5 @@
 #include "DeviceStates.h"
+#include <Arduino.h>
 
 //---通常時のステート---
 
@@ -12,36 +13,61 @@ _led12Ring(&led12Ring)
 
 void NormalState::Enter(DeviceStateMachine& machine)
 {
+  //LEDを虹色に光らせる
+  _led12Ring->Clear();
+  for(int i=0; i<12;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
+  }
+  _led12Ring->Show();
 
+  //前の加速度の初期化
+  _accelMagnitudePrev = _mpu->AccMagSq();
 }
 
 void NormalState::Update(DeviceStateMachine& machine)
 {
+  //一定の加速度を超えた瞬間にのみ効果音を流す
+  bool _isOveredAccelThreshold = (_mpu->AccMagSq() > _accMagnitudeThresholdToPlaySound) && (_accelMagnitudePrev > _accMagnitudeThresholdToPlaySound);
 
+  //前の加速度の更新
+  _accelMagnitudePrev = _mpu->AccMagSq();
+
+  if(!_isOveredAccelThreshold) return;
+
+  _dfPlayerMini->PlaySound(ESoundNum::Swing);
 }
 
 void NormalState::Exit(DeviceStateMachine& machine)
 {
+  //LEDを消しておく
+  _led12Ring->Clear();
 
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
 }
 
 
 
 //---太陽魔法のステート---
 
-SunState::SunState()
+SunState::SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_dfPlayerMini(&dfPlayerMini),
+_led12Ring(&led12Ring)
 {
 
 }
 
 void SunState::Enter(DeviceStateMachine& machine)
 {
-
+  _previous=millis();
 }
 
 void SunState::Update(DeviceStateMachine& machine)
 {
-
+  //経過時間の算出
+  unsigned long now = millis();
+  int elapsed= now - _previous;
 }
 
 void SunState::Exit(DeviceStateMachine& machine)
@@ -53,7 +79,9 @@ void SunState::Exit(DeviceStateMachine& machine)
 
 //---星魔法のステート---
 
-StarState::StarState()
+StarState::StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_dfPlayerMini(&dfPlayerMini),
+_led12Ring(&led12Ring)
 {
 
 }
@@ -77,7 +105,9 @@ void StarState::Exit(DeviceStateMachine& machine)
 
 //---雷魔法のステート---
 
-ThunderState::ThunderState()
+ThunderState::ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_dfPlayerMini(&dfPlayerMini),
+_led12Ring(&led12Ring)
 {
 
 }
@@ -101,7 +131,9 @@ void ThunderState::Exit(DeviceStateMachine& machine)
 
 //---水魔法のステート---
 
-WaterState::WaterState()
+WaterState::WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_dfPlayerMini(&dfPlayerMini),
+_led12Ring(&led12Ring)
 {
 
 }
@@ -125,19 +157,21 @@ void WaterState::Exit(DeviceStateMachine& machine)
 
 //---時魔法のステート---
 
-TimeState::TimeState()
+TimeState::TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
+_dfPlayerMini(&dfPlayerMini),
+_led12Ring(&led12Ring)
 {
 
 }
 
 void TimeState::Enter(DeviceStateMachine& machine)
 {
-
+  
 }
 
 void TimeState::Update(DeviceStateMachine& machine)
 {
-
+  
 }
 
 void TimeState::Exit(DeviceStateMachine& machine)

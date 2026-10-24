@@ -2,11 +2,11 @@
 
 DeviceStateMachine::DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring):
 _normalState(mpu,dfPlayerMini,led12Ring),
-_sunState(),
-_starState(),
-_waterState(),
-_thunderState(),
-_timeState() 
+_sunState(dfPlayerMini,led12Ring),
+_starState(dfPlayerMini,led12Ring),
+_waterState(dfPlayerMini,led12Ring),
+_thunderState(dfPlayerMini,led12Ring),
+_timeState(dfPlayerMini,led12Ring) 
 {
 
 }

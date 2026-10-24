@@ -1,6 +1,5 @@
 #include "MPU_AccGyro.h"
 #include <Arduino.h>
-#include "Mathf.h"
 
 MPU_AccGyro::MPU_AccGyro(int sdaPin,int sclPin):
 _maAccX(_maN),
@@ -48,8 +47,19 @@ void MPU_AccGyro::Tick()
   _gyroYPrev = _gyroY;
   _gyroZPrev = _gyroZ;
 
-  if (ReadSensor()) 
+  if (ReadSensor())
   {
+    // 取得関数で毎回計算しないよう、Tick内で計算してキャッシュする
+    _accXVal = static_cast<int>((_accX - _accXPrev) * _valueScaleCoefficient);
+    _accYVal = static_cast<int>((_accY - _accYPrev) * _valueScaleCoefficient);
+    _accZVal = static_cast<int>((_accZ - _accZPrev) * _valueScaleCoefficient);
+    _accMagSq = Mathf::Vector3MagnitudeSq(_accXVal, _accYVal, _accZVal);
+
+    _gyroXVal = static_cast<int>((_gyroX - _gyroXPrev) * _valueScaleCoefficient);
+    _gyroYVal = static_cast<int>((_gyroY - _gyroYPrev) * _valueScaleCoefficient);
+    _gyroZVal = static_cast<int>((_gyroZ - _gyroZPrev) * _valueScaleCoefficient);
+    _gyroMagSq = Mathf::Vector3MagnitudeSq(_gyroXVal, _gyroYVal, _gyroZVal);
+
     DebugPrintln(); // 値のデバッグ表示
   }
 }
@@ -115,6 +125,6 @@ void MPU_AccGyro::DebugPrintln()
 
   //加速度の大きさを取得
   Serial.print("  DEBUG:"); Serial.print("10000, -10000,");
-  int mag = Mathf::Vector3MagnitudeSq(AccXVal(),AccYVal(),AccZVal());
+  int mag = AccMagSq();
   Serial.print("  MAG:"); Serial.println(mag);
 }

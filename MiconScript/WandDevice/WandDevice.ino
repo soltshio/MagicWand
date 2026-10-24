@@ -80,13 +80,13 @@ void loop()
   {  0, 32,255},//青
   { 80, 32,255},//青紫
   {160, 32,255},//紫
-  {255, 96,208},//ピンク
+  {252, 15,192},//ピンク
   };
 
   _led12Ring.Clear();
   for(int i=0; i<12;i++)
   {
-    _led12Ring.SetColor(i,colors[i],0.05);
+    _led12Ring.SetColor(i,colors[i],0.3);
   }
   _led12Ring.Show();
 
