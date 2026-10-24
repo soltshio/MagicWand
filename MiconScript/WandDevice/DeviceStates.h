@@ -25,11 +25,10 @@ class NormalState : public IDeviceState
   //音を鳴らす加速度センサーの大きさの閾値
   const int _accMagnitudeThresholdToPlaySound =7000;
 
-  //LEDの光量(0～1)
-  const float _ledIntensity = 0.3;
+  
+  const float _ledIntensity = 0.3;//LEDの光量(0～1)
 
-  //ライトの色
-  const Color _ledColors[12] = {
+  const Color _ledColors[12] = {//ライトの色
   {255,  0,  0},//赤
   {255, 80,  8},//赤とオレンジの間
   {255,160, 16},//オレンジ
@@ -56,6 +55,7 @@ class NormalState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void ChangeState(DeviceStateMachine& machine);//ステートの変更
 public:
   NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -68,8 +68,9 @@ public:
 class SunState : public IDeviceState
 {
   //LED関係
-  //ライトの色
-  const Color _ledColors[12] = {
+  const float _ledIntensity = 0.3;//LEDの光量(0～1)
+  
+  const Color _ledColors[12] = {//ライトの色
   {255,  0,  0},//赤
   {255, 53,  5},
   {255,106, 10},
@@ -84,8 +85,8 @@ class SunState : public IDeviceState
   {255, 53,  5},//赤の一歩手前の色
   };
 
-  const int _cycleLED_ms = 2000;//LEDのライトの光り方が一周するのにかける時間(ms)
-  int _currentLEDCycleZeroNum;//回転時の０地点(どこをLED色の０番の色を割り当てるか)
+  const int _switchLEDInterval_ms = 2000;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
+  int _currentShiftLEDNum;
   
   //スピーカー関係
   bool _isStartedPlaying = false;//効果音の再生を始めたか
