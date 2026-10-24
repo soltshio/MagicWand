@@ -15,7 +15,7 @@ private:
     IDeviceState* _currentState = nullptr;
 
 public:
-    DeviceStateMachine();
+    DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
     void Initialize();
     void Update();

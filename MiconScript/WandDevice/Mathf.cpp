@@ -72,3 +72,17 @@ float Mathf::InverseTriangleWave01(float value, float min, float max)
 
   return fabs(value - middle) / halfRange;//変換式
 }
+
+
+
+// 3Dベクトルの大きさの2乗
+float Mathf::Vector3MagnitudeSq(float x, float y, float z)
+{
+  return x * x + y * y + z * z;
+}
+
+// 3Dベクトルの大きさ
+float Mathf::Vector3Magnitude(float x, float y, float z)
+{
+  return sqrtf(Vector3MagnitudeSq(x, y, z));
+}

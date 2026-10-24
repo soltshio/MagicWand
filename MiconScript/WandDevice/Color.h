@@ -4,12 +4,12 @@
 class Color
 {
 private:
+  const int _min = 0;
+  const int _max = 255;
+
   int _r;
   int _g;
   int _b;
-
-  const int _min = 0;
-  const int _max = 255;
 
 public:
   Color(int r,int g,int b);//rgbはそれぞれ0～255まで

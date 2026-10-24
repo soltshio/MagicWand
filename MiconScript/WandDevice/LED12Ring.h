@@ -24,6 +24,9 @@ public:
 
   void Setup();
 
+  //LEDの数
+  int LEDNum() const{return _numLEDs;}
+
   //光らせる操作
   void Clear();//全て消す
   void SetColor(int ledIndex,Color color,float intensity);//ledIndex:どのLEDを設定するか、color:色(rgb指定、それぞれ0～255)、intensity:明るさ(0～1)、colorの色に倍率で掛けて明るさを調整する、、

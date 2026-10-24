@@ -1,19 +1,20 @@
 #include "DeviceStateMachine.h"
 
-DeviceStateMachine::DeviceStateMachine():
-_normalState(),
-_sunState(),
-_starState(),
-_waterState(),
-_thunderState(),
-_timeState() 
+DeviceStateMachine::DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+_normalState(mpu,dfPlayerMini,led12Ring,commandManager),
+_sunState(dfPlayerMini,led12Ring,commandManager),
+_starState(dfPlayerMini,led12Ring,commandManager),
+_waterState(dfPlayerMini,led12Ring,commandManager),
+_thunderState(dfPlayerMini,led12Ring,commandManager),
+_timeState(dfPlayerMini,led12Ring,commandManager) 
 {
 
 }
 
 void DeviceStateMachine::Initialize() 
 {
-    
+  //最初のステート
+  ChangeState(_normalState);
 }
 
 void DeviceStateMachine::Update()
