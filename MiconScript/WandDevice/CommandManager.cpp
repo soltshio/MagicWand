@@ -13,29 +13,29 @@ namespace
   const CommandEntry commandTable[] =
   {
     //太陽魔法
-    { ECommandKey::ChangeToSunState,     "SN0" },
-    { ECommandKey::PlaySunSE,            "SN1" },
-    { ECommandKey::FinishSunState,       "SN2" },
+    { ECommandKey::ChangeToSunState,     "SN0" },//太陽ステートに移行するコマンド
+    { ECommandKey::PlaySunSE,            "SN1" },//太陽の効果音を流すコマンド
+    { ECommandKey::FinishSunState,       "SN2" },//太陽ステートを終了するコマンド
     
     //星魔法
-    { ECommandKey::ChangeToStarState,     "ST0" },
-    { ECommandKey::PlayStarSE,            "ST1" },
-    { ECommandKey::FinishStarState,       "ST2" },
+    { ECommandKey::ChangeToStarState,     "ST0" },//星ステートに移行するコマンド
+    { ECommandKey::PlayStarSE,            "ST1" },//星の効果音を流すコマンド
+    { ECommandKey::FinishStarState,       "ST2" },//星ステートを終了するコマンド
 
     //雷魔法
-    { ECommandKey::ChangeToThunderState,  "TN0" },
-    { ECommandKey::PlayThunderSE,         "TN1" },
-    { ECommandKey::FinishThunderState,    "TN2" },
+    { ECommandKey::ChangeToThunderState,  "TN0" },//雷ステートに移行するコマンド
+    { ECommandKey::PlayThunderSE,         "TN1" },//雷の効果音を流すコマンド
+    { ECommandKey::FinishThunderState,    "TN2" },//雷ステートを終了するコマンド
 
     //水魔法
-    { ECommandKey::ChangeToWaterState,    "WT0" },
-    { ECommandKey::PlayWaterSE,           "WT1" },
-    { ECommandKey::FinishWaterState,      "WT2" },
+    { ECommandKey::ChangeToWaterState,    "WT0" },//水ステートに移行するコマンド
+    { ECommandKey::PlayWaterSE,           "WT1" },//水の効果音を流すコマンド
+    { ECommandKey::FinishWaterState,      "WT2" },//水ステートを終了するコマンド
 
     //時魔法
-    { ECommandKey::ChangeToTimeState,     "TM0" },
-    { ECommandKey::PlayTimeSE,            "TM1" },
-    { ECommandKey::FinishTimeState,       "TM2" }
+    { ECommandKey::ChangeToTimeState,     "TM0" },//時間ステートに移行するコマンド
+    { ECommandKey::PlayTimeSE,            "TM1" },//時間の効果音を流すコマンド
+    { ECommandKey::FinishTimeState,       "TM2" }//時間ステートを終了するコマンド
   };
 
   constexpr int commandCount = sizeof(commandTable) / sizeof(commandTable[0]);
