@@ -35,6 +35,9 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [SerializeField]
     ClockEffectActivator _clockEffectActivator;
 
+    [SerializeField]
+    SendManager _sendManager;
+
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
     {
@@ -69,6 +72,24 @@ public class MagicContentTypeTime : MagicContentTypeBase
     {
         _clockEffectActivator.DeactivateAsync().Forget();
         _clockAudioSource.Stop();
+    }
+
+    //時のステートに入るようマイコンに指示を送る
+    public void SendChangeToTimeCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.ChangeToTime);
+    }
+
+    //時の効果音を鳴らすようマイコンに指示を送る
+    public void SendPlayTimeSoundCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.PlayTimeSound);
+    }
+
+    //時のステートを終わるようマイコンに指示を送る
+    public void SendFinishTimeCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.FinishTime);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
