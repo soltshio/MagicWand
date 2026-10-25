@@ -49,19 +49,19 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     //雷のステートに入るようマイコンに指示を送る
     public void SendChangeToThunderCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.ChangeToStar);
+        _sendManager.AddMessage(EMiconCommand.ChangeToThunder);
     }
 
     //雷の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayThunderSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.PlayStarSound);
+        _sendManager.AddMessage(EMiconCommand.PlayThunderSound);
     }
 
     //雷のステートを終わるようマイコンに指示を送る
     public void SendFinishThunderCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.FinishStar);
+        _sendManager.AddMessage(EMiconCommand.FinishThunder);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
