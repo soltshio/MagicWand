@@ -578,6 +578,7 @@ MonoBehaviour:
     _eventDirecter: {fileID: 52058004}
   _rainParticle: {fileID: 1844311280}
   _audioRainSource: {fileID: 52058002}
+  _sendManager: {fileID: 485933971}
 --- !u!114 &52058001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +707,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8989cde48126c954c8aec486d3af11ed, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: 3a003bf1cf079e34890c379b589c9d69, type: 2}
+    - {fileID: 11400000, guid: 13358ea0bafeea24089c6e298981f136, type: 2}
+    - {fileID: 11400000, guid: 7ca20f831d7b5634a82e25ce8ff58328, type: 2}
+    - {fileID: 11400000, guid: ab070011db5877147b2edffefb360733, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -768,6 +772,48 @@ MonoBehaviour:
         - m_Target: {fileID: 52058000}
           m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
           m_MethodName: AffectToGrasses
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 52058000}
+          m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
+          m_MethodName: SendChangeToWaterCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 52058000}
+          m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
+          m_MethodName: SendPlayWaterSoundCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 52058000}
+          m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
+          m_MethodName: SendFinishWaterCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
