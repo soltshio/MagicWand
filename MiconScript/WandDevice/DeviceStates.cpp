@@ -174,6 +174,13 @@ void StarState::Exit(DeviceStateMachine& machine)
 
 }
 
+void StarState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishStarState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
+}
+
 
 
 //---雷魔法のステート---
@@ -199,6 +206,13 @@ void ThunderState::Update(DeviceStateMachine& machine)
 void ThunderState::Exit(DeviceStateMachine& machine)
 {
 
+}
+
+void ThunderState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishThunderState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
 }
 
 
@@ -228,6 +242,13 @@ void WaterState::Exit(DeviceStateMachine& machine)
 
 }
 
+void WaterState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishWaterState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
+}
+
 
 
 //---時魔法のステート---
@@ -253,4 +274,11 @@ void TimeState::Update(DeviceStateMachine& machine)
 void TimeState::Exit(DeviceStateMachine& machine)
 {
 
+}
+
+void TimeState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishTimeState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
 }
