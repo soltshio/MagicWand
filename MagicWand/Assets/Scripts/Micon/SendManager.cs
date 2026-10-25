@@ -13,11 +13,28 @@ public class SendManager : MonoBehaviour
     Queue<string> _messageQueue = new Queue<string>();
 
     //コマンドごとのマイコンに送るメッセージ(英語大文字2文字、数字１文字の合計３文字)
-    Dictionary<EMiconCommand, string> _commandToMessageMap = new Dictionary<EMiconCommand, string>
+    readonly Dictionary<EMiconCommand, string> _commandToMessageMap = new Dictionary<EMiconCommand, string>
     {
+        //太陽魔法
         { EMiconCommand.ChangeToSun, "SN0" },
         { EMiconCommand.PlaySunSound, "SN1" },
         { EMiconCommand.FinishSun, "SN2" },
+        //星魔法
+        { EMiconCommand.ChangeToStar, "ST0" },
+        { EMiconCommand.PlayStarSound, "ST1" },
+        { EMiconCommand.FinishStar, "ST2" },
+        //雷魔法
+        { EMiconCommand.ChangeToThunder, "TN0" },
+        { EMiconCommand.PlayThunderSound, "TN1" },
+        { EMiconCommand.FinishThunder, "TN2" },
+        //水魔法
+        { EMiconCommand.ChangeToWater, "WT0" },
+        { EMiconCommand.PlayWaterSound, "WT1" },
+        { EMiconCommand.FinishWater, "WT2" },
+        //時魔法
+        { EMiconCommand.ChangeToTime, "TM0" },
+        { EMiconCommand.PlayTimeSound, "TM1" },
+        { EMiconCommand.FinishTime, "TM2" },
     };
 
 

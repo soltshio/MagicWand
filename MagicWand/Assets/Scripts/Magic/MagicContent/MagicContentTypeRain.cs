@@ -22,6 +22,9 @@ public class MagicContentTypeRain : MagicContentTypeBase
     [Tooltip("雨の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _audioRainSource;
 
+    [SerializeField]
+    SendManager _sendManager;
+
     public void StartRaining()
     {
         _rainParticle.Play();
@@ -50,6 +53,24 @@ public class MagicContentTypeRain : MagicContentTypeBase
     {
         //草を成長させる
         _rainEffectDirecter.AddTasks(_grassesGrowth.TakeMagicAsync(EMagic.Rain));
+    }
+
+    //水のステートに入るようマイコンに指示を送る
+    public void SendChangeToWaterCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.ChangeToWater);
+    }
+
+    //水の効果音を鳴らすようマイコンに指示を送る
+    public void SendPlayWaterSoundCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.PlayWaterSound);
+    }
+
+    //水のステートを終わるようマイコンに指示を送る
+    public void SendFinishWaterCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.FinishWater);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
