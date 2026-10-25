@@ -103,6 +103,7 @@ class SunState : public IDeviceState
 
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound(int elapsed);//効果音の再生
+  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -120,6 +121,8 @@ class StarState : public IDeviceState
   LED12Ring* _led12Ring;
   //コマンドの管理クラス
   CommandManager* _commandManager;
+
+  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -137,6 +140,8 @@ class ThunderState : public IDeviceState
   LED12Ring* _led12Ring;
   //コマンドの管理クラス
   CommandManager* _commandManager;
+
+  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -154,6 +159,8 @@ class WaterState : public IDeviceState
   LED12Ring* _led12Ring;
   //コマンドの管理クラス
   CommandManager* _commandManager;
+
+  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -171,6 +178,8 @@ class TimeState : public IDeviceState
   LED12Ring* _led12Ring;
   //コマンドの管理クラス
   CommandManager* _commandManager;
+
+  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 

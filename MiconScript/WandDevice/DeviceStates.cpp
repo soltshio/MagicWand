@@ -56,7 +56,7 @@ void NormalState::Exit(DeviceStateMachine& machine)
 void NormalState::ChangeState(DeviceStateMachine& machine)
 {
   //太陽魔法への遷移
-  if(_commandManager->IsChangeToSunState())
+  if(_commandManager->IsCommand(ECommandKey::ChangeToSunState))
   {
     machine.ChangeState(machine.GetSunState());
   }
@@ -100,7 +100,8 @@ void SunState::Update(DeviceStateMachine& machine)
   //LEDの色の書き換え
   SetLEDColors(elapsed);
 
-  //ステートの変更
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void SunState::Exit(DeviceStateMachine& machine)
@@ -135,9 +136,16 @@ void SunState::SetLEDColors(int elapsed)
 void SunState::PlaySound(int elapsed)
 {
   if(_isStartedPlaying) return;//既に再生していたら無視
-  if(!_commandManager->IsPlaySunSE()) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::PlaySunSE)) return;//コマンドが来ていなければ無視
 
   _dfPlayerMini->PlaySound(ESoundNum::Sun);
+}
+
+void SunState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishSunState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
 }
 
 
@@ -164,6 +172,13 @@ void StarState::Update(DeviceStateMachine& machine)
 void StarState::Exit(DeviceStateMachine& machine)
 {
 
+}
+
+void StarState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishStarState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
 }
 
 
@@ -193,6 +208,13 @@ void ThunderState::Exit(DeviceStateMachine& machine)
 
 }
 
+void ThunderState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishThunderState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
+}
+
 
 
 //---水魔法のステート---
@@ -220,6 +242,13 @@ void WaterState::Exit(DeviceStateMachine& machine)
 
 }
 
+void WaterState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishWaterState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
+}
+
 
 
 //---時魔法のステート---
@@ -245,4 +274,11 @@ void TimeState::Update(DeviceStateMachine& machine)
 void TimeState::Exit(DeviceStateMachine& machine)
 {
 
+}
+
+void TimeState::ChangeToNormalState(DeviceStateMachine& machine)
+{
+  if(!_commandManager->IsCommand(ECommandKey::FinishTimeState)) return;//コマンドが来ていなければ無視
+
+  machine.ChangeState(machine.GetNormalState());
 }
