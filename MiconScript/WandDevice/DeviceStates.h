@@ -103,6 +103,7 @@ class SunState : public IDeviceState
 
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound(int elapsed);//効果音の再生
+  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 

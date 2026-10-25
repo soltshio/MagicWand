@@ -1,43 +1,83 @@
+
 #include "CommandManager.h"
 #include <string.h>
 
-CommandManager::CommandManager()
+namespace
 {
+  struct CommandEntry
+  {
+    ECommandKey key;
+    const char command[4];
+  };
 
+  const CommandEntry commandTable[] =
+  {
+    //太陽魔法
+    { ECommandKey::ChangeToSunState,     "SN0" },
+    { ECommandKey::PlaySunSE,            "SN1" },
+    { ECommandKey::FinishSunState,       "SN2" },
+    
+    //星魔法
+    { ECommandKey::ChangeToStarState,     "ST0" },
+    { ECommandKey::PlayStarSE,            "ST1" },
+    { ECommandKey::FinishStarState,       "ST2" },
+
+    //雷魔法
+    { ECommandKey::ChangeToThunderState,  "TN0" },
+    { ECommandKey::PlayThunderSE,         "TN1" },
+    { ECommandKey::FinishThunderState,    "TN2" },
+
+    //水魔法
+    { ECommandKey::ChangeToWaterState,    "WT0" },
+    { ECommandKey::PlayWaterSE,           "WT1" },
+    { ECommandKey::FinishWaterState,      "WT2" },
+
+    //時魔法
+    { ECommandKey::ChangeToTimeState,     "TM0" },
+    { ECommandKey::PlayTimeSE,            "TM1" },
+    { ECommandKey::FinishTimeState,       "TM2" }
+  };
+
+  constexpr int commandCount = sizeof(commandTable) / sizeof(commandTable[0]);
 }
 
-bool CommandManager::IsEqualCommand(const char* command)
+CommandManager::CommandManager()
 {
-  return strcmp(command, _currentCommand) == 0;
+}
+
+const char* CommandManager::GetCommand(ECommandKey key) const
+{
+  for (int i = 0; i < commandCount; i++)
+  {
+    if (commandTable[i].key == key)
+    {
+      return commandTable[i].command;
+    }
+  }
+
+  return nullptr;
 }
 
 void CommandManager::SetCommand(const char* command)
 {
-  memcpy(_currentCommand, command, sizeof(_currentCommand));
-  _isUpdatedNewCommand=true;
+  if (command == nullptr) return;
+  
+  // 最大3文字と終端文字をコピー
+  strncpy(_currentCommand, command, _commandLength - 1);
+  _currentCommand[_commandLength - 1] = '\0';
+
+  _isUpdatedNewCommand = true;
 }
 
-//---太陽魔法---
-bool CommandManager::IsChangeToSunState()//太陽ステートに移行コマンドを受け取ったか
+bool CommandManager::IsCommand(ECommandKey key)
 {
-  if(!IsEqualCommand(_isChangeToSunState)) return false;
+  if (!_isUpdatedNewCommand) return false;
 
-  _isUpdatedNewCommand=false;
-  return true;
-}
+  const char* command = GetCommand(key);
 
-bool CommandManager::IsPlaySunSE()//太陽の効果音を流すコマンドを受け取ったか
-{
-  if(!IsEqualCommand(_isPlaySunSE)) return false;
-
-  _isUpdatedNewCommand=false;
-  return true;
-}
-
-bool CommandManager::IsFinishSunState()//太陽ステートを終了するコマンドを受け取ったか
-{
-  if(!IsEqualCommand(_isFinishSunState)) return false;
-
-  _isUpdatedNewCommand=false;
+  if (command == nullptr || strcmp(command, _currentCommand) != 0) return false;
+  
+  //現在格納されているコマンドと合っていた場合
+  _isUpdatedNewCommand = false;
   return true;
 }

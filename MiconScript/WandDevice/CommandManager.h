@@ -1,56 +1,54 @@
-#ifndef _COMMAND_MANAGER_H_
-#define _COMMAND_MANAGER_H_
+
+#ifndef COMMAND_MANAGER_H
+#define COMMAND_MANAGER_H
+
+enum class ECommandKey
+{
+  //太陽魔法
+  ChangeToSunState,//太陽ステートに移行
+  PlaySunSE,//太陽の効果音を流す
+  FinishSunState,//太陽ステートを終了する
+
+  //星魔法
+  ChangeToStarState,//星ステートに移行する
+  PlayStarSE,//星の効果音を流す
+  FinishStarState,//星ステートを終了する
+
+  //雷魔法
+  ChangeToThunderState,//雷ステートに移行する
+  PlayThunderSE,//雷の効果音を流す
+  FinishThunderState,//雷ステートを終了する
+
+  //水魔法
+  ChangeToWaterState,//水ステートに移行する
+  PlayWaterSE,//水の効果音を流す
+  FinishWaterState,//水ステートを終了する
+
+  //時魔法
+  ChangeToTimeState,//時間ステートに移行する
+  PlayTimeSE,//時間の効果音を流す
+  FinishTimeState//時間ステートを終了する
+};
 
 class CommandManager
 {
-  static constexpr const int _commandLength =4;//コマンドの文字数、コマンド自体は3文字だが'\n'の分も含めて+1してある
+private:
+  static constexpr int _commandLength = 4;
 
-  //コマンド
-  //コマンドは文字３つで表現。１、２つ目はステートを表す英語大文字、３つ目は数字。
-  //以下はステートに対応する文字
+  char _currentCommand[_commandLength] = {};
+  bool _isUpdatedNewCommand = false;
 
-  //---太陽魔法---
-  const char _isChangeToSunState[_commandLength] = {'S','N','0'};//太陽ステートに移行するためのコマンド
-  const char _isPlaySunSE[_commandLength] = {'S','N','1'};//太陽の効果音を流すコマンド
-  const char _isFinishSunState[_commandLength] = {'S','N','2'};//太陽ステートを終了するコマンド
+  // キーに対応するコマンド文字列を取得
+  const char* GetCommand(ECommandKey key) const;
 
-  //---星魔法---
-  const char _isChangeToStarState[_commandLength] = {'S','T','0'};//太陽ステートに移行するためのコマンド
-  const char _isPlayStarSE[_commandLength] = {'S','T','1'};//太陽の効果音を流すコマンド
-  const char _isFinishStarState[_commandLength] = {'S','T','2'};//太陽ステートを終了するコマンド
-
-  //---雷魔法---
-  const char _isChangeToThunderState[_commandLength] = {'T','N','0'};//太陽ステートに移行するためのコマンド
-  const char _isPlayThunderSE[_commandLength] = {'T','N','1'};//太陽の効果音を流すコマンド
-  const char _isFinishThunderState[_commandLength] = {'T','N','2'};//太陽ステートを終了するコマンド
-
-  //---水魔法---
-  const char _isChangeToWaterState[_commandLength] = {'W','T','0'};//太陽ステートに移行するためのコマンド
-  const char _isPlayWaterSE[_commandLength] = {'W','T','1'};//太陽の効果音を流すコマンド
-  const char _isFinishWaterState[_commandLength] = {'W','T','2'};//太陽ステートを終了するコマンド
-
-  //---時魔法---
-  const char _isChangeToTimeState[_commandLength] = {'T','M','0'};//太陽ステートに移行するためのコマンド
-  const char _isPlayTimeSE[_commandLength] = {'T','M','1'};//太陽の効果音を流すコマンド
-  const char _isFinishTimeState[_commandLength] = {'T','M','2'};//太陽ステートを終了するコマンド
-
-
-  char _currentCommand[_commandLength];//現在入っているコマンド
-  bool _isUpdatedNewCommand=false;//新しくコマンドが更新されたか
-
-  bool IsEqualCommand(const char* command);//引数のコマンドと現在登録されているコマンドは同じか
 public:
   CommandManager();
 
-  void SetCommand(const char* command);//コマンド登録
+  // コマンド登録
+  void SetCommand(const char* command);
 
-  //指定のコマンドが入っているかを取得(一度trueを受け取ると、再度指定のコマンド更新が行われるまでfalseしか取得できなくなる)
-
-  //---太陽魔法---
-  bool IsChangeToSunState();//太陽ステートに移行コマンドを受け取ったか
-  bool IsPlaySunSE();//太陽の効果音を流すコマンドを受け取ったか
-  bool IsFinishSunState();//太陽ステートを終了するコマンドを受け取ったか
-
+  // 指定されたコマンドが入っているか
+  bool IsCommand(ECommandKey key);
 };
 
 #endif
