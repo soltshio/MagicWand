@@ -13,6 +13,9 @@ public class MagicContentTypeStar : MagicContentTypeBase
     [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _starEffectDirecter;
 
+    [SerializeField]
+    SendManager _sendManager;
+
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
     {
@@ -23,6 +26,24 @@ public class MagicContentTypeStar : MagicContentTypeBase
     {
         //でか生物に魔法を当てる
         _starEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Star));
+    }
+
+    //星のステートに入るようマイコンに指示を送る
+    public void SendChangeToStarCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.ChangeToStar);
+    }
+
+    //星の効果音を鳴らすようマイコンに指示を送る
+    public void SendPlayStarSoundCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.PlayStarSound);
+    }
+
+    //星のステートを終わるようマイコンに指示を送る
+    public void SendFinishStarCommandToMicon()
+    {
+        _sendManager.AddMessage(EMiconCommand.FinishStar);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)

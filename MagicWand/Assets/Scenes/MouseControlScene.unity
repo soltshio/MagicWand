@@ -14799,6 +14799,7 @@ MonoBehaviour:
   _bigCreature: {fileID: 623789239}
   _starEffectDirecter:
     _eventDirecter: {fileID: 1040190903}
+  _sendManager: {fileID: 485933971}
 --- !u!320 &1040190903
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -14843,6 +14844,9 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
+    - {fileID: 11400000, guid: c461b3d07cddcde45b89c21f1d3cbc1b, type: 2}
+    - {fileID: 11400000, guid: 020f9dd76cde0df4f8bb0c653981c626, type: 2}
+    - {fileID: 11400000, guid: d95e81e4a94e8eb46ab7743152464d9b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -14863,6 +14867,48 @@ MonoBehaviour:
         - m_Target: {fileID: 1040190901}
           m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
           m_MethodName: PauseTimelineForAffectFieldObjects
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1040190901}
+          m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
+          m_MethodName: SendFinishStarCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1040190901}
+          m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
+          m_MethodName: SendPlayStarSoundCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1040190901}
+          m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
+          m_MethodName: SendChangeToStarCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
