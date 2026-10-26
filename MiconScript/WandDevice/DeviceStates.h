@@ -23,10 +23,11 @@ public:
 class NormalState : public IDeviceState
 {
   //音を鳴らす加速度センサーの大きさの閾値
-  const int _accMagnitudeThresholdToPlaySound =8000;
+  const int _accMagnitudeThresholdToPlaySound =7000;
 
   
-  const float _ledIntensity = 0.3;//LEDの光量(0～1)
+  const float _ledIntensity_Normal = 0.02;//通常時のLEDの光量(0～1)
+  const float _ledIntensity_SoundPlaying = 0.2;//効果音が鳴っている間のLEDの光量(0～1)
 
   const Color _ledColors[12] = {//ライトの色
   {255,  0,  0},//赤
@@ -46,6 +47,11 @@ class NormalState : public IDeviceState
   //前の加速度の大きさ
   int _accelMagnitudePrev=0;
 
+  //効果音を鳴らすクールタイム
+  const int _playSoundCoolTimeDuration_ms = 1200;
+  bool _isPlaySoundCoolTime = false;
+  unsigned long _previousPlaySoundTime;
+
   //加速度センサー
   MPU_AccGyro* _mpu;
   //スピーカープレイヤー
@@ -55,6 +61,9 @@ class NormalState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void UpdateCoolTime();//クールタイムの更新
+  void SetLEDLighting_SoundPlaying();//効果音が鳴っているかによってLEDの光り方を変える
+  void SetLEDRainbowColors(float intensity);//LEDを虹色に光らせる(intensityで光量を変更)
   void ChangeState(DeviceStateMachine& machine);//ステートの変更
 public:
   NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);

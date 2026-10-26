@@ -45,10 +45,15 @@ class DFPlayerMini
   const int _defaultVolume=30;
 
   //フォルダの番号(フォルダ01の中に全ての音声ファイルを入れている)
-  const int _dn = 1; 
+  const int _dn = 1;
+
+  bool _isPlaying = false;
+  bool _isPlayingPrev = false;
 
   SoftwareSerial _mySoftwareSerial;
   DFPlayerMini_Fast _myDFPlayer;
+
+  void SetIsPlaying();
 
 public:
 
@@ -62,13 +67,14 @@ public:
   void Stop();
 
   //効果音を流しているか
-  bool IsPlaying() const
-  {
-    int mp3_busy=digitalRead(_mp3_Busy_PIN); // HIGHで再生していない
-    return (mp3_busy==LOW);
-  }
+  bool IsPlaying() const { return _isPlaying; }
+  //効果音が流れ始めたか
+  bool IsStartPlaying() const {return _isPlaying && !_isPlayingPrev;}
+  //効果音が流れ終わったか
+  bool IsFinishPlaying() const {return !_isPlaying && _isPlayingPrev;}
 
   void Setup();
+  void Tick();
 };
 
 #endif

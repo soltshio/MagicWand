@@ -48,7 +48,7 @@ void MPU_AccGyro::Tick()
   //取得した値を移動平均計算
   CalcMovingAverageValue();
 
-  DebugPrintln(); // 値のデバッグ表示
+  //DebugPrintln(); // 値のデバッグ表示
 }
 
 int16_t MPU_AccGyro::ReadInt16()
@@ -139,7 +139,7 @@ void MPU_AccGyro::DebugPrintln()
   Serial.print("  ACCMAG:"); Serial.print(AccMagSq());
   Serial.print("  GYROX:"); Serial.print(GyroXVal());
   Serial.print("  GYROY:"); Serial.print(GyroYVal());
-  Serial.print("  GYROZ:"); Serial.println(GyroZVal());
+  Serial.print("  GYROZ:"); Serial.print(GyroZVal());
   Serial.print("  GYROMAG:"); Serial.println(GyroMagSq());
 
   //加速度の大きさを取得

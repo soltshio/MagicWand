@@ -76,6 +76,12 @@ void loop()
   //加速度センサーのTick処理
   _mpu.Tick();
 
+  //DFPlayerのTick処理
+  _dfPlayerMini.Tick();
+
+  //LEDのTick処理
+  _led12Ring.Tick();
+
   //ステートマシンの更新処理
   _deviceStateMachine.Update();
 

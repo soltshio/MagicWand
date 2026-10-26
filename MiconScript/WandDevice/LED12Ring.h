@@ -17,12 +17,15 @@ class LED12Ring
   const float _minIntensity=0;
   const float _maxIntensity=1;
 
+  int l=0;
+
   Adafruit_NeoPixel _pixels;
 
 public:
   LED12Ring(int ledPin);
 
   void Setup();
+  void Tick();
 
   //LEDの数
   int LEDNum() const{return _numLEDs;}
