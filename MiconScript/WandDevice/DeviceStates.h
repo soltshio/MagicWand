@@ -94,7 +94,7 @@ class SunState : public IDeviceState
   {255, 53,  5},//赤の一歩手前の色
   };
 
-  const int _switchLEDInterval_ms = 2000;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
+  const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
   int _currentShiftLEDNum;
   
   //スピーカー関係

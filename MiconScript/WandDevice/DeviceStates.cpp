@@ -171,7 +171,7 @@ void SunState::SetLEDColors(int elapsed)
   _led12Ring->Clear();
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
-    int num = (i + shiftLEDNum)/_led12Ring->LEDNum();//どのLEDの色を変更するか
+    int num = (i + shiftLEDNum)%_led12Ring->LEDNum();//どのLEDの色を変更するか
 
     _led12Ring->SetColor(num,_ledColors[i],_ledIntensity);
   }
