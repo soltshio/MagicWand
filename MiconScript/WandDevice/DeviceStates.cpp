@@ -15,9 +15,7 @@ _commandManager(&commandManager)
 
 void NormalState::Enter(DeviceStateMachine& machine)
 {
-  //LEDを虹色に光らせる
   SetLEDRainbowColors(_ledIntensity_Normal);
-
   //前の加速度の初期化
   _accelMagnitudePrev = _mpu->AccMagSq();
 }
@@ -78,12 +76,14 @@ void NormalState::SetLEDLighting_SoundPlaying()
   if(_dfPlayerMini->IsStartPlaying())
   {
     SetLEDRainbowColors(_ledIntensity_SoundPlaying);
+    return;
   }
 
   //効果音が鳴り終わったら元の光り方に戻しておく
   if(_dfPlayerMini->IsFinishPlaying())
   {
     SetLEDRainbowColors(_ledIntensity_Normal);
+    return;
   }
 }
 
@@ -95,7 +95,6 @@ void NormalState::SetLEDRainbowColors(float intensity)
   {
     _led12Ring->SetColor(i,_ledColors[i],intensity);
   }
-  _led12Ring->Show();
 }
 
 void NormalState::ChangeState(DeviceStateMachine& machine)
@@ -127,6 +126,7 @@ void SunState::Enter(DeviceStateMachine& machine)
   _previous_ms=millis();
 
   //LEDを光らせる
+  _led12Ring->Clear();
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
     _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
@@ -168,6 +168,7 @@ void SunState::SetLEDColors(int elapsed)
   //その個数が違っていれば色を更新(同じであれば処理を無視)
   if(shiftLEDNum == _currentShiftLEDNum) return;
 
+  _led12Ring->Clear();
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
     int num = (i + shiftLEDNum)/_led12Ring->LEDNum();//どのLEDの色を変更するか

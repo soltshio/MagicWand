@@ -26,7 +26,7 @@ class NormalState : public IDeviceState
   const int _accMagnitudeThresholdToPlaySound =7000;
 
   
-  const float _ledIntensity_Normal = 0.02;//通常時のLEDの光量(0～1)
+  const float _ledIntensity_Normal = 0.04;//通常時のLEDの光量(0～1)
   const float _ledIntensity_SoundPlaying = 0.2;//効果音が鳴っている間のLEDの光量(0～1)
 
   const Color _ledColors[12] = {//ライトの色
