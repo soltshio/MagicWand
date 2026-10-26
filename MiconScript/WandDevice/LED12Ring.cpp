@@ -1,5 +1,6 @@
 #include "LED12Ring.h"
 #include "Mathf.h"
+#include <Arduino.h>
 
 LED12Ring::LED12Ring(int ledPin):
 _ledPin(ledPin),
@@ -14,9 +15,18 @@ void LED12Ring::Setup()
   _pixels.show();
 }
 
+void LED12Ring::Tick()
+{
+  if(!_isSetColor) return;
+
+  _pixels.show();
+  _isSetColor = false;
+}
+
 void LED12Ring::Clear()
 {
   _pixels.clear();
+  _isSetColor = true;
 }
 
 void LED12Ring::SetColor(int ledIndex,Color color,float intensity)
@@ -33,9 +43,5 @@ void LED12Ring::SetColor(int ledIndex,Color color,float intensity)
   b = static_cast<int>(b * intensity);
 
   _pixels.setPixelColor(ledIndex, _pixels.Color(r, g, b));
-}
-
-void LED12Ring::Show()
-{
-  _pixels.show();
+  _isSetColor = true;
 }

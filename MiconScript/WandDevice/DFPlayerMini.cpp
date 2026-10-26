@@ -16,6 +16,16 @@ _defaultVolume(Mathf::Clamp(defaultVolume,_minVolume,_maxVolume))
   
 }
 
+void DFPlayerMini::SetIsPlaying()
+{
+  //前の値(再生中か)を保存
+  _isPlayingPrev = _isPlaying;
+
+  int mp3_busy=digitalRead(_mp3_Busy_PIN); // HIGHで再生していない
+
+  _isPlaying = (mp3_busy==LOW);
+}
+
 //メモ：音を流す前に音量を動かすと音が流れない場合があるらしい
 void DFPlayerMini::PlaySound(ESoundNum soundNum)
 {
@@ -40,5 +50,10 @@ void DFPlayerMini::Setup()
   }
   Serial.println("DFPlayer Mini online.");
   _myDFPlayer.volume(_defaultVolume);
+}
+
+void DFPlayerMini::Tick()
+{
+  SetIsPlaying();
 }
 
