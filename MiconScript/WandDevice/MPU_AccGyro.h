@@ -22,27 +22,28 @@ class MPU_AccGyro
   const int _sdaPin;
   const int _sclPin;
 
-  const int _maN=50;
+  const int _maN=30;
+  const int _maN_Mag=5;
 
   const float _valueScaleCoefficient = 0.1f;//大きすぎる加速度・ジャイロの値を小さく丸めるための係数
 
-  //現在の加速度の値(移動平均処理済み)
-  int _accX=0;
-  int _accY=0;
-  int _accZ=0;
-  //前の加速度の値(移動平均処理済み)
-  int _accXPrev=0;
-  int _accYPrev=0;
-  int _accZPrev=0;
+  //現在の生の加速度値(移動平均処理済み)
+  int _accX_Raw=0;
+  int _accY_Raw=0;
+  int _accZ_Raw=0;
+  //前の生の加速度の値(移動平均処理済み)
+  int _accXPrev_Raw=0;
+  int _accYPrev_Raw=0;
+  int _accZPrev_Raw=0;
 
-  //現在のジャイロの値(移動平均処理済み)
-  int _gyroX=0;
-  int _gyroY=0;
-  int _gyroZ=0;
-  //前のジャイロの値(移動平均処理済み)
-  int _gyroXPrev=0;
-  int _gyroYPrev=0;
-  int _gyroZPrev=0;
+  //現在の生のジャイロの値(移動平均処理済み)
+  int _gyroX_Raw=0;
+  int _gyroY_Raw=0;
+  int _gyroZ_Raw=0;
+  //前の生のジャイロの値(移動平均処理済み)
+  int _gyroXPrev_Raw=0;
+  int _gyroYPrev_Raw=0;
+  int _gyroZPrev_Raw=0;
 
   //外部取得用の計算済みキャッシュ
   int _accXVal=0;
@@ -59,13 +60,17 @@ class MPU_AccGyro
   MovingAverage _maAccX;
   MovingAverage _maAccY;
   MovingAverage _maAccZ;
+  MovingAverage _maAccMagSq;
   //ジャイロ
   MovingAverage _maGyroX;
   MovingAverage _maGyroY;
   MovingAverage _maGyroZ;
+  MovingAverage _maGyroMagSq;
 
   bool ReadSensor();
   static int16_t ReadInt16();
+  void RecordPrevValue();
+  void CalcMovingAverageValue();
 
   void DebugPrintln();//加速度・ジャイロの値をシリアルプロッタで見えるようにするもの
 

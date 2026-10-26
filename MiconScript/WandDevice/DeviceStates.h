@@ -23,7 +23,7 @@ public:
 class NormalState : public IDeviceState
 {
   //音を鳴らす加速度センサーの大きさの閾値
-  const int _accMagnitudeThresholdToPlaySound =7000;
+  const int _accMagnitudeThresholdToPlaySound =8000;
 
   
   const float _ledIntensity = 0.3;//LEDの光量(0～1)

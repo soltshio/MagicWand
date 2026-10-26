@@ -5,9 +5,11 @@ MPU_AccGyro::MPU_AccGyro(int sdaPin,int sclPin):
 _maAccX(_maN),
 _maAccY(_maN),
 _maAccZ(_maN),
+_maAccMagSq(_maN_Mag),
 _maGyroX(_maN),
 _maGyroY(_maN),
 _maGyroZ(_maN),
+_maGyroMagSq(_maN_Mag),
 _sdaPin(sdaPin),
 _sclPin(sclPin)
 {
@@ -29,39 +31,24 @@ void MPU_AccGyro::Setup()
   ReadSensor();
 
   //前の値と今の値を同じにしておく
-  _accXPrev = _accX;
-  _accYPrev = _accY;
-  _accZPrev = _accZ;
-  _gyroXPrev = _gyroX;
-  _gyroYPrev = _gyroY;
-  _gyroZPrev = _gyroZ;
+  RecordPrevValue();
+
+  //取得した値を移動平均計算
+  CalcMovingAverageValue();
 }
 
 void MPU_AccGyro::Tick()
 {
   // 前の値を保存
-  _accXPrev = _accX;
-  _accYPrev = _accY;
-  _accZPrev = _accZ;
-  _gyroXPrev = _gyroX;
-  _gyroYPrev = _gyroY;
-  _gyroZPrev = _gyroZ;
+  RecordPrevValue();
 
-  if (ReadSensor())
-  {
-    // 取得関数で毎回計算しないよう、Tick内で計算してキャッシュする
-    _accXVal = static_cast<int>((_accX - _accXPrev) * _valueScaleCoefficient);
-    _accYVal = static_cast<int>((_accY - _accYPrev) * _valueScaleCoefficient);
-    _accZVal = static_cast<int>((_accZ - _accZPrev) * _valueScaleCoefficient);
-    _accMagSq = Mathf::Vector3MagnitudeSq(_accXVal, _accYVal, _accZVal);
+  //センサーデータを取得
+  ReadSensor();
 
-    _gyroXVal = static_cast<int>((_gyroX - _gyroXPrev) * _valueScaleCoefficient);
-    _gyroYVal = static_cast<int>((_gyroY - _gyroYPrev) * _valueScaleCoefficient);
-    _gyroZVal = static_cast<int>((_gyroZ - _gyroZPrev) * _valueScaleCoefficient);
-    _gyroMagSq = Mathf::Vector3MagnitudeSq(_gyroXVal, _gyroYVal, _gyroZVal);
+  //取得した値を移動平均計算
+  CalcMovingAverageValue();
 
-    DebugPrintln(); // 値のデバッグ表示
-  }
+  DebugPrintln(); // 値のデバッグ表示
 }
 
 int16_t MPU_AccGyro::ReadInt16()
@@ -77,6 +64,42 @@ int16_t MPU_AccGyro::ReadInt16()
   return (high << 8) | low;
 }
 
+//前の値を記録する
+void MPU_AccGyro::RecordPrevValue()
+{
+  _accXPrev_Raw = _accX_Raw;
+  _accYPrev_Raw = _accY_Raw;
+  _accZPrev_Raw = _accZ_Raw;
+  _gyroXPrev_Raw = _gyroX_Raw;
+  _gyroYPrev_Raw = _gyroY_Raw;
+  _gyroZPrev_Raw = _gyroZ_Raw;
+}
+
+void MPU_AccGyro::CalcMovingAverageValue()
+{
+  // 取得関数で毎回計算しないよう、Tick内で計算してキャッシュする
+  int accX = static_cast<int>((_accX_Raw - _accXPrev_Raw) * _valueScaleCoefficient);
+  int accY = static_cast<int>((_accY_Raw - _accYPrev_Raw) * _valueScaleCoefficient);
+  int accZ = static_cast<int>((_accZ_Raw - _accZPrev_Raw) * _valueScaleCoefficient);
+
+  _accXVal = _maAccX.Add(accX);
+  _accYVal = _maAccY.Add(accY);
+  _accZVal = _maAccZ.Add(accZ);
+
+  _accMagSq = _maAccMagSq.Add(Mathf::Vector3MagnitudeSq(_accXVal, _accYVal, _accZVal));
+
+
+  int gyroX = static_cast<int>((_gyroX_Raw - _gyroXPrev_Raw) * _valueScaleCoefficient);
+  int gyroY = static_cast<int>((_gyroY_Raw - _gyroYPrev_Raw) * _valueScaleCoefficient);
+  int gyroZ = static_cast<int>((_gyroZ_Raw - _gyroZPrev_Raw) * _valueScaleCoefficient);
+
+  _gyroXVal = _maGyroX.Add(gyroX);
+  _gyroYVal = _maGyroY.Add(gyroY);
+  _gyroZVal = _maGyroZ.Add(gyroZ);
+
+  _gyroMagSq = _maGyroMagSq.Add(Mathf::Vector3MagnitudeSq(_gyroXVal, _gyroYVal, _gyroZVal));
+}
+
 bool MPU_AccGyro::ReadSensor()
 {
   Wire.beginTransmission(MPU6050_ADDR);
@@ -85,20 +108,14 @@ bool MPU_AccGyro::ReadSensor()
 
   if (Wire.requestFrom(MPU6050_ADDR, 14) != 14) return false;
 
-  int16_t accX_raw = ReadInt16();
-  int16_t accY_raw = ReadInt16();
-  int16_t accZ_raw = ReadInt16();
+  _accX_Raw = ReadInt16();
+  _accY_Raw = ReadInt16();
+  _accZ_Raw = ReadInt16();
   ReadInt16(); // 温度データ（未使用）
-  int16_t gyroX_raw = ReadInt16();
-  int16_t gyroY_raw = ReadInt16();
-  int16_t gyroZ_raw = ReadInt16();
+  _gyroX_Raw = ReadInt16();
+  _gyroY_Raw = ReadInt16();
+  _gyroZ_Raw = ReadInt16();
 
-  _accX = _maAccX.Add(accX_raw);
-  _accY = _maAccY.Add(accY_raw);
-  _accZ = _maAccZ.Add(accZ_raw);
-  _gyroX = _maGyroX.Add(gyroX_raw);
-  _gyroY = _maGyroY.Add(gyroY_raw);
-  _gyroZ = _maGyroZ.Add(gyroZ_raw);
   return true;
 }
 
@@ -115,16 +132,18 @@ void MPU_AccGyro::DebugPrintln()
   // Serial.print("  GYROZ:"); Serial.println(_gyroZ_ma);
 
   //加速度・ジャイロの差の値を表示
-  // Serial.print("  DEBUG:"); Serial.print("200, -200,");
-  // Serial.print("  ACCX:"); Serial.print(AccXVal());
-  // Serial.print("  ACCY:"); Serial.print(AccYVal());
-  // Serial.print("  ACCZ:"); Serial.print(AccZVal());
-  // Serial.print("  GYROX:"); Serial.print(GyroXVal());
-  // Serial.print("  GYROY:"); Serial.print(GyroYVal());
-  // Serial.print("  GYROZ:"); Serial.println(GyroZVal());
+  Serial.print("  DEBUG:"); Serial.print("3000, -3000,");
+  Serial.print("  ACCX:"); Serial.print(AccXVal());
+  Serial.print("  ACCY:"); Serial.print(AccYVal());
+  Serial.print("  ACCZ:"); Serial.print(AccZVal());
+  Serial.print("  ACCMAG:"); Serial.print(AccMagSq());
+  Serial.print("  GYROX:"); Serial.print(GyroXVal());
+  Serial.print("  GYROY:"); Serial.print(GyroYVal());
+  Serial.print("  GYROZ:"); Serial.println(GyroZVal());
+  Serial.print("  GYROMAG:"); Serial.println(GyroMagSq());
 
   //加速度の大きさを取得
-  Serial.print("  DEBUG:"); Serial.print("10000, -10000,");
-  int mag = AccMagSq();
-  Serial.print("  MAG:"); Serial.println(mag);
+  // Serial.print("  DEBUG:"); Serial.print("10000, -10000,");
+  // int mag = AccMagSq();
+  // Serial.print("  MAG:"); Serial.println(mag);
 }

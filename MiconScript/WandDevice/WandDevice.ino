@@ -59,11 +59,6 @@ void setup()
   espnow.Initialize(OnDataReceived, nullptr);
   espnow.SetControllerMacAddr(controllerAddress);
   Serial.begin(115200);
-
-
-  //テストで音を鳴らしてみる
-  delay(1000);
-  _dfPlayerMini.PlaySound(ESoundNum::Water);
 }
 
 void loop() 
@@ -84,7 +79,7 @@ void loop()
   //ステートマシンの更新処理
   _deviceStateMachine.Update();
 
-  ShowMACAddress();//MACアドレスをシリアルモニタに表示
+  //ShowMACAddress();//MACアドレスをシリアルモニタに表示
   
   // loop内に適切なdeleyを付加
   delay(30);

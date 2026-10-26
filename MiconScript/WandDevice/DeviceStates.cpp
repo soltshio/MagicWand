@@ -29,12 +29,12 @@ void NormalState::Enter(DeviceStateMachine& machine)
 
 void NormalState::Update(DeviceStateMachine& machine)
 {
-  //一定の加速度を超えた瞬間にのみ効果音を流す
-  bool _isOveredAccelThreshold = (_mpu->AccMagSq() > _accMagnitudeThresholdToPlaySound) && (_accelMagnitudePrev > _accMagnitudeThresholdToPlaySound);
+  //一定の加速度を超えた瞬間、かつ効果音が鳴り終わっている場合にのみ効果音を流す
+  bool _isOveredAccelThreshold = (_mpu->AccMagSq() > _accMagnitudeThresholdToPlaySound) && (_accelMagnitudePrev < _accMagnitudeThresholdToPlaySound);
 
   if(_isOveredAccelThreshold)
   {
-    _dfPlayerMini->PlaySound(ESoundNum::Swing);
+    _dfPlayerMini->PlaySound(ESoundNum::Thunder);//仮で雷の音を鳴らすようにする
   }
 
   //前の加速度の更新
