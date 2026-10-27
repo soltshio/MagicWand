@@ -7,35 +7,45 @@ namespace
   struct CommandEntry
   {
     ECommandKey key;
-    const char command[4];
+    const char commandStateAndPhase[5];//コマンドの文字の部分+終端文字分
   };
 
-  const CommandEntry commandTable[] =
+  const CommandEntry commandTable[] =//コマンドの最初の４文字(レベルを除いたもの)
   {
     //太陽魔法
-    { ECommandKey::ChangeToSunState,     "SN0" },//太陽ステートに移行するコマンド
-    { ECommandKey::PlaySunSE,            "SN1" },//太陽の効果音を流すコマンド
-    { ECommandKey::FinishSunState,       "SN2" },//太陽ステートを終了するコマンド
+    { ECommandKey::StartSun,                    "SNst" },//太陽魔法に移行するコマンド
+    { ECommandKey::CastSun,                     "SNcs" },//詠唱(なぞる)コマンド
+    { ECommandKey::InvokeSun,                   "SNiv" },//魔法発動コマンド
+    { ECommandKey::InvokeSun_PlaySound,         "SNps" },//魔法の効果音再生コマンド
+    { ECommandKey::FinishSun,                   "SNfn" },//太陽魔法を終了するコマンド
     
     //星魔法
-    { ECommandKey::ChangeToStarState,     "ST0" },//星ステートに移行するコマンド
-    { ECommandKey::PlayStarSE,            "ST1" },//星の効果音を流すコマンド
-    { ECommandKey::FinishStarState,       "ST2" },//星ステートを終了するコマンド
+    { ECommandKey::StartStar,                   "STst" },//星魔法に移行するコマンド
+    { ECommandKey::CastStar,                    "STcs" },//詠唱(なぞる)コマンド
+    { ECommandKey::InvokeStar,                  "STiv" },//魔法発動コマンド
+    { ECommandKey::InvokeStar_PlaySound,        "STps" },//魔法の効果音再生コマンド
+    { ECommandKey::FinishStar,                  "STfn" },//星魔法を終了するコマンド
 
     //雷魔法
-    { ECommandKey::ChangeToThunderState,  "TN0" },//雷ステートに移行するコマンド
-    { ECommandKey::PlayThunderSE,         "TN1" },//雷の効果音を流すコマンド
-    { ECommandKey::FinishThunderState,    "TN2" },//雷ステートを終了するコマンド
+    { ECommandKey::StartThunder,                "TNst" },//雷魔法に移行するコマンド
+    { ECommandKey::CastThunder,                 "TNcs" },//詠唱(なぞる)コマンド
+    { ECommandKey::InvokeThunder,               "TNiv" },//魔法発動コマンド
+    { ECommandKey::InvokeThunder_PlaySound,     "TNps" },//魔法の効果音再生コマンド
+    { ECommandKey::FinishThunder,               "TNfn" },//雷魔法を終了するコマンド
 
     //水魔法
-    { ECommandKey::ChangeToWaterState,    "WT0" },//水ステートに移行するコマンド
-    { ECommandKey::PlayWaterSE,           "WT1" },//水の効果音を流すコマンド
-    { ECommandKey::FinishWaterState,      "WT2" },//水ステートを終了するコマンド
+    { ECommandKey::StartWater,                  "WTst" },//水魔法に移行するコマンド
+    { ECommandKey::CastWater,                   "WTcs" },//詠唱(なぞる)コマンド
+    { ECommandKey::InvokeWater,                 "WTiv" },//魔法発動コマンド
+    { ECommandKey::InvokeWater_PlaySound,       "WTps" },//魔法の効果音再生コマンド
+    { ECommandKey::FinishWater,                 "WTfn" },//水魔法を終了するコマンド
 
     //時魔法
-    { ECommandKey::ChangeToTimeState,     "TM0" },//時間ステートに移行するコマンド
-    { ECommandKey::PlayTimeSE,            "TM1" },//時間の効果音を流すコマンド
-    { ECommandKey::FinishTimeState,       "TM2" }//時間ステートを終了するコマンド
+    { ECommandKey::StartTime,                   "TMst" },//時魔法に移行するコマンド
+    { ECommandKey::CastTime,                    "TMcs" },//詠唱(なぞる)コマンド
+    { ECommandKey::InvokeTime,                  "TMiv" },//魔法発動コマンド
+    { ECommandKey::InvokeTime_PlaySound,        "TMps" },//魔法の効果音再生コマンド
+    { ECommandKey::FinishTime,                  "TMfn" },//時魔法を終了するコマンド
   };
 
   constexpr int commandCount = sizeof(commandTable) / sizeof(commandTable[0]);
@@ -45,13 +55,13 @@ CommandManager::CommandManager()
 {
 }
 
-const char* CommandManager::GetCommand(ECommandKey key) const
+const char* CommandManager::GetCommandStateAndPhase(ECommandKey key) const
 {
   for (int i = 0; i < commandCount; i++)
   {
     if (commandTable[i].key == key)
     {
-      return commandTable[i].command;
+      return commandTable[i].commandStateAndPhase;
     }
   }
 
@@ -62,9 +72,8 @@ void CommandManager::SetCommand(const char* command)
 {
   if (command == nullptr) return;
   
-  // 最大3文字と終端文字をコピー
-  strncpy(_currentCommand, command, _commandLength - 1);
-  _currentCommand[_commandLength - 1] = '\0';
+  strncpy(_currentCommand, command, _commandLength - 1);//ステート、フェーズ、レベル部分をコピー
+  _currentCommand[_commandLength - 1] = '\0';//最後に終端文字
 
   _isUpdatedNewCommand = true;
 }
@@ -73,11 +82,34 @@ bool CommandManager::IsCommand(ECommandKey key)
 {
   if (!_isUpdatedNewCommand) return false;
 
-  const char* command = GetCommand(key);
+  //キーに対応するコマンドの文字部分を取得
+  const char* commandStateAndPhase = GetCommandStateAndPhase(key);
 
-  if (command == nullptr || strcmp(command, _currentCommand) != 0) return false;
+  //現在入っているコマンドの文字部分を取得
+  char currentCommandStateAndPhase[_commandWordLength+1];
+  strncpy(currentCommandStateAndPhase, _currentCommand, _commandWordLength);
+  currentCommandStateAndPhase[_commandWordLength] = '\0';
+
+  //文字部分が合っているかを比較
+  bool isValidCommand = strcmp(commandStateAndPhase,currentCommandStateAndPhase) == 0;
+
+  if (currentCommandStateAndPhase == nullptr || !isValidCommand) return false;
   
   //現在格納されているコマンドと合っていた場合
   _isUpdatedNewCommand = false;
   return true;
+}
+
+int CommandManager::IsCommandAndLevel(ECommandKey key)
+{
+  if (!_isUpdatedNewCommand) return _invalidNum;
+  if (!IsCommand(key)) return _invalidNum;//そもそも文字部分が違えば不正な値を返す
+
+  //現在のコマンドからレベル部分を取り出す
+  char level_char[_commandLevelLength];
+  strncpy(level_char, _currentCommand + _commandWordLength, _commandLevelLength);
+
+  //取り出した文字列を数字に変換して返す
+  int level = atoi(level_char);
+  return level;
 }

@@ -100,7 +100,7 @@ void NormalState::SetLEDRainbowColors(float intensity)
 void NormalState::ChangeState(DeviceStateMachine& machine)
 {
   //太陽魔法への遷移
-  if(_commandManager->IsCommand(ECommandKey::ChangeToSunState))
+  if(_commandManager->IsCommand(ECommandKey::StartSun))
   {
     machine.ChangeState(machine.GetSunState());
   }
@@ -182,14 +182,14 @@ void SunState::SetLEDColors(int elapsed)
 void SunState::PlaySound(int elapsed)
 {
   if(_isStartedPlaying) return;//既に再生していたら無視
-  if(!_commandManager->IsCommand(ECommandKey::PlaySunSE)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::InvokeSun_PlaySound)) return;//コマンドが来ていなければ無視
 
   _dfPlayerMini->PlaySound(ESoundNum::Sun);
 }
 
 void SunState::ChangeToNormalState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishSunState)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::FinishSun)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetNormalState());
 }
@@ -222,7 +222,7 @@ void StarState::Exit(DeviceStateMachine& machine)
 
 void StarState::ChangeToNormalState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishStarState)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::FinishStar)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetNormalState());
 }
@@ -256,7 +256,7 @@ void ThunderState::Exit(DeviceStateMachine& machine)
 
 void ThunderState::ChangeToNormalState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishThunderState)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::FinishThunder)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetNormalState());
 }
@@ -290,7 +290,7 @@ void WaterState::Exit(DeviceStateMachine& machine)
 
 void WaterState::ChangeToNormalState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishWaterState)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::FinishWater)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetNormalState());
 }
@@ -324,7 +324,7 @@ void TimeState::Exit(DeviceStateMachine& machine)
 
 void TimeState::ChangeToNormalState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishTimeState)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::FinishTime)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetNormalState());
 }
