@@ -3,7 +3,7 @@
 #include "ESPNowEz.h"
 #include "MPU_AccGyro.h"
 #include "DFPlayerMini.h"
-#include "DeviceStateMachine.h"
+//#include "DeviceStateMachine.h"
 #include "LED12Ring.h"
 #include "Color.h"
 #include "CommandManager.h"
@@ -40,7 +40,7 @@ DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN,_volume);
 LED12Ring _led12Ring(LED_PIN);
 
 //ステートマシン関係
-DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring,_commandManager);
+//DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring,_commandManager);
 
 
 void setup()
@@ -53,7 +53,7 @@ void setup()
   _led12Ring.Setup();
 
   //ステートマシンの初期化処理
-  _deviceStateMachine.Initialize();
+  //_deviceStateMachine.Initialize();
 
   //通信のセットアップ処理
   espnow.Initialize(OnDataReceived, nullptr);
@@ -64,7 +64,7 @@ void setup()
 void loop() 
 {
   //ステートマシンの更新処理
-  _deviceStateMachine.Update();
+  //_deviceStateMachine.Update();
 
   _led12Ring.Tick();
 

@@ -1,16 +1,28 @@
 #ifndef _DEVICESTATEMACHINE_H_
 #define _DEVICESTATEMACHINE_H_
 
-#include "DeviceStates.h"
+#include "CommonDeviceStates.h"
+#include "InvokeDeviceStates.h"
+#include "CastDeviceStates.h"
 
 class DeviceStateMachine {
 private:
     NormalState _normalState;//通常時のステート
-    SunState _sunState;//太陽魔法ステート
-    StarState _starState;//星魔法ステート
-    WaterState _waterState;//水魔法ステート
-    ThunderState _thunderState;//雷魔法ステート
-    TimeState _timeState;//時魔法ステート
+
+    SunCastState _sunCastState;//太陽詠唱ステート
+    SunInvokeState _sunInvokeState;//太陽発動ステート
+
+    StarCastState _starCastState;//星詠唱ステート
+    StarInvokeState _starInvokeState;//星発動ステート
+
+    WaterCastState _waterCastState;//水詠唱ステート
+    WaterInvokeState _waterInvokeState;//水発動ステート
+
+    ThunderCastState _thunderCastState;//雷詠唱ステート
+    ThunderInvokeState _thunderInvokeState;//雷発動ステート
+
+    TimeCastState _timeCastState;//時詠唱ステート
+    TimeInvokeState _timeInvokeState;//時発動ステート
 
     IDeviceState* _currentState = nullptr;
 
@@ -23,12 +35,22 @@ public:
     void ChangeState(IDeviceState& nextState);
 
     //ステートの取得
-    NormalState& GetNormalState() {return _normalState;};
-    SunState& GetSunState() {return _sunState;};
-    StarState& GetStarState() {return _starState;};
-    WaterState& GetWaterState() {return _waterState;};
-    ThunderState& GetThunderState() {return _thunderState;};
-    TimeState& GetTimeState() {return _timeState;};
+    NormalState& GetNormalState() {return _normalState;}
+
+    SunCastState& GetSunCastState() {return _sunCastState;}
+    SunInvokeState& GetSunInvokeState() {return _sunInvokeState;}
+
+    StarCastState& GetStarCastState() {return _starCastState;}
+    StarInvokeState& GetStarInvokeState() {return _starInvokeState;}
+
+    WaterCastState& GetWaterCastState() {return _waterCastState;}
+    WaterInvokeState& GetWaterInvokeState() {return _waterInvokeState;}
+
+    ThunderCastState& GetThunderCastState() {return _thunderCastState;}
+    ThunderInvokeState& GetThunderInvokeState() {return _thunderInvokeState;}
+
+    TimeCastState& GetTimeCastState() {return _timeCastState;}
+    TimeInvokeState& GetTimeInvokeState() {return _timeInvokeState;}
 };
 
 #endif

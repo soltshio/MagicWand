@@ -2,11 +2,16 @@
 
 DeviceStateMachine::DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _normalState(mpu,dfPlayerMini,led12Ring,commandManager),
-_sunState(dfPlayerMini,led12Ring,commandManager),
-_starState(dfPlayerMini,led12Ring,commandManager),
-_waterState(dfPlayerMini,led12Ring,commandManager),
-_thunderState(dfPlayerMini,led12Ring,commandManager),
-_timeState(dfPlayerMini,led12Ring,commandManager) 
+_sunCastState(dfPlayerMini,led12Ring,commandManager),
+_sunInvokeState(dfPlayerMini,led12Ring,commandManager),
+_starCastState(dfPlayerMini,led12Ring,commandManager),
+_starInvokeState(dfPlayerMini,led12Ring,commandManager),
+_waterCastState(dfPlayerMini,led12Ring,commandManager),
+_waterInvokeState(dfPlayerMini,led12Ring,commandManager),
+_thunderCastState(dfPlayerMini,led12Ring,commandManager),
+_thunderInvokeState(dfPlayerMini,led12Ring,commandManager),
+_timeCastState(dfPlayerMini,led12Ring,commandManager),
+_timeInvokeState(dfPlayerMini,led12Ring,commandManager) 
 {
 
 }
