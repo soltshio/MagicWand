@@ -80,7 +80,7 @@ void StarCastState::Exit(DeviceStateMachine& machine)
 
 void StarCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishStar)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::InvokeStar)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetStarInvokeState());
 }
@@ -118,7 +118,7 @@ void ThunderCastState::Exit(DeviceStateMachine& machine)
 
 void ThunderCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishThunder)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::InvokeThunder)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetThunderInvokeState());
 }
@@ -156,7 +156,7 @@ void WaterCastState::Exit(DeviceStateMachine& machine)
 
 void WaterCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishWater)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::InvokeWater)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetWaterInvokeState());
 }
@@ -192,7 +192,7 @@ void TimeCastState::Exit(DeviceStateMachine& machine)
 
 void TimeCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
-  if(!_commandManager->IsCommand(ECommandKey::FinishTime)) return;//コマンドが来ていなければ無視
+  if(!_commandManager->IsCommand(ECommandKey::InvokeTime)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetTimeInvokeState());
 }
