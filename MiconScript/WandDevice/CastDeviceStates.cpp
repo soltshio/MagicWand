@@ -1,6 +1,7 @@
 #include "CastDeviceStates.h"
 #include <Arduino.h>
 #include "DeviceStateMachine.h"
+#include "Mathf.h"
 
 
 
@@ -17,16 +18,18 @@ _commandManager(&commandManager)
 
 void SunCastState::Enter(DeviceStateMachine& machine)
 {
+  //効果音を鳴らす
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
+
   //LEDを光らせる
-  _led12Ring->Clear();
-  for(int i=0; i<_led12Ring->LEDNum() ;i++)
-  {
-    _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
-  }
+  SetLED_CastLevel(0);
 }
 
 void SunCastState::Update(DeviceStateMachine& machine)
 {
+  //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  PlayEffectOnUpCastLevel();
+
   //ステートの変更処理
   ChangeToInvokeState(machine);
 }
@@ -38,6 +41,25 @@ void SunCastState::Exit(DeviceStateMachine& machine)
 
   //効果音を止めておく
   _dfPlayerMini->Stop();
+}
+
+void SunCastState::PlayEffectOnUpCastLevel()//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+{
+  //詠唱がどこまで進んでいるかを取得
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+
+  if(castLevel == _commandManager->InvalidNum()) return;
+
+  //効果音を鳴らす
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
+
+  //LEDの光り方を変える
+  SetLED_CastLevel(castLevel);
+}
+
+void SunCastState::SetLED_CastLevel(int castLevel)//詠唱のレベルに合わせてLEDの光り方を変える
+{
+
 }
 
 void SunCastState::ChangeToInvokeState(DeviceStateMachine& machine)

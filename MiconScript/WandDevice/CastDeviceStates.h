@@ -41,6 +41,8 @@ class SunCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   SunCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
