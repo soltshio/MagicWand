@@ -25,6 +25,7 @@
 enum class ESoundNum
 {
   Swing=1,//通常時の振った時の音
+  Cast,//詠唱音
   Sun,//太陽魔法の音
   Star,//星魔法の音
   Thunder,//雷魔法の音
