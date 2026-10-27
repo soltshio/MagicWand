@@ -41,7 +41,7 @@ class SunCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
-  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   SunCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -66,7 +66,7 @@ class StarCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
-  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   StarCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -91,7 +91,7 @@ class ThunderCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
-  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   ThunderCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -116,7 +116,7 @@ class WaterCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
-  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   WaterCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 
@@ -141,7 +141,7 @@ class TimeCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
-  void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   TimeCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
 

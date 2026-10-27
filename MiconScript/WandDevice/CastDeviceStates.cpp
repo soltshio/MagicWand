@@ -27,8 +27,8 @@ void SunCastState::Enter(DeviceStateMachine& machine)
 
 void SunCastState::Update(DeviceStateMachine& machine)
 {
-  //ステートの変更(通常ステートに戻る)
-  ChangeToNormalState(machine);
+  //ステートの変更処理
+  ChangeToInvokeState(machine);
 }
 
 void SunCastState::Exit(DeviceStateMachine& machine)
@@ -40,11 +40,11 @@ void SunCastState::Exit(DeviceStateMachine& machine)
   _dfPlayerMini->Stop();
 }
 
-void SunCastState::ChangeToNormalState(DeviceStateMachine& machine)
+void SunCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::InvokeSun)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetSunInvokeState());
 }
 
 
@@ -69,7 +69,8 @@ void StarCastState::Enter(DeviceStateMachine& machine)
 
 void StarCastState::Update(DeviceStateMachine& machine)
 {
-
+  //ステートの変更処理
+  ChangeToInvokeState(machine);
 }
 
 void StarCastState::Exit(DeviceStateMachine& machine)
@@ -77,11 +78,11 @@ void StarCastState::Exit(DeviceStateMachine& machine)
 
 }
 
-void StarCastState::ChangeToNormalState(DeviceStateMachine& machine)
+void StarCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishStar)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetStarInvokeState());
 }
 
 
@@ -106,7 +107,8 @@ void ThunderCastState::Enter(DeviceStateMachine& machine)
 
 void ThunderCastState::Update(DeviceStateMachine& machine)
 {
-
+  //ステートの変更処理
+  ChangeToInvokeState(machine);
 }
 
 void ThunderCastState::Exit(DeviceStateMachine& machine)
@@ -114,11 +116,11 @@ void ThunderCastState::Exit(DeviceStateMachine& machine)
 
 }
 
-void ThunderCastState::ChangeToNormalState(DeviceStateMachine& machine)
+void ThunderCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishThunder)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetThunderInvokeState());
 }
 
 
@@ -143,7 +145,8 @@ void WaterCastState::Enter(DeviceStateMachine& machine)
 
 void WaterCastState::Update(DeviceStateMachine& machine)
 {
-
+  //ステートの変更処理
+  ChangeToInvokeState(machine);
 }
 
 void WaterCastState::Exit(DeviceStateMachine& machine)
@@ -151,11 +154,11 @@ void WaterCastState::Exit(DeviceStateMachine& machine)
 
 }
 
-void WaterCastState::ChangeToNormalState(DeviceStateMachine& machine)
+void WaterCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishWater)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetWaterInvokeState());
 }
 
 
@@ -178,7 +181,8 @@ void TimeCastState::Enter(DeviceStateMachine& machine)
 
 void TimeCastState::Update(DeviceStateMachine& machine)
 {
-  
+  //ステートの変更処理
+  ChangeToInvokeState(machine);
 }
 
 void TimeCastState::Exit(DeviceStateMachine& machine)
@@ -186,9 +190,9 @@ void TimeCastState::Exit(DeviceStateMachine& machine)
 
 }
 
-void TimeCastState::ChangeToNormalState(DeviceStateMachine& machine)
+void TimeCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishTime)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetTimeInvokeState());
 }
