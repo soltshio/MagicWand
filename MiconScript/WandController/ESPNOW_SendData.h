@@ -19,7 +19,7 @@ typedef struct struct_esp_now_d2c_data {
 //コントローラーからデバイスに送るデータ
 typedef struct struct_esp_now_c2d_data {
     uint8_t id; // 必ず被らないこと
-    char cmd[4];
+    char cmd[7];
 } ESPNOW_Con2DevData;
 
 #endif
