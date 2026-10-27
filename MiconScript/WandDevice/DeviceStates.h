@@ -19,7 +19,13 @@ public:
   virtual void Exit(DeviceStateMachine& machine) {}
 };
 
+
+
+
+
+//＝＝＝＝＝＝＝＝
 //通常時のステート
+//＝＝＝＝＝＝＝＝
 class NormalState : public IDeviceState
 {
   //音を鳴らす加速度センサーの大きさの閾値
@@ -73,7 +79,16 @@ public:
   void Exit(DeviceStateMachine& machine) override;
 };
 
+
+
+
+//＝＝＝＝＝＝＝＝＝
 //太陽魔法のステート
+//＝＝＝＝＝＝＝＝＝
+
+//＊太陽の詠唱(なぞり)ステート
+
+//＊太陽の発動ステート
 class SunState : public IDeviceState
 {
   //LED関係
@@ -121,7 +136,17 @@ public:
   void Exit(DeviceStateMachine& machine) override;
 };
 
+
+
+
+
+//＝＝＝＝＝＝＝＝
 //星魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊星の詠唱(なぞり)ステート
+
+//＊星の発動ステート
 class StarState : public IDeviceState
 {
   //スピーカープレイヤー
@@ -140,7 +165,17 @@ public:
   void Exit(DeviceStateMachine& machine) override;
 };
 
+
+
+
+
+//＝＝＝＝＝＝＝＝
 //雷魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊雷の詠唱(なぞり)ステート
+
+//＊雷の発動ステート
 class ThunderState : public IDeviceState
 {
   //スピーカープレイヤー
@@ -159,7 +194,17 @@ public:
   void Exit(DeviceStateMachine& machine) override;
 };
 
+
+
+
+
+//＝＝＝＝＝＝＝＝
 //水魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊水の詠唱(なぞり)ステート
+
+//＊水の発動ステート
 class WaterState : public IDeviceState
 {
   //スピーカープレイヤー
@@ -178,7 +223,17 @@ public:
   void Exit(DeviceStateMachine& machine) override;
 };
 
+
+
+
+
+//＝＝＝＝＝＝＝＝
 //時魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊時の詠唱(なぞり)ステート
+
+//＊時の発動ステート
 class TimeState : public IDeviceState
 {
   //スピーカープレイヤー

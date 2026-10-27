@@ -38,21 +38,6 @@ DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN,_volume);
 //LED関係
 #define LED_PIN 6
 LED12Ring _led12Ring(LED_PIN);
-const Color _ledColors[12] = {//ライトの色
-  {255,  0,  0},//赤
-  {255, 80,  8},//赤とオレンジの間
-  {255,160, 16},//オレンジ
-  {255,224, 32},//黄
-  { 96,255,128},//黄緑
-  {  0,192,  0},//緑
-  { 40,200,127},//緑と水色の間
-  { 80,208,255},//水色
-  {  0, 32,255},//青
-  { 80, 32,255},//青紫
-  {160, 32,255},//紫
-  {255, 96,208},//ピンク
-  };
-bool _isTest = true;
 
 //ステートマシン関係
 DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring,_commandManager);

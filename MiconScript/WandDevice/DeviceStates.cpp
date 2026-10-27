@@ -2,8 +2,9 @@
 #include <Arduino.h>
 #include "DeviceStateMachine.h"
 
-//---通常時のステート---
-
+//＝＝＝＝＝＝＝＝
+//通常時のステート
+//＝＝＝＝＝＝＝＝
 NormalState::NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _mpu(&mpu),
 _dfPlayerMini(&dfPlayerMini),
@@ -108,8 +109,15 @@ void NormalState::ChangeState(DeviceStateMachine& machine)
 
 
 
-//---太陽魔法のステート---
 
+
+//＝＝＝＝＝＝＝＝＝
+//太陽魔法のステート
+//＝＝＝＝＝＝＝＝＝
+
+//＊太陽の詠唱(なぞり)ステート
+
+//＊太陽の発動ステート
 SunState::SunState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
@@ -195,8 +203,16 @@ void SunState::ChangeToNormalState(DeviceStateMachine& machine)
 }
 
 
-//---星魔法のステート---
 
+
+
+//＝＝＝＝＝＝＝＝
+//星魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊星の詠唱(なぞり)ステート
+
+//＊星の発動ステート
 StarState::StarState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
@@ -229,8 +245,15 @@ void StarState::ChangeToNormalState(DeviceStateMachine& machine)
 
 
 
-//---雷魔法のステート---
 
+
+//＝＝＝＝＝＝＝＝
+//雷魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊雷の詠唱(なぞり)ステート
+
+//＊雷の発動ステート
 ThunderState::ThunderState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
@@ -263,8 +286,15 @@ void ThunderState::ChangeToNormalState(DeviceStateMachine& machine)
 
 
 
-//---水魔法のステート---
 
+
+//＝＝＝＝＝＝＝＝
+//水魔法のステート
+//＝＝＝＝＝＝＝＝
+
+//＊水の詠唱(なぞり)ステート
+
+//＊水の発動ステート
 WaterState::WaterState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
@@ -297,8 +327,13 @@ void WaterState::ChangeToNormalState(DeviceStateMachine& machine)
 
 
 
-//---時魔法のステート---
+//＝＝＝＝＝＝＝＝
+//時魔法のステート
+//＝＝＝＝＝＝＝＝
 
+//＊時の詠唱(なぞり)ステート
+
+//＊時の発動ステート
 TimeState::TimeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
