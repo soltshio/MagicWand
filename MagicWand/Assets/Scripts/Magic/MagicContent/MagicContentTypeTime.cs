@@ -74,16 +74,10 @@ public class MagicContentTypeTime : MagicContentTypeBase
         _clockAudioSource.Stop();
     }
 
-    //時のステートに入るようマイコンに指示を送る
-    public void SendChangeToTimeCommandToMicon()
-    {
-        _sendManager.AddMessage(EMiconCommand.ChangeToTime);
-    }
-
     //時の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayTimeSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.PlayTimeSound);
+        _sendManager.AddMessage(EMiconCommand.InvokeTime_PlaySound);
     }
 
     //時のステートを終わるようマイコンに指示を送る

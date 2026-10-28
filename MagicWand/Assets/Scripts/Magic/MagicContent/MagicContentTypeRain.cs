@@ -55,16 +55,10 @@ public class MagicContentTypeRain : MagicContentTypeBase
         _rainEffectDirecter.AddTasks(_grassesGrowth.TakeMagicAsync(EMagic.Rain));
     }
 
-    //水のステートに入るようマイコンに指示を送る
-    public void SendChangeToWaterCommandToMicon()
-    {
-        _sendManager.AddMessage(EMiconCommand.ChangeToWater);
-    }
-
     //水の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayWaterSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.PlayWaterSound);
+        _sendManager.AddMessage(EMiconCommand.InvokeWater_PlaySound);
     }
 
     //水のステートを終わるようマイコンに指示を送る

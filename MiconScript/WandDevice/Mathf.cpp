@@ -30,6 +30,17 @@ float Mathf::Lerp(float a,float b,float t)
 }
 
 
+//Remap: 入力範囲を出力範囲に変換する
+float Mathf::Remap(float value, float inMin, float inMax, float outMin, float outMax)
+{
+  // 入力範囲の幅が 0 の場合は outMin を返す
+  if (inMin == inMax) return outMin;
+
+  float t = (value - inMin) / (inMax - inMin);
+  return outMin + (outMax - outMin) * t;
+}
+
+
 //Clamp
 int Mathf::Clamp(int value,int min,int max)
 {

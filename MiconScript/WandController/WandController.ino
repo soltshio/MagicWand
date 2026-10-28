@@ -12,8 +12,8 @@ uint8_t deviceMacAddr[] = { 0x34, 0xb7, 0xda, 0xf2, 0x1b, 0xf8 }; // ID1
 
 //Unityからのデータを受け取るための機能
 ESPNOW_Con2DevData controllerData;
-const int _getCommandLength =3;////一度に送られてくるコマンドの文字の数
-const int _sendCommandLength =4;//デバイス側に送る文字列の数(3つの文字に加えて、終端文字も入れる)
+const int _getCommandLength =6;////一度に送られてくるコマンドの文字の数
+const int _sendCommandLength =7;//デバイス側に送る文字列の数(終端文字も入れる)
 
 ESPNOW_Dev2ConData deviceData;
 
@@ -45,7 +45,7 @@ void loop()
     {
       sendCommand[i] = Serial.read();
     }
-    sendCommand[_sendCommandLength-1] = '\0';//念のため最期を終端文字にする
+    sendCommand[_sendCommandLength-1] = '\0';//念のため最後を終端文字にする
 
     //文字列を送るcontrollerDataに入れる
     memcpy(controllerData.cmd, sendCommand, sizeof(controllerData.cmd));
