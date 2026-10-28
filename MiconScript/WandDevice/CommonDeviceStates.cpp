@@ -51,9 +51,6 @@ void NormalState::Update(DeviceStateMachine& machine)
 
 void NormalState::Exit(DeviceStateMachine& machine)
 {
-  //LEDを消しておく
-  _led12Ring->Clear();
-
   //効果音を止めておく
   _dfPlayerMini->Stop();
 }
@@ -92,7 +89,6 @@ void NormalState::SetLEDLighting_SoundPlaying()
 //LEDを虹色に光らせる(intensityで光量を変更)
 void NormalState::SetLEDRainbowColors(float intensity)
 {
-  _led12Ring->Clear();
   for(int i=0; i<_led12Ring->LEDNum();i++)
   {
     _led12Ring->SetColor(i,_ledColors[i],intensity);
