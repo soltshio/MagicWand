@@ -22,7 +22,6 @@ void SunInvokeState::Enter(DeviceStateMachine& machine)
   _previous_ms=millis();
 
   //LEDを光らせる
-  _led12Ring->Clear();
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
     _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
@@ -64,7 +63,6 @@ void SunInvokeState::SetLEDColors(int elapsed)
   //その個数が違っていれば色を更新(同じであれば処理を無視)
   if(shiftLEDNum == _currentShiftLEDNum) return;
 
-  _led12Ring->Clear();
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
     int num = (i + shiftLEDNum)%_led12Ring->LEDNum();//どのLEDの色を変更するか
