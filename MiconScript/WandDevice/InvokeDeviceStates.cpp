@@ -46,9 +46,6 @@ void SunInvokeState::Update(DeviceStateMachine& machine)
 
 void SunInvokeState::Exit(DeviceStateMachine& machine)
 {
-  //LEDを消しておく
-  _led12Ring->Clear();
-
   //効果音を止めておく
   _dfPlayerMini->Stop();
 }
