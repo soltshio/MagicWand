@@ -115,7 +115,8 @@ void StarInvokeState::Update(DeviceStateMachine& machine)
 
 void StarInvokeState::Exit(DeviceStateMachine& machine)
 {
-
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
 }
 
 void StarInvokeState::PlaySound()
@@ -163,7 +164,8 @@ void ThunderInvokeState::Update(DeviceStateMachine& machine)
 
 void ThunderInvokeState::Exit(DeviceStateMachine& machine)
 {
-
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
 }
 
 void ThunderInvokeState::PlaySound()
@@ -211,7 +213,8 @@ void WaterInvokeState::Update(DeviceStateMachine& machine)
 
 void WaterInvokeState::Exit(DeviceStateMachine& machine)
 {
-
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
 }
 
 void WaterInvokeState::PlaySound()
@@ -257,7 +260,8 @@ void TimeInvokeState::Update(DeviceStateMachine& machine)
 
 void TimeInvokeState::Exit(DeviceStateMachine& machine)
 {
-
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
 }
 
 void TimeInvokeState::PlaySound()
