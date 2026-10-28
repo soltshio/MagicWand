@@ -17,7 +17,10 @@ class DeviceStateMachine;
 class SunCastState : public IDeviceState
 {
   //LED関係
-  const float _ledIntensity = 0.3;//LEDの光量(0～1)
+  const float _maxLedIntensity = 0.3;//LEDの最大時の光量(0～1)
+  const float _minLedIntensity = 0.02;//LEDの最小時の光量(0～1)
+
+  const int _maxCastLevel = 4;
   
   const Color _ledColors[12] = {//ライトの色
   {255,  0,  0},//赤

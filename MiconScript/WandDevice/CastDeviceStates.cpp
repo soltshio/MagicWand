@@ -43,7 +43,8 @@ void SunCastState::Exit(DeviceStateMachine& machine)
   _dfPlayerMini->Stop();
 }
 
-void SunCastState::PlayEffectOnUpCastLevel()//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+void SunCastState::PlayEffectOnUpCastLevel()
 {
   //詠唱がどこまで進んでいるかを取得
   int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
@@ -57,9 +58,15 @@ void SunCastState::PlayEffectOnUpCastLevel()//詠唱が進むたびにLEDの光�
   SetLED_CastLevel(castLevel);
 }
 
-void SunCastState::SetLED_CastLevel(int castLevel)//詠唱のレベルに合わせてLEDの光り方を変える
+//詠唱のレベルに合わせてLEDの光り方を変える
+void SunCastState::SetLED_CastLevel(int castLevel)
 {
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
 
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],intensity);
+  }
 }
 
 void SunCastState::ChangeToInvokeState(DeviceStateMachine& machine)
