@@ -28,12 +28,6 @@ public class MagicContentTypeStar : MagicContentTypeBase
         _starEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Star));
     }
 
-    //星のステートに入るようマイコンに指示を送る
-    public void SendChangeToStarCommandToMicon()
-    {
-        _sendManager.AddMessage(EMiconCommand.StartStar);
-    }
-
     //星の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayStarSoundCommandToMicon()
     {

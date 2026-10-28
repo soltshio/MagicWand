@@ -46,12 +46,6 @@ public class MagicContentTypeThunder : MagicContentTypeBase
         _lensFlareActivator.DeactivateAsync().Forget();
     }
 
-    //雷のステートに入るようマイコンに指示を送る
-    public void SendChangeToThunderCommandToMicon()
-    {
-        _sendManager.AddMessage(EMiconCommand.StartThunder);
-    }
-
     //雷の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayThunderSoundCommandToMicon()
     {

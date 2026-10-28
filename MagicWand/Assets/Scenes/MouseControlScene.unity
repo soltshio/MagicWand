@@ -308,7 +308,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     - {fileID: 11400000, guid: 84255bd99e3bd964c834a3f5a4589275, type: 2}
     - {fileID: 11400000, guid: 6c70bcf4a250ccb40af10fcf0fea2d6f, type: 2}
-    - {fileID: 11400000, guid: 20d9402a808812f49864cb118ab1d097, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -385,20 +384,6 @@ MonoBehaviour:
         - m_Target: {fileID: 525954}
           m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
           m_MethodName: SendPlaySunSoundCommandToMicon
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 525954}
-          m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
-          m_MethodName: SendChangeToSunCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -707,7 +692,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8989cde48126c954c8aec486d3af11ed, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: 3a003bf1cf079e34890c379b589c9d69, type: 2}
-    - {fileID: 11400000, guid: 13358ea0bafeea24089c6e298981f136, type: 2}
     - {fileID: 11400000, guid: 7ca20f831d7b5634a82e25ce8ff58328, type: 2}
     - {fileID: 11400000, guid: ab070011db5877147b2edffefb360733, type: 2}
     m_Events:
@@ -772,20 +756,6 @@ MonoBehaviour:
         - m_Target: {fileID: 52058000}
           m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
           m_MethodName: AffectToGrasses
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 52058000}
-          m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
-          m_MethodName: SendChangeToWaterCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6287,6 +6257,7 @@ GameObject:
   - component: {fileID: 485933970}
   - component: {fileID: 485933971}
   - component: {fileID: 485933972}
+  - component: {fileID: 485933973}
   m_Layer: 0
   m_Name: SendManager
   m_TagString: Untagged
@@ -6334,6 +6305,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SendCastCommandManager
   _magicCircleCastManager: {fileID: 1557604846}
+  _sendManager: {fileID: 485933971}
+--- !u!114 &485933973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485933969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083d54bd183916741a5e3947f57f8b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SendStartInvokeCommandManager
+  _magicCircleCloseManager: {fileID: 713691838}
   _sendManager: {fileID: 485933971}
 --- !u!1 &501344641
 GameObject:
@@ -15161,7 +15146,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: c461b3d07cddcde45b89c21f1d3cbc1b, type: 2}
     - {fileID: 11400000, guid: 020f9dd76cde0df4f8bb0c653981c626, type: 2}
-    - {fileID: 11400000, guid: d95e81e4a94e8eb46ab7743152464d9b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -15210,20 +15194,6 @@ MonoBehaviour:
         - m_Target: {fileID: 1040190901}
           m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
           m_MethodName: SendPlayStarSoundCommandToMicon
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1040190901}
-          m_TargetAssemblyTypeName: MagicContentTypeStar, Assembly-CSharp
-          m_MethodName: SendChangeToStarCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -16377,7 +16347,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     - {fileID: 11400000, guid: dafbe8108dd84e848908215baf8c9bd2, type: 2}
     - {fileID: 11400000, guid: fa82ac1d47fae2746b3f51765c4853ed, type: 2}
-    - {fileID: 11400000, guid: 898fd1f514b81ea419439def4d2a17da, type: 2}
     - {fileID: 11400000, guid: 41c88e5b8ae118c4a9e714c503a7a655, type: 2}
     - {fileID: 11400000, guid: 91967a43d058d464f8f1b76f2e742955, type: 2}
     m_Events:
@@ -16456,20 +16425,6 @@ MonoBehaviour:
         - m_Target: {fileID: 1138852481}
           m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
           m_MethodName: DeactivateLensFlare
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1138852481}
-          m_TargetAssemblyTypeName: MagicContentTypeThunder, Assembly-CSharp
-          m_MethodName: SendChangeToThunderCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -22813,7 +22768,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     - {fileID: 11400000, guid: d34c44e2b6d82144cbe0d405bf72e9f9, type: 2}
     - {fileID: 11400000, guid: 3a003bf1cf079e34890c379b589c9d69, type: 2}
-    - {fileID: 11400000, guid: f0174847dd712cb4da914115eadbe2ef, type: 2}
     - {fileID: 11400000, guid: 581b5781e0e0b04448681edbdfe05524, type: 2}
     - {fileID: 11400000, guid: 61cfb45a4858e6945a92e3bc1977e7c0, type: 2}
     m_Events:
@@ -22892,20 +22846,6 @@ MonoBehaviour:
         - m_Target: {fileID: 1910504420}
           m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
           m_MethodName: AffectToGrasses
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1910504420}
-          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
-          m_MethodName: SendChangeToTimeCommandToMicon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

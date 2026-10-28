@@ -56,12 +56,6 @@ public class MagicContentTypeSun : MagicContentTypeBase
         _sunEffectDirecter.AddTasks(_bigCreature.TakeMagicAsync(EMagic.Sun));
     }
 
-    //太陽のステートに入るようマイコンに指示を送る
-    public void SendChangeToSunCommandToMicon()
-    {
-        _sendManager.AddMessage(EMiconCommand.StartSun);
-    }
-
     //太陽の効果音を鳴らすようマイコンに指示を送る
     public void SendPlaySunSoundCommandToMicon()
     {
