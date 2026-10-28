@@ -132,7 +132,7 @@ public class SerialHandler : MonoBehaviour
     {
         if (!_isNewMessageReceived) return;
 
-        OnDataReceived(_message);
+        OnDataReceived?.Invoke(_message);
         _isNewMessageReceived = false;
     }
 
