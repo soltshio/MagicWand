@@ -91,13 +91,43 @@ void StarCastState::Enter(DeviceStateMachine& machine)
 
 void StarCastState::Update(DeviceStateMachine& machine)
 {
+  //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  PlayEffectOnUpCastLevel();
+
   //ステートの変更処理
   ChangeToInvokeState(machine);
 }
 
 void StarCastState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+void StarCastState::PlayEffectOnUpCastLevel()
+{
+  //詠唱がどこまで進んでいるかを取得
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+
+  if(castLevel == _commandManager->InvalidNum()) return;
+
+  //効果音を鳴らす
+  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+
+  //LEDの光り方を変える
+  SetLED_CastLevel(castLevel);
+}
+
+//詠唱のレベルに合わせてLEDの光り方を変える
+void StarCastState::SetLED_CastLevel(int castLevel)
+{
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],intensity);
+  }
 }
 
 void StarCastState::ChangeToInvokeState(DeviceStateMachine& machine)
@@ -129,13 +159,43 @@ void ThunderCastState::Enter(DeviceStateMachine& machine)
 
 void ThunderCastState::Update(DeviceStateMachine& machine)
 {
+  //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  PlayEffectOnUpCastLevel();
+
   //ステートの変更処理
   ChangeToInvokeState(machine);
 }
 
 void ThunderCastState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+void ThunderCastState::PlayEffectOnUpCastLevel()
+{
+  //詠唱がどこまで進んでいるかを取得
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+
+  if(castLevel == _commandManager->InvalidNum()) return;
+
+  //効果音を鳴らす
+  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+
+  //LEDの光り方を変える
+  SetLED_CastLevel(castLevel);
+}
+
+//詠唱のレベルに合わせてLEDの光り方を変える
+void ThunderCastState::SetLED_CastLevel(int castLevel)
+{
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],intensity);
+  }
 }
 
 void ThunderCastState::ChangeToInvokeState(DeviceStateMachine& machine)
@@ -167,13 +227,43 @@ void WaterCastState::Enter(DeviceStateMachine& machine)
 
 void WaterCastState::Update(DeviceStateMachine& machine)
 {
+  //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  PlayEffectOnUpCastLevel();
+
   //ステートの変更処理
   ChangeToInvokeState(machine);
 }
 
 void WaterCastState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+void WaterCastState::PlayEffectOnUpCastLevel()
+{
+  //詠唱がどこまで進んでいるかを取得
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+
+  if(castLevel == _commandManager->InvalidNum()) return;
+
+  //効果音を鳴らす
+  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+
+  //LEDの光り方を変える
+  SetLED_CastLevel(castLevel);
+}
+
+//詠唱のレベルに合わせてLEDの光り方を変える
+void WaterCastState::SetLED_CastLevel(int castLevel)
+{
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],intensity);
+  }
 }
 
 void WaterCastState::ChangeToInvokeState(DeviceStateMachine& machine)
@@ -203,13 +293,43 @@ void TimeCastState::Enter(DeviceStateMachine& machine)
 
 void TimeCastState::Update(DeviceStateMachine& machine)
 {
+  //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  PlayEffectOnUpCastLevel();
+
   //ステートの変更処理
   ChangeToInvokeState(machine);
 }
 
 void TimeCastState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+void TimeCastState::PlayEffectOnUpCastLevel()
+{
+  //詠唱がどこまで進んでいるかを取得
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+
+  if(castLevel == _commandManager->InvalidNum()) return;
+
+  //効果音を鳴らす
+  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+
+  //LEDの光り方を変える
+  SetLED_CastLevel(castLevel);
+}
+
+//詠唱のレベルに合わせてLEDの光り方を変える
+void TimeCastState::SetLED_CastLevel(int castLevel)
+{
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],intensity);
+  }
 }
 
 void TimeCastState::ChangeToInvokeState(DeviceStateMachine& machine)

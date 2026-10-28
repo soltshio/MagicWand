@@ -17,9 +17,10 @@ class DeviceStateMachine;
 class SunCastState : public IDeviceState
 {
   //LED関係
-  const float _maxLedIntensity = 0.3;//LEDの最大時の光量(0～1)
-  const float _minLedIntensity = 0.02;//LEDの最小時の光量(0～1)
+  const float _maxLedIntensity = 0.2;//LEDの最大時の光量(0～1)
+  const float _minLedIntensity = 0.005;//LEDの最小時の光量(0～1)
 
+  //最初に球に触れた時のcastLevelは0
   const int _maxCastLevel = 4;
   
   const Color _ledColors[12] = {//ライトの色
@@ -64,6 +65,13 @@ public:
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 class StarCastState : public IDeviceState
 {
+  //LED関係
+  const float _maxLedIntensity = 0.2;//LEDの最大時の光量(0～1)
+  const float _minLedIntensity = 0.005;//LEDの最小時の光量(0～1)
+
+  //最初に球に触れた時のcastLevelは0
+  const int _maxCastLevel = 4;
+
   const Color _ledColors[12] = {//ライトの色
   {160, 32,255},//紫
   {134, 32,255},
@@ -86,6 +94,8 @@ class StarCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   StarCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -104,6 +114,13 @@ public:
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 class ThunderCastState : public IDeviceState
 {
+  //LED関係
+  const float _maxLedIntensity = 0.2;//LEDの最大時の光量(0～1)
+  const float _minLedIntensity = 0.005;//LEDの最小時の光量(0～1)
+
+  //最初に球に触れた時のcastLevelは0
+  const int _maxCastLevel = 3;
+
   const Color _ledColors[12] = {//ライトの色
   {255,224, 32},//黄
   {170,214, 22},
@@ -126,6 +143,8 @@ class ThunderCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   ThunderCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -144,6 +163,13 @@ public:
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 class WaterCastState : public IDeviceState
 {
+  //LED関係
+  const float _maxLedIntensity = 0.2;//LEDの最大時の光量(0～1)
+  const float _minLedIntensity = 0.005;//LEDの最小時の光量(0～1)
+
+  //最初に球に触れた時のcastLevelは0
+  const int _maxCastLevel = 2;
+
   const Color _ledColors[12] = {//ライトの色
   { 80,208,255},//水色
   { 54,150,255},
@@ -166,6 +192,8 @@ class WaterCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   WaterCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -184,7 +212,14 @@ public:
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 class TimeCastState : public IDeviceState
 {
-    const Color _ledColors[12] = {//ライトの色
+  //LED関係
+  const float _maxLedIntensity = 0.2;//LEDの最大時の光量(0～1)
+  const float _minLedIntensity = 0.005;//LEDの最小時の光量(0～1)
+
+  //最初に球に触れた時のcastLevelは0
+  const int _maxCastLevel = 3;
+
+  const Color _ledColors[12] = {//ライトの色
   {130,255,  0},//黄緑
   { 86,234,  0},
   { 43,213,  0},
@@ -206,6 +241,8 @@ class TimeCastState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
+  void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
 public:
   TimeCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
