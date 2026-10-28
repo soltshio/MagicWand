@@ -28,8 +28,11 @@ public class MagicCircleCastManager : MonoBehaviour
 
     PassedSphereIndexHistory _passedSphereIndexHistory = new();//通った球の番号の履歴
 
-    public event Action<EMagic,int> OnSuccessToCast;//発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックスを入れている
+    //発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックス、第三引数に何回目に球を触れたかを入れている
+    public event Action<EMagic,int,int> OnSuccessToCast;
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
+
+    int _touchSphereCount = 0;//１詠唱に球に触れた回数
 
     //魔法陣の処理、処理が終わったら魔法の内容を返す
     //TODO:キャストパターンを引数に入れることで指定出来るようにする
@@ -42,6 +45,9 @@ public class MagicCircleCastManager : MonoBehaviour
 
         //球を全て非アクティブにする
         _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
+
+        //１詠唱に球に触れた回数をリセット
+        _touchSphereCount = 0;
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
@@ -58,7 +64,7 @@ public class MagicCircleCastManager : MonoBehaviour
 
             //現在発動の可能性がある魔法リストの作成
             CastableMagics castableMagics = new(castableSpellCasts);
-            castableMagics.OnSuccessToCast += OnSuccessToCast;
+            castableMagics.OnSuccessToCast += InvokeOnSuccessToCastAction;
 
             while (true)
             {
@@ -103,6 +109,13 @@ public class MagicCircleCastManager : MonoBehaviour
     private void Awake()
     {
         _magicSphereTouchChecker = new(_magicSpheresList);
+    }
+
+    void InvokeOnSuccessToCastAction(EMagic castMagic, int sphereIndex)
+    {
+        _touchSphereCount++;
+
+        OnSuccessToCast?.Invoke(castMagic, sphereIndex, _touchSphereCount);
     }
 
     //詠唱パターンにある全魔法から、魔法発動状態を取り出し初期化してcastableMagicsに入れて返す

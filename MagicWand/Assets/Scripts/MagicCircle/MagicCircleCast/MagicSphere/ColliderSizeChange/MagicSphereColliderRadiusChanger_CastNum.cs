@@ -36,7 +36,7 @@ public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
         SetAllMagicSphereRadius(_defaultRadius);
     }
 
-    void ChangeRadius(EMagic magic,int magicSphereNum)
+    void ChangeRadius(EMagic magic,int magicSphereNum,int touchSphereCount)
     {
         SetAllMagicSphereRadius(_radiusMoreThanTwice);
     }

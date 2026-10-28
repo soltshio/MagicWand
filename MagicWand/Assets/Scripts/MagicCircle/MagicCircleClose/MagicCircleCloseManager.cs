@@ -20,8 +20,14 @@ public class MagicCircleCloseManager : MonoBehaviour
     [SerializeField]
     float _delayDurationFromInvokedMagicIconEffectFromHideMagicCircle = 1f;
 
+    //魔法陣を閉じ始める際に呼ばれるコールバック(発動する魔法も引数に入れる)
+    public event Action<EMagic> OnStartClosingMagicCircle;
+
     public async UniTask CloseAsync(EMagic invokedMagic,CancellationToken ct)
     {
+        //魔法陣を閉じ始めるコールバックを呼び出す
+        OnStartClosingMagicCircle?.Invoke(invokedMagic);
+
         //発動した魔法のアイコンを表示する
         _invokedMagicIconEffect.PlayAsync(invokedMagic,ct).Forget();
 

@@ -12,12 +12,17 @@ public class EffectOnSuccessToCast : MonoBehaviour
     [SerializeField]
     AudioClip _castSE;
 
-    void Awake()
+    void OnEnable()
     {
         _magicCircleCastManager.OnSuccessToCast += CastEffect;
     }
 
-    void CastEffect(EMagic castMagic,int touchedMagicSphereindex)
+    void OnDisable()
+    {
+        _magicCircleCastManager.OnSuccessToCast -= CastEffect;
+    }
+
+    void CastEffect(EMagic castMagic,int touchedMagicSphereindex,int touchSphereCount)
     {
         _audioSource.PlayOneShot(_castSE);
     }
