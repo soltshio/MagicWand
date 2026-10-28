@@ -48,7 +48,7 @@ void SunCastState::PlayEffectOnUpCastLevel()
   if(castLevel == _commandManager->InvalidNum()) return;
 
   //効果音を鳴らす
-  _dfPlayerMini->PlaySound(ESoundNum::Cast);
+  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
 
   //LEDの光り方を変える
   SetLED_CastLevel(castLevel);

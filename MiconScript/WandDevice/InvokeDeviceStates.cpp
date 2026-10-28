@@ -35,7 +35,7 @@ void SunInvokeState::Update(DeviceStateMachine& machine)
   int elapsed= now - _previous_ms;
 
   //効果音の再生
-  PlaySound(elapsed);
+  //PlaySound(elapsed);
 
   //LEDの色の書き換え
   SetLEDColors(elapsed);
