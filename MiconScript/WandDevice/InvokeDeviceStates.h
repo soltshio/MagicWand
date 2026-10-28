@@ -47,7 +47,7 @@ class SunInvokeState : public IDeviceState
   CommandManager* _commandManager;
 
   void SetLEDColors(int elapsed);//LEDの色の書き換え
-  void PlaySound(int elapsed);//効果音の再生
+  void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   SunInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -88,6 +88,7 @@ class StarInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   StarInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -128,6 +129,7 @@ class ThunderInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   ThunderInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -168,6 +170,7 @@ class WaterInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   WaterInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
@@ -208,6 +211,7 @@ class TimeInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
   TimeInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
