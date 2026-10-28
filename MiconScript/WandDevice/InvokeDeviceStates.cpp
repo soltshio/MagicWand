@@ -106,7 +106,8 @@ void StarInvokeState::Enter(DeviceStateMachine& machine)
 
 void StarInvokeState::Update(DeviceStateMachine& machine)
 {
-
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void StarInvokeState::Exit(DeviceStateMachine& machine)
@@ -143,7 +144,8 @@ void ThunderInvokeState::Enter(DeviceStateMachine& machine)
 
 void ThunderInvokeState::Update(DeviceStateMachine& machine)
 {
-
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void ThunderInvokeState::Exit(DeviceStateMachine& machine)
@@ -180,7 +182,8 @@ void WaterInvokeState::Enter(DeviceStateMachine& machine)
 
 void WaterInvokeState::Update(DeviceStateMachine& machine)
 {
-
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void WaterInvokeState::Exit(DeviceStateMachine& machine)
@@ -215,7 +218,8 @@ void TimeInvokeState::Enter(DeviceStateMachine& machine)
 
 void TimeInvokeState::Update(DeviceStateMachine& machine)
 {
-  
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void TimeInvokeState::Exit(DeviceStateMachine& machine)
