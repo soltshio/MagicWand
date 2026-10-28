@@ -58,13 +58,13 @@ public class MagicContentTypeRain : MagicContentTypeBase
     //水のステートに入るようマイコンに指示を送る
     public void SendChangeToWaterCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.ChangeToWater);
+        _sendManager.AddMessage(EMiconCommand.StartWater);
     }
 
     //水の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayWaterSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.PlayWaterSound);
+        _sendManager.AddMessage(EMiconCommand.InvokeWater_PlaySound);
     }
 
     //水のステートを終わるようマイコンに指示を送る

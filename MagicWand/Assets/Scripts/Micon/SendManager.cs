@@ -16,31 +16,54 @@ public class SendManager : MonoBehaviour
     readonly Dictionary<EMiconCommand, string> _commandToMessageMap = new Dictionary<EMiconCommand, string>
     {
         //太陽魔法
-        { EMiconCommand.StartSun, "SN0" },
-        { EMiconCommand.PlaySunSound, "SN1" },
-        { EMiconCommand.FinishSun, "SN2" },
+        { EMiconCommand.StartSun,                  "SNst" },
+        { EMiconCommand.CastSun,                   "SNcs" },
+        { EMiconCommand.InvokeSun,                 "SNiv" },
+        { EMiconCommand.InvokeSun_PlaySound,       "SNps" },
+        { EMiconCommand.FinishSun,                 "SNfn" },
         //星魔法
-        { EMiconCommand.ChangeToStar, "ST0" },
-        { EMiconCommand.PlayStarSound, "ST1" },
-        { EMiconCommand.FinishStar, "ST2" },
+        { EMiconCommand.StartStar,                 "STst" },
+        { EMiconCommand.CastStar,                  "STcs" },
+        { EMiconCommand.InvokeStar,                "STiv" },
+        { EMiconCommand.InvokeStar_PlaySound,      "STps" },
+        { EMiconCommand.FinishStar,                "STfn" },
         //雷魔法
-        { EMiconCommand.ChangeToThunder, "TN0" },
-        { EMiconCommand.PlayThunderSound, "TN1" },
-        { EMiconCommand.FinishThunder, "TN2" },
+        { EMiconCommand.StartThunder,              "TNst" },
+        { EMiconCommand.CastThunder,               "TNcs" },
+        { EMiconCommand.InvokeThunder,             "TNiv" },
+        { EMiconCommand.InvokeThunder_PlaySound,   "TNps" },
+        { EMiconCommand.FinishThunder,             "TNfn" },
         //水魔法
-        { EMiconCommand.ChangeToWater, "WT0" },
-        { EMiconCommand.PlayWaterSound, "WT1" },
-        { EMiconCommand.FinishWater, "WT2" },
+        { EMiconCommand.StartWater,                "WTst" },
+        { EMiconCommand.CastWater,                 "WTcs" },
+        { EMiconCommand.InvokeWater,               "WTiv" },
+        { EMiconCommand.InvokeWater_PlaySound,     "WTps" },
+        { EMiconCommand.FinishWater,               "WTfn" },
         //時魔法
-        { EMiconCommand.ChangeToTime, "TM0" },
-        { EMiconCommand.PlayTimeSound, "TM1" },
-        { EMiconCommand.FinishTime, "TM2" },
+        { EMiconCommand.StartTime,                 "TMst" },
+        { EMiconCommand.CastTime,                  "TMcs" },
+        { EMiconCommand.InvokeTime,                "TMiv" },
+        { EMiconCommand.InvokeTime_PlaySound,      "TMps" },
+        { EMiconCommand.FinishTime,                "TMfn" },
     };
 
+    //コマンドのレベル
+    const int _defaultLevel = 0;
+    const int _minLevel = 0;
+    const int _maxLevel = 99;
 
-    public void AddMessage(EMiconCommand command)
+
+    //levelは2桁の正の整数(特に指定がなければ書かなくていい)
+    public void AddMessage(EMiconCommand command,int level= _defaultLevel)
     {
         if (!_commandToMessageMap.TryGetValue(command, out string message)) return;
+
+        level = Mathf.Clamp(level, _minLevel, _maxLevel);
+
+        //レベルを文字に変換してコマンドにくっつける
+        //レベルは必ず2桁の数字
+        message += level.ToString("00");
+
         
         _messageQueue.Enqueue(message);
     }

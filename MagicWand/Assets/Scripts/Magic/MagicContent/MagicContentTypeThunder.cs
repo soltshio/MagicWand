@@ -49,13 +49,13 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     //雷のステートに入るようマイコンに指示を送る
     public void SendChangeToThunderCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.ChangeToThunder);
+        _sendManager.AddMessage(EMiconCommand.StartThunder);
     }
 
     //雷の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayThunderSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.PlayThunderSound);
+        _sendManager.AddMessage(EMiconCommand.InvokeThunder_PlaySound);
     }
 
     //雷のステートを終わるようマイコンに指示を送る

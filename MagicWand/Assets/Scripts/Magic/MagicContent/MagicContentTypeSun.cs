@@ -65,7 +65,7 @@ public class MagicContentTypeSun : MagicContentTypeBase
     //太陽の効果音を鳴らすようマイコンに指示を送る
     public void SendPlaySunSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.PlaySunSound);
+        _sendManager.AddMessage(EMiconCommand.InvokeSun_PlaySound);
     }
 
     //太陽のステートを終わるようマイコンに指示を送る
