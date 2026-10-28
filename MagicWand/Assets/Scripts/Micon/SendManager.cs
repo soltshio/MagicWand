@@ -16,7 +16,7 @@ public class SendManager : MonoBehaviour
     readonly Dictionary<EMiconCommand, string> _commandToMessageMap = new Dictionary<EMiconCommand, string>
     {
         //太陽魔法
-        { EMiconCommand.ChangeToSun, "SN0" },
+        { EMiconCommand.StartSun, "SN0" },
         { EMiconCommand.PlaySunSound, "SN1" },
         { EMiconCommand.FinishSun, "SN2" },
         //星魔法

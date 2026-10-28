@@ -18,11 +18,7 @@ _commandManager(&commandManager)
 
 void SunCastState::Enter(DeviceStateMachine& machine)
 {
-  //効果音を鳴らす
-  _dfPlayerMini->PlaySound(ESoundNum::Cast);
-
-  //LEDを光らせる
-  SetLED_CastLevel(0);
+  
 }
 
 void SunCastState::Update(DeviceStateMachine& machine)
