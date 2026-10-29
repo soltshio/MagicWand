@@ -8,7 +8,7 @@
 class LED12Ring
 {
   //LEDの数
-  const int _numLEDs =12;
+  static constexpr int _numLEDs =12;
 
   //LEDのピン番号
   const int _ledPin;
@@ -28,7 +28,7 @@ public:
   void Tick();
 
   //LEDの数
-  int LEDNum() const{return _numLEDs;}
+  static constexpr int LEDNum() {return _numLEDs;}
 
   //光らせる操作
   void Clear();//全て消す
