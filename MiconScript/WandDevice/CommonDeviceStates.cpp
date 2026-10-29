@@ -123,3 +123,29 @@ void NormalState::ChangeState(DeviceStateMachine& machine)
     machine.ChangeState(machine.GetTimeCastState());
   }
 }
+
+
+
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+//LEDの色をフェードでだんだん変化させるだけのステート
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+LEDFadeState::LEDFadeState(LED12Ring &led12Ring,const Color* fromColors,const Color* toColors,float fromIntensity,float toIntensity,int fadeDuration_ms):
+_ledColorFadeController(led12Ring,fromColors,toColors,fromIntensity,toIntensity,fadeDuration_ms)
+{
+
+}
+
+void LEDFadeState::Enter(DeviceStateMachine& machine)
+{
+  _ledColorFadeController.Initialize();
+}
+
+void LEDFadeState::Update(DeviceStateMachine& machine)
+{
+  _ledColorFadeController.Tick();
+}
+
+void LEDFadeState::Exit(DeviceStateMachine& machine)
+{
+
+}

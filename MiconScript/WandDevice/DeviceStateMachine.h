@@ -4,6 +4,15 @@
 #include "CommonDeviceStates.h"
 #include "InvokeDeviceStates.h"
 #include "CastDeviceStates.h"
+#include "Color.h"
+#include "LED12Ring.h"
+
+struct StateLEDProperty//状態ごとのLEDのプロパティをまとめたもの
+{
+    const Color ledColors[LED12Ring::LEDNum()];
+    const float _lowLEDIntensity;//暗い時のLEDの光
+    const float _highLEDIntensity;//明るい時のLEDの光
+};
 
 class DeviceStateMachine {
 private:

@@ -60,6 +60,16 @@ float Mathf::Clamp(float value,float min,float max)
   return value;
 }
 
+int Mathf::Clamp01(int value)
+{
+  return Clamp(value,0,1);
+}
+
+float Mathf::Clamp01(float value)
+{
+  return Clamp(value,(float)0,(float)1);
+}
+
 
 //min と max の間で三角波を生成する
 float Mathf::TriangleWave01(float value, float min, float max)

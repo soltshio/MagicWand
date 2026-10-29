@@ -14,6 +14,8 @@ private:
 public:
   Color(int r,int g,int b);//rgbはそれぞれ0～255まで
 
+  static Color ColorLerp(Color colorA,Color colorB,float time);//timeは0～1まで
+
   void SetRGB(int r,int g,int b);
 
   void GetRGB(int& r,int& g,int& b) const

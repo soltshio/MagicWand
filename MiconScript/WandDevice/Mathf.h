@@ -16,6 +16,8 @@ public:
   //Clamp
   static int Clamp(int value,int min,int max);
   static float Clamp(float value,float min,float max);
+  static int Clamp01(int value);
+  static float Clamp01(float value);
   //min と max の間で三角波を生成する(valueがminとmaxの範囲外にあったら、自動的にClampする)
   static float TriangleWave01(float value, float min, float max);//min/max に近いほど 0、中央に近いほど 1 を返す
   static float InverseTriangleWave01(float value, float min, float max);//min/max に近いほど 1、中央に近いほど 0 を返す

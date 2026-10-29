@@ -35,7 +35,7 @@ void SunInvokeState::Update(DeviceStateMachine& machine)
   int elapsed= now - _previous_ms;
 
   //効果音の再生
-  //PlaySound(elapsed);
+  //PlaySound();
 
   //LEDの色の書き換え
   SetLEDColors(elapsed);
@@ -70,7 +70,7 @@ void SunInvokeState::SetLEDColors(int elapsed)
   _currentShiftLEDNum=shiftLEDNum;
 }
 
-void SunInvokeState::PlaySound(int elapsed)
+void SunInvokeState::PlaySound()
 {
   if(!_commandManager->IsCommand(ECommandKey::InvokeSun_PlaySound)) return;//コマンドが来ていなければ無視
 
@@ -106,12 +106,24 @@ void StarInvokeState::Enter(DeviceStateMachine& machine)
 
 void StarInvokeState::Update(DeviceStateMachine& machine)
 {
+  //効果音の再生
+  //PlaySound();
 
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void StarInvokeState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+void StarInvokeState::PlaySound()
+{
+  if(!_commandManager->IsCommand(ECommandKey::InvokeStar_PlaySound)) return;//コマンドが来ていなければ無視
+
+  _dfPlayerMini->PlaySound(ESoundNum::Star);
 }
 
 void StarInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
@@ -143,12 +155,24 @@ void ThunderInvokeState::Enter(DeviceStateMachine& machine)
 
 void ThunderInvokeState::Update(DeviceStateMachine& machine)
 {
+  //効果音の再生
+  //PlaySound();
 
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void ThunderInvokeState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+void ThunderInvokeState::PlaySound()
+{
+  if(!_commandManager->IsCommand(ECommandKey::InvokeThunder_PlaySound)) return;//コマンドが来ていなければ無視
+
+  _dfPlayerMini->PlaySound(ESoundNum::Thunder);
 }
 
 void ThunderInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
@@ -180,12 +204,24 @@ void WaterInvokeState::Enter(DeviceStateMachine& machine)
 
 void WaterInvokeState::Update(DeviceStateMachine& machine)
 {
+  //効果音の再生
+  //PlaySound();
 
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void WaterInvokeState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+void WaterInvokeState::PlaySound()
+{
+  if(!_commandManager->IsCommand(ECommandKey::InvokeWater_PlaySound)) return;//コマンドが来ていなければ無視
+
+  _dfPlayerMini->PlaySound(ESoundNum::Water);
 }
 
 void WaterInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
@@ -215,12 +251,24 @@ void TimeInvokeState::Enter(DeviceStateMachine& machine)
 
 void TimeInvokeState::Update(DeviceStateMachine& machine)
 {
-  
+  //効果音の再生
+  //PlaySound();
+
+  //ステートの変更(通常ステートに戻る)
+  ChangeToNormalState(machine);
 }
 
 void TimeInvokeState::Exit(DeviceStateMachine& machine)
 {
+  //効果音を止めておく
+  _dfPlayerMini->Stop();
+}
 
+void TimeInvokeState::PlaySound()
+{
+  if(!_commandManager->IsCommand(ECommandKey::InvokeTime_PlaySound)) return;//コマンドが来ていなければ無視
+
+  _dfPlayerMini->PlaySound(ESoundNum::Time);
 }
 
 void TimeInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
