@@ -5,6 +5,7 @@
 #include "DFPlayerMini.h"
 #include "LED12Ring.h"
 #include "CommandManager.h"
+#include "LEDColorFadeController.h"
 
 class DeviceStateMachine;
 
@@ -71,6 +72,22 @@ class NormalState : public IDeviceState
   void ChangeState(DeviceStateMachine& machine);//ステートの変更
 public:
   NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+
+  void Enter(DeviceStateMachine& machine) override;
+  void Update(DeviceStateMachine& machine) override;
+  void Exit(DeviceStateMachine& machine) override;
+};
+
+
+
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+//LEDの色をフェードでだんだん変化させるだけのステート
+//＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+class LEDFadeState : public IDeviceState
+{
+  LEDColorFadeController _ledColorFadeController;
+public:
+  LEDFadeState(LED12Ring &led12Ring,const Color* fromColors,const Color* toColors,float fromIntensity,float toIntensity,int fadeDuration_ms);
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
