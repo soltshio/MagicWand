@@ -12,7 +12,7 @@ DeviceStateMachine::DeviceStateMachine(
   const StateLEDProperty   &waterLEDProperty,
   const StateLEDProperty   &timeLEDProperty
 ):
-_normalState(mpu,dfPlayerMini,led12Ring,commandManager),
+_normalState(mpu,dfPlayerMini,led12Ring,commandManager,normalLEDProperty.ledColors,normalLEDProperty.lowLEDIntensity,normalLEDProperty.highLEDIntensity),
 _sunCastState(dfPlayerMini,led12Ring,commandManager,sunLEDProperty.ledColors,sunLEDProperty.lowLEDIntensity,sunLEDProperty.highLEDIntensity),
 _sunInvokeState(dfPlayerMini,led12Ring,commandManager,sunLEDProperty.ledColors,sunLEDProperty.highLEDIntensity),
 _starCastState(dfPlayerMini,led12Ring,commandManager,starLEDProperty.ledColors,starLEDProperty.lowLEDIntensity,starLEDProperty.highLEDIntensity),

@@ -6,11 +6,22 @@
 //＝＝＝＝＝＝＝＝
 //通常時のステート
 //＝＝＝＝＝＝＝＝
-NormalState::NormalState(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+NormalState::NormalState(
+  MPU_AccGyro &mpu,
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float ledIntensity_Normal,
+  float ledIntensity_SoundPlaying
+):
 _mpu(&mpu),
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_ledIntensity_Normal(ledIntensity_Normal),
+_ledIntensity_SoundPlaying(ledIntensity_SoundPlaying)
 {
 
 }
@@ -129,7 +140,14 @@ void NormalState::ChangeState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //LEDの色をフェードでだんだん変化させるだけのステート
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-LEDFadeState::LEDFadeState(LED12Ring &led12Ring,const Color* fromColors,const Color* toColors,float fromIntensity,float toIntensity,int fadeDuration_ms):
+LEDFadeState::LEDFadeState(
+  LED12Ring &led12Ring,
+  const Color* fromColors,
+  const Color* toColors,
+  float fromIntensity,
+  float toIntensity,
+  int fadeDuration_ms
+):
 _ledColorFadeController(led12Ring,fromColors,toColors,fromIntensity,toIntensity,fadeDuration_ms)
 {
 
