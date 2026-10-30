@@ -1,6 +1,17 @@
 #include "DeviceStateMachine.h"
 
-DeviceStateMachine::DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+DeviceStateMachine::DeviceStateMachine(
+  MPU_AccGyro              &mpu,
+  DFPlayerMini             &dfPlayerMini,
+  LED12Ring                &led12Ring,
+  CommandManager           &commandManager,
+  const StateLEDProperty   &normalLEDProperty,
+  const StateLEDProperty   &sunLEDProperty,
+  const StateLEDProperty   &starLEDProperty,
+  const StateLEDProperty   &thunderLEDProperty,
+  const StateLEDProperty   &waterLEDProperty,
+  const StateLEDProperty   &timeLEDProperty
+):
 _normalState(mpu,dfPlayerMini,led12Ring,commandManager),
 _sunCastState(dfPlayerMini,led12Ring,commandManager),
 _sunInvokeState(dfPlayerMini,led12Ring,commandManager),

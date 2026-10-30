@@ -36,7 +36,18 @@ private:
     IDeviceState* _currentState = nullptr;
 
 public:
-    DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+    DeviceStateMachine(
+        MPU_AccGyro              &mpu,
+        DFPlayerMini             &dfPlayerMini,
+        LED12Ring                &led12Ring,
+        CommandManager           &commandManager,
+        const StateLEDProperty   &normalLEDProperty,
+        const StateLEDProperty   &sunLEDProperty,
+        const StateLEDProperty   &starLEDProperty,
+        const StateLEDProperty   &thunderLEDProperty,
+        const StateLEDProperty   &waterLEDProperty,
+        const StateLEDProperty   &timeLEDProperty
+    );
 
     void Initialize();
     void Update();

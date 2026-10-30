@@ -176,7 +176,18 @@ const StateLEDProperty _timeLEDProperty =
 
 
 //ステートマシン関係
-DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring,_commandManager);
+DeviceStateMachine _deviceStateMachine(
+  _mpu,
+  _dfPlayerMini,
+  _led12Ring,
+  _commandManager,
+  _normalLEDProperty,
+  _sunLEDProperty,
+  _starLEDProperty,
+  _thunderLEDProperty,
+  _waterLEDProperty,
+  _timeLEDProperty
+);
 
 
 
