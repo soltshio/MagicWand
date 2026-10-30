@@ -55,7 +55,7 @@ void SunCastState::PlayEffectOnUpCastLevel()
   if(castLevel == _commandManager->InvalidNum()) return;
 
   //効果音を鳴らす
-  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
 
   //LEDの光り方を変える
   SetLED_CastLevel(castLevel);
@@ -128,12 +128,12 @@ void StarCastState::Exit(DeviceStateMachine& machine)
 void StarCastState::PlayEffectOnUpCastLevel()
 {
   //詠唱がどこまで進んでいるかを取得
-  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastStar);
 
   if(castLevel == _commandManager->InvalidNum()) return;
 
   //効果音を鳴らす
-  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
 
   //LEDの光り方を変える
   SetLED_CastLevel(castLevel);
@@ -206,12 +206,12 @@ void ThunderCastState::Exit(DeviceStateMachine& machine)
 void ThunderCastState::PlayEffectOnUpCastLevel()
 {
   //詠唱がどこまで進んでいるかを取得
-  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastThunder);
 
   if(castLevel == _commandManager->InvalidNum()) return;
 
   //効果音を鳴らす
-  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
 
   //LEDの光り方を変える
   SetLED_CastLevel(castLevel);
@@ -284,12 +284,12 @@ void WaterCastState::Exit(DeviceStateMachine& machine)
 void WaterCastState::PlayEffectOnUpCastLevel()
 {
   //詠唱がどこまで進んでいるかを取得
-  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastWater);
 
   if(castLevel == _commandManager->InvalidNum()) return;
 
   //効果音を鳴らす
-  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
 
   //LEDの光り方を変える
   SetLED_CastLevel(castLevel);
@@ -360,12 +360,12 @@ void TimeCastState::Exit(DeviceStateMachine& machine)
 void TimeCastState::PlayEffectOnUpCastLevel()
 {
   //詠唱がどこまで進んでいるかを取得
-  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastSun);
+  int castLevel = _commandManager->IsCommandAndLevel(ECommandKey::CastTime);
 
   if(castLevel == _commandManager->InvalidNum()) return;
 
   //効果音を鳴らす
-  //_dfPlayerMini->PlaySound(ESoundNum::Cast);
+  _dfPlayerMini->PlaySound(ESoundNum::Cast);
 
   //LEDの光り方を変える
   SetLED_CastLevel(castLevel);
