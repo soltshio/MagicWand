@@ -14,15 +14,15 @@ DeviceStateMachine::DeviceStateMachine(
 ):
 _normalState(mpu,dfPlayerMini,led12Ring,commandManager),
 _sunCastState(dfPlayerMini,led12Ring,commandManager),
-_sunInvokeState(dfPlayerMini,led12Ring,commandManager),
+_sunInvokeState(dfPlayerMini,led12Ring,commandManager,sunLEDProperty.ledColors,sunLEDProperty.highLEDIntensity),
 _starCastState(dfPlayerMini,led12Ring,commandManager),
-_starInvokeState(dfPlayerMini,led12Ring,commandManager),
+_starInvokeState(dfPlayerMini,led12Ring,commandManager,starLEDProperty.ledColors,starLEDProperty.highLEDIntensity),
 _waterCastState(dfPlayerMini,led12Ring,commandManager),
-_waterInvokeState(dfPlayerMini,led12Ring,commandManager),
+_waterInvokeState(dfPlayerMini,led12Ring,commandManager,waterLEDProperty.ledColors,waterLEDProperty.highLEDIntensity),
 _thunderCastState(dfPlayerMini,led12Ring,commandManager),
-_thunderInvokeState(dfPlayerMini,led12Ring,commandManager),
+_thunderInvokeState(dfPlayerMini,led12Ring,commandManager,thunderLEDProperty.ledColors,thunderLEDProperty.highLEDIntensity),
 _timeCastState(dfPlayerMini,led12Ring,commandManager),
-_timeInvokeState(dfPlayerMini,led12Ring,commandManager) 
+_timeInvokeState(dfPlayerMini,led12Ring,commandManager,timeLEDProperty.ledColors,timeLEDProperty.highLEDIntensity) 
 {
 
 }

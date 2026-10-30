@@ -6,8 +6,8 @@
 struct StateLEDProperty//状態ごとのLEDのプロパティをまとめたもの
 {
   const Color ledColors[LED12Ring::LEDNum()];
-  const float _lowLEDIntensity;//暗い時のLEDの光
-  const float _highLEDIntensity;//明るい時のLEDの光
+  const float lowLEDIntensity;//暗い時のLEDの光
+  const float highLEDIntensity;//明るい時のLEDの光
 };
 
 namespace StateLEDProperties
@@ -30,8 +30,8 @@ namespace StateLEDProperties
       Color(160,  32, 255), // 紫
       Color(255,  96, 208)  // ピンク
     },
-    ._lowLEDIntensity = 0.04f,
-    ._highLEDIntensity = 0.2f
+    .lowLEDIntensity = 0.04f,
+    .highLEDIntensity = 0.2f
   };
 
 
@@ -53,8 +53,8 @@ namespace StateLEDProperties
       Color(255, 106,  10),
       Color(255,  53,   5)  // 赤の一歩手前の色
     },
-    ._lowLEDIntensity = 0.01f,
-    ._highLEDIntensity = 0.2f
+    .lowLEDIntensity = 0.01f,
+    .highLEDIntensity = 0.2f
   };
 
 
@@ -76,8 +76,8 @@ namespace StateLEDProperties
       Color(107,  32, 255),
       Color(134,  32, 255)  // 紫の一歩手前の色
     },
-    ._lowLEDIntensity = 0.01f,
-    ._highLEDIntensity = 0.2f
+    .lowLEDIntensity = 0.01f,
+    .highLEDIntensity = 0.2f
   };
 
 
@@ -99,8 +99,8 @@ namespace StateLEDProperties
       Color( 85, 203,  11),
       Color(170, 214,  22)  // 黄の一歩手前の色
     },
-    ._lowLEDIntensity = 0.01f,
-    ._highLEDIntensity = 0.2f
+    .lowLEDIntensity = 0.01f,
+    .highLEDIntensity = 0.2f
   };
 
 
@@ -122,8 +122,8 @@ namespace StateLEDProperties
       Color( 27,  91, 255),
       Color( 54, 150, 255)  // 水色の一歩手前の色
     },
-    ._lowLEDIntensity = 0.01f,
-    ._highLEDIntensity = 0.2f
+    .lowLEDIntensity = 0.01f,
+    .highLEDIntensity = 0.2f
   };
 
 
@@ -145,10 +145,10 @@ namespace StateLEDProperties
       Color( 43, 213,   0),
       Color( 86, 234,   0)  // 黄緑の一歩手前の色
     },
-    ._lowLEDIntensity = 0.01f,
-    ._highLEDIntensity = 0.2f
+    .lowLEDIntensity = 0.01f,
+    .highLEDIntensity = 0.2f
   };
-  
+
 }
 
 

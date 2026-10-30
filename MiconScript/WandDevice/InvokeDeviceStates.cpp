@@ -7,10 +7,18 @@
 //＝＝＝＝＝＝＝＝＝
 //太陽魔法の発動ステート
 //＝＝＝＝＝＝＝＝＝
-SunInvokeState::SunInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+SunInvokeState::SunInvokeState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float ledIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_ledIntensity(ledIntensity)
 {
 
 }
@@ -91,10 +99,18 @@ void SunInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝
 //星魔法の発動ステート
 //＝＝＝＝＝＝＝＝＝＝
-StarInvokeState::StarInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+StarInvokeState::StarInvokeState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float ledIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_ledIntensity(ledIntensity)
 {
 
 }
@@ -140,10 +156,18 @@ void StarInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝
 //雷魔法の発動ステート
 //＝＝＝＝＝＝＝＝＝＝
-ThunderInvokeState::ThunderInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+ThunderInvokeState::ThunderInvokeState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float ledIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_ledIntensity(ledIntensity)
 {
 
 }
@@ -189,10 +213,18 @@ void ThunderInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝
 //水魔法の発動ステート
 //＝＝＝＝＝＝＝＝＝＝
-WaterInvokeState::WaterInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+WaterInvokeState::WaterInvokeState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float ledIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_ledIntensity(ledIntensity)
 {
 
 }
@@ -236,10 +268,18 @@ void WaterInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝
 //時魔法の発動ステート
 //＝＝＝＝＝＝＝＝＝＝
-TimeInvokeState::TimeInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+TimeInvokeState::TimeInvokeState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float ledIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_ledIntensity(ledIntensity)
 {
 
 }
