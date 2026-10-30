@@ -111,27 +111,27 @@ void NormalState::ChangeState(DeviceStateMachine& machine)
   //太陽魔法への遷移
   if(_commandManager->IsCommand(ECommandKey::StartSun))
   {
-    machine.ChangeState(machine.GetSunCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToSunState());
   }
   //星魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartStar))
   {
-    machine.ChangeState(machine.GetStarCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToStarState());
   }
   //雷魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartThunder))
   {
-    machine.ChangeState(machine.GetThunderCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToThunderState());
   }
   //水魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartWater))
   {
-    machine.ChangeState(machine.GetWaterCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToWaterState());
   }
   //時魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartTime))
   {
-    machine.ChangeState(machine.GetTimeCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToTimeState());
   }
 }
 
@@ -146,9 +146,11 @@ LEDFadeState::LEDFadeState(
   const Color* toColors,
   float fromIntensity,
   float toIntensity,
-  int fadeDuration_ms
+  int fadeDuration_ms,
+  IDeviceState& nextState
 ):
-_ledColorFadeController(led12Ring,fromColors,toColors,fromIntensity,toIntensity,fadeDuration_ms)
+_ledColorFadeController(led12Ring,fromColors,toColors,fromIntensity,toIntensity,fadeDuration_ms),
+_nextState(nextState)
 {
 
 }
@@ -161,6 +163,10 @@ void LEDFadeState::Enter(DeviceStateMachine& machine)
 void LEDFadeState::Update(DeviceStateMachine& machine)
 {
   _ledColorFadeController.Tick();
+
+  if(!_ledColorFadeController.IsFinished()) return;
+
+  machine.ChangeState(_nextState);
 }
 
 void LEDFadeState::Exit(DeviceStateMachine& machine)

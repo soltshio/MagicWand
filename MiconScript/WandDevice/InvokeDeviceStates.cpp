@@ -43,7 +43,7 @@ void SunInvokeState::Update(DeviceStateMachine& machine)
   int elapsed= now - _previous_ms;
 
   //効果音の再生
-  //PlaySound();
+  PlaySound();
 
   //LEDの色の書き換え
   SetLEDColors(elapsed);
@@ -123,7 +123,7 @@ void StarInvokeState::Enter(DeviceStateMachine& machine)
 void StarInvokeState::Update(DeviceStateMachine& machine)
 {
   //効果音の再生
-  //PlaySound();
+  PlaySound();
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -180,7 +180,7 @@ void ThunderInvokeState::Enter(DeviceStateMachine& machine)
 void ThunderInvokeState::Update(DeviceStateMachine& machine)
 {
   //効果音の再生
-  //PlaySound();
+  PlaySound();
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -237,7 +237,7 @@ void WaterInvokeState::Enter(DeviceStateMachine& machine)
 void WaterInvokeState::Update(DeviceStateMachine& machine)
 {
   //効果音の再生
-  //PlaySound();
+  PlaySound();
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -292,7 +292,7 @@ void TimeInvokeState::Enter(DeviceStateMachine& machine)
 void TimeInvokeState::Update(DeviceStateMachine& machine)
 {
   //効果音の再生
-  //PlaySound();
+  PlaySound();
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
