@@ -146,9 +146,11 @@ LEDFadeState::LEDFadeState(
   const Color* toColors,
   float fromIntensity,
   float toIntensity,
-  int fadeDuration_ms
+  int fadeDuration_ms,
+  IDeviceState& nextState
 ):
-_ledColorFadeController(led12Ring,fromColors,toColors,fromIntensity,toIntensity,fadeDuration_ms)
+_ledColorFadeController(led12Ring,fromColors,toColors,fromIntensity,toIntensity,fadeDuration_ms),
+_nextState(nextState)
 {
 
 }
@@ -161,6 +163,10 @@ void LEDFadeState::Enter(DeviceStateMachine& machine)
 void LEDFadeState::Update(DeviceStateMachine& machine)
 {
   _ledColorFadeController.Tick();
+
+  if(!_ledColorFadeController.IsFinished()) return;
+
+  machine.ChangeState(_nextState);
 }
 
 void LEDFadeState::Exit(DeviceStateMachine& machine)

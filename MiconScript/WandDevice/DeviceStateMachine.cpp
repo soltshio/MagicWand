@@ -24,14 +24,6 @@ _normalState(
 ),
 
 //太陽
-_ledFadeFromNormalToSunState(
-  led12Ring,
-  normalLEDProperty.ledColors,
-  sunLEDProperty.ledColors,
-  normalLEDProperty.lowLEDIntensity,
-  sunLEDProperty.lowLEDIntensity,
-  sunLEDProperty.toFadeDuration_ms
-),
 _sunCastState(
   dfPlayerMini,
   led12Ring,commandManager,
@@ -46,16 +38,17 @@ _sunInvokeState(
   sunLEDProperty.ledColors,
   sunLEDProperty.highLEDIntensity
 ),
-
-//星
-_ledFadeFromNormalToStarState(
+_ledFadeFromNormalToSunState(
   led12Ring,
   normalLEDProperty.ledColors,
-  starLEDProperty.ledColors,
+  sunLEDProperty.ledColors,
   normalLEDProperty.lowLEDIntensity,
-  starLEDProperty.lowLEDIntensity,
-  starLEDProperty.toFadeDuration_ms
+  sunLEDProperty.lowLEDIntensity,
+  sunLEDProperty.toFadeDuration_ms,
+  _sunCastState
 ),
+
+//星
 _starCastState(
   dfPlayerMini,
   led12Ring,
@@ -71,16 +64,17 @@ _starInvokeState(
   starLEDProperty.ledColors,
   starLEDProperty.highLEDIntensity
 ),
-
-//雷
-_ledFadeFromNormalToThunderState(
+_ledFadeFromNormalToStarState(
   led12Ring,
   normalLEDProperty.ledColors,
-  thunderLEDProperty.ledColors,
+  starLEDProperty.ledColors,
   normalLEDProperty.lowLEDIntensity,
-  thunderLEDProperty.lowLEDIntensity,
-  thunderLEDProperty.toFadeDuration_ms
+  starLEDProperty.lowLEDIntensity,
+  starLEDProperty.toFadeDuration_ms,
+  _starCastState
 ),
+
+//雷
 _thunderCastState(
   dfPlayerMini,
   led12Ring,
@@ -95,16 +89,17 @@ _thunderInvokeState(
   thunderLEDProperty.ledColors,
   thunderLEDProperty.highLEDIntensity
 ),
-
-//水
-_ledFadeFromNormalToWaterState(
+_ledFadeFromNormalToThunderState(
   led12Ring,
   normalLEDProperty.ledColors,
-  waterLEDProperty.ledColors,
+  thunderLEDProperty.ledColors,
   normalLEDProperty.lowLEDIntensity,
-  waterLEDProperty.lowLEDIntensity,
-  waterLEDProperty.toFadeDuration_ms
+  thunderLEDProperty.lowLEDIntensity,
+  thunderLEDProperty.toFadeDuration_ms,
+  _thunderCastState
 ),
+
+//水
 _waterCastState(
   dfPlayerMini,
   led12Ring,
@@ -120,15 +115,17 @@ _waterInvokeState(
   waterLEDProperty.ledColors,
   waterLEDProperty.highLEDIntensity
 ),
-//時
-_ledFadeFromNormalToTimeState(
+_ledFadeFromNormalToWaterState(
   led12Ring,
   normalLEDProperty.ledColors,
-  timeLEDProperty.ledColors,
+  waterLEDProperty.ledColors,
   normalLEDProperty.lowLEDIntensity,
-  timeLEDProperty.lowLEDIntensity,
-  timeLEDProperty.toFadeDuration_ms
+  waterLEDProperty.lowLEDIntensity,
+  waterLEDProperty.toFadeDuration_ms,
+  _waterCastState
 ),
+
+//時
 _timeCastState(
   dfPlayerMini,
   led12Ring,
@@ -142,7 +139,16 @@ _timeInvokeState(
   led12Ring,commandManager,
   timeLEDProperty.ledColors,
   timeLEDProperty.highLEDIntensity
-) 
+),
+_ledFadeFromNormalToTimeState(
+  led12Ring,
+  normalLEDProperty.ledColors,
+  timeLEDProperty.ledColors,
+  normalLEDProperty.lowLEDIntensity,
+  timeLEDProperty.lowLEDIntensity,
+  timeLEDProperty.toFadeDuration_ms,
+  _timeCastState
+)
 {
 
 }

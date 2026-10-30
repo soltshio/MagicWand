@@ -80,6 +80,7 @@ public:
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 class LEDFadeState : public IDeviceState
 {
+  IDeviceState& _nextState;
   LEDColorFadeController _ledColorFadeController;
 public:
   LEDFadeState(
@@ -88,7 +89,8 @@ public:
     const Color* toColors,
     float fromIntensity,
     float toIntensity,
-    int fadeDuration_ms
+    int fadeDuration_ms,
+    IDeviceState& nextState
   );
 
   void Enter(DeviceStateMachine& machine) override;
