@@ -7,6 +7,7 @@
 #include "LED12Ring.h"
 #include "Color.h"
 #include "CommandManager.h"
+#include "StateLEDProperties.h"
 
 //このデバイスのMACアドレス
 //34:b7:da:f2:1b:f8
@@ -39,33 +40,20 @@ DFPlayerMini _dfPlayerMini(SS_RX_PIN,SS_TX_PIN,MP3_BUSY_PIN,_volume);
 #define LED_PIN 6
 LED12Ring _led12Ring(LED_PIN);
 
-//LEDのステートごとのプロパティ関係
-
-//TODO:AIで色の指定をこの表記に変換させる
-//---通常状態---
-const StateLEDProperty _normalLEDProperty =
-{
-  .ledColors =
-  {
-    Color(255, 0, 0),
-    Color(0, 255, 0),
-    Color(0, 0, 255),
-    Color(255, 255, 0),
-    Color(255, 0, 255),
-    Color(0, 255, 255),
-    Color(255, 255, 255),
-    Color(128, 0, 0),
-    Color(0, 128, 0),
-    Color(0, 0, 128),
-    Color(128, 128, 0),
-    Color(128, 128, 128)
-  },
-  ._lowLEDIntensity = 0.2f,
-  ._highLEDIntensity = 1.0f
-};
-
 //ステートマシン関係
-DeviceStateMachine _deviceStateMachine(_mpu,_dfPlayerMini,_led12Ring,_commandManager);
+DeviceStateMachine _deviceStateMachine(
+  _mpu,
+  _dfPlayerMini,
+  _led12Ring,
+  _commandManager,
+  StateLEDProperties::normal,
+  StateLEDProperties::sun,
+  StateLEDProperties::star,
+  StateLEDProperties::thunder,
+  StateLEDProperties::water,
+  StateLEDProperties::time
+);
+
 
 
 void setup()

@@ -16,22 +16,9 @@ class DeviceStateMachine;
 class SunInvokeState : public IDeviceState
 {
   //LED関係
-  const float _ledIntensity = 0.3;//LEDの光量(0～1)
+  const float _ledIntensity;//LEDの光量(0～1)
   
-  const Color _ledColors[12] = {//ライトの色
-  {255,  0,  0},//赤
-  {255, 53,  5},
-  {255,106, 10},
-  {255,160, 16},//オレンジ
-  {255,181, 21},
-  {255,202, 26},
-  {255,224, 32},//黄
-  {255,202, 26},
-  {255,181, 21},
-  {255,160, 16},//オレンジ
-  {255,106, 10},
-  {255, 53,  5},//赤の一歩手前の色
-  };
+  const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
   const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
   int _currentShiftLEDNum;
@@ -50,7 +37,13 @@ class SunInvokeState : public IDeviceState
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
-  SunInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+  SunInvokeState(
+    DFPlayerMini &dfPlayerMini,
+    LED12Ring &led12Ring,
+    CommandManager &commandManager,
+    const Color* ledColors,
+    float ledIntensity
+  );
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -66,20 +59,10 @@ public:
 //＝＝＝＝＝＝＝＝＝＝
 class StarInvokeState : public IDeviceState
 {
-  const Color _ledColors[12] = {//ライトの色
-  {160, 32,255},//紫
-  {134, 32,255},
-  {107, 32,255},
-  { 80, 32,255},//青紫
-  { 54, 32,255},
-  { 27, 32,255},
-  {  0, 32,255},//青
-  { 27, 32,255},
-  { 54, 32,255},
-  { 80, 32,255},//青紫
-  {107, 32,255},
-  {134, 32,255},//紫の一歩手前の色
-  };
+  //LED関係
+  const float _ledIntensity;//LEDの光量(0～1)
+
+  const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
@@ -91,7 +74,13 @@ class StarInvokeState : public IDeviceState
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
-  StarInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+  StarInvokeState(
+    DFPlayerMini &dfPlayerMini,
+    LED12Ring &led12Ring,
+    CommandManager &commandManager,
+    const Color* ledColors,
+    float ledIntensity
+  );
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -107,20 +96,10 @@ public:
 //＝＝＝＝＝＝＝＝＝＝
 class ThunderInvokeState : public IDeviceState
 {
-  const Color _ledColors[12] = {//ライトの色
-  {255,224, 32},//黄
-  {170,214, 22},
-  { 85,203, 11},
-  {  0,192,  0},//緑
-  { 27,197, 85},
-  { 54,202,170},
-  { 80,208,255},//水色
-  { 54,202,170},
-  { 27,197, 85},
-  {  0,192,  0},//緑
-  { 85,203, 11},
-  {170,214, 22},//黄の一歩手前の色
-  };
+  //LED関係
+  const float _ledIntensity;//LEDの光量(0～1)
+
+  const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
@@ -132,7 +111,13 @@ class ThunderInvokeState : public IDeviceState
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
-  ThunderInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+  ThunderInvokeState(
+    DFPlayerMini &dfPlayerMini,
+    LED12Ring &led12Ring,
+    CommandManager &commandManager,
+    const Color* ledColors,
+    float ledIntensity
+  );
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -148,20 +133,10 @@ public:
 //＝＝＝＝＝＝＝＝＝＝
 class WaterInvokeState : public IDeviceState
 {
-  const Color _ledColors[12] = {//ライトの色
-  { 80,208,255},//水色
-  { 54,150,255},
-  { 27, 91,255},
-  {  0, 32,255},//青
-  { 27, 32,255},
-  { 54, 32,255},
-  { 80, 32,255},//青紫
-  { 54, 32,255},
-  { 27, 32,255},
-  {  0, 32,255},//青
-  { 27, 91,255},
-  { 54,150,255},//水色の一歩手前の色
-  };
+  //LED関係
+  const float _ledIntensity;//LEDの光量(0～1)
+
+  const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
@@ -173,7 +148,13 @@ class WaterInvokeState : public IDeviceState
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
-  WaterInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+  WaterInvokeState(
+    DFPlayerMini &dfPlayerMini,
+    LED12Ring &led12Ring,
+    CommandManager &commandManager,
+    const Color* ledColors,
+    float ledIntensity
+  );
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;
@@ -189,20 +170,10 @@ public:
 //＝＝＝＝＝＝＝＝＝＝
 class TimeInvokeState : public IDeviceState
 {
-  const Color _ledColors[12] = {//ライトの色
-  {130,255,  0},//黄緑
-  { 86,234,  0},
-  { 43,213,  0},
-  {  0,192,  0},//緑
-  { 13,195, 42},
-  { 26,198, 84},
-  { 40,200,127},//緑と水色の間
-  { 26,198, 84},
-  { 13,195, 42},
-  {  0,192,  0},//緑
-  { 43,213,  0},
-  { 86,234,  0},//黄緑の一歩手前の色
-  };
+  //LED関係
+  const float _ledIntensity;//LEDの光量(0～1)
+  
+  const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
@@ -214,7 +185,13 @@ class TimeInvokeState : public IDeviceState
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
-  TimeInvokeState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+  TimeInvokeState(
+    DFPlayerMini &dfPlayerMini,
+    LED12Ring &led12Ring,
+    CommandManager &commandManager,
+    const Color* ledColors,
+    float ledIntensity
+  );
 
   void Enter(DeviceStateMachine& machine) override;
   void Update(DeviceStateMachine& machine) override;

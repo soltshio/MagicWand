@@ -6,13 +6,7 @@
 #include "CastDeviceStates.h"
 #include "Color.h"
 #include "LED12Ring.h"
-
-struct StateLEDProperty//状態ごとのLEDのプロパティをまとめたもの
-{
-    const Color ledColors[LED12Ring::LEDNum()];
-    const float _lowLEDIntensity;//暗い時のLEDの光
-    const float _highLEDIntensity;//明るい時のLEDの光
-};
+#include "StateLEDProperties.h"
 
 class DeviceStateMachine {
 private:
@@ -36,7 +30,18 @@ private:
     IDeviceState* _currentState = nullptr;
 
 public:
-    DeviceStateMachine(MPU_AccGyro &mpu,DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager);
+    DeviceStateMachine(
+        MPU_AccGyro              &mpu,
+        DFPlayerMini             &dfPlayerMini,
+        LED12Ring                &led12Ring,
+        CommandManager           &commandManager,
+        const StateLEDProperty   &normalLEDProperty,
+        const StateLEDProperty   &sunLEDProperty,
+        const StateLEDProperty   &starLEDProperty,
+        const StateLEDProperty   &thunderLEDProperty,
+        const StateLEDProperty   &waterLEDProperty,
+        const StateLEDProperty   &timeLEDProperty
+    );
 
     void Initialize();
     void Update();
