@@ -111,27 +111,27 @@ void NormalState::ChangeState(DeviceStateMachine& machine)
   //太陽魔法への遷移
   if(_commandManager->IsCommand(ECommandKey::StartSun))
   {
-    machine.ChangeState(machine.GetSunCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToSunState());
   }
   //星魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartStar))
   {
-    machine.ChangeState(machine.GetStarCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToStarState());
   }
   //雷魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartThunder))
   {
-    machine.ChangeState(machine.GetThunderCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToThunderState());
   }
   //水魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartWater))
   {
-    machine.ChangeState(machine.GetWaterCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToWaterState());
   }
   //時魔法への遷移
   else if(_commandManager->IsCommand(ECommandKey::StartTime))
   {
-    machine.ChangeState(machine.GetTimeCastState());
+    machine.ChangeState(machine.GetLEDFadeFromNormalToTimeState());
   }
 }
 
