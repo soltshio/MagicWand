@@ -8,10 +8,20 @@
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //太陽魔法の詠唱(なぞり)ステート
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-SunCastState::SunCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+SunCastState::SunCastState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float minLEDIntensity,
+  float maxLEDIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_minLEDIntensity(minLEDIntensity),
+_maxLEDIntensity(maxLEDIntensity)
 {
 
 }
@@ -54,7 +64,7 @@ void SunCastState::PlayEffectOnUpCastLevel()
 //詠唱のレベルに合わせてLEDの光り方を変える
 void SunCastState::SetLED_CastLevel(int castLevel)
 {
-  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLEDIntensity,_maxLEDIntensity);
 
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
@@ -76,10 +86,20 @@ void SunCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //星魔法の詠唱(なぞり)ステート
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-StarCastState::StarCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+StarCastState::StarCastState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float minLEDIntensity,
+  float maxLEDIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_minLEDIntensity(minLEDIntensity),
+_maxLEDIntensity(maxLEDIntensity)
 {
 
 }
@@ -122,7 +142,7 @@ void StarCastState::PlayEffectOnUpCastLevel()
 //詠唱のレベルに合わせてLEDの光り方を変える
 void StarCastState::SetLED_CastLevel(int castLevel)
 {
-  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLEDIntensity,_maxLEDIntensity);
 
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
@@ -144,10 +164,20 @@ void StarCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //雷魔法の詠唱(なぞり)ステート
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-ThunderCastState::ThunderCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+ThunderCastState::ThunderCastState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float minLEDIntensity,
+  float maxLEDIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_minLEDIntensity(minLEDIntensity),
+_maxLEDIntensity(maxLEDIntensity)
 {
 
 }
@@ -190,7 +220,7 @@ void ThunderCastState::PlayEffectOnUpCastLevel()
 //詠唱のレベルに合わせてLEDの光り方を変える
 void ThunderCastState::SetLED_CastLevel(int castLevel)
 {
-  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLEDIntensity,_maxLEDIntensity);
 
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
@@ -212,10 +242,20 @@ void ThunderCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //水魔法の詠唱(なぞり)ステート
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-WaterCastState::WaterCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+WaterCastState::WaterCastState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float minLEDIntensity,
+  float maxLEDIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_minLEDIntensity(minLEDIntensity),
+_maxLEDIntensity(maxLEDIntensity)
 {
 
 }
@@ -258,7 +298,7 @@ void WaterCastState::PlayEffectOnUpCastLevel()
 //詠唱のレベルに合わせてLEDの光り方を変える
 void WaterCastState::SetLED_CastLevel(int castLevel)
 {
-  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLEDIntensity,_maxLEDIntensity);
 
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {
@@ -278,10 +318,20 @@ void WaterCastState::ChangeToInvokeState(DeviceStateMachine& machine)
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //時魔法の詠唱(なぞり)ステート
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-TimeCastState::TimeCastState(DFPlayerMini &dfPlayerMini,LED12Ring &led12Ring,CommandManager &commandManager):
+TimeCastState::TimeCastState(
+  DFPlayerMini &dfPlayerMini,
+  LED12Ring &led12Ring,
+  CommandManager &commandManager,
+  const Color* ledColors,
+  float minLEDIntensity,
+  float maxLEDIntensity
+):
 _dfPlayerMini(&dfPlayerMini),
 _led12Ring(&led12Ring),
-_commandManager(&commandManager)
+_commandManager(&commandManager),
+_ledColors(ledColors),
+_minLEDIntensity(minLEDIntensity),
+_maxLEDIntensity(maxLEDIntensity)
 {
 
 }
@@ -324,7 +374,7 @@ void TimeCastState::PlayEffectOnUpCastLevel()
 //詠唱のレベルに合わせてLEDの光り方を変える
 void TimeCastState::SetLED_CastLevel(int castLevel)
 {
-  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLedIntensity,_maxLedIntensity);
+  float intensity = Mathf::Remap((float)castLevel, 0,(float)_maxCastLevel,_minLEDIntensity,_maxLEDIntensity);
 
   for(int i=0; i<_led12Ring->LEDNum() ;i++)
   {

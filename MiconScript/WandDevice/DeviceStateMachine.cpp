@@ -13,15 +13,15 @@ DeviceStateMachine::DeviceStateMachine(
   const StateLEDProperty   &timeLEDProperty
 ):
 _normalState(mpu,dfPlayerMini,led12Ring,commandManager),
-_sunCastState(dfPlayerMini,led12Ring,commandManager),
+_sunCastState(dfPlayerMini,led12Ring,commandManager,sunLEDProperty.ledColors,sunLEDProperty.lowLEDIntensity,sunLEDProperty.highLEDIntensity),
 _sunInvokeState(dfPlayerMini,led12Ring,commandManager,sunLEDProperty.ledColors,sunLEDProperty.highLEDIntensity),
-_starCastState(dfPlayerMini,led12Ring,commandManager),
+_starCastState(dfPlayerMini,led12Ring,commandManager,starLEDProperty.ledColors,starLEDProperty.lowLEDIntensity,starLEDProperty.highLEDIntensity),
 _starInvokeState(dfPlayerMini,led12Ring,commandManager,starLEDProperty.ledColors,starLEDProperty.highLEDIntensity),
-_waterCastState(dfPlayerMini,led12Ring,commandManager),
-_waterInvokeState(dfPlayerMini,led12Ring,commandManager,waterLEDProperty.ledColors,waterLEDProperty.highLEDIntensity),
-_thunderCastState(dfPlayerMini,led12Ring,commandManager),
+_thunderCastState(dfPlayerMini,led12Ring,commandManager,thunderLEDProperty.ledColors,thunderLEDProperty.lowLEDIntensity,thunderLEDProperty.highLEDIntensity),
 _thunderInvokeState(dfPlayerMini,led12Ring,commandManager,thunderLEDProperty.ledColors,thunderLEDProperty.highLEDIntensity),
-_timeCastState(dfPlayerMini,led12Ring,commandManager),
+_waterCastState(dfPlayerMini,led12Ring,commandManager,waterLEDProperty.ledColors,waterLEDProperty.lowLEDIntensity,waterLEDProperty.highLEDIntensity),
+_waterInvokeState(dfPlayerMini,led12Ring,commandManager,waterLEDProperty.ledColors,waterLEDProperty.highLEDIntensity),
+_timeCastState(dfPlayerMini,led12Ring,commandManager,timeLEDProperty.ledColors,timeLEDProperty.lowLEDIntensity,timeLEDProperty.highLEDIntensity),
 _timeInvokeState(dfPlayerMini,led12Ring,commandManager,timeLEDProperty.ledColors,timeLEDProperty.highLEDIntensity) 
 {
 
