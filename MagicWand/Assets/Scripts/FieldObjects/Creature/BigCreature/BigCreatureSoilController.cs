@@ -3,7 +3,6 @@ using DG.Tweening;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 //作成者:杉山
 //大きな生物の身体表面の土コントローラー
@@ -11,7 +10,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class BigCreatureSoilController : MonoBehaviour
 {
     [SerializeField]
-    SkinnedMeshRenderer[] _bigCreatureBodyMeshRenderers;
+    SkinnedMeshRendererReference _bigCreatureBodyMeshRenderer;
 
     [SerializeField]
     float _minSoilValue = -1.83f;
@@ -23,7 +22,7 @@ public class BigCreatureSoilController : MonoBehaviour
     [Tooltip("でか生き物の初期の土の量(0を最低値、1を最大値として設定する)")] [SerializeField] [Range(0,1)]
     float _defaultSoilValueRate = 0.25f;
 
-    Material[] _materials;
+    Material _skinMaterial;
 
     SingleTaskCancellation _singleTaskCancellation = new SingleTaskCancellation();
 
@@ -31,7 +30,7 @@ public class BigCreatureSoilController : MonoBehaviour
 
     private float MaxSoilValue { get { return _minSoilValue + _rangeSoilValue; } }
 
-    public float CurrentSoilValueRate { get { return FromSoilValueToRate(_materials[0].GetFloat(_soilBoundaryHeightID));} }
+    public float CurrentSoilValueRate { get { return FromSoilValueToRate(_skinMaterial.GetFloat(_soilBoundaryHeightID));} }
 
     //でか生き物の土の量を変化させる(duration秒かけてtoAlphaRateまで土の量が変わっていく。)
     //toAlphaRateは0を最低値、1を最大値として設定する
@@ -45,10 +44,7 @@ public class BigCreatureSoilController : MonoBehaviour
 
         List<UniTask> runningTasks = new();
 
-        for(int i=0; i<_materials.Length ;i++)
-        {
-            runningTasks.Add(_materials[i].DOFloat(toSoilValue, _soilBoundaryHeightID, duration).ToUniTask(cancellationToken: ct));
-        }
+        runningTasks.Add(_skinMaterial.DOFloat(toSoilValue, _soilBoundaryHeightID, duration).ToUniTask(cancellationToken: ct));
 
         await UniTask.WhenAll(runningTasks);
     }
@@ -62,21 +58,13 @@ public class BigCreatureSoilController : MonoBehaviour
     {
         float newValue = FromRateToSoilValue(_defaultSoilValueRate);
 
-        for (int i = 0; i < _materials.Length; i++)
-        {
-            _materials[i].SetFloat(_soilBoundaryHeightID, newValue);
-        }
+        _skinMaterial.SetFloat(_soilBoundaryHeightID, newValue);
     }
 
     //レンダラーから各部のマテリアルを取得
     void GetBodyMaterial()
     {
-        _materials = new Material[_bigCreatureBodyMeshRenderers.Length];
-
-        for (int i = 0; i < _materials.Length; i++)
-        {
-            _materials[i] = _bigCreatureBodyMeshRenderers[i].material;
-        }
+        _skinMaterial = _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material;
     }
 
     float FromRateToSoilValue(float rate)

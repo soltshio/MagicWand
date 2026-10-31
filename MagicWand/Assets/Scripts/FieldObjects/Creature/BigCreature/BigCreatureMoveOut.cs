@@ -14,7 +14,7 @@ public class BigCreatureMoveOut : MonoBehaviour
     PlayableDirector _moveOutDirecter;
 
     [SerializeField]
-    Animator _bigCreatureAnimator;
+    AnimatorReference _bigCreatureAnimator;
 
     [SerializeField]
     SplineAnimate _splineAnimate;
@@ -26,7 +26,7 @@ public class BigCreatureMoveOut : MonoBehaviour
 
     public void WakeUp()
     {
-        _bigCreatureAnimator.SetTrigger(BigCreatureAnimatorProperty.MoveOutTriggerName);
+        _bigCreatureAnimator.Animator.SetTrigger(BigCreatureAnimatorProperty.MoveOutTriggerName);
     }
 
     public void Fly()
