@@ -117,13 +117,28 @@ _ledIntensity(ledIntensity)
 
 void StarInvokeState::Enter(DeviceStateMachine& machine)
 {
+  //各種値の初期化
+  _currentShiftLEDNum=0;
+  _previous_ms=millis();
 
+  //LEDを光らせる
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
+  }
 }
 
 void StarInvokeState::Update(DeviceStateMachine& machine)
 {
+  //経過時間の算出
+  unsigned long now = millis();
+  int elapsed= now - _previous_ms;
+
   //効果音の再生
   PlaySound();
+
+  //LEDの色の書き換え
+  SetLEDColors(elapsed);
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -133,6 +148,26 @@ void StarInvokeState::Exit(DeviceStateMachine& machine)
 {
   //効果音を止めておく
   _dfPlayerMini->Stop();
+}
+
+//LEDの色が回転するように変わっていくようにする
+void StarInvokeState::SetLEDColors(int elapsed)
+{
+  //何個分カラーをずらして光らせるかを算出
+  int shiftLEDNum = elapsed / _switchLEDInterval_ms;
+  shiftLEDNum %= _led12Ring->LEDNum();
+
+  //その個数が違っていれば色を更新(同じであれば処理を無視)
+  if(shiftLEDNum == _currentShiftLEDNum) return;
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    int num = (i + shiftLEDNum)%_led12Ring->LEDNum();//どのLEDの色を変更するか
+
+    _led12Ring->SetColor(num,_ledColors[i],_ledIntensity);
+  }
+
+  _currentShiftLEDNum=shiftLEDNum;
 }
 
 void StarInvokeState::PlaySound()
@@ -174,13 +209,28 @@ _ledIntensity(ledIntensity)
 
 void ThunderInvokeState::Enter(DeviceStateMachine& machine)
 {
+  //各種値の初期化
+  _currentShiftLEDNum=0;
+  _previous_ms=millis();
 
+  //LEDを光らせる
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
+  }
 }
 
 void ThunderInvokeState::Update(DeviceStateMachine& machine)
 {
+  //経過時間の算出
+  unsigned long now = millis();
+  int elapsed= now - _previous_ms;
+
   //効果音の再生
   PlaySound();
+
+  //LEDの色の書き換え
+  SetLEDColors(elapsed);
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -190,6 +240,26 @@ void ThunderInvokeState::Exit(DeviceStateMachine& machine)
 {
   //効果音を止めておく
   _dfPlayerMini->Stop();
+}
+
+//LEDの色が回転するように変わっていくようにする
+void ThunderInvokeState::SetLEDColors(int elapsed)
+{
+  //何個分カラーをずらして光らせるかを算出
+  int shiftLEDNum = elapsed / _switchLEDInterval_ms;
+  shiftLEDNum %= _led12Ring->LEDNum();
+
+  //その個数が違っていれば色を更新(同じであれば処理を無視)
+  if(shiftLEDNum == _currentShiftLEDNum) return;
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    int num = (i + shiftLEDNum)%_led12Ring->LEDNum();//どのLEDの色を変更するか
+
+    _led12Ring->SetColor(num,_ledColors[i],_ledIntensity);
+  }
+
+  _currentShiftLEDNum=shiftLEDNum;
 }
 
 void ThunderInvokeState::PlaySound()
@@ -231,13 +301,28 @@ _ledIntensity(ledIntensity)
 
 void WaterInvokeState::Enter(DeviceStateMachine& machine)
 {
+  //各種値の初期化
+  _currentShiftLEDNum=0;
+  _previous_ms=millis();
 
+  //LEDを光らせる
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
+  }
 }
 
 void WaterInvokeState::Update(DeviceStateMachine& machine)
 {
+  //経過時間の算出
+  unsigned long now = millis();
+  int elapsed= now - _previous_ms;
+
   //効果音の再生
   PlaySound();
+
+  //LEDの色の書き換え
+  SetLEDColors(elapsed);
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -247,6 +332,26 @@ void WaterInvokeState::Exit(DeviceStateMachine& machine)
 {
   //効果音を止めておく
   _dfPlayerMini->Stop();
+}
+
+//LEDの色が回転するように変わっていくようにする
+void WaterInvokeState::SetLEDColors(int elapsed)
+{
+  //何個分カラーをずらして光らせるかを算出
+  int shiftLEDNum = elapsed / _switchLEDInterval_ms;
+  shiftLEDNum %= _led12Ring->LEDNum();
+
+  //その個数が違っていれば色を更新(同じであれば処理を無視)
+  if(shiftLEDNum == _currentShiftLEDNum) return;
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    int num = (i + shiftLEDNum)%_led12Ring->LEDNum();//どのLEDの色を変更するか
+
+    _led12Ring->SetColor(num,_ledColors[i],_ledIntensity);
+  }
+
+  _currentShiftLEDNum=shiftLEDNum;
 }
 
 void WaterInvokeState::PlaySound()
@@ -286,13 +391,28 @@ _ledIntensity(ledIntensity)
 
 void TimeInvokeState::Enter(DeviceStateMachine& machine)
 {
-  
+  //各種値の初期化
+  _currentShiftLEDNum=0;
+  _previous_ms=millis();
+
+  //LEDを光らせる
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    _led12Ring->SetColor(i,_ledColors[i],_ledIntensity);
+  }
 }
 
 void TimeInvokeState::Update(DeviceStateMachine& machine)
 {
+  //経過時間の算出
+  unsigned long now = millis();
+  int elapsed= now - _previous_ms;
+
   //効果音の再生
   PlaySound();
+
+  //LEDの色の書き換え
+  SetLEDColors(elapsed);
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
@@ -302,6 +422,26 @@ void TimeInvokeState::Exit(DeviceStateMachine& machine)
 {
   //効果音を止めておく
   _dfPlayerMini->Stop();
+}
+
+//LEDの色が回転するように変わっていくようにする
+void TimeInvokeState::SetLEDColors(int elapsed)
+{
+  //何個分カラーをずらして光らせるかを算出
+  int shiftLEDNum = elapsed / _switchLEDInterval_ms;
+  shiftLEDNum %= _led12Ring->LEDNum();
+
+  //その個数が違っていれば色を更新(同じであれば処理を無視)
+  if(shiftLEDNum == _currentShiftLEDNum) return;
+
+  for(int i=0; i<_led12Ring->LEDNum() ;i++)
+  {
+    int num = (i + shiftLEDNum)%_led12Ring->LEDNum();//どのLEDの色を変更するか
+
+    _led12Ring->SetColor(num,_ledColors[i],_ledIntensity);
+  }
+
+  _currentShiftLEDNum=shiftLEDNum;
 }
 
 void TimeInvokeState::PlaySound()

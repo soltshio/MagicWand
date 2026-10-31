@@ -23,7 +23,6 @@ class SunInvokeState : public IDeviceState
   const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
   int _currentShiftLEDNum;
 
-  //その他
   unsigned long _previous_ms=0;
 
   //スピーカープレイヤー
@@ -64,6 +63,11 @@ class StarInvokeState : public IDeviceState
 
   const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
+  const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
+  int _currentShiftLEDNum;
+
+  unsigned long _previous_ms=0;
+
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
   //LED
@@ -71,6 +75,7 @@ class StarInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
@@ -101,6 +106,11 @@ class ThunderInvokeState : public IDeviceState
 
   const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
+  const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
+  int _currentShiftLEDNum;
+
+  unsigned long _previous_ms=0;
+
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
   //LED
@@ -108,6 +118,7 @@ class ThunderInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
@@ -138,6 +149,11 @@ class WaterInvokeState : public IDeviceState
 
   const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
+  const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
+  int _currentShiftLEDNum;
+
+  unsigned long _previous_ms=0;
+
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
   //LED
@@ -145,6 +161,7 @@ class WaterInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
@@ -175,6 +192,11 @@ class TimeInvokeState : public IDeviceState
   
   const Color* _ledColors;//ライトの色(要素数はLEDの数分)
 
+  const int _switchLEDInterval_ms = 100;//LEDのライトの光り方を切り替える(1つずらす)インターバル(ms)
+  int _currentShiftLEDNum;
+
+  unsigned long _previous_ms=0;
+
   //スピーカープレイヤー
   DFPlayerMini* _dfPlayerMini;
   //LED
@@ -182,6 +204,7 @@ class TimeInvokeState : public IDeviceState
   //コマンドの管理クラス
   CommandManager* _commandManager;
 
+  void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
 public:
