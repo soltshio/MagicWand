@@ -25,7 +25,7 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     float _waitElectricShockDuration = 0.5f;
 
     [SerializeField]
-    SkinnedMeshRenderer _bigCreatureBodyMeshRenderer;
+    SkinnedMeshRendererReference _bigCreatureBodyMeshRenderer;
 
     [SerializeField]
     Material _electricShockMat;
@@ -46,8 +46,8 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     async UniTask TakeElectricShockAsync(CancellationToken ct)
     {
         //感電マテリアルに変更
-        var defaultMat = _bigCreatureBodyMeshRenderer.material;
-        _bigCreatureBodyMeshRenderer.sharedMaterial = _electricShockMat;
+        var defaultMat = _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material;
+        _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.sharedMaterial = _electricShockMat;
 
         //感電の効果音
         _audioSource.PlayOneShot(_electricShockSE);
@@ -56,6 +56,6 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
         await UniTask.Delay(TimeSpan.FromSeconds(_waitElectricShockDuration), cancellationToken: ct);
 
         //元のマテリアルに変更
-        _bigCreatureBodyMeshRenderer.material = defaultMat;
+        _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material = defaultMat;
     }
 }

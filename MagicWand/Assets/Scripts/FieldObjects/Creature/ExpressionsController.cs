@@ -6,7 +6,7 @@
 public class ExpressionsController : MonoBehaviour
 {
     [SerializeField]
-    SkinnedMeshRenderer _expressionsRenderer;
+    SkinnedMeshRendererReference _expressionsRenderer;
 
     [Tooltip("デフォルト(初期)の表情番号")] [SerializeField]
     int _defaultExpressionNum;
@@ -28,7 +28,7 @@ public class ExpressionsController : MonoBehaviour
 
     void Start()
     {
-        _expressionsMat = _expressionsRenderer.material;
+        _expressionsMat = _expressionsRenderer.SkinnedMeshRenderer.material;
 
         //表情の初期化
         ChangeExpression(Mathf.Clamp(_defaultExpressionNum, 0, ExpressionsCount-1));
