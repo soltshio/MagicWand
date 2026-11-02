@@ -42,14 +42,6 @@ float Mathf::Remap(float value, float inMin, float inMax, float outMin, float ou
 
 
 //Clamp
-int Mathf::Clamp(int value,int min,int max)
-{
-  NormalizeRange(&min,&max);
-
-  if (value < min) return min;
-  if (value > max) return max;
-  return value;
-}
 
 float Mathf::Clamp(float value,float min,float max)
 {
@@ -58,11 +50,6 @@ float Mathf::Clamp(float value,float min,float max)
   if (value < min) return min;
   if (value > max) return max;
   return value;
-}
-
-int Mathf::Clamp01(int value)
-{
-  return Clamp(value,0,1);
 }
 
 float Mathf::Clamp01(float value)

@@ -33,7 +33,7 @@ namespace StateLEDProperties
     },
     .lowLEDIntensity = 0.04f,
     .highLEDIntensity = 0.2f,
-    .toFadeDuration_ms = 500//通常状態は基本この値は使わない
+    .toFadeDuration_ms = 300//通常状態は基本この値は使わない
   };
 
 
@@ -57,7 +57,7 @@ namespace StateLEDProperties
     },
     .lowLEDIntensity = 0.01f,
     .highLEDIntensity = 0.2f,
-    .toFadeDuration_ms = 500
+    .toFadeDuration_ms = 300
   };
 
 
@@ -81,7 +81,7 @@ namespace StateLEDProperties
     },
     .lowLEDIntensity = 0.01f,
     .highLEDIntensity = 0.2f,
-    .toFadeDuration_ms = 500
+    .toFadeDuration_ms = 300
   };
 
 
@@ -105,7 +105,7 @@ namespace StateLEDProperties
     },
     .lowLEDIntensity = 0.01f,
     .highLEDIntensity = 0.2f,
-    .toFadeDuration_ms = 500
+    .toFadeDuration_ms = 300
   };
 
 
@@ -129,7 +129,7 @@ namespace StateLEDProperties
     },
     .lowLEDIntensity = 0.01f,
     .highLEDIntensity = 0.2f,
-    .toFadeDuration_ms = 500
+    .toFadeDuration_ms = 300
   };
 
 
@@ -153,7 +153,7 @@ namespace StateLEDProperties
     },
     .lowLEDIntensity = 0.01f,
     .highLEDIntensity = 0.2f,
-    .toFadeDuration_ms = 500
+    .toFadeDuration_ms = 300
   };
 
 }

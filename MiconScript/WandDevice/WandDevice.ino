@@ -100,7 +100,7 @@ void loop()
   //ShowMACAddress();//MACアドレスをシリアルモニタに表示
 
   // loop内に適切なdeleyを付加
-  delay(30);
+  delay(15);
 }
 
 void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)
