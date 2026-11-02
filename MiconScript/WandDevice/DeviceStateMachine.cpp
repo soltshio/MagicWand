@@ -53,7 +53,7 @@ _ledFadeFromSunStateToNormal(
   normalLEDProperty.ledColors,
   sunLEDProperty.highLEDIntensity,
   normalLEDProperty.lowLEDIntensity,
-  sunLEDProperty.toFadeDuration_ms,
+  normalLEDProperty.toFadeDuration_ms,
   _normalState
 ),
 
@@ -88,7 +88,7 @@ _ledFadeFromStarStateToNormal(
   normalLEDProperty.ledColors,
   starLEDProperty.highLEDIntensity,
   normalLEDProperty.lowLEDIntensity,
-  starLEDProperty.toFadeDuration_ms,
+  normalLEDProperty.toFadeDuration_ms,
   _normalState
 ),
 
@@ -122,7 +122,7 @@ _ledFadeFromThunderStateToNormal(
   normalLEDProperty.ledColors,
   thunderLEDProperty.highLEDIntensity,
   normalLEDProperty.lowLEDIntensity,
-  thunderLEDProperty.toFadeDuration_ms,
+  normalLEDProperty.toFadeDuration_ms,
   _normalState
 ),
 
@@ -157,7 +157,7 @@ _ledFadeFromWaterStateToNormal(
   normalLEDProperty.ledColors,
   waterLEDProperty.highLEDIntensity,
   normalLEDProperty.lowLEDIntensity,
-  waterLEDProperty.toFadeDuration_ms,
+  normalLEDProperty.toFadeDuration_ms,
   _normalState
 ),
 
@@ -191,7 +191,7 @@ _ledFadeFromTimeStateToNormal(
   normalLEDProperty.ledColors,
   timeLEDProperty.highLEDIntensity,
   normalLEDProperty.lowLEDIntensity,
-  timeLEDProperty.toFadeDuration_ms,
+  normalLEDProperty.toFadeDuration_ms,
   _normalState
 )
 {
