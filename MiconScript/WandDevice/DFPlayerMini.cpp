@@ -11,7 +11,7 @@ _mp3_Busy_PIN(mp3_Busy_PIN)
 DFPlayerMini::DFPlayerMini(int ss_RX_PIN,int ss_TX_PIN,int mp3_Busy_PIN,int defaultVolume):
 _mySoftwareSerial(ss_RX_PIN,ss_TX_PIN),
 _mp3_Busy_PIN(mp3_Busy_PIN),
-_defaultVolume(Mathf::Clamp(defaultVolume,_minVolume,_maxVolume))
+_defaultVolume(Mathf::Clamp(static_cast<float>(defaultVolume), static_cast<float>(_minVolume), static_cast<float>(_maxVolume)))
 {
   
 }

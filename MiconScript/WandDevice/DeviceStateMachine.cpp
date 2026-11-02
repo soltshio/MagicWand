@@ -47,6 +47,15 @@ _ledFadeFromNormalToSunState(
   sunLEDProperty.toFadeDuration_ms,
   _sunCastState
 ),
+_ledFadeFromSunStateToNormal(
+  led12Ring,
+  sunLEDProperty.ledColors,
+  normalLEDProperty.ledColors,
+  sunLEDProperty.highLEDIntensity,
+  normalLEDProperty.lowLEDIntensity,
+  normalLEDProperty.toFadeDuration_ms,
+  _normalState
+),
 
 //星
 _starCastState(
@@ -73,6 +82,15 @@ _ledFadeFromNormalToStarState(
   starLEDProperty.toFadeDuration_ms,
   _starCastState
 ),
+_ledFadeFromStarStateToNormal(
+  led12Ring,
+  starLEDProperty.ledColors,
+  normalLEDProperty.ledColors,
+  starLEDProperty.highLEDIntensity,
+  normalLEDProperty.lowLEDIntensity,
+  normalLEDProperty.toFadeDuration_ms,
+  _normalState
+),
 
 //雷
 _thunderCastState(
@@ -97,6 +115,15 @@ _ledFadeFromNormalToThunderState(
   thunderLEDProperty.lowLEDIntensity,
   thunderLEDProperty.toFadeDuration_ms,
   _thunderCastState
+),
+_ledFadeFromThunderStateToNormal(
+  led12Ring,
+  thunderLEDProperty.ledColors,
+  normalLEDProperty.ledColors,
+  thunderLEDProperty.highLEDIntensity,
+  normalLEDProperty.lowLEDIntensity,
+  normalLEDProperty.toFadeDuration_ms,
+  _normalState
 ),
 
 //水
@@ -124,6 +151,15 @@ _ledFadeFromNormalToWaterState(
   waterLEDProperty.toFadeDuration_ms,
   _waterCastState
 ),
+_ledFadeFromWaterStateToNormal(
+  led12Ring,
+  waterLEDProperty.ledColors,
+  normalLEDProperty.ledColors,
+  waterLEDProperty.highLEDIntensity,
+  normalLEDProperty.lowLEDIntensity,
+  normalLEDProperty.toFadeDuration_ms,
+  _normalState
+),
 
 //時
 _timeCastState(
@@ -148,6 +184,15 @@ _ledFadeFromNormalToTimeState(
   timeLEDProperty.lowLEDIntensity,
   timeLEDProperty.toFadeDuration_ms,
   _timeCastState
+),
+_ledFadeFromTimeStateToNormal(
+  led12Ring,
+  timeLEDProperty.ledColors,
+  normalLEDProperty.ledColors,
+  timeLEDProperty.highLEDIntensity,
+  normalLEDProperty.lowLEDIntensity,
+  normalLEDProperty.toFadeDuration_ms,
+  _normalState
 )
 {
 

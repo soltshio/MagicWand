@@ -89,7 +89,7 @@ void SunInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishSun)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetLEDFadeFromSunStateToNormal());
 }
 
 
@@ -181,7 +181,7 @@ void StarInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishStar)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetLEDFadeFromStarStateToNormal());
 }
 
 
@@ -273,7 +273,7 @@ void ThunderInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishThunder)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetLEDFadeFromThunderStateToNormal());
 }
 
 
@@ -365,7 +365,7 @@ void WaterInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishWater)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetLEDFadeFromWaterStateToNormal());
 }
 
 
@@ -455,5 +455,5 @@ void TimeInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
 {
   if(!_commandManager->IsCommand(ECommandKey::FinishTime)) return;//コマンドが来ていなければ無視
 
-  machine.ChangeState(machine.GetNormalState());
+  machine.ChangeState(machine.GetLEDFadeFromTimeStateToNormal());
 }
