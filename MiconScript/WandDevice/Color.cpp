@@ -2,9 +2,9 @@
 #include "Mathf.h"
 
 Color::Color(int r,int g,int b):
-_r(Mathf::Clamp(r,_min,_max)),
-_g(Mathf::Clamp(g,_min,_max)),
-_b(Mathf::Clamp(b,_min,_max))
+_r(Mathf::Clamp(static_cast<float>(r), static_cast<float>(_min), static_cast<float>(_max))),
+_g(Mathf::Clamp(static_cast<float>(g), static_cast<float>(_min), static_cast<float>(_max))),
+_b(Mathf::Clamp(static_cast<float>(b), static_cast<float>(_min), static_cast<float>(_max)))
 {
   
 }
