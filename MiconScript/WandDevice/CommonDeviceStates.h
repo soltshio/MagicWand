@@ -98,4 +98,17 @@ public:
   void Exit(DeviceStateMachine& machine) override;
 };
 
+//＝＝＝＝＝＝＝
+//初期化ステート
+//＝＝＝＝＝＝＝
+class InitializeState : public IDeviceState
+{
+public:
+  InitializeState();
+
+  void Enter(DeviceStateMachine& machine) override;
+  void Update(DeviceStateMachine& machine) override;
+  void Exit(DeviceStateMachine& machine) override;
+};
+
 #endif

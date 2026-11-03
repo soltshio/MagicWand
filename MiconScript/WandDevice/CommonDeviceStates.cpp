@@ -173,3 +173,28 @@ void LEDFadeState::Exit(DeviceStateMachine& machine)
 {
 
 }
+
+
+
+//＝＝＝＝＝＝＝
+//初期化ステート
+//＝＝＝＝＝＝＝
+InitializeState::InitializeState()
+{
+
+}
+
+void InitializeState::Enter(DeviceStateMachine& machine)
+{
+  
+}
+
+void InitializeState::Update(DeviceStateMachine& machine)
+{
+  machine.ChangeState(machine.GetNormalState());
+}
+
+void InitializeState::Exit(DeviceStateMachine& machine)
+{
+
+}
