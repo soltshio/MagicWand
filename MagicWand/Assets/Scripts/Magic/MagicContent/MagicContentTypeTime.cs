@@ -33,9 +33,6 @@ public class MagicContentTypeTime : MagicContentTypeBase
     AudioSource _clockAudioSource;
 
     [SerializeField]
-    ClockEffectActivator _clockEffectActivator;
-
-    [SerializeField]
     SendManager _sendManager;
 
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
@@ -62,15 +59,13 @@ public class MagicContentTypeTime : MagicContentTypeBase
         _timeEffectDirecter.AddTasks(_groundGrassSetter.GrowGrassOnGroundAsync());
     }
 
-    public void ActivateClockEffect()
+    public void PlayClockSE()
     {
-        _clockEffectActivator.ActivateAsync().Forget();
         _clockAudioSource.Play();
     }
 
-    public void DeactivateClockEffect()
+    public void StopClockSE()
     {
-        _clockEffectActivator.DeactivateAsync().Forget();
         _clockAudioSource.Stop();
     }
 
