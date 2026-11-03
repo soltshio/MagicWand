@@ -35,6 +35,7 @@ class SunInvokeState : public IDeviceState
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   SunInvokeState(
     DFPlayerMini &dfPlayerMini,
@@ -78,6 +79,7 @@ class StarInvokeState : public IDeviceState
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   StarInvokeState(
     DFPlayerMini &dfPlayerMini,
@@ -121,6 +123,7 @@ class ThunderInvokeState : public IDeviceState
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   ThunderInvokeState(
     DFPlayerMini &dfPlayerMini,
@@ -164,6 +167,7 @@ class WaterInvokeState : public IDeviceState
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   WaterInvokeState(
     DFPlayerMini &dfPlayerMini,
@@ -207,6 +211,7 @@ class TimeInvokeState : public IDeviceState
   void SetLEDColors(int elapsed);//LEDの色の書き換え
   void PlaySound();//効果音の再生
   void ChangeToNormalState(DeviceStateMachine& machine);//通常ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   TimeInvokeState(
     DFPlayerMini &dfPlayerMini,
