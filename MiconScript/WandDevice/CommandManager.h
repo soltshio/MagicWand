@@ -37,7 +37,10 @@ enum class ECommandKey
   CastTime,//詠唱(なぞる)、段階付き
   InvokeTime,//魔法発動
   InvokeTime_PlaySound,//魔法の効果音再生
-  FinishTime//時魔法を終了する
+  FinishTime,//時魔法を終了する
+
+  //特別コマンド
+  Initialize//初期化(通常状態に戻す)
 };
 
 class CommandManager

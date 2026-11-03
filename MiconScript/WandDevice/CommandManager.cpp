@@ -46,6 +46,9 @@ namespace
     { ECommandKey::InvokeTime,                  "TMiv" },//魔法発動コマンド
     { ECommandKey::InvokeTime_PlaySound,        "TMps" },//魔法の効果音再生コマンド
     { ECommandKey::FinishTime,                  "TMfn" },//時魔法を終了するコマンド
+
+    //特別コマンド
+    { ECommandKey::Initialize,                   "SPin" },//初期化(通常状態に戻す)コマンド
   };
 
   constexpr int commandCount = sizeof(commandTable) / sizeof(commandTable[0]);
