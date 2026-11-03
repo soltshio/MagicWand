@@ -200,8 +200,8 @@ _ledFadeFromTimeStateToNormal(
 
 void DeviceStateMachine::Initialize() 
 {
-  //最初のステート
-  ChangeState(_normalState);
+  //最初は初期化ステートから、初期化処理が終われば通常ステートに自動的に移行する
+  ChangeState(_initializeState);
 }
 
 void DeviceStateMachine::Update()

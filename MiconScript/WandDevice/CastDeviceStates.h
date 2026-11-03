@@ -35,6 +35,7 @@ class SunCastState : public IDeviceState
   void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   SunCastState(
     DFPlayerMini &dfPlayerMini,
@@ -78,6 +79,7 @@ class StarCastState : public IDeviceState
   void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   StarCastState(
     DFPlayerMini &dfPlayerMini,
@@ -121,6 +123,7 @@ class ThunderCastState : public IDeviceState
   void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   ThunderCastState(
     DFPlayerMini &dfPlayerMini,
@@ -164,6 +167,7 @@ class WaterCastState : public IDeviceState
   void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   WaterCastState(
     DFPlayerMini &dfPlayerMini,
@@ -207,6 +211,7 @@ class TimeCastState : public IDeviceState
   void PlayEffectOnUpCastLevel();//詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   void SetLED_CastLevel(int castLevel);//詠唱のレベルに合わせてLEDの光り方を変える
   void ChangeToInvokeState(DeviceStateMachine& machine);//発動ステートへの遷移
+  void ChangeToInitializeState(DeviceStateMachine& machine);//初期化シーンへの遷移
 public:
   TimeCastState(
     DFPlayerMini &dfPlayerMini,

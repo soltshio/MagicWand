@@ -37,6 +37,8 @@ private:
     LEDFadeState _ledFadeFromNormalToTimeState;//通常時ー＞時ステートに移る時にLEDをフェードさせるステート
     LEDFadeState _ledFadeFromTimeStateToNormal;//時ステートー＞通常時に移る時にLEDをフェードさせるステート
 
+    InitializeState _initializeState;//初期化ステート
+
 
     IDeviceState* _currentState = nullptr;
 
@@ -86,6 +88,8 @@ public:
     LEDFadeState& GetLEDFadeFromNormalToTimeState() {return _ledFadeFromNormalToTimeState;}
     TimeCastState& GetTimeCastState() {return _timeCastState;}
     TimeInvokeState& GetTimeInvokeState() {return _timeInvokeState;}
+
+    InitializeState& GetInitializeState() {return _initializeState;}
 };
 
 #endif

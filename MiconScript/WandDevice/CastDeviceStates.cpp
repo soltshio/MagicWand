@@ -36,8 +36,11 @@ void SunCastState::Update(DeviceStateMachine& machine)
   //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   PlayEffectOnUpCastLevel();
 
-  //ステートの変更処理
+  //発動ステートへの移行処理
   ChangeToInvokeState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void SunCastState::Exit(DeviceStateMachine& machine)
@@ -79,6 +82,13 @@ void SunCastState::ChangeToInvokeState(DeviceStateMachine& machine)
   machine.ChangeState(machine.GetSunInvokeState());
 }
 
+void SunCastState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
+}
+
 
 
 
@@ -114,8 +124,11 @@ void StarCastState::Update(DeviceStateMachine& machine)
   //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   PlayEffectOnUpCastLevel();
 
-  //ステートの変更処理
+  //発動ステートへの移行処理
   ChangeToInvokeState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void StarCastState::Exit(DeviceStateMachine& machine)
@@ -157,6 +170,13 @@ void StarCastState::ChangeToInvokeState(DeviceStateMachine& machine)
   machine.ChangeState(machine.GetStarInvokeState());
 }
 
+void StarCastState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
+}
+
 
 
 
@@ -192,8 +212,11 @@ void ThunderCastState::Update(DeviceStateMachine& machine)
   //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   PlayEffectOnUpCastLevel();
 
-  //ステートの変更処理
+  //発動ステートへの移行処理
   ChangeToInvokeState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void ThunderCastState::Exit(DeviceStateMachine& machine)
@@ -235,6 +258,13 @@ void ThunderCastState::ChangeToInvokeState(DeviceStateMachine& machine)
   machine.ChangeState(machine.GetThunderInvokeState());
 }
 
+void ThunderCastState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
+}
+
 
 
 
@@ -270,8 +300,11 @@ void WaterCastState::Update(DeviceStateMachine& machine)
   //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   PlayEffectOnUpCastLevel();
 
-  //ステートの変更処理
+  //発動ステートへの移行処理
   ChangeToInvokeState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void WaterCastState::Exit(DeviceStateMachine& machine)
@@ -313,6 +346,15 @@ void WaterCastState::ChangeToInvokeState(DeviceStateMachine& machine)
   machine.ChangeState(machine.GetWaterInvokeState());
 }
 
+void WaterCastState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
+}
+
+
+
 
 
 //＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -346,8 +388,11 @@ void TimeCastState::Update(DeviceStateMachine& machine)
   //詠唱が進むたびにLEDの光り方が変わって、効果音がなるようにする
   PlayEffectOnUpCastLevel();
 
-  //ステートの変更処理
+  //発動ステートへの移行処理
   ChangeToInvokeState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void TimeCastState::Exit(DeviceStateMachine& machine)
@@ -387,4 +432,11 @@ void TimeCastState::ChangeToInvokeState(DeviceStateMachine& machine)
   if(!_commandManager->IsCommand(ECommandKey::InvokeTime)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetTimeInvokeState());
+}
+
+void TimeCastState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
 }

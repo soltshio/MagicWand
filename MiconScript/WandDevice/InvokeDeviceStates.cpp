@@ -50,6 +50,9 @@ void SunInvokeState::Update(DeviceStateMachine& machine)
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void SunInvokeState::Exit(DeviceStateMachine& machine)
@@ -90,6 +93,13 @@ void SunInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
   if(!_commandManager->IsCommand(ECommandKey::FinishSun)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetLEDFadeFromSunStateToNormal());
+}
+
+void SunInvokeState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
 }
 
 
@@ -142,6 +152,9 @@ void StarInvokeState::Update(DeviceStateMachine& machine)
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void StarInvokeState::Exit(DeviceStateMachine& machine)
@@ -182,6 +195,13 @@ void StarInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
   if(!_commandManager->IsCommand(ECommandKey::FinishStar)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetLEDFadeFromStarStateToNormal());
+}
+
+void StarInvokeState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
 }
 
 
@@ -234,6 +254,9 @@ void ThunderInvokeState::Update(DeviceStateMachine& machine)
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void ThunderInvokeState::Exit(DeviceStateMachine& machine)
@@ -274,6 +297,13 @@ void ThunderInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
   if(!_commandManager->IsCommand(ECommandKey::FinishThunder)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetLEDFadeFromThunderStateToNormal());
+}
+
+void ThunderInvokeState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
 }
 
 
@@ -326,6 +356,9 @@ void WaterInvokeState::Update(DeviceStateMachine& machine)
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void WaterInvokeState::Exit(DeviceStateMachine& machine)
@@ -366,6 +399,13 @@ void WaterInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
   if(!_commandManager->IsCommand(ECommandKey::FinishWater)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetLEDFadeFromWaterStateToNormal());
+}
+
+void WaterInvokeState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
 }
 
 
@@ -416,6 +456,9 @@ void TimeInvokeState::Update(DeviceStateMachine& machine)
 
   //ステートの変更(通常ステートに戻る)
   ChangeToNormalState(machine);
+
+  //初期化コマンドを受け取ったら初期化ステートに移行
+  ChangeToInitializeState(machine);
 }
 
 void TimeInvokeState::Exit(DeviceStateMachine& machine)
@@ -456,4 +499,11 @@ void TimeInvokeState::ChangeToNormalState(DeviceStateMachine& machine)
   if(!_commandManager->IsCommand(ECommandKey::FinishTime)) return;//コマンドが来ていなければ無視
 
   machine.ChangeState(machine.GetLEDFadeFromTimeStateToNormal());
+}
+
+void TimeInvokeState::ChangeToInitializeState(DeviceStateMachine& machine)//初期化シーンへの遷移
+{
+  if(!_commandManager->IsCommand(ECommandKey::Initialize)) return;//初期化コマンドが来ていなければ無視
+  
+  machine.ChangeState(machine.GetInitializeState());
 }
