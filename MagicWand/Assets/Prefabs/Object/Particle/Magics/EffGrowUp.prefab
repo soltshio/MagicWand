@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5583751775421062963}
   - component: {fileID: 3729026725066014363}
   - component: {fileID: 4567095683240477131}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4847,7 +4847,7 @@ GameObject:
   - component: {fileID: 7727886085493043538}
   - component: {fileID: 8843041677375289851}
   - component: {fileID: 429039172282881175}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: EffGrowUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

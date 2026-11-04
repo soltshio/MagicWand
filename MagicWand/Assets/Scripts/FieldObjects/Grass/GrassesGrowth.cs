@@ -6,28 +6,8 @@ using UnityEngine;
 
 public class GrassesGrowth : MonoBehaviour
 {
-    class GrowthAsyncProcess
-    {
-        float _startGrowthRate;
-        float _endGrowthRate;
-        GrassGrowthController _grassGrowthController;
-
-        public GrowthAsyncProcess(float startGrowthRate,float endGrowthRate,GrassGrowthController grassGrowthController)
-        {
-            _startGrowthRate = startGrowthRate;
-            _endGrowthRate = endGrowthRate;
-            _grassGrowthController = grassGrowthController;
-        }
-
-        public void SetGrowth(float rate)
-        {
-            float newGrowthRate = Mathf.Lerp(_startGrowthRate, _endGrowthRate, rate);
-            _grassGrowthController.SetGrowth(newGrowthRate);
-        }
-    }
-
     [SerializeField]
-    GrassGrowthController[] _grassGrowthControllers;
+    GrassGrowthDirector[] _grassGrowthDirectors;
 
     [Tooltip("1回魔法を撃つごとにどれくらい成長するようにするか")] [SerializeField] [Range(0,1)]
     float _growthDelta;
@@ -43,30 +23,57 @@ public class GrassesGrowth : MonoBehaviour
         var ct = this.GetCancellationTokenOnDestroy();
         ProgressTimer progressTimer = new ProgressTimer(_growthDuration);
 
-        //GrowthAsyncProcessの初期化
-        GrowthAsyncProcess[] growthAsyncProcesses = new GrowthAsyncProcess[_grassGrowthControllers.Length];
+        //GrowthAsyncProcessの成長範囲の設定
+        SetGrowthRateRange();
 
-        for(int i=0; i< growthAsyncProcesses.Length; i++)
-        {
-            float start = _grassGrowthControllers[i].CurrentGrowthRate;
-            float end = Mathf.Clamp01(start + _growthDelta);
-
-            growthAsyncProcesses[i] = new(start, end, _grassGrowthControllers[i]);
-        }
+        //成長演出の開始
+        EnterGrowth();
 
         //だんだん成長させていく
-        while(!progressTimer.IsFinished)
+        while (!progressTimer.IsFinished)
         {
             progressTimer.Tick();
 
             float progress = progressTimer.CalcProgress();
 
-            for (int i = 0; i < growthAsyncProcesses.Length; i++)
-            {
-                growthAsyncProcesses[i].SetGrowth(progress);
-            }
+            UpdateGrowth(progress);
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+        }
+
+        //成長演出の終了
+        ExitGrowth();
+    }
+
+    void SetGrowthRateRange()
+    {
+        for (int i = 0; i < _grassGrowthDirectors.Length; i++)
+        {
+            _grassGrowthDirectors[i].SetGrowthRateRange(_growthDelta);
+        }
+    }
+
+    void EnterGrowth()
+    {
+        for (int i = 0; i < _grassGrowthDirectors.Length; i++)
+        {
+            _grassGrowthDirectors[i].EnterGrowGrass();
+        }
+    }
+
+    void UpdateGrowth(float progress)
+    {
+        for (int i = 0; i < _grassGrowthDirectors.Length; i++)
+        {
+            _grassGrowthDirectors[i].UpdateGrowGrass(progress);
+        }
+    }
+
+    void ExitGrowth()
+    {
+        for (int i = 0; i < _grassGrowthDirectors.Length; i++)
+        {
+            _grassGrowthDirectors[i].ExitGrowGrass();
         }
     }
 
