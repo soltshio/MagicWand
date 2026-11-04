@@ -12,6 +12,8 @@ public class SendManager : MonoBehaviour
 
     Queue<string> _messageQueue = new Queue<string>();
 
+    public static SendManager Instance { get; private set; }
+
     //コマンドごとのマイコンに送るメッセージ(英語大文字2文字、数字１文字の合計３文字)
     readonly Dictionary<EMiconCommand, string> _commandToMessageMap = new Dictionary<EMiconCommand, string>
     {
@@ -45,6 +47,8 @@ public class SendManager : MonoBehaviour
         { EMiconCommand.InvokeTime,                "TMiv" },
         { EMiconCommand.InvokeTime_PlaySound,      "TMps" },
         { EMiconCommand.FinishTime,                "TMfn" },
+        //特別コマンド
+        { EMiconCommand.Initialize,                "SPin" },//初期化コマンド
     };
 
     //コマンドのレベル
@@ -66,6 +70,19 @@ public class SendManager : MonoBehaviour
 
         
         _messageQueue.Enqueue(message);
+    }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("SendManagerのインスタンスが既に存在します。");
+            Destroy(this);
+        }
     }
 
     async void Start()

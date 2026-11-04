@@ -32,8 +32,14 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [Tooltip("時計の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _clockAudioSource;
 
-    [SerializeField]
-    SendManager _sendManager;
+    SendManager _sendManagerInstance;
+
+    async void Start()
+    {
+        await UniTask.WaitUntil(() => SendManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        _sendManagerInstance = SendManager.Instance;
+    }
 
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
@@ -72,13 +78,15 @@ public class MagicContentTypeTime : MagicContentTypeBase
     //時の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayTimeSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.InvokeTime_PlaySound);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.InvokeTime_PlaySound);
     }
 
     //時のステートを終わるようマイコンに指示を送る
     public void SendFinishTimeCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.FinishTime);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.FinishTime);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)

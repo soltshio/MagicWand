@@ -37,4 +37,7 @@ public enum EMiconCommand
     InvokeTime,                //発動
     InvokeTime_PlaySound,      //時の効果音を鳴らす
     FinishTime,                //時魔法ステートを終わる
+
+    //---特別コマンド---
+    Initialize,//初期化
 }

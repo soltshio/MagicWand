@@ -28,8 +28,14 @@ public class MagicContentTypeSun : MagicContentTypeBase
     [SerializeField]
     ParticleSystem _sunParticle;
 
-    [SerializeField]
-    SendManager _sendManager;
+    SendManager _sendManagerInstance;
+
+    async void Start()
+    {
+        await UniTask.WaitUntil(() => SendManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        _sendManagerInstance = SendManager.Instance;
+    }
 
     public void SunLensActivate()
     {
@@ -59,13 +65,15 @@ public class MagicContentTypeSun : MagicContentTypeBase
     //太陽の効果音を鳴らすようマイコンに指示を送る
     public void SendPlaySunSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.InvokeSun_PlaySound);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.InvokeSun_PlaySound);
     }
 
     //太陽のステートを終わるようマイコンに指示を送る
     public void SendFinishSunCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.FinishSun);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.FinishSun);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 //作成者:杉山
 //詠唱関係のコマンドを送るマネージャー
@@ -8,10 +9,16 @@ public class SendCastCommandManager : MonoBehaviour
     [SerializeField]
     MagicCircleCastManager _magicCircleCastManager;
 
-    [SerializeField]
-    SendManager _sendManager;
+    SendManager _sendManagerInstance;
 
     const int _startCastMagicCount = 1;
+
+    async void Start()
+    {
+        await UniTask.WaitUntil(() => SendManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        _sendManagerInstance = SendManager.Instance;
+    }
 
     void OnEnable()
     {
@@ -25,16 +32,18 @@ public class SendCastCommandManager : MonoBehaviour
 
     void SendCastStateToMicon(EMagic castMagic, int touchedMagicSphereindex, int touchSphereCount)
     {
+        if(_sendManagerInstance == null) return;
+
         //１詠唱中の最初に触れた球だった場合、魔法を始めたことをマイコンに通知
         if(touchSphereCount == _startCastMagicCount)
         {
             switch(castMagic)
             {
-                case EMagic.Sun: _sendManager.AddMessage(EMiconCommand.StartSun); break;
-                case EMagic.Star: _sendManager.AddMessage(EMiconCommand.StartStar); break;
-                case EMagic.Thunder: _sendManager.AddMessage(EMiconCommand.StartThunder); break;
-                case EMagic.Rain: _sendManager.AddMessage(EMiconCommand.StartWater); break;
-                case EMagic.Time: _sendManager.AddMessage(EMiconCommand.StartTime); break;
+                case EMagic.Sun: _sendManagerInstance.AddMessage(EMiconCommand.StartSun); break;
+                case EMagic.Star: _sendManagerInstance.AddMessage(EMiconCommand.StartStar); break;
+                case EMagic.Thunder: _sendManagerInstance.AddMessage(EMiconCommand.StartThunder); break;
+                case EMagic.Rain: _sendManagerInstance.AddMessage(EMiconCommand.StartWater); break;
+                case EMagic.Time: _sendManagerInstance.AddMessage(EMiconCommand.StartTime); break;
             }
         }
 
@@ -43,11 +52,11 @@ public class SendCastCommandManager : MonoBehaviour
 
         switch (castMagic)
         {
-            case EMagic.Sun: _sendManager.AddMessage(EMiconCommand.CastSun,castLevel); break;
-            case EMagic.Star: _sendManager.AddMessage(EMiconCommand.CastStar,castLevel); break;
-            case EMagic.Thunder: _sendManager.AddMessage(EMiconCommand.CastThunder,castLevel); break;
-            case EMagic.Rain: _sendManager.AddMessage(EMiconCommand.CastWater,castLevel); break;
-            case EMagic.Time: _sendManager.AddMessage(EMiconCommand.CastTime,castLevel); break;
+            case EMagic.Sun: _sendManagerInstance.AddMessage(EMiconCommand.CastSun,castLevel); break;
+            case EMagic.Star: _sendManagerInstance.AddMessage(EMiconCommand.CastStar,castLevel); break;
+            case EMagic.Thunder: _sendManagerInstance.AddMessage(EMiconCommand.CastThunder,castLevel); break;
+            case EMagic.Rain: _sendManagerInstance.AddMessage(EMiconCommand.CastWater,castLevel); break;
+            case EMagic.Time: _sendManagerInstance.AddMessage(EMiconCommand.CastTime,castLevel); break;
         }
     }
 }
