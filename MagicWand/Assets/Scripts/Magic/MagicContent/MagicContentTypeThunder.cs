@@ -19,8 +19,14 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     [SerializeField]
     LensFlareActivator _lensFlareActivator;
 
-    [SerializeField]
-    SendManager _sendManager;
+    SendManager _sendManagerInstance;
+
+    async void Start()
+    {
+        await UniTask.WaitUntil(() => SendManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        _sendManagerInstance = SendManager.Instance;
+    }
 
     //SignalReceiverであるタイミングで一度タイムラインを一時停止させる(他のオブジェクトへの影響処理が終わればまた再生させる)
     public void PauseTimelineForAffectFieldObjects()
@@ -49,13 +55,15 @@ public class MagicContentTypeThunder : MagicContentTypeBase
     //雷の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayThunderSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.InvokeThunder_PlaySound);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.InvokeThunder_PlaySound);
     }
 
     //雷のステートを終わるようマイコンに指示を送る
     public void SendFinishThunderCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.FinishThunder);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.FinishThunder);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)

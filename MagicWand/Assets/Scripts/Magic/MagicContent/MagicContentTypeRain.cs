@@ -22,8 +22,14 @@ public class MagicContentTypeRain : MagicContentTypeBase
     [Tooltip("雨の効果音が入ったAudioSource")] [SerializeField]
     AudioSource _audioRainSource;
 
-    [SerializeField]
-    SendManager _sendManager;
+    SendManager _sendManagerInstance;
+
+    async void Start()
+    {
+        await UniTask.WaitUntil(() => SendManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
+
+        _sendManagerInstance = SendManager.Instance;
+    }
 
     public void StartRaining()
     {
@@ -58,13 +64,15 @@ public class MagicContentTypeRain : MagicContentTypeBase
     //水の効果音を鳴らすようマイコンに指示を送る
     public void SendPlayWaterSoundCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.InvokeWater_PlaySound);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.InvokeWater_PlaySound);
     }
 
     //水のステートを終わるようマイコンに指示を送る
     public void SendFinishWaterCommandToMicon()
     {
-        _sendManager.AddMessage(EMiconCommand.FinishWater);
+        if(_sendManagerInstance == null) return;
+        _sendManagerInstance.AddMessage(EMiconCommand.FinishWater);
     }
 
     public override async UniTask ActivateAsync(CancellationToken ct)
