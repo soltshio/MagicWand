@@ -287,7 +287,6 @@ MonoBehaviour:
   _sunSE: {fileID: 8300000, guid: 4ae975fd8d94443419a321de459816ad, type: 3}
   _sunLensActivator: {fileID: 1148722372}
   _sunParticle: {fileID: 136774163}
-  _sendManager: {fileID: 485933971}
 --- !u!114 &525956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,7 +572,6 @@ MonoBehaviour:
     _eventDirecter: {fileID: 52058004}
   _rainParticle: {fileID: 1844311280}
   _audioRainSource: {fileID: 52058002}
-  _sendManager: {fileID: 485933971}
 --- !u!114 &52058001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5006,11 +5004,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 485933970}
-  - component: {fileID: 485933971}
   - component: {fileID: 485933972}
   - component: {fileID: 485933973}
   m_Layer: 0
-  m_Name: SendManager
+  m_Name: MiconSendManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5031,18 +5028,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 537828264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &485933971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 485933969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9a094f779c2d5249a9e715734ffb3fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SendManager
 --- !u!114 &485933972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5056,7 +5041,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SendCastCommandManager
   _magicCircleCastManager: {fileID: 1557604846}
-  _sendManager: {fileID: 485933971}
 --- !u!114 &485933973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5070,7 +5054,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SendStartInvokeCommandManager
   _magicCircleCloseManager: {fileID: 713691838}
-  _sendManager: {fileID: 485933971}
 --- !u!1 &501344641
 GameObject:
   m_ObjectHideFlags: 0
@@ -13979,7 +13962,6 @@ MonoBehaviour:
   _bigCreature: {fileID: 623789239}
   _starEffectDirecter:
     _eventDirecter: {fileID: 1040190903}
-  _sendManager: {fileID: 485933971}
 --- !u!320 &1040190903
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -14870,7 +14852,6 @@ MonoBehaviour:
   _thunderEffectDirecter:
     _eventDirecter: {fileID: 1138852487}
   _lensFlareActivator: {fileID: 962548465}
-  _sendManager: {fileID: 485933971}
 --- !u!114 &1138852482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22220,7 +22201,6 @@ MonoBehaviour:
   _bigCreature: {fileID: 623789239}
   _grassesGrowth: {fileID: 236575980}
   _clockAudioSource: {fileID: 1910504422}
-  _sendManager: {fileID: 485933971}
 --- !u!114 &1910504421
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550094651866200861}
   - component: {fileID: 4732944121607576196}
+  - component: {fileID: 6049833998056320326}
   m_Layer: 0
   m_Name: SendManager
   m_TagString: Untagged
@@ -44,3 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a094f779c2d5249a9e715734ffb3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SendManager
+--- !u!114 &6049833998056320326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826925847752647002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad27f5ba599c0b4893971ca2a1512ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InitCommandOnStartManager
