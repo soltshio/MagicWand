@@ -47,6 +47,8 @@ public class SendManager : MonoBehaviour
         { EMiconCommand.InvokeTime,                "TMiv" },
         { EMiconCommand.InvokeTime_PlaySound,      "TMps" },
         { EMiconCommand.FinishTime,                "TMfn" },
+        //特別コマンド
+        { EMiconCommand.Initialize,                "SPin" },//初期化コマンド
     };
 
     //コマンドのレベル
