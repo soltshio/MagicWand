@@ -28,7 +28,7 @@ public class OptionDataSaveLoadManager : MonoBehaviour
     }
 
 
-
+    //TODO:音量関係は列挙型で音の種類を指定出来るようにする
     //マスターの音量
     const string MasterVolumeKey = "MASTER_VOLUME";
 
