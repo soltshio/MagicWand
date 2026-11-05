@@ -7,13 +7,12 @@ using UnityEngine;
 
 public class AudioMixerName : MonoBehaviour
 {
-    readonly static Dictionary<ESoundType,string> _audioMixerSoundNameDic
-        = new Dictionary<ESoundType, string>()
-        {
-            { ESoundType.Master,   "Master" },//マスター
-            { ESoundType.SE,       "SE"},//SE
-            { ESoundType.BGM,      "BGM"}//BGM
-        };
+    readonly static Dictionary<ESoundType,string> _audioMixerSoundNameDic = new Dictionary<ESoundType, string>()
+    {
+        { ESoundType.Master,   "Master" },//マスター
+        { ESoundType.SE,       "SE"},//SE
+        { ESoundType.BGM,      "BGM"}//BGM
+    };
 
     public static string SoundName(ESoundType type)
     {

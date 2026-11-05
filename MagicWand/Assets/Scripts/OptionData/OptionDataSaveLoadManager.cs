@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 //作成者:杉山
 //オプションデータのセーブ・ロードをするクラス
 
 public class OptionDataSaveLoadManager : MonoBehaviour
 {
+    //＝＝＝＝＝＝＝＝＝＝
     //マイコンのポート番号
+    //＝＝＝＝＝＝＝＝＝＝
     const string MiconPortNumberKey = "MICON_PORT_NUMBER";
 
     //マイコンのポート番号をロードする(データが無かったらfalseを返す)
@@ -28,74 +31,45 @@ public class OptionDataSaveLoadManager : MonoBehaviour
     }
 
 
-    //TODO:音量関係は列挙型で音の種類を指定出来るようにする
-    //マスターの音量
-    const string MasterVolumeKey = "MASTER_VOLUME";
 
-    //マスター音量をロードする(データが無かったらfalseを返す)
-    public bool LoadMasterVolume(out float volume)
+
+    //＝＝＝＝
+    //音量関係
+    //＝＝＝＝
+    readonly Dictionary<ESoundType, string> _soundTypeToKeyMap = new Dictionary<ESoundType, string>()
     {
-        if(PlayerPrefs.HasKey(MasterVolumeKey))
+        { ESoundType.Master,   "MASTER_VOLUME" },//マスター
+        { ESoundType.SE,       "SE_VOLUME"},//SE
+        { ESoundType.BGM,      "BGM_VOLUME"}//BGM
+    };
+
+    public bool LoadVolume(ESoundType soundType, out float volume)
+    {
+        if (!_soundTypeToKeyMap.TryGetValue(soundType, out var key))
         {
-            volume = PlayerPrefs.GetFloat(MasterVolumeKey, 1.0f);
-            return true;
+            Debug.Log("音量の種類が不正です");
+            volume = 1.0f;
+            return false;
         }
-
-        volume = 1.0f;
-        return false;
-    }
-
-    //マスター音量をセーブする
-    public void SaveMasterVolume(float volume)
-    {
-        PlayerPrefs.SetFloat(MasterVolumeKey, volume);
-    }
-
-
-
-    //BGMの音量
-    const string BGMVolumeKey = "BGM_VOLUME";
-
-    //BGM音量をロードする(データが無かったらfalseを返す)
-    public bool LoadBGMVolume(out float volume)
-    {
-        if (PlayerPrefs.HasKey(BGMVolumeKey))
+        if (PlayerPrefs.HasKey(key))
         {
-            volume = PlayerPrefs.GetFloat(BGMVolumeKey, 1.0f);
+            volume = PlayerPrefs.GetFloat(key, 1.0f);
             return true;
         }
         volume = 1.0f;
         return false;
     }
 
-    //BGM音量をセーブする
-    public void SaveBGMVolume(float volume)
+    public void SaveVolume(ESoundType soundType, float volume)
     {
-        PlayerPrefs.SetFloat(BGMVolumeKey, volume);
-    }
-
-
-
-    //効果音の音量
-    const string SEVolumeKey = "SE_VOLUME";
-
-    //効果音音量をロードする(データが無かったらfalseを返す)
-    public bool LoadSEVolume(out float volume)
-    {
-        if (PlayerPrefs.HasKey(SEVolumeKey))
+        if (!_soundTypeToKeyMap.TryGetValue(soundType, out var key))
         {
-            volume = PlayerPrefs.GetFloat(SEVolumeKey, 1.0f);
-            return true;
+            Debug.Log("音量の種類が不正です");
+            return;
         }
-        volume = 1.0f;
-        return false;
+        PlayerPrefs.SetFloat(key, volume);
     }
 
-    //効果音の音量をセーブする
-    public void SaveSEVolume(float volume)
-    {
-        PlayerPrefs.SetFloat(SEVolumeKey, volume);
-    }
 
 
 

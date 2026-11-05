@@ -61,7 +61,8 @@ public class SoundConfigs : ScriptableObject
 
     private void Awake()
     {
-        _soundVolumeConfigsDic  = new Dictionary<ESoundType, A_SoundVolumeConfig>() {
+        _soundVolumeConfigsDic  = new Dictionary<ESoundType, A_SoundVolumeConfig>()
+        {
             {ESoundType.Master, _masterVolumeConfig },
             {ESoundType.SE, _seVolumeConfig },
             {ESoundType.BGM, _bgmVolumeConfig },
