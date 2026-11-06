@@ -51,11 +51,13 @@ public class OptionDataSaveLoadManager : MonoBehaviour
             volume = 1.0f;
             return false;
         }
-        if (PlayerPrefs.HasKey(key))
+
+        if (PlayerPrefs.HasKey(key))//音量データのロード成功
         {
             volume = PlayerPrefs.GetFloat(key, 1.0f);
             return true;
         }
+
         volume = 1.0f;
         return false;
     }
@@ -67,6 +69,7 @@ public class OptionDataSaveLoadManager : MonoBehaviour
             Debug.Log("音量の種類が不正です");
             return;
         }
+
         PlayerPrefs.SetFloat(key, volume);
     }
 
