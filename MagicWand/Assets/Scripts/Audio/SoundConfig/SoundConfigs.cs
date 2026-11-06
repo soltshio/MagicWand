@@ -27,6 +27,7 @@ public class SoundConfigs : ScriptableObject
     //最小音量
     public float MinVolume(ESoundType soundType)
     {
+        if (_soundVolumeConfigsDic == null) Initialize();
         if (!IsValidSoundType(soundType, out var config)) return _errorValue;
 
         return config.MinVolume;
@@ -35,6 +36,7 @@ public class SoundConfigs : ScriptableObject
     //最大音量
     public float MaxVolume(ESoundType soundType)
     {
+        if (_soundVolumeConfigsDic == null) Initialize();
         if (!IsValidSoundType(soundType, out var config)) return _errorValue;
 
         return config.MaxVolume;
@@ -43,6 +45,7 @@ public class SoundConfigs : ScriptableObject
     //初期音量
     public float DefaultVolume(ESoundType soundType)
     {
+        if (_soundVolumeConfigsDic == null) Initialize();
         if (!IsValidSoundType(soundType, out var config)) return _errorValue;
 
         return config.DefaultVolume;
@@ -60,13 +63,19 @@ public class SoundConfigs : ScriptableObject
         return true;
     }
 
-    private void Awake()
+    //ScriptableObjectだとゲーム起動時にAwakeやStartが呼ばれないので、OnEnableで初期化する
+    private void OnEnable()
     {
-        _soundVolumeConfigsDic  = new Dictionary<ESoundType, A_SoundVolumeConfig>()
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        _soundVolumeConfigsDic = new Dictionary<ESoundType, A_SoundVolumeConfig>()
         {
-            {ESoundType.Master, _masterVolumeConfig },
-            {ESoundType.SE, _seVolumeConfig },
-            {ESoundType.BGM, _bgmVolumeConfig },
+            { ESoundType.Master, _masterVolumeConfig },
+            { ESoundType.SE, _seVolumeConfig },
+            { ESoundType.BGM, _bgmVolumeConfig },
         };
     }
 
