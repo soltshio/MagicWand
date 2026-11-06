@@ -37,9 +37,15 @@ public class SoundVolumeInitializeManager : MonoBehaviour
             if (!_optionDataSaveLoadManagerInstance.LoadVolume(soundType, out volume))
             {
                 volume = _soundConfigs.DefaultVolume(soundType);
-                _optionDataSaveLoadManagerInstance.SaveVolume(soundType, volume);
             }
 
+            //音量を範囲内に収める
+            volume = Mathf.Clamp(volume, _soundConfigs.MinVolume(soundType), _soundConfigs.MaxVolume(soundType));
+
+            //音量をセーブしておく
+            _optionDataSaveLoadManagerInstance.SaveVolume(soundType, volume);
+
+            //AudioMixerに反映する
             _audioMixer.SetFloat(soundName, volume);
         }
 
