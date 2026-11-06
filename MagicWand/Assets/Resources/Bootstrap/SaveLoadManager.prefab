@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7657781248608553496}
-  - component: {fileID: 7862381271847538043}
+  - component: {fileID: 1172942037973673847}
   m_Layer: 0
   m_Name: SaveLoadManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7862381271847538043
+--- !u!114 &1172942037973673847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6644045640122990314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d696da6902d0e3d48b0f8ac16e94c3b5, type: 3}
+  m_Script: {fileID: 11500000, guid: b0041f3c4141bef4da161fb05ea65db2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveLoadManager
+  m_EditorClassIdentifier: Assembly-CSharp::OptionDataSaveLoadManager
