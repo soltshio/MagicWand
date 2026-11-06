@@ -58,4 +58,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b680312497c244799add47f27c68da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiconConnectStarter
-  _defaultPortNum: 6
+  _miconConfig: {fileID: 11400000, guid: cbe8dfebf4b65a642a627dd850fa4bee, type: 2}
