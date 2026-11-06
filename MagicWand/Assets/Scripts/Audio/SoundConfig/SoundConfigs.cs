@@ -5,7 +5,7 @@ using UnityEngine;
 //作成者:杉山
 //音の種類ごとに音量の範囲や初期値といった音量設定を設定可能
 
-[CreateAssetMenu(fileName = "SoundConfig", menuName = "ScriptableObjects/SoundConfig")]
+[CreateAssetMenu(fileName = "SoundConfig", menuName = "ScriptableObjects/Create SoundConfig")]
 public class SoundConfigs : ScriptableObject
 {
     [Tooltip("マスター音量の設定")] [SerializeField]
