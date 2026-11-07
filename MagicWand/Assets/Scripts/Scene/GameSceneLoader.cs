@@ -13,6 +13,9 @@ public class GameSceneLoader : MonoBehaviour
     [Tooltip("フェードイン・アウトをするパネル")] [SerializeField]
     FadeInOutPanel _fadeInOutPanel;
 
+    [SerializeField]
+    SceneNameList _sceneNameList;
+
     bool _isLoading = false;
 
     public void StartLoad()
@@ -25,6 +28,12 @@ public class GameSceneLoader : MonoBehaviour
 
     async UniTask LoadSceneAsync(CancellationToken ct)
     {
+        if (!_sceneNameList.TryGetSceneIndex(ESceneName.GameScene, out int gameSceneIndex))
+        {
+            Debug.LogError("GameSceneのインデックスが取得できませんでした。");
+            return;
+        }
+
         _isLoading = true;
 
         //フェードアウトをしきってから、シーンのロードを始める
@@ -32,7 +41,7 @@ public class GameSceneLoader : MonoBehaviour
 
         await UniTask.WaitUntil(() => (_fadeInOutPanel.FadeState == FadeInOutEState.CompleteFadeOut), cancellationToken: ct);
 
-        await SceneManager.LoadSceneAsync(SceneNameList.GameScene).ToUniTask(cancellationToken: ct);
+        await SceneManager.LoadSceneAsync(gameSceneIndex).ToUniTask(cancellationToken: ct);
 
         _isLoading = false;
     }

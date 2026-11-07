@@ -12,6 +12,9 @@ public class CursorAdjustSceneLoader : MonoBehaviour
     [SerializeField]
     float _startLoadDelayDuration = 0.5f;
 
+    [SerializeField]
+    SceneNameList _sceneNameList;
+
     bool _isLoading = false;
 
     public void StartLoad()
@@ -24,11 +27,17 @@ public class CursorAdjustSceneLoader : MonoBehaviour
 
     async UniTask LoadSceneAsync(CancellationToken ct)
     {
+        if (!_sceneNameList.TryGetSceneIndex(ESceneName.CursorAdjustScene, out int cursorAdjustSceneIndex))
+        {
+            Debug.LogError("CursorAdjustSceneのインデックスが取得できませんでした。");
+            return;
+        }
+
         _isLoading = true;
 
         await UniTask.Delay(TimeSpan.FromSeconds(_startLoadDelayDuration), cancellationToken: ct);
 
-        await SceneManager.LoadSceneAsync(SceneNameList.CursorAdjustScene).ToUniTask(cancellationToken: ct);
+        await SceneManager.LoadSceneAsync(cursorAdjustSceneIndex).ToUniTask(cancellationToken: ct);
 
         _isLoading = false;
     }

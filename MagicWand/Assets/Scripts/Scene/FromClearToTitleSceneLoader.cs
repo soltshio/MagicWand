@@ -9,6 +9,9 @@ public class FromClearToTitleSceneLoader : MonoBehaviour
     [SerializeField]
     float _delayToLoad = 0.5f;
 
+    [SerializeField]
+    SceneNameList _sceneNameList;
+
     bool _isLoading = false;
 
     public void StartLoad()
@@ -21,11 +24,17 @@ public class FromClearToTitleSceneLoader : MonoBehaviour
 
     async UniTask LoadSceneAsync(CancellationToken ct)
     {
+        if (!_sceneNameList.TryGetSceneIndex(ESceneName.TitleScene, out int titleSceneIndex))
+        {
+            Debug.LogError("TitleSceneのインデックスが取得できませんでした。");
+            return;
+        }
+
         _isLoading = true;
 
         await UniTask.Delay(TimeSpan.FromSeconds(_delayToLoad), cancellationToken: ct);
 
-        await SceneManager.LoadSceneAsync(SceneNameList.TitleScene).ToUniTask(cancellationToken: ct);
+        await SceneManager.LoadSceneAsync(titleSceneIndex).ToUniTask(cancellationToken: ct);
 
         _isLoading = false;
     }

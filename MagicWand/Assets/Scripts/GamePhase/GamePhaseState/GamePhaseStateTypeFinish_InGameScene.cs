@@ -11,6 +11,9 @@ public class GamePhaseStateTypeFinish_InGameScene : GamePhaseStateTypeBase
     [SerializeField]
     FadeInOutPanel _fadeInOutPanel;
 
+    [SerializeField]
+    SceneNameList _sceneNameList;
+
     public override void OnEnter(GamePhaseStateMachine stateMachine)
     {
         ClearSceneLoadAsync(this.GetCancellationTokenOnDestroy()).Forget();
@@ -29,11 +32,17 @@ public class GamePhaseStateTypeFinish_InGameScene : GamePhaseStateTypeBase
 
     async UniTask ClearSceneLoadAsync(CancellationToken ct)
     {
+        if (!_sceneNameList.TryGetSceneIndex(ESceneName.ClearScene, out int clearSceneIndex))
+        {
+            Debug.LogError("ClearSceneのインデックスが取得できませんでした。");
+            return;
+        }
+
         //フェードアウトをしきってから、シーンのロードを始める
         _fadeInOutPanel.FadeTrigger(FadeInOutPanel.FadeEType.FadeOut);
 
         await UniTask.WaitUntil(() => (_fadeInOutPanel.FadeState == FadeInOutEState.CompleteFadeOut), cancellationToken: ct);
 
-        await SceneManager.LoadSceneAsync(SceneNameList.ClearScene).ToUniTask(cancellationToken: ct);
+        await SceneManager.LoadSceneAsync(clearSceneIndex).ToUniTask(cancellationToken: ct);
     }
 }
