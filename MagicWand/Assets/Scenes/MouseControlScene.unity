@@ -5760,6 +5760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GamePhaseStateTypeFinish_InGameScene
   _fadeInOutPanel: {fileID: 1124889694}
+  _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
 --- !u!1 &623789234
 GameObject:
   m_ObjectHideFlags: 0

@@ -594,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneLoader
   _fadeInOutPanel: {fileID: 1863234181}
+  _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
 --- !u!1 &657020906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FromClearToTitleSceneLoader
   _delayToLoad: 0.5
+  _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
 --- !u!224 &969162962 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8892487216538670692, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}

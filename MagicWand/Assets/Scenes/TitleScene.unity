@@ -895,6 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorAdjustSceneLoader
   _startLoadDelayDuration: 0.5
+  _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
 --- !u!1 &837064440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSceneLoader
   _fadeInOutPanel: {fileID: 1107573933}
+  _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
 --- !u!1 &947232952
 GameObject:
   m_ObjectHideFlags: 0
