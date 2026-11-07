@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FromClearToTitleSceneLoader, Assembly-CSharp
+      value: GenericSceneLoader_NoFadeOut, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5163555855531483130, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_Name
@@ -1042,11 +1042,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 949306761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f74a3550d8b264f836577001712ae2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ea0f50e639606c469a0aa244afb1983, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FromClearToTitleSceneLoader
+  m_EditorClassIdentifier: Assembly-CSharp::GenericSceneLoader_NoFadeOut
   _delayToLoad: 0.5
   _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
+  _loadSceneName: 0
 --- !u!224 &969162962 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8892487216538670692, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
