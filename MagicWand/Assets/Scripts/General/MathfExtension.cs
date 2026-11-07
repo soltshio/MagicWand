@@ -10,6 +10,7 @@ public class MathfExtension
     /// <summary>
     /// 値を範囲内で循環させる
     /// 範囲最小(rangeMin)以上、範囲最大(rangeMax)以下を範囲とする
+    /// 例: 範囲を 0～5 とした場合、-1 と 7 を入力すると、それぞれ 5 と 1 に変換される
     /// </summary>
     public static int CircularWrapping(int num,int rangeMax)//範囲最小が0
     {
