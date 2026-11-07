@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4165877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4165878}
+  - component: {fileID: 4165879}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4165878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165877}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.96436, y: -14.01519, z: 129.22504}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1929045435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4165879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af55ea97e36f8e94f92b00cb23df7c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorVisibleIControllerInThisScene
 --- !u!1 &32526254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,7 +2020,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579351466}
-  - component: {fileID: 1579351467}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1999,19 +2042,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1929045435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1579351467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579351465}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce9dd2aeb301e2d4cb9b95f9e667e16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FadeInTriggerOnStart
-  _fadeInOutPanel: {fileID: 0}
 --- !u!1 &1617189476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,6 +2263,7 @@ Transform:
   - {fileID: 1579351466}
   - {fileID: 658583114}
   - {fileID: 368774925}
+  - {fileID: 4165878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2040036122
