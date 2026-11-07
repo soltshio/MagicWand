@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/OptionScene.unity
-    guid: 4893f2aae4545314d9c32880763f6d59
+    path: Assets/Scenes/TitleScene.unity
+    guid: 9a5732c68fab3fc4aa46f6bfec8ca449
   - enabled: 1
     path: Assets/Scenes/MouseControlScene.unity
     guid: b631021dc66ab914ca4c68e77e461bde
@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CursorAdjustScene.unity
     guid: 8048ad6263f5138448ab67c493abdbf4
+  - enabled: 1
+    path: Assets/Scenes/OptionScene.unity
+    guid: 4893f2aae4545314d9c32880763f6d59
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
