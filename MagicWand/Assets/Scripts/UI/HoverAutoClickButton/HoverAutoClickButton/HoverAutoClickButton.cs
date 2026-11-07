@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 //作成者:杉山
 //数秒間カーソルを合わせていると、自動クリックするボタン
 
-public class HoverAutoClickButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
+public class HoverAutoClickButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler, IPointerClickHandler
 {
     [SerializeField]
     private HoverAutoClickButtonParameter _parameter;
@@ -51,6 +51,11 @@ public class HoverAutoClickButton : MonoBehaviour, IPointerExitHandler, IPointer
     public void OnPointerExit(PointerEventData eventData)
     {
         _stateMachine.OnPointerExit(eventData);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        _stateMachine.OnPointerClick(eventData);
     }
 
 }

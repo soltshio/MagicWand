@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 //作成者:杉山
 //数秒間カーソルを合わせていると、自動クリックするボタンのステートマシン
 
-public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerExitHandler
+public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     HoverAutoClickButtonStateTypeBase _currentState;
     HoverAutoClickButtonEState _currentEState;
@@ -89,6 +89,14 @@ public class HoverAutoClickButtonStateMachine : IPointerEnterHandler, IPointerEx
         if (_currentState is IPointerExitHandler pointerExitHandler)
         {
             pointerExitHandler.OnPointerExit(eventData);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (_currentState is IPointerClickHandler pointerClickHandler)
+        {
+            pointerClickHandler.OnPointerClick(eventData);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 //作成者:杉山
 //数秒間カーソルを合わせていると、自動クリックするボタンのカーソルが合っている状態の振る舞い
 
-public class HoverAutoClickButtonStateTypeHovering : HoverAutoClickButtonStateTypeBase, IPointerExitHandler
+public class HoverAutoClickButtonStateTypeHovering : HoverAutoClickButtonStateTypeBase, IPointerExitHandler, IPointerClickHandler
 {
     private float _hoveringTime = 0f;//カーソルが合わさっている時間
     HoverAutoClickButtonStateMachine _stateMachine;
@@ -41,6 +41,12 @@ public class HoverAutoClickButtonStateTypeHovering : HoverAutoClickButtonStateTy
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        _stateMachine.ChangeState(HoverAutoClickButtonEState.Idle);
+    }
+
+    //ホバーしてる最中にクリックされたら、待機状態に戻す(そうすることで追加でクリック処理が走らないようにする)
+    public void OnPointerClick(PointerEventData eventData)
     {
         _stateMachine.ChangeState(HoverAutoClickButtonEState.Idle);
     }

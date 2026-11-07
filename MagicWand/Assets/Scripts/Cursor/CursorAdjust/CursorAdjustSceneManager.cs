@@ -35,6 +35,9 @@ public class CursorAdjustSceneManager : MonoBehaviour
     [SerializeField]
     AdjustHokuyoSize_CursorAdjust _adjustHokuyoSize_CursorAdjust;
 
+    [SerializeField]
+    SceneNameList _sceneNameList;
+
     async void Start()
     {
         try
@@ -97,6 +100,12 @@ public class CursorAdjustSceneManager : MonoBehaviour
 
     void LoadTitleScene()
     {
-        SceneManager.LoadScene(SceneNameList.TitleScene);
+        if (!_sceneNameList.TryGetSceneIndex(ESceneName.TitleScene, out int titleSceneIndex))
+        {
+            Debug.LogError("TitleSceneのインデックスが取得できませんでした。");
+            return;
+        }
+
+        SceneManager.LoadScene(titleSceneIndex);
     }
 }
