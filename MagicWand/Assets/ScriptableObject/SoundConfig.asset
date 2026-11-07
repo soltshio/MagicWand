@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: SoundConfig
   m_EditorClassIdentifier: Assembly-CSharp::SoundConfigs
   _masterVolumeConfig:
-    _minVolume: -50
-    _volumeRange: 50
+    _minVolume: -70
+    _volumeRange: 70
     _defaultVolume: 0
   _seVolumeConfig:
-    _minVolume: -50
-    _volumeRange: 50
+    _minVolume: -70
+    _volumeRange: 70
     _defaultVolume: 0
   _bgmVolumeConfig:
-    _minVolume: -50
-    _volumeRange: 50
+    _minVolume: -70
+    _volumeRange: 70
     _defaultVolume: 0
