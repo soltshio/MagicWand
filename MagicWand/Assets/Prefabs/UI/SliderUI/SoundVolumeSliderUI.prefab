@@ -13,6 +13,10 @@ PrefabInstance:
       value: SoundVolumeSliderUI
       objectReference: {fileID: 0}
     - target: {fileID: 266184981931233484, guid: a36cdc58379222d4dad4515164fc564d, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 266184981931233484, guid: a36cdc58379222d4dad4515164fc564d, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class SoundVolumeSlider : MonoBehaviour
 {
+    [Tooltip("音のボリュームを何段階で変えられるようにするか")] [SerializeField]
+    int _valueStep = 10;
+
     [SerializeField]
     ESoundType _soundType;
 
@@ -29,6 +32,15 @@ public class SoundVolumeSlider : MonoBehaviour
 
     OptionDataSaveLoadManager _optionDataSaveLoadManagerInstance;
 
+    private void OnValidate()
+    {
+        if (_slider == null) return;
+
+        _slider.wholeNumbers = true;
+        _slider.maxValue = _valueStep;
+        _slider.minValue = 0;
+    }
+
     async void Start()
     {
         // OptionDataSaveLoadManagerのインスタンスを取得
@@ -38,9 +50,9 @@ public class SoundVolumeSlider : MonoBehaviour
         InitializeSlider();
     }
 
-    public void OnValueChanged(float newVolumeValue)
+    public void OnValueChanged(float newVolumeLevel)
     {
-        SetVolume(newVolumeValue);
+        SetVolume(newVolumeLevel);
     }
 
     void InitializeSlider()
@@ -55,15 +67,20 @@ public class SoundVolumeSlider : MonoBehaviour
 
         float minVolume = _soundConfigs.MinVolume(_soundType);
 
+        float volumeRate = Mathf.InverseLerp(minVolume, maxVolume, volume);
+
         //スライダーの設定の初期化
-        _slider.value = volume;
-        _slider.maxValue = maxVolume;
-        _slider.minValue = minVolume;
+        _slider.value = volumeRate * _valueStep;
     }
 
-    void SetVolume(float volume)
+    void SetVolume(float newVolumeLevel)
     {
         if(_optionDataSaveLoadManagerInstance == null) return;
+
+        //スライダーから受け取った値をボリュームの値に変換
+        float maxVolume = _soundConfigs.MaxVolume(_soundType);
+        float minVolume = _soundConfigs.MinVolume(_soundType);
+        float volume = MathfExtension.Remap(newVolumeLevel, 0, _valueStep, minVolume, maxVolume);
 
         //AudioMixerに反映する
         string soundName = AudioMixerName.SoundName(_soundType);
