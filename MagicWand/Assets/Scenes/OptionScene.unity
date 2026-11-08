@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4165878}
   - component: {fileID: 4165879}
+  - component: {fileID: 4165880}
   m_Layer: 0
   m_Name: CursorManager
   m_TagString: Untagged
@@ -163,6 +164,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af55ea97e36f8e94f92b00cb23df7c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorVisibleIControllerInThisScene
+--- !u!114 &4165880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4165877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2de91a328286048bb399ad57d5a8d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeactiveBlockCursorInteractOnlyThisSceneController
 --- !u!1 &32526254
 GameObject:
   m_ObjectHideFlags: 0

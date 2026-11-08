@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //作成者:杉山
-//北陽レーザー検知範囲内にオブジェクトが無い時にUIが反応しないようにする機能
+//カーソルにUIが反応しないようにする機能
 
 public class BlockCursorInteractSingletonPanel : MonoBehaviour
 {

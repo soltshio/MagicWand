@@ -4,9 +4,9 @@ using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
-//北陽レーザー検知範囲内に物が無くなった際にレイキャストをブロックする機能
+//北陽レーザー検知範囲内に物が無くなった際にカーソルにUIが反応するのを防ぐ機能
 
-public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
+public class BlockCursorInteractManagerOnHokuyoExit : MonoBehaviour
 {
     [Tooltip("北陽レーザー検知範囲内にオブジェクトが無くなってから、UIを反応させなくするまでの時間")] [SerializeField]
     float _timeOutToBlockRaycast = 0.5f;
@@ -15,6 +15,16 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
     BlockCursorInteractSingletonPanel _blockCursorInteractSingletonPanel;
 
     SingleTaskCancellation _singleTaskCancellation = new();
+
+    //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
+    public static async UniTask<BlockCursorInteractManagerOnHokuyoExit> GetInstanceAsync(CancellationToken ct)
+    {
+        if (Instance != null) return Instance;
+
+        await UniTask.WaitUntil(() => Instance != null, cancellationToken: ct);
+
+        return Instance;
+    }
 
     async void OnEnable()
     {
@@ -64,5 +74,26 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(_timeOutToBlockRaycast), cancellationToken: ct);
 
         _blockCursorInteractSingletonPanel.SetBlockRaycastPanelEnabled(true);
+    }
+
+
+    //シングルトン関係の処理
+    public static BlockCursorInteractManagerOnHokuyoExit Instance
+    {
+        get;
+        private set;
+    }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
