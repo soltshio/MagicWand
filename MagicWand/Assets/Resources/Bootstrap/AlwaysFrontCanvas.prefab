@@ -4908,8 +4908,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1840740083
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -5215,7 +5215,7 @@ GameObject:
   - component: {fileID: 3555678142593795823}
   - component: {fileID: 4965556374005623614}
   m_Layer: 5
-  m_Name: BlockRaycastPanel
+  m_Name: BlockCursorInteractSingletonPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5290,7 +5290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee32a1b452fa7cd42bd7c108fc1a88f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockRaycaster
-  _timeOutToBlockRaycast: 0.5
   _blockRaycastPanel: {fileID: 3555678142593795823}
 --- !u!1 &7083433630898177990
 GameObject:
@@ -5454,7 +5453,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1840740083
       objectReference: {fileID: 0}
     - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -5860,7 +5863,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1840740083
       objectReference: {fileID: 0}
     - target: {fileID: 4894868165991046522, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: lengthInSec

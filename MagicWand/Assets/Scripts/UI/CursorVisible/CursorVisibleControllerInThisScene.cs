@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 //作成者:杉山
 //現在のシーンのみカーソルを表示させる機能
 
-public class CursorVisibleIControllerInThisScene : MonoBehaviour
+public class CursorVisibleControllerInThisScene : MonoBehaviour
 {
     void Start()
     {

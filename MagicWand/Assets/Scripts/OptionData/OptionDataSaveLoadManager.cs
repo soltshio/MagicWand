@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
@@ -6,6 +8,18 @@ using UnityEngine;
 
 public class OptionDataSaveLoadManager : MonoBehaviour
 {
+    //インスタンスの取得
+    //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
+    public static async UniTask<OptionDataSaveLoadManager> GetInstanceAsync(CancellationToken ct)
+    {
+        if (Instance != null) return Instance;
+
+        await UniTask.WaitUntil(() => Instance != null, cancellationToken: ct);
+
+        return Instance;
+    }
+
+
     //＝＝＝＝＝＝＝＝＝＝
     //マイコンのポート番号
     //＝＝＝＝＝＝＝＝＝＝

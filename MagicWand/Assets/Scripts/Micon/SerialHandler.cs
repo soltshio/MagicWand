@@ -2,11 +2,11 @@
 // 例えば空のGameObjectを作り、そこにアタッチする
 // 2025_10月Ver.
 
-using UnityEngine;
-
+using Cysharp.Threading.Tasks;
+using System;
 using System.IO.Ports; // これを通すために、Api Compatibility Levelの設定を変更
 using System.Threading;
-using System;
+using UnityEngine;
 
 //通信を接続や切断を行う基本のクラス
 //参考サイト https://github.com/soltshio/UnityHaraZemi1/blob/main/haraZemiUnityTest/Assets/Scripts/Component/Micon/SerialHandler.cs
@@ -27,6 +27,7 @@ public class SerialHandler : MonoBehaviour
     SerialPort _serialPort;
     Thread _thread;
     bool _isRunning = false;
+    int _currentPortNum = -1;
 
     string _message;
     bool _isNewMessageReceived = false;
@@ -34,14 +35,25 @@ public class SerialHandler : MonoBehaviour
     public static SerialHandler Instance { get; private set; }
 
     public bool IsRunning => _isRunning;// シリアル通信が実行中かどうかを返すプロパティ
+    public int CurrentPortNum => _currentPortNum;// 現在接続しているポート番号を返すプロパティ
 
-    //通信を始める
-    public void Open(int portNum)
+    //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
+    public static async UniTask<SerialHandler> GetInstanceAsync(CancellationToken ct)
+    {
+        if (Instance != null) return Instance;
+
+        await UniTask.WaitUntil(() => Instance != null, cancellationToken: ct);
+
+        return Instance;
+    }
+
+    //通信を始める(通信接続に成功したかも返す)
+    public bool Open(int portNum)
     {
         if(_isRunning)
         {
             Debug.LogWarning("既に通信中です。");
-            return;
+            return false;
         }
 
         string portName = _myPortName + portNum.ToString();
@@ -62,6 +74,9 @@ public class SerialHandler : MonoBehaviour
             // Open() 成功後にのみスレッドを開始する
             _thread = new Thread(Read);
             _thread.Start();
+
+            _currentPortNum = portNum;
+            return true;
         }
         catch (Exception)
         {
@@ -77,11 +92,11 @@ public class SerialHandler : MonoBehaviour
             // 通信を開始しない状態に戻す
             _isRunning = false;
 
-            return;
+            return false;
         }
     }
 
-    //通常を終了する
+    //通信を終了する
     public void Close()
     {
         if (!_isRunning)
@@ -112,6 +127,8 @@ public class SerialHandler : MonoBehaviour
         {
             _serialPort.Dispose();
         }
+
+        _currentPortNum = -1;
     }
 
     void Awake()
