@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //作成者:杉山
 //北陽レーザー検知範囲内にオブジェクトが無い時にUIが反応しないようにする機能
 
-public class RaycastBlocker : MonoBehaviour
+public class RaycastBlockPanel : MonoBehaviour
 {
     [Tooltip("北陽レーザー検知範囲内にオブジェクトが無くなってから、UIを反応させなくするまでの時間")] [SerializeField]
     float _timeOutToBlockRaycast = 0.5f;

@@ -5215,7 +5215,7 @@ GameObject:
   - component: {fileID: 3555678142593795823}
   - component: {fileID: 4965556374005623614}
   m_Layer: 5
-  m_Name: BlockRaycastPanel
+  m_Name: RaycastBlockPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
