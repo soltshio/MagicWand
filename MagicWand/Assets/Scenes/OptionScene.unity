@@ -1350,7 +1350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00018310547, y: 4.800049}
+  m_AnchoredPosition: {x: -0.00024414062, y: 4.800049}
   m_SizeDelta: {x: -479.99963, y: -229.00015}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082025862
@@ -1676,6 +1676,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 540830137}
     m_Modifications:
+    - target: {fileID: 4525925417081571794, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4928917449162049483, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_Name
       value: PortNumber

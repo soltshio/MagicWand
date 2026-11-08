@@ -9,50 +9,45 @@ using UnityEngine.UI;
 
 public class RaycastBlockSingletonPanel : MonoBehaviour
 {
-    [Tooltip("北陽レーザー検知範囲内にオブジェクトが無くなってから、UIを反応させなくするまでの時間")] [SerializeField]
-    float _timeOutToBlockRaycast = 0.5f;
-
     [SerializeField]
     Image _blockRaycastPanel;
 
-    HokuyoDataReceiver _hokuyoDataReceiver;
+    bool _isEnabled;
 
-    SingleTaskCancellation _singleTaskCancellation = new ();
-
-    async void OnEnable()
+    //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
+    public static async UniTask<RaycastBlockSingletonPanel> GetInstanceAsync(CancellationToken ct)
     {
-        _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+        if (Instance != null) return Instance;
 
-        //レイキャストをブロックするためのパネルの表示状態の初期化
-        bool shouldBlockRaycast = !_hokuyoDataReceiver.IsExistObject && _hokuyoDataReceiver.IsRunning;
-        _blockRaycastPanel.enabled = shouldBlockRaycast;
+        await UniTask.WaitUntil(() => Instance != null, cancellationToken: ct);
 
-        _hokuyoDataReceiver.OnSwitchIsExistObject += StartCountDownToBlockRaycast;
+        return Instance;
     }
 
-    private void OnDisable()
+    public void SetBlockRaycastPanelEnabled(bool isEnabled)
     {
-        _hokuyoDataReceiver.OnSwitchIsExistObject -= StartCountDownToBlockRaycast;
+        _blockRaycastPanel.enabled = isEnabled;
+        _isEnabled = isEnabled;
     }
 
-    void StartCountDownToBlockRaycast(bool isExistObject)
+    //シングルトン関係の処理
+    public static RaycastBlockSingletonPanel Instance
     {
-        var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
+        get;
+        private set;
+    }
 
-        if (isExistObject)
+    void Awake()
+    {
+        if (Instance == null)
         {
-            _blockRaycastPanel.enabled = false;
+            Instance = this;
+            _isEnabled = _blockRaycastPanel.enabled;
+            //DontDestroyOnLoad(gameObject);//Canvasの下に入れないといけないため、この処理は呼ばなくていい
         }
         else
         {
-            CountDownToBlockRaycastAsync(newCt).Forget();
+            Destroy(gameObject);
         }
-    }
-
-    async UniTask CountDownToBlockRaycastAsync(CancellationToken ct)
-    {
-        await UniTask.Delay(TimeSpan.FromSeconds(_timeOutToBlockRaycast), cancellationToken: ct);
-
-        _blockRaycastPanel.enabled = true;
     }
 }
