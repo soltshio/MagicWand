@@ -17,8 +17,7 @@ public class SoundVolumeInitializeManager : MonoBehaviour
     async void Start()
     {
         // OptionDataSaveLoadManagerのインスタンスを取得
-        await UniTask.WaitUntil(() => OptionDataSaveLoadManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
-        _optionDataSaveLoadManagerInstance = OptionDataSaveLoadManager.Instance;
+        _optionDataSaveLoadManagerInstance = await OptionDataSaveLoadManager.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
         //音量を設定
         SetAudioVolume();

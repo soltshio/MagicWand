@@ -14,8 +14,7 @@ public class MiconConnectStarter : MonoBehaviour
     async void Start()
     {
         //OptionDataSaveLoadManagerのインスタンスを取得
-        await UniTask.WaitUntil(() => OptionDataSaveLoadManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
-        _optionDataSaveLoadManagerInstance = OptionDataSaveLoadManager.Instance;
+        _optionDataSaveLoadManagerInstance = await OptionDataSaveLoadManager.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
         //ポート番号を取得して、マイコンと接続する
         int portNumber = GetPortNumber();
