@@ -17,10 +17,8 @@ public class DeccordManager : MonoBehaviour
 
     async void Start()
     {
-        await UniTask.WaitUntil(() => SerialHandler.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
-
         // SerialHandlerのインスタンスを取得
-        _serialHandlerInstance = SerialHandler.Instance;
+        _serialHandlerInstance = await SerialHandler.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
     }
 
     async void OnEnable()

@@ -2,11 +2,11 @@
 // 例えば空のGameObjectを作り、そこにアタッチする
 // 2025_10月Ver.
 
-using UnityEngine;
-
+using Cysharp.Threading.Tasks;
+using System;
 using System.IO.Ports; // これを通すために、Api Compatibility Levelの設定を変更
 using System.Threading;
-using System;
+using UnityEngine;
 
 //通信を接続や切断を行う基本のクラス
 //参考サイト https://github.com/soltshio/UnityHaraZemi1/blob/main/haraZemiUnityTest/Assets/Scripts/Component/Micon/SerialHandler.cs
@@ -34,6 +34,16 @@ public class SerialHandler : MonoBehaviour
     public static SerialHandler Instance { get; private set; }
 
     public bool IsRunning => _isRunning;// シリアル通信が実行中かどうかを返すプロパティ
+
+    //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
+    public static async UniTask<SerialHandler> GetInstanceAsync(CancellationToken ct)
+    {
+        if (Instance != null) return Instance;
+
+        await UniTask.WaitUntil(() => Instance != null, cancellationToken: ct);
+
+        return Instance;
+    }
 
     //通信を始める
     public void Open(int portNum)

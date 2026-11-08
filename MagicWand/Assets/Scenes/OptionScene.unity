@@ -181,6 +181,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8892487216538670692, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
   m_PrefabInstance: {fileID: 232722195}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7251575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+  m_PrefabInstance: {fileID: 232722195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &32526254
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 243512511}
+  - component: {fileID: 243512514}
   - component: {fileID: 243512513}
   - component: {fileID: 243512512}
   m_Layer: 0
@@ -756,6 +768,22 @@ MonoBehaviour:
   _miconPortResultCanvas: {fileID: 350304678}
   _audioSource: {fileID: 243512512}
   _closeSound: {fileID: 8300000, guid: 8fa220c8d909d164e8a31e7947a992f7, type: 3}
+--- !u!114 &243512514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243512510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa20a680e604374e87f4bb44e5a32bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiconPortNumInputUI
+  _miconPortResultCanvas: {fileID: 350304678}
+  _resultText: {fileID: 1966905085}
+  _closeButton: {fileID: 7251575}
+  _textContext_InvalidInput: "1\uFF5E16\u306E\u6574\u6570\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
 --- !u!1 &295060055
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +902,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350304674}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2040036123}
@@ -1121,7 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.55203307, g: 0.5382485, b: 0.8415094, a: 1}
+  m_Color: {r: 0.6364953, g: 0.62908506, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2198,6 +2226,34 @@ PrefabInstance:
     - target: {fileID: 4525925417081571794, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 243512514}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEndEditPortNum
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MiconPortNumInputUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4928917449162049483, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_Name
