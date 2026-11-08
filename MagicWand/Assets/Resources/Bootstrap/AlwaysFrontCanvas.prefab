@@ -4908,8 +4908,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1840740083
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -5453,7 +5453,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1840740083
       objectReference: {fileID: 0}
     - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -5859,7 +5863,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040524015681941121, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1840740083
       objectReference: {fileID: 0}
     - target: {fileID: 4894868165991046522, guid: f4fac7c0a21dadd4db2517aaf9614374, type: 3}
       propertyPath: lengthInSec
