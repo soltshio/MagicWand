@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using System.Runtime.InteropServices;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -56,10 +55,8 @@ public class MiconPortNumInputUI : MonoBehaviour
 
     SerialHandler _serialHandlerInstance;
     OptionDataSaveLoadManager _optionDataSaveLoadManagerInstance;
+    WindowsWarningPlayer _windowsWarningPlayerInstance;
     SingleTaskCancellation _singleTaskCancellation = new();
-
-    [DllImport("user32.dll")]
-    private static extern bool MessageBeep(uint uType);
 
     //パネルを閉じるボタンが押された時に現在のポート番号をポート番号指定欄に書いておく
     public void OnInputtedCloseButton()
@@ -67,10 +64,12 @@ public class MiconPortNumInputUI : MonoBehaviour
         ShowCurrentPortNum();
     }
 
+    //入力終了時に呼ぶ
     public void OnEndEditPortNum(string input)
     {
         if (_serialHandlerInstance == null) return;
         if (_optionDataSaveLoadManagerInstance == null) return;
+        if (_windowsWarningPlayerInstance == null) return;
 
         _singleTaskCancellation.Cancel();
 
@@ -126,7 +125,7 @@ public class MiconPortNumInputUI : MonoBehaviour
         //通信に失敗
         else
         {
-            PlayWarning();
+            _windowsWarningPlayerInstance.PlayWarning();
             _resultText.text = _textContent_FailToConnect;
         }
 
@@ -139,7 +138,7 @@ public class MiconPortNumInputUI : MonoBehaviour
     //正常な入力するように要求する説明が書かれたパネルを表示
     void ShowRequestToInvalidInputPanel()
     {
-        PlayWarning();
+        _windowsWarningPlayerInstance.PlayWarning();
         _miconPortResultCanvas.enabled = true;
         
         _closeButton.gameObject.SetActive(true);
@@ -149,7 +148,7 @@ public class MiconPortNumInputUI : MonoBehaviour
     //既に接続中のポート番号と同じポート番号を入力した場合に表示するパネル(別のポートを選択するように促す)
     void ShowRequestToSelectOtherPortPanel()
     {
-        PlayWarning();
+        _windowsWarningPlayerInstance.PlayWarning();
         _miconPortResultCanvas.enabled = true;
 
         _closeButton.gameObject.SetActive(true);
@@ -166,6 +165,9 @@ public class MiconPortNumInputUI : MonoBehaviour
 
         //OptionDataSaveLoadManagerのインスタンスを取得
         _optionDataSaveLoadManagerInstance = await OptionDataSaveLoadManager.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+
+        //WindowsWarningPlayerのインスタンスを取得
+        _windowsWarningPlayerInstance = await WindowsWarningPlayer.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
         if(_serialHandlerInstance == null)
         {
@@ -191,11 +193,5 @@ public class MiconPortNumInputUI : MonoBehaviour
         {
             _inputField.text = _currentPortNumOnDisconnectMicon;
         }
-    }
-
-    //警告音を出す
-    void PlayWarning()
-    {
-        MessageBeep(0x00000030);
     }
 }
