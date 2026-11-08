@@ -27,6 +27,7 @@ public class SerialHandler : MonoBehaviour
     SerialPort _serialPort;
     Thread _thread;
     bool _isRunning = false;
+    int _currentPortNum = -1;
 
     string _message;
     bool _isNewMessageReceived = false;
@@ -34,6 +35,7 @@ public class SerialHandler : MonoBehaviour
     public static SerialHandler Instance { get; private set; }
 
     public bool IsRunning => _isRunning;// シリアル通信が実行中かどうかを返すプロパティ
+    public int CurrentPortNum => _currentPortNum;// 現在接続しているポート番号を返すプロパティ
 
     //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
     public static async UniTask<SerialHandler> GetInstanceAsync(CancellationToken ct)
@@ -45,13 +47,13 @@ public class SerialHandler : MonoBehaviour
         return Instance;
     }
 
-    //通信を始める
-    public void Open(int portNum)
+    //通信を始める(通信接続に成功したかも返す)
+    public bool Open(int portNum)
     {
         if(_isRunning)
         {
             Debug.LogWarning("既に通信中です。");
-            return;
+            return false;
         }
 
         string portName = _myPortName + portNum.ToString();
@@ -72,6 +74,9 @@ public class SerialHandler : MonoBehaviour
             // Open() 成功後にのみスレッドを開始する
             _thread = new Thread(Read);
             _thread.Start();
+
+            _currentPortNum = portNum;
+            return true;
         }
         catch (Exception)
         {
@@ -87,11 +92,11 @@ public class SerialHandler : MonoBehaviour
             // 通信を開始しない状態に戻す
             _isRunning = false;
 
-            return;
+            return false;
         }
     }
 
-    //通常を終了する
+    //通信を終了する
     public void Close()
     {
         if (!_isRunning)
@@ -122,6 +127,8 @@ public class SerialHandler : MonoBehaviour
         {
             _serialPort.Dispose();
         }
+
+        _currentPortNum = -1;
     }
 
     void Awake()

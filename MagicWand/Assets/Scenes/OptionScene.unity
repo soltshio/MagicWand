@@ -462,6 +462,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
@@ -469,15 +473,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 243512513}
     - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 243512514}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseMiconPortResultPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnInputtedCloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CloseMiconPortResultButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MiconPortNumInputUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 657617759918127322, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5163555855531483130, guid: 393afb20fcad43d4f9f14288e5ecb1d1, type: 3}
@@ -783,7 +807,13 @@ MonoBehaviour:
   _miconPortResultCanvas: {fileID: 350304678}
   _resultText: {fileID: 1966905085}
   _closeButton: {fileID: 7251575}
-  _textContext_InvalidInput: "1\uFF5E16\u306E\u6574\u6570\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
+  _inputField: {fileID: 2015189688}
+  _textContent_InvalidInput: "1\uFF5E16\u306E\u6574\u6570\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002\r\n"
+  _textContent_AlreadyConnected: "\u305D\u306E\u30DD\u30FC\u30C8\u306F\u65E2\u306B\u63A5\u7D9A\u3055\u308C\u3066\u3044\u307E\u3059\u3002\r\n\u5225\u306E\u30DD\u30FC\u30C8\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  _textContent_IsClosingConnect: "\u4E00\u5EA6\u63A5\u7D9A\u3092\u7D42\u4E86\u3057\u3066\u3044\u307E\u3059...\u3002"
+  _textContent_IsConnecting: "\u901A\u4FE1\u3092\u63A5\u7D9A\u4E2D\u3067\u3059...\u3002"
+  _textContent_SuccessToConnect: "\u63A5\u7D9A\u6210\u529F\uFF01"
+  _textContent_FailToConnect: "\u63A5\u7D9A\u5931\u6557..."
 --- !u!1 &295060055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,8 +1163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.8500366, y: 0}
-  m_SizeDelta: {x: -1223.8999, y: -660}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: -1100, y: -660}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446776011
 MonoBehaviour:
@@ -2978,7 +3008,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 42.9}
-  m_SizeDelta: {x: 632.1, y: 102.6}
+  m_SizeDelta: {x: 758.5, y: 102.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966905085
 MonoBehaviour:
@@ -3000,7 +3030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u63A5\u7D9A\u6210\u529F\uFF01"
+  m_text: "1\uFF5E16\u306E\u6574\u6570\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
   m_sharedMaterial: {fileID: 5995689022082753112, guid: ae4292c31f7d2b44ab36586dbf5e3f05, type: 2}
@@ -3027,8 +3057,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71.2
-  m_fontSizeBase: 71.2
+  m_fontSize: 48.21
+  m_fontSizeBase: 48.21
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3080,6 +3110,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966905083}
   m_CullTransparentMesh: 1
+--- !u!114 &2015189688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+  m_PrefabInstance: {fileID: 1491835089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &2040036122
 GameObject:
   m_ObjectHideFlags: 0
