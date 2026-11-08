@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //作成者:杉山
 //北陽レーザー検知範囲内にオブジェクトが無い時にUIが反応しないようにする機能
 
-public class RaycastBlockSingletonPanel : MonoBehaviour
+public class BlockCursorInteractSingletonPanel : MonoBehaviour
 {
     [SerializeField]
     Image _blockRaycastPanel;
@@ -15,7 +15,7 @@ public class RaycastBlockSingletonPanel : MonoBehaviour
     bool _isEnabled;
 
     //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
-    public static async UniTask<RaycastBlockSingletonPanel> GetInstanceAsync(CancellationToken ct)
+    public static async UniTask<BlockCursorInteractSingletonPanel> GetInstanceAsync(CancellationToken ct)
     {
         if (Instance != null) return Instance;
 
@@ -31,7 +31,7 @@ public class RaycastBlockSingletonPanel : MonoBehaviour
     }
 
     //シングルトン関係の処理
-    public static RaycastBlockSingletonPanel Instance
+    public static BlockCursorInteractSingletonPanel Instance
     {
         get;
         private set;

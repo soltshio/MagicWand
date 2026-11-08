@@ -12,7 +12,7 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
     float _timeOutToBlockRaycast = 0.5f;
 
     HokuyoDataReceiver _hokuyoDataReceiver;
-    RaycastBlockSingletonPanel _raycastBlockSingletonPanel;
+    BlockCursorInteractSingletonPanel _blockCursorInteractSingletonPanel;
 
     SingleTaskCancellation _singleTaskCancellation = new();
 
@@ -23,9 +23,9 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
             _hokuyoDataReceiver = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
         }
 
-        if(_raycastBlockSingletonPanel == null)
+        if(_blockCursorInteractSingletonPanel == null)
         {
-            _raycastBlockSingletonPanel = await RaycastBlockSingletonPanel.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
+            _blockCursorInteractSingletonPanel = await BlockCursorInteractSingletonPanel.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
         }
 
 
@@ -33,7 +33,7 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
 
         //レイキャストをブロックするためのパネルの表示状態の初期化
         bool shouldBlockRaycast = !_hokuyoDataReceiver.IsExistObject && _hokuyoDataReceiver.IsRunning;
-        _raycastBlockSingletonPanel.SetBlockRaycastPanelEnabled(shouldBlockRaycast);
+        _blockCursorInteractSingletonPanel.SetBlockRaycastPanelEnabled(shouldBlockRaycast);
     }
 
     private void OnDisable()
@@ -51,7 +51,7 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
 
         if (isExistObject)
         {
-            _raycastBlockSingletonPanel.SetBlockRaycastPanelEnabled(false);
+            _blockCursorInteractSingletonPanel.SetBlockRaycastPanelEnabled(false);
         }
         else
         {
@@ -63,6 +63,6 @@ public class RaycastBlockManagerOnHokuyoExit : MonoBehaviour
     {
         await UniTask.Delay(TimeSpan.FromSeconds(_timeOutToBlockRaycast), cancellationToken: ct);
 
-        _raycastBlockSingletonPanel.SetBlockRaycastPanelEnabled(true);
+        _blockCursorInteractSingletonPanel.SetBlockRaycastPanelEnabled(true);
     }
 }
