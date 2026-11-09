@@ -26,6 +26,7 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     public event Action<Vector2> OnCatchDetectionPortPos;//OSC通信で位置を受け取ったことを通知(その時のDetectionPortPositionが送られてくる)
     public event Action<bool> OnSwitchIsExistObject;
+    public event Action<bool> OnSwitchIsRunning;
 
     //インスタンスを取得する(まだ生成されていなかった場合待ってから取得する)
     public static async UniTask<HokuyoDataReceiver> GetInstanceAsync(CancellationToken ct)
@@ -93,7 +94,15 @@ public class HokuyoDataReceiver : MonoBehaviour
         }
     }
 
-    //データの受け取り関連
+    private void OnEnable()
+    {
+        _oscRunningChecker.OnSwitchIsRunning += OnSwitchIsRunning;
+    }
+
+    void OnDisable()
+    {
+        _oscRunningChecker.OnSwitchIsRunning -= OnSwitchIsRunning;
+    }
 
     void Start()
     {
@@ -104,8 +113,12 @@ public class HokuyoDataReceiver : MonoBehaviour
         _oscReceiver.Bind(_oscAddressNameList.SizeAddressName, ReceiveSizeM);
     }
 
+    //データの受け取り関連
+
     void ReceiveDetectionPortPos(OSCMessage message)
     {
+        if (!enabled) return;
+
         _oscRunningChecker.UpdateRunning(this.GetCancellationTokenOnDestroy());
 
         Vector2 blobPos;
@@ -117,6 +130,8 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     void ReceiveIsExistObject(OSCMessage message)
     {
+        if (!enabled) return;
+
         int isExistObjectVal = (int)message.Values[0].FloatValue;
 
         IsExistObject = (isExistObjectVal!=0);
@@ -124,17 +139,23 @@ public class HokuyoDataReceiver : MonoBehaviour
 
     void ReceiveSizeScale(OSCMessage message)
     {
+        if (!enabled) return;
+
         _sizeScale = message.Values[0].FloatValue;
     }
 
     void ReceiveCenterM(OSCMessage message)
     {
+        if (!enabled) return;
+
         _centerM.x = message.Values[0].FloatValue;
         _centerM.y = message.Values[1].FloatValue;
     }
 
     void ReceiveSizeM(OSCMessage message)
     {
+        if (!enabled) return;
+
         _sizeM.x = message.Values[0].FloatValue;
         _sizeM.y = message.Values[1].FloatValue;
     }

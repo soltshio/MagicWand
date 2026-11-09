@@ -16,7 +16,19 @@ public class OSCRunningChecker
 
     SingleTaskCancellation _singleTaskCancellation = new();
 
-    public bool IsRunning { get { return _isRunning; } }
+    public event Action<bool> OnSwitchIsRunning;
+
+    public bool IsRunning 
+    {
+        private set
+        {
+            if(_isRunning == value) return;
+
+            _isRunning = value;
+            OnSwitchIsRunning?.Invoke(_isRunning);
+        }
+        get { return _isRunning; }
+    }
 
     public void UpdateRunning(CancellationToken ct)
     {
@@ -27,10 +39,10 @@ public class OSCRunningChecker
 
     async UniTask TimeOutAsync(CancellationToken ct)
     {
-        _isRunning = true;
+        IsRunning = true;
 
         await UniTask.Delay(TimeSpan.FromSeconds(_timeOutSec), cancellationToken: ct);
 
-        _isRunning = false;
+        IsRunning = false;
     }
 }
