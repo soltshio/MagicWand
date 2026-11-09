@@ -842,16 +842,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa20a680e604374e87f4bb44e5a32bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiconPortNumInputUI
-  _miconPortResultCanvas: {fileID: 350304678}
-  _resultText: {fileID: 1966905085}
-  _closeButton: {fileID: 7251575}
+  _optionResultCanvas: {fileID: 368774927}
   _inputField: {fileID: 2015189688}
   _textContent_InvalidInput: "1\uFF5E16\u306E\u6574\u6570\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002\r\n"
   _textContent_AlreadyConnected: "\u305D\u306E\u30DD\u30FC\u30C8\u306F\u65E2\u306B\u63A5\u7D9A\u3055\u308C\u3066\u3044\u307E\u3059\u3002\r\n\u5225\u306E\u30DD\u30FC\u30C8\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
   _textContent_IsClosingConnect: "\u4E00\u5EA6\u63A5\u7D9A\u3092\u7D42\u4E86\u3057\u3066\u3044\u307E\u3059...\u3002"
   _textContent_IsConnecting: "\u901A\u4FE1\u3092\u63A5\u7D9A\u4E2D\u3067\u3059...\u3002"
   _textContent_SuccessToConnect: "\u63A5\u7D9A\u6210\u529F\uFF01"
-  _textContent_FailToConnect: "\u63A5\u7D9A\u5931\u6557..."
+  _textContent_FailToConnect: "\u63A5\u7D9A\u5931\u6557...\u3002"
 --- !u!1 &295060055
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,6 +917,34 @@ PrefabInstance:
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_CharacterLimit
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2147153297}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEndEditSizeX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HokuyoOptionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4928917449162049483, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_Name
@@ -1035,7 +1061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &309086907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1168,7 +1194,7 @@ GameObject:
   - component: {fileID: 350304677}
   - component: {fileID: 350304676}
   m_Layer: 5
-  m_Name: FrontCanvas
+  m_Name: OptionResultCanvas
   m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1395,6 +1421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 368774925}
   - component: {fileID: 368774926}
+  - component: {fileID: 368774927}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1439,6 +1466,21 @@ MonoBehaviour:
   - pageLabelText: "\u5317\u967D\u30EC\u30FC\u30B6\u30FC"
     pageObject: {fileID: 1746391409}
   _pageLabelText: {fileID: 605372544}
+--- !u!114 &368774927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368774924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe11a65f498d9248ac13cf2ea6d37aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OptionResultCanvas
+  _miconPortResultCanvas: {fileID: 350304678}
+  _resultText: {fileID: 1966905085}
+  _closeButton: {fileID: 7251575}
 --- !u!1 &446776009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,7 +1493,7 @@ GameObject:
   - component: {fileID: 446776012}
   - component: {fileID: 446776011}
   m_Layer: 5
-  m_Name: MiconPortResultPanel
+  m_Name: ResultPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,6 +1672,34 @@ PrefabInstance:
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_CharacterLimit
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2147153297}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEndEditCenterY
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HokuyoOptionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4928917449162049483, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_Name
@@ -2153,6 +2223,34 @@ PrefabInstance:
       propertyPath: m_CharacterLimit
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2147153297}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEndEditSizeY
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HokuyoOptionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4928917449162049483, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_Name
       value: Y
@@ -2390,6 +2488,17 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &842302341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+  m_PrefabInstance: {fileID: 490887942}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &864120183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2584,17 @@ MonoBehaviour:
   _delayToLoad: 0.5
   _sceneNameList: {fileID: 11400000, guid: f0a2361ad62aa5048a98ecb0c67dac60, type: 2}
   _loadSceneName: 0
+--- !u!114 &927394050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+  m_PrefabInstance: {fileID: 794987713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &947232952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,6 +2963,34 @@ PrefabInstance:
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_CharacterLimit
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2147153297}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnEndEditCenterX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HokuyoOptionUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4928917449162049483, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_Name
@@ -3573,12 +3721,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1619889381}
   m_Layer: 5
-  m_Name: SettingContent
+  m_Name: SensorOptionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1619889381
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4000,6 +4148,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1843787891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+  m_PrefabInstance: {fileID: 1145400642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!1 &1929045434
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,6 +4370,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 29.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2001523092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
+  m_PrefabInstance: {fileID: 300994896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
 --- !u!114 &2015189688 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
@@ -4467,6 +4637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2147153296}
+  - component: {fileID: 2147153297}
   m_Layer: 0
   m_Name: Hokuyo
   m_TagString: Untagged
@@ -4489,6 +4660,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 368774925}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2147153297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147153295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261f2a0c6e081414bad4bc01bcee2eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HokuyoOptionUI
+  _centerXInputField: {fileID: 1843787891}
+  _centerYInputField: {fileID: 842302341}
+  _sizeXInputField: {fileID: 2001523092}
+  _sizeYInputField: {fileID: 927394050}
+  _noSignalUI: {fileID: 309086906}
+  _sensorOptionUI: {fileID: 1619889380}
+  _optionResultCanvas: {fileID: 368774927}
+  _textContent_InvalidInput: "\u6570\u5B57\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!224 &6407264495294072338 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5533206586292785797, guid: 786f70a3c4a422846af3c7d1ebd672ec, type: 3}
