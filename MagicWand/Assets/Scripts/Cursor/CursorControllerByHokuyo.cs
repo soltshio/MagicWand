@@ -55,10 +55,17 @@ public class CursorControllerByHokuyo : MonoBehaviour
     {
         if (!context.performed) return;
 
-        _isActive = false;
+        _isActive = !_isActive;
 
 #if UNITY_EDITOR
-        Debug.Log("北陽レーザーでのカーソル操作モードを解除します");
+        if(_isActive)
+        {
+            Debug.Log("北陽レーザーでのカーソル操作モードを有効にします");
+        }
+        else
+        {
+            Debug.Log("北陽レーザーでのカーソル操作モードを解除します");
+        }
 #endif
     }
 
