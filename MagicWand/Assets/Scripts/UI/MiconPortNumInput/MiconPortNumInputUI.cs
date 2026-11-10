@@ -45,7 +45,7 @@ public class MiconPortNumInputUI : MonoBehaviour
 
     const int _minPortNum = 1;
     const int _maxPortNum = 16;
-    const string _currentPortNumOnDisconnectMicon = "×";//マイコンと接続されていない時に表示する現在接続されているマイコンのポート番号
+    const string _currentPortNumOnDisconnectMicon = "-";//マイコンと接続されていない時に表示する現在接続されているマイコンのポート番号
 
     SerialHandler _serialHandlerInstance;
     OptionDataSaveLoadManager _optionDataSaveLoadManagerInstance;
