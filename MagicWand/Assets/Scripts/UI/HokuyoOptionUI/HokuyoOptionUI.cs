@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using TMPro;
+using System.Threading;
 using UnityEngine;
-using UnityEngine.Windows;
 
 //作成者:杉山
 //測距(北陽)レーザーのオプションUI
@@ -27,8 +26,6 @@ public class HokuyoOptionUI : MonoBehaviour
     [Tooltip("調整UI(センサーからの値が受け取れている時に表示するUI)")] [SerializeField]
     GameObject _sensorOptionUI;
 
-    
-
 
     [Header("不正な入力がされた時の設定")]
 
@@ -37,7 +34,9 @@ public class HokuyoOptionUI : MonoBehaviour
 
     HokuyoDataReceiver _hokuyoDataReceiverInstance;
     HokuyoDataTransmitter _hokuyoDataTransmitterInstance;
-    
+
+    const int _frameCountToInitSwitchShowNoSignalUI = 3;
+
 
     //中心Xへの入力
     public void OnInputtedCenterX(float newCenterX)
@@ -59,7 +58,6 @@ public class HokuyoOptionUI : MonoBehaviour
         newCenter.y = newCenterY;
 
         SendCenterValue(newCenter);
-
     }
 
     //サイズXへの入力
@@ -90,6 +88,8 @@ public class HokuyoOptionUI : MonoBehaviour
         if(_hokuyoDataReceiverInstance == null) _hokuyoDataReceiverInstance = await HokuyoDataReceiver.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
         if(_hokuyoDataTransmitterInstance == null) _hokuyoDataTransmitterInstance = await HokuyoDataTransmitter.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
+        InitSwitchShowNoSignalUIAsync(this.GetCancellationTokenOnDestroy()).Forget();
+
         _hokuyoDataReceiverInstance.OnSwitchIsRunning += SwitchNoSignalUI;
 
         _centerXInputField.OnInputtedValue += OnInputtedCenterX;
@@ -106,6 +106,19 @@ public class HokuyoOptionUI : MonoBehaviour
         _centerYInputField.OnInputtedValue -= OnInputtedCenterY;
         _sizeXInputField.OnInputtedValue -= OnInputtedSizeX;
         _sizeYInputField.OnInputtedValue -= OnInputtedSizeY;
+    }
+
+    //起動時、少し遅延させてからじゃないとIsRunningの値が正しく取得できない場合があるので、少し遅延させてからUIの表示切り替えを行う
+    async UniTask InitSwitchShowNoSignalUIAsync(CancellationToken ct)
+    {
+        if (_hokuyoDataReceiverInstance == null) return;
+
+        for(int i=0; i< _frameCountToInitSwitchShowNoSignalUI ;i++)
+        {
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
+        }
+            
+        SwitchNoSignalUI(_hokuyoDataReceiverInstance.IsRunning);
     }
 
     //測距センサーからデータを受け取れていない場合は設定UIを表示させないようにする
