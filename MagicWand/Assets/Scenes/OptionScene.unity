@@ -2517,15 +2517,15 @@ PrefabInstance:
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1176005647}
+      objectReference: {fileID: 717244111}
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1176005647}
+      objectReference: {fileID: 717244111}
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_OnDeselect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1176005647}
+      objectReference: {fileID: 717244111}
     - target: {fileID: 4638508912700732983, guid: 0dcd2aefadc965a448d2274b2b2bfe8d, type: 3}
       propertyPath: m_OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -5549,6 +5549,7 @@ MonoBehaviour:
   _centerYInputField: {fileID: 1827361589}
   _sizeXInputField: {fileID: 1176005647}
   _sizeYInputField: {fileID: 323200881}
+  _sizeScaleInputField: {fileID: 717244111}
   _noSignalUI: {fileID: 309086906}
   _sensorOptionUI: {fileID: 1619889380}
   _textContent_InvalidInput: "\u6570\u5B57\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"

@@ -19,6 +19,9 @@ public class HokuyoOptionUI : MonoBehaviour
     [SerializeField]
     HokuyoDataValueInputField _sizeYInputField;
 
+    [SerializeField]
+    HokuyoDataValueInputField _sizeScaleInputField;
+
 
     [Tooltip("センサーからの値が受け取れない時に表示するUI")] [SerializeField]
     GameObject _noSignalUI;
@@ -38,6 +41,7 @@ public class HokuyoOptionUI : MonoBehaviour
     const int _frameCountToInitSwitchShowNoSignalUI = 3;
 
 
+    //☆入力受け取り
     //中心Xへの入力
     public void OnInputtedCenterX(float newCenterX)
     {
@@ -82,6 +86,17 @@ public class HokuyoOptionUI : MonoBehaviour
         SendSizeValue(newSize);
     }
 
+    //SizeScaleへの入力
+    public void OnInputtedSizeScale(float sizeScale)
+    {
+        if (_hokuyoDataReceiverInstance == null) return;
+
+        SendSizeScale(sizeScale);
+    }
+
+
+
+
     async void OnEnable()
     {
         //インスタンスが取得できていなければ取得する
@@ -96,6 +111,7 @@ public class HokuyoOptionUI : MonoBehaviour
         _centerYInputField.OnInputtedValue += OnInputtedCenterY;
         _sizeXInputField.OnInputtedValue += OnInputtedSizeX;
         _sizeYInputField.OnInputtedValue += OnInputtedSizeY;
+        _sizeScaleInputField.OnInputtedValue += OnInputtedSizeScale;
     }
 
     void OnDisable()
@@ -106,6 +122,7 @@ public class HokuyoOptionUI : MonoBehaviour
         _centerYInputField.OnInputtedValue -= OnInputtedCenterY;
         _sizeXInputField.OnInputtedValue -= OnInputtedSizeX;
         _sizeYInputField.OnInputtedValue -= OnInputtedSizeY;
+        _sizeScaleInputField.OnInputtedValue -= OnInputtedSizeScale;
     }
 
     //起動時、少し遅延させてからじゃないとIsRunningの値が正しく取得できない場合があるので、少し遅延させてからUIの表示切り替えを行う
@@ -138,8 +155,13 @@ public class HokuyoOptionUI : MonoBehaviour
         //現在のサイズを更新
         _sizeXInputField.SetInputFieldText(_hokuyoDataReceiverInstance.SizeM.x);
         _sizeYInputField.SetInputFieldText(_hokuyoDataReceiverInstance.SizeM.y);
+        //現在のサイズ拡大率を更新
+        _sizeScaleInputField.SetInputFieldText(_hokuyoDataReceiverInstance.SizeScale);
     }
 
+
+
+    //☆HokuyoDataTransmitterの送信処理を呼ぶ処理
     void SendCenterValue(Vector2 center)
     {
         if (_hokuyoDataTransmitterInstance == null) return;
@@ -152,5 +174,12 @@ public class HokuyoOptionUI : MonoBehaviour
         if (_hokuyoDataTransmitterInstance == null) return;
 
         _hokuyoDataTransmitterInstance.SendSizeM(size);//送信
+    }
+
+    void SendSizeScale(float sizeScale)
+    {
+        if (_hokuyoDataTransmitterInstance == null) return;
+
+        _hokuyoDataTransmitterInstance.SendSizeScale(sizeScale);
     }
 }
