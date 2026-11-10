@@ -10,13 +10,7 @@ using UnityEngine.UI;
 public class MiconPortNumInputUI : MonoBehaviour
 {
     [SerializeField]
-    Canvas _miconPortResultCanvas;
-
-    [SerializeField]
-    TextMeshProUGUI _resultText;
-
-    [SerializeField]
-    Button _closeButton;
+    OptionResultCanvas _optionResultCanvas;
 
     [SerializeField]
     TMP_InputField _inputField;
@@ -51,7 +45,7 @@ public class MiconPortNumInputUI : MonoBehaviour
 
     const int _minPortNum = 1;
     const int _maxPortNum = 16;
-    const string _currentPortNumOnDisconnectMicon = "×";//マイコンと接続されていない時に表示する現在接続されているマイコンのポート番号
+    const string _currentPortNumOnDisconnectMicon = "-";//マイコンと接続されていない時に表示する現在接続されているマイコンのポート番号
 
     SerialHandler _serialHandlerInstance;
     OptionDataSaveLoadManager _optionDataSaveLoadManagerInstance;
@@ -94,14 +88,14 @@ public class MiconPortNumInputUI : MonoBehaviour
     async UniTask TryMiconPortConnectAsync(CancellationToken ct,int portNum)
     {
         //パネルを表示しておく
-        _miconPortResultCanvas.enabled = true;
-        _closeButton.gameObject.SetActive(false);//通信が終了するまで閉じるボタンは隠しておく
+        _optionResultCanvas.SetEnabledResultCanvas(true);
+        _optionResultCanvas.SetActiveCloseButton(false);//通信が終了するまで閉じるボタンは隠しておく
 
         //通信中なら一度通信を閉じる
         if (_serialHandlerInstance.IsRunning)
         {
             _serialHandlerInstance.Close();
-            _resultText.text = _textContent_IsClosingConnect;
+            _optionResultCanvas.SetResultText(_textContent_IsClosingConnect);
         }
 
         //通信が閉じるまで待つ
@@ -111,7 +105,7 @@ public class MiconPortNumInputUI : MonoBehaviour
         await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
 
         //通信接続を開始
-        _resultText.text = _textContent_IsConnecting;
+        _optionResultCanvas.SetResultText(_textContent_IsConnecting);
         bool isSuccessToConnect = _serialHandlerInstance.Open(portNum);
 
         //通信に成功
@@ -120,46 +114,44 @@ public class MiconPortNumInputUI : MonoBehaviour
             //オプションデータにセーブ
             _optionDataSaveLoadManagerInstance.SaveMiconPortNumber(portNum);
 
-            _resultText.text = _textContent_SuccessToConnect;
+            _optionResultCanvas.SetResultText(_textContent_SuccessToConnect);
         }
         //通信に失敗
         else
         {
             _windowsWarningPlayerInstance.PlayWarning();
-            _resultText.text = _textContent_FailToConnect;
+
+            _optionResultCanvas.SetResultText(_textContent_FailToConnect);
         }
 
         //通信接続が終了
 
         ShowCurrentPortNum();
-        _closeButton.gameObject.SetActive(true);//閉じるボタンを表示
+        _optionResultCanvas.SetActiveCloseButton(true);//閉じるボタンを表示
     }
 
     //正常な入力するように要求する説明が書かれたパネルを表示
     void ShowRequestToInvalidInputPanel()
     {
         _windowsWarningPlayerInstance.PlayWarning();
-        _miconPortResultCanvas.enabled = true;
-        
-        _closeButton.gameObject.SetActive(true);
-        _resultText.text = _textContent_InvalidInput;
+        _optionResultCanvas.SetEnabledResultCanvas(true);
+
+        _optionResultCanvas.SetActiveCloseButton(true);
+        _optionResultCanvas.SetResultText(_textContent_InvalidInput);
     }
 
     //既に接続中のポート番号と同じポート番号を入力した場合に表示するパネル(別のポートを選択するように促す)
     void ShowRequestToSelectOtherPortPanel()
     {
         _windowsWarningPlayerInstance.PlayWarning();
-        _miconPortResultCanvas.enabled = true;
+        _optionResultCanvas.SetEnabledResultCanvas(true);
 
-        _closeButton.gameObject.SetActive(true);
-        _resultText.text = _textContent_AlreadyConnected;
+        _optionResultCanvas.SetActiveCloseButton(true);
+        _optionResultCanvas.SetResultText(_textContent_AlreadyConnected);
     }
 
     async void Start()
     {
-        //リザルトパネルのキャンバスは非表示にしておく
-        _miconPortResultCanvas.enabled = false;
-
         // SerialHandlerのインスタンスを取得
         _serialHandlerInstance = await SerialHandler.GetInstanceAsync(this.GetCancellationTokenOnDestroy());
 
