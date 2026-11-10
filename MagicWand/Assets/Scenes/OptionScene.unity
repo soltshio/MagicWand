@@ -1752,7 +1752,7 @@ MonoBehaviour:
     pageObject: {fileID: 540830136}
   - pageLabelText: "\u97F3\u91CF"
     pageObject: {fileID: 132711013}
-  - pageLabelText: "\u5317\u967D\u30EC\u30FC\u30B6\u30FC"
+  - pageLabelText: "\u6E2C\u8DDD\u30EC\u30FC\u30B6\u30FC"
     pageObject: {fileID: 1746391409}
   _pageLabelText: {fileID: 605372544}
 --- !u!114 &368774927
