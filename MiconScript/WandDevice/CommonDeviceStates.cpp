@@ -43,7 +43,7 @@ void NormalState::Update(DeviceStateMachine& machine)
   //加速度が閾値を超えて、なおかつクールタイム中でなければ、効果音を鳴らす
   if(_isOveredAccelThreshold && !_isPlaySoundCoolTime)
   {
-    _dfPlayerMini->PlaySound(ESoundNum::Thunder);//仮で雷の音を鳴らすようにする
+    _dfPlayerMini->PlaySound(ESoundNum::Swing);
 
     //クールタイム状態にする
     _isPlaySoundCoolTime = true;
