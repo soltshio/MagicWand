@@ -117,7 +117,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaskFresnelPower: 0.26
+    - _MaskFresnelPower: 0.15
     - _Metallic: 0
     - _NoiseScale: 56.13
     - _OcclusionStrength: 1
@@ -130,7 +130,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _StrainStrength: 0.12
+    - _StrainStrength: 0.08
     - _Surface: 0
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
