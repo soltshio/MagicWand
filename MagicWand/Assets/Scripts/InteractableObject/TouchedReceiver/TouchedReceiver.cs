@@ -6,7 +6,7 @@ using UnityEngine;
 //作成者:杉山
 //何かがオブジェクト(自分)に触れたことを受け取り通知するクラス(レイなどがこのオブジェクトに当たった時にInformTouch()を呼ぶことでこのオブジェクトに触れたことを伝える)
 
-public class TouchedReceiver : MonoBehaviour
+public class TouchedReceiver : MonoBehaviour, ITouchable
 {
     [SerializeField]
     float _timeOutDurationToResetIsTouched = 0.1f;
@@ -32,8 +32,8 @@ public class TouchedReceiver : MonoBehaviour
         }
     }
 
-    //オブジェクトに触れていることを通知する
-    public void InformTouch()
+    //タッチされたことを外部から呼んで知らせる
+    public void OnTouched()
     {
         if(!isActiveAndEnabled) return;
 
