@@ -39,11 +39,11 @@ public class TouchedReceiver : MonoBehaviour, ITouchable
 
         var newCt = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
-        TouchUpdateAsync(newCt).Forget();
+        IsTouchedUpdateAsync(newCt).Forget();
     }
 
-    //触れた知らせを受け取ってから
-    async UniTask TouchUpdateAsync(CancellationToken ct)
+    //触れた知らせを受け取って、少し経過してからタッチされたという判定をリセットする
+    async UniTask IsTouchedUpdateAsync(CancellationToken ct)
     {
         IsTouched = true;
 
