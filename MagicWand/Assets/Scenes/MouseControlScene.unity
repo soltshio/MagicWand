@@ -22385,6 +22385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeatHazeEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 1799729106196818406, guid: 672eda1adf8184346a2c1f9aaa7e755a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3082022279748900195, guid: 672eda1adf8184346a2c1f9aaa7e755a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
