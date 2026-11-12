@@ -8,49 +8,46 @@ public class ExpressionsController : MonoBehaviour
     [SerializeField]
     SkinnedMeshRendererReference _expressionsRenderer;
 
-    [Tooltip("表情番号")]
-    [SerializeField]
-    int _defaultExpressionsIndex;
+    [Tooltip("表情番号")] [SerializeField]
+    int _expressionsIndex;
 
-    [Tooltip("表情差分のテクスチャで横(x)と縦(y)で何個差分があるか")]
-    [SerializeField]
+    [Tooltip("表情差分のテクスチャで横(x)と縦(y)で何個差分があるか")] [SerializeField]
     Vector2Int _expressionsTexCount;
 
-    [Tooltip("左上の最初の番号(0)にあたる表情差分のテクスチャ位置")]
-    [SerializeField]
+    [Tooltip("左上の最初の番号(0)にあたる表情差分のテクスチャ位置")] [SerializeField]
     Vector2 _texPosFirstExpression;
 
-    [Tooltip("表情差分同士のテクスチャ上の距離")]
-    [SerializeField]
+    [Tooltip("表情差分同士のテクスチャ上の距離")] [SerializeField]
     Vector2 _texDistance;
 
     static readonly int _baseMapSTID = Shader.PropertyToID("_BaseMap_ST");
+
+    public int ExpressionsIndex
+    {
+        get { return _expressionsIndex; }
+        set { ChangeExpression(value); }
+    }
 
     public int ExpressionsCount { get { return _expressionsTexCount.x * _expressionsTexCount.y; } }
 
     private void OnValidate()
     {
-        if (_expressionsRenderer == null)
-        {
-            Debug.Log("ExpressionsRendererが入ってません！");
-            return;
-        }
-
-        ChangeExpression(_defaultExpressionsIndex);
-    }
-
-    void Start()
-    {
-        //表情の初期化
-        ChangeExpression(_defaultExpressionsIndex);
+        ChangeExpression(_expressionsIndex);
     }
 
     //テクスチャの左上の方から、0から順に数えた表情差分の番号を指定してそれに対応した表情に変更する
     public void ChangeExpression(int expressionNum)
     {
+        if (_expressionsRenderer == null)
+        {
+            Debug.LogError("ExpressionsRendererが入ってません！");
+            return;
+        }
+
         // 番号が範囲外であれば弾く
         if (!MathfExtension.IsInRange(expressionNum, 0, ExpressionsCount - 1))
         {
+            ExpressionsIndex = 0;//表情差分番号を０のものにしておく
             Debug.LogError("表情差分番号が範囲外です！");
             return;
         }
@@ -60,6 +57,9 @@ public class ExpressionsController : MonoBehaviour
 
         // Offsetを適用
         ApplyTextureOffset(offset);
+
+        //現在の表情番号を更新
+        _expressionsIndex = expressionNum;
     }
 
     // 表情番号からテクスチャのOffsetを取得
