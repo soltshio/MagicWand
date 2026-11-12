@@ -3655,7 +3655,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 0.6364614, g: 0.93962264, b: 0.8214411, a: 1}
+  m_Color: {r: 0.8145603, g: 0.9924528, b: 0.9217519, a: 1}
   m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
@@ -5170,6 +5170,7 @@ GameObject:
   - component: {fileID: 623789237}
   - component: {fileID: 623789236}
   - component: {fileID: 623789240}
+  - component: {fileID: 623789241}
   m_Layer: 0
   m_Name: BigNudi
   m_TagString: Untagged
@@ -5225,7 +5226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpressionsController
   _expressionsRenderer: {fileID: 567929672}
-  _defaultExpressionNum: 0
+  _expressionsIndex: 0
   _expressionsTexCount: {x: 4, y: 8}
   _texPosFirstExpression: {x: 0, y: 0}
   _texDistance: {x: 0.25, y: -0.125}
@@ -5268,6 +5269,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureStatus
   _maxHp: 2
+--- !u!95 &623789241
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623789234}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6438c3d8a2f12e64598aa88f494093c0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &642836013
 GameObject:
   m_ObjectHideFlags: 0
