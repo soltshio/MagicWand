@@ -61,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundTexture2D:
-        m_Texture: {fileID: 2800000, guid: 56bd9e0efe9a7a5498f94e3e742f8a7a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 72d885238341df64b9f0707723fff0d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -148,11 +148,11 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CrackColor: {r: 0.26037726, g: 0.20873725, b: 0.10365958, a: 1}
+    - _CrackColor: {r: 0.2754717, g: 0.21618028, b: 0.093036644, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GrassColor: {r: 0.4627032, g: 0.65400004, b: 0.43818003, a: 1}
-    - _GroundMultiplyColorDry: {r: 0.7660377, g: 0.6504128, b: 0.47841218, a: 1}
-    - _GroundMultiplyColorWet: {r: 0.7137255, g: 1, b: 0.97736305, a: 1}
+    - _GroundMultiplyColorDry: {r: 1, g: 1, b: 1, a: 1}
+    - _GroundMultiplyColorWet: {r: 0.5768957, g: 0.6603774, b: 0.6535159, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
