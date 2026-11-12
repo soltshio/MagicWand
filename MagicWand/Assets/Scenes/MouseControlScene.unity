@@ -5225,7 +5225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExpressionsController
   _expressionsRenderer: {fileID: 567929672}
-  _defaultExpressionNum: 0
+  _defaultExpressionsIndex: 0
   _expressionsTexCount: {x: 4, y: 8}
   _texPosFirstExpression: {x: 0, y: 0}
   _texDistance: {x: 0.25, y: -0.125}
