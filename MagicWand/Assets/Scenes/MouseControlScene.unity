@@ -1520,6 +1520,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &122906116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5122784119718888773, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
+  m_PrefabInstance: {fileID: 1425589348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &136774159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5220,7 +5225,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623789234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4f75d1bc2ed5045945bb2f555f75b7, type: 3}
   m_Name: 
@@ -10848,7 +10853,7 @@ Transform:
   m_GameObject: {fileID: 796611146}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0020631626, y: 0.7322266, z: 0.0019189792, w: 0.68105525}
-  m_LocalPosition: {x: 3.91, y: -3.64, z: 31.027473}
+  m_LocalPosition: {x: 3.91, y: 5.3099995, z: 31.027473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15336,6 +15341,45 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2935923029787220564, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
   m_PrefabInstance: {fileID: 1425589348}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1264937962
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122906116}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc427fadec3ea6d4ebff01b1e78e1b56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1264937963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122906116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4f75d1bc2ed5045945bb2f555f75b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpressionsController
+  _expressionsRenderer: {fileID: 567929672}
+  _expressionsIndex: 0
+  _expressionsTexCount: {x: 4, y: 8}
+  _texPosFirstExpression: {x: 0, y: 0}
+  _texDistance: {x: 0.25, y: -0.125}
 --- !u!4 &1307481292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6256673353547510877, guid: 273fb25532f042048b1a369f284ac340, type: 3}
@@ -18072,7 +18116,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5122784119718888773, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1264937963}
+    - targetCorrespondingSourceObject: {fileID: 5122784119718888773, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1264937962}
   m_SourcePrefab: {fileID: 100100000, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
 --- !u!1 &1458048153
 GameObject:
