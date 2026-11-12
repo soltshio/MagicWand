@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundRefTexture2D:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8e7c9c89231117c4d9fe212b5859fc63, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GroundTexture:
@@ -133,8 +133,10 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _GrassAlpha: 0
+    - _MaskNoiseEdgeDefault: 0.703
     - _MaskNoiseEdgeDry: 0
-    - _MaskNoiseEdgeWet: 0.772
+    - _MaskNoiseEdgeNormal: 0.707
+    - _MaskNoiseEdgeWet: 0.83
     - _MaskNoiseScale: 67.2
     - _Max: 0.627
     - _Metallic: 0
@@ -159,7 +161,9 @@ Material:
     - _CrackColor: {r: 0.2754717, g: 0.21618028, b: 0.093036644, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GrassColor: {r: 0.4627032, g: 0.65400004, b: 0.43818003, a: 1}
+    - _GroundMultiplyColorDefault: {r: 0.49801832, g: 0.8113208, b: 0.341367, a: 1}
     - _GroundMultiplyColorDry: {r: 1, g: 1, b: 1, a: 1}
+    - _GroundMultiplyColorNormal: {r: 0.5938744, g: 0.65882355, b: 0.5764706, a: 1}
     - _GroundMultiplyColorWet: {r: 0.5768957, g: 0.6603774, b: 0.6535159, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
