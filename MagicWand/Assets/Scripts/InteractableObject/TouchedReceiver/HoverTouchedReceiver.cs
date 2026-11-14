@@ -3,6 +3,9 @@ using System;
 using System.Threading;
 using UnityEngine;
 
+//作成者:杉山
+//何かがオブジェクト(自分)に数秒間触れ続けたことを受け取り通知するクラス(レイなどがこのオブジェクトに当たった時にInformTouch()を呼ぶことでこのオブジェクトに触れたことを伝える)
+
 public class HoverTouchedReceiver : MonoBehaviour,ITouchable
 {
     [SerializeField]
@@ -19,10 +22,7 @@ public class HoverTouchedReceiver : MonoBehaviour,ITouchable
 
     public event Action OnTouchedEnter;
     public event Action OnTouchedExit;
-
-    //ホバー系
-    public event Action OnSubmitted;
-    public event Action OnCancelled;
+    public event Action OnSubmitted;//決定されたか
 
     public float HoverDuration
     {
@@ -41,14 +41,14 @@ public class HoverTouchedReceiver : MonoBehaviour,ITouchable
 
             _isTouched = value;
 
-            if (value == true)
+            if (value)//触れている
             {
                 OnTouchedEnter?.Invoke();
                 //ホバー判定処理を開始
                 var ct = _hoverCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
                 HoverAsync(ct).Forget();
             }
-            else
+            else//触れていない
             {
                 OnTouchedExit?.Invoke();
                 //ホバー判定処理を停止
@@ -96,10 +96,6 @@ public class HoverTouchedReceiver : MonoBehaviour,ITouchable
             }
 
             OnSubmitted?.Invoke();
-        }
-        catch(OperationCanceledException)
-        {
-            OnCancelled?.Invoke();
         }
         finally
         {
