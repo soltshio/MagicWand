@@ -108,11 +108,11 @@ Material:
     - _GlossyReflections: 0
     - _MarkAlphaClipThreshold: 0
     - _MarkNoiseScale: 20
-    - _MarkProjectionScale: 0.62
+    - _MarkProjectionScale: 0.55
     - _MarkScale: 1.59
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutLinePower: 4
+    - _OutLinePower: 6.58
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -128,12 +128,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseInEmissionColor: {r: 1.4980392, g: 0.13737278, b: 0.02352937, a: 1}
+    - _BaseInEmissionColor: {r: 0.17899999, g: 0.17899999, b: 0.17899999, a: 1}
     - _BaseNoiseSpeed: {r: 0.4, g: 0.2, b: 0, a: 0}
-    - _BaseOutEmissionColor: {r: 1.7207952, g: 0.46900386, b: 0.027028153, a: 1}
+    - _BaseOutEmissionColor: {r: 0.068, g: 0.068, b: 0.068, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MarkEmissionColor: {r: 44.727047, g: 2.4393733, b: 0.590732, a: 1}
+    - _MarkEmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MarkOffset: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _OutlineEmissionColor: {r: 110.130905, g: 6.0064416, b: 1.4545532, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

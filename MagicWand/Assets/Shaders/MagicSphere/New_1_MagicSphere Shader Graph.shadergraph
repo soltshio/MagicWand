@@ -7,6 +7,9 @@
             "m_Id": "7c0d0d55abbb4641bf4b8decf0a4b290"
         },
         {
+            "m_Id": "d5460a86c9494df5a13b49b8aeeae58b"
+        },
+        {
             "m_Id": "6300228c58354465bbfbbcae83098328"
         },
         {
@@ -38,6 +41,12 @@
         },
         {
             "m_Id": "db721229279940b194ace0dbc257e4d4"
+        },
+        {
+            "m_Id": "145263053eb24a8f849b3912ee2e70d3"
+        },
+        {
+            "m_Id": "968c4415fdfd493eaecc8d2644d87668"
         }
     ],
     "m_Keywords": [],
@@ -1681,6 +1690,50 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "145263053eb24a8f849b3912ee2e70d3",
+    "m_Guid": {
+        "m_GuidSerialized": "6d3be8a6-00ac-49ba-a430-cc68903513cc"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "InMarkGaugeFillAmount",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "InMarkGaugeFillAmount",
+    "m_DefaultReferenceName": "_InMarkGaugeFillAmount",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_LiteralFloatMode": false,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "179576bd1e194a47aeba7ff1484ed9a4",
@@ -1794,25 +1847,34 @@
     "m_Name": "",
     "m_ChildObjectList": [
         {
-            "m_Id": "88d0ee6107694d2788391405385d9f03"
+            "m_Id": "145263053eb24a8f849b3912ee2e70d3"
         },
         {
-            "m_Id": "031491f7fe244f91864a38e65b4c95b5"
+            "m_Id": "d5460a86c9494df5a13b49b8aeeae58b"
         },
         {
             "m_Id": "d322d2c44c83439997769e42e92ab174"
         },
         {
-            "m_Id": "1f89487aab8f43efbf7cbfb34e080086"
+            "m_Id": "88d0ee6107694d2788391405385d9f03"
         },
         {
-            "m_Id": "bb09ea599dcd498196ba9fd964f6e7d5"
+            "m_Id": "968c4415fdfd493eaecc8d2644d87668"
+        },
+        {
+            "m_Id": "031491f7fe244f91864a38e65b4c95b5"
         },
         {
             "m_Id": "3d61eb529dc3409580e3666254a972b3"
         },
         {
             "m_Id": "8542f816957e418a8e954f39ae5ac7d6"
+        },
+        {
+            "m_Id": "1f89487aab8f43efbf7cbfb34e080086"
+        },
+        {
+            "m_Id": "bb09ea599dcd498196ba9fd964f6e7d5"
         },
         {
             "m_Id": "01379e66b0e94736bd5394ad78eefb18"
@@ -2303,8 +2365,8 @@
     "m_ObjectId": "2db0ac31ed88456d83904cabcf9fc4c5",
     "m_Title": "外側の色が少なめになるように調整",
     "m_Position": {
-        "x": -2116.799560546875,
-        "y": -1430.4000244140625
+        "x": -2116.79931640625,
+        "y": -1430.39990234375
     }
 }
 
@@ -2871,8 +2933,8 @@
     "m_ObjectId": "3f6207bfd59344caacf019d461dc795a",
     "m_Title": "BaseMovingNoise",
     "m_Position": {
-        "x": -5710.39892578125,
-        "y": -1692.0
+        "x": -5710.39990234375,
+        "y": -1692.0001220703125
     }
 }
 
@@ -3262,7 +3324,7 @@
     "m_ObjectId": "4b8ddf9b03834e6a821d5b34651dd4f9",
     "m_Title": "BaseColor",
     "m_Position": {
-        "x": -3274.399658203125,
+        "x": -3274.39990234375,
         "y": -1648.7999267578125
     }
 }
@@ -3538,7 +3600,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "55ac2663292b4d8a9e718f2b24b98e9b",
     "m_Id": 0,
-    "m_DisplayName": "MarkEmissionColor",
+    "m_DisplayName": "OutMarkEmissionColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -5226,6 +5288,50 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "968c4415fdfd493eaecc8d2644d87668",
+    "m_Guid": {
+        "m_GuidSerialized": "abc59e7d-029f-462d-bb33-ce46256c444a"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "MarkOutlineWidth",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "MarkOutlineWidth",
+    "m_DefaultReferenceName": "_MarkOutlineWidth",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_LiteralFloatMode": false,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "97e85983367a4c4fb87ff4e8d467bb51",
@@ -6612,7 +6718,7 @@
     "m_ObjectId": "d1109802ce70478e839a6a09151c396e",
     "m_Title": "OutlineColor",
     "m_Position": {
-        "x": -2074.400146484375,
+        "x": -2074.399658203125,
         "y": -556.0
     }
 }
@@ -6668,10 +6774,10 @@
     "promotedFromAssetID": "",
     "promotedFromCategoryName": "",
     "promotedOrdering": -1,
-    "m_Name": "MarkEmissionColor",
+    "m_Name": "OutMarkEmissionColor",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "MarkEmissionColor",
-    "m_DefaultReferenceName": "_MarkEmissionColor",
+    "m_RefNameGeneratedByDisplayName": "OutMarkEmissionColor",
+    "m_DefaultReferenceName": "_OutMarkEmissionColor",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -6799,6 +6905,41 @@
 }
 
 {
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "d5460a86c9494df5a13b49b8aeeae58b",
+    "m_Guid": {
+        "m_GuidSerialized": "2cc25356-4fe1-478c-892d-ad27cf419822"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "InMarkEmissionColor",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "InMarkEmissionColor",
+    "m_DefaultReferenceName": "_InMarkEmissionColor",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": {
+        "r": 10.432955741882325,
+        "g": 0.5690042972564697,
+        "b": 0.13779321312904359,
+        "a": 1.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 1
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "d5725d93d56a4154a3892afd4cc6e0ef",
@@ -6861,8 +7002,8 @@
     "m_ObjectId": "d5c3fb325c4542e38faf982d02ba0e64",
     "m_Title": "MarkColor",
     "m_Position": {
-        "x": -2902.399658203125,
-        "y": 317.5999755859375
+        "x": -2902.39990234375,
+        "y": 317.6001892089844
     }
 }
 
@@ -7199,8 +7340,8 @@
     "m_ObjectId": "e58d459658e645bca1d0f6b66f9ed8b6",
     "m_Title": "描画優先度はマーク>アウトライン>ディゾルブ模様",
     "m_Position": {
-        "x": -947.9996948242188,
-        "y": -679.2000122070313
+        "x": -947.999755859375,
+        "y": -679.199951171875
     }
 }
 
