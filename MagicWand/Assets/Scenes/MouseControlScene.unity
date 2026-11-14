@@ -971,10 +971,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88260666}
-  - component: {fileID: 88260668}
   - component: {fileID: 88260667}
   - component: {fileID: 88260669}
   - component: {fileID: 88260670}
+  - component: {fileID: 88260671}
   m_Layer: 3
   m_Name: DeployTrigger
   m_TagString: RaycastableObject
@@ -1019,19 +1019,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &88260668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88260665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TouchedReceiver
-  _timeOutDurationToResetIsTouched: 0.1
 --- !u!114 &88260669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,13 +1031,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53cca8565f1e4344ab5301cde75251c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeployMagicCircleTrigger
-  _touchedReceiver: {fileID: 88260668}
+  _hoverTouchedReceiver: {fileID: 88260671}
   _triggerGaugeAnimator: {fileID: 1032977893}
   _hoverAudioSource: {fileID: 88260670}
   _deployMagicCircleTriggerHoverGauge:
     _hoverGauge: {fileID: 238534251}
     _maxLocalScale: 0.1
-  _hoverDurationToDeploy: 2
   _waitDurationToDeactiveGauge: 1.5
 --- !u!82 &88260670
 AudioSource:
@@ -1149,6 +1135,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &88260671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88260665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12f8966a05e36b45aca9ea478fbd215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverTouchedReceiver
+  _timeOutDurationToResetIsTouched: 0.1
+  _hoverDuration: 2
 --- !u!1 &90766020
 GameObject:
   m_ObjectHideFlags: 0

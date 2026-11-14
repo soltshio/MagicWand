@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 //作成者:杉山
 //魔法陣展開のトリガー(ボタン)
@@ -9,7 +10,7 @@ using UnityEngine;
 public class DeployMagicCircleTrigger : MonoBehaviour
 {
     [SerializeField]
-    TouchedReceiver _touchedReceiver;
+    HoverTouchedReceiver _hoverTouchedReceiver;
 
     [SerializeField]
     Animator _triggerGaugeAnimator;
@@ -20,84 +21,79 @@ public class DeployMagicCircleTrigger : MonoBehaviour
     [SerializeField]
     DeployMagicCircleTriggerHoverGauge _deployMagicCircleTriggerHoverGauge;
 
-    [Tooltip("展開までにカーソルを合わせ続ける秒数")] [SerializeField]
-    float _hoverDurationToDeploy=2f;
-
     [Tooltip("ゲージを非表示アニメーションを開始してから完全に非表示にするまでの時間")] [SerializeField]
     float _waitDurationToDeactiveGauge = 1.5f;
 
-    float _progress = 0f;
-    const float _minProgress = 0f;
-    const float _maxProgress = 1f;
-
-    SingleTaskCancellation _singleTaskCancellation = new();
+    bool _isSubmitted = false;
 
     //展開操作が決定されるまで待つ
     public async UniTask WaitForSubmitAsync(CancellationToken ct)
     {
         //初期化
-        UpdateProgress(_minProgress);
+        Initialize();
 
-        _touchedReceiver.enabled = true;
-        _touchedReceiver.OnTouchedEnter += OnEnter;
-        _touchedReceiver.OnTouchedExit += OnExit;
+        EnableHoverTouchReceiver();
 
         //トリガーを表示
-        ShowGauge();
+        ShowTriggerGauge();
 
         //決定されるまで待つ
-        await UniTask.WaitUntil(() => IsSubmitted(), cancellationToken: ct);
+        await UniTask.WaitUntil(() => _isSubmitted, cancellationToken: ct);
 
-        _touchedReceiver.enabled = false;
-        _touchedReceiver.OnTouchedEnter -= OnEnter;
-        _touchedReceiver.OnTouchedExit -= OnExit;
+        DisableHoverTouchReceiver();
+
+        //以前と同じ挙動にするため、決定されたらゲージの溜まり具合をリセットする
+        ResetGauge();
 
         //トリガーを隠す
-        HideGaugeAsync(ct).Forget();
+        HideTriggerGaugeAsync(ct).Forget();
     }
 
+    void EnableHoverTouchReceiver()
+    {
+        _hoverTouchedReceiver.enabled = true;
+
+        _hoverTouchedReceiver.OnTouchedEnter += OnEnter;
+        _hoverTouchedReceiver.OnTouchedExit += OnExit;
+        _hoverTouchedReceiver.OnSubmitted += OnSubmitted;
+    }
+
+    void DisableHoverTouchReceiver()
+    {
+        _hoverTouchedReceiver.enabled = false;
+
+        _hoverTouchedReceiver.OnTouchedEnter -= OnEnter;
+        _hoverTouchedReceiver.OnTouchedExit -= OnExit;
+        _hoverTouchedReceiver.OnSubmitted -= OnSubmitted;
+    }
+
+    //カーソルがHoverTouchedReceiverと合わさった瞬間
     void OnEnter()
     {
-        var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
-
         _hoverAudioSource.Play();
-
-        HoverAsync(ct).Forget();
     }
 
+    //カーソルがHoverTouchedreceiverから離れた瞬間
     void OnExit()
     {
-        _singleTaskCancellation.Cancel();
-
         _hoverAudioSource.Stop();
-        UpdateProgress(_minProgress);
     }
 
-    async UniTask HoverAsync(CancellationToken ct)
+    //HoverTouchedReceiverが決定通知を出した時
+    void OnSubmitted()
     {
-        ProgressTimer progressTimer = new(_hoverDurationToDeploy);
-
-        while(!progressTimer.IsFinished)
-        {
-            progressTimer.Tick();
-            float progress = progressTimer.CalcProgress();
-
-            UpdateProgress(progress);
-
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
-        }
-
-        UpdateProgress(_maxProgress);
-        _hoverAudioSource.Stop();
+        _isSubmitted = true;
     }
 
-    void ShowGauge()
+    
+
+    void ShowTriggerGauge()
     {
         _triggerGaugeAnimator.gameObject.SetActive(true);
         _triggerGaugeAnimator.SetTrigger(DeployTriggerGaugeAnimatorProperty.ShowTriggerName);
     }
 
-    async UniTask HideGaugeAsync(CancellationToken ct)
+    async UniTask HideTriggerGaugeAsync(CancellationToken ct)
     {
         _triggerGaugeAnimator.SetTrigger(DeployTriggerGaugeAnimatorProperty.HideTriggerName);
 
@@ -107,22 +103,36 @@ public class DeployMagicCircleTrigger : MonoBehaviour
         _triggerGaugeAnimator.gameObject.SetActive(false);
     }
 
-    void UpdateProgress(float value)
+    //初期化
+    void Initialize()
     {
-        value = Mathf.Clamp01(value);
-
-        _progress = value;
-        _deployMagicCircleTriggerHoverGauge.SetGauge(value);
+        _isSubmitted = false;
+        ResetGauge();
     }
 
-    bool IsSubmitted()
+    //ゲージをリセット
+    void ResetGauge()
     {
-        return _progress >= _maxProgress;
+        _deployMagicCircleTriggerHoverGauge.SetGauge(0);
+    }
+
+    //ゲージの更新
+    void UpdateGauge()
+    {
+        //決定されているなら更新処理は行わない
+        if (_isSubmitted) return;
+
+        _deployMagicCircleTriggerHoverGauge.SetGauge(_hoverTouchedReceiver.HoverProgress);
     }
 
     void Start()
     {
         _triggerGaugeAnimator.gameObject.SetActive(false);
-        _touchedReceiver.enabled = false;
+        _hoverTouchedReceiver.enabled = false;
+    }
+
+    void Update()
+    {
+        UpdateGauge();
     }
 }
