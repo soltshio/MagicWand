@@ -89,8 +89,11 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BaseAlphaClipThreshold: 0.408
+    - _BaseAlphaClipThreshold: 0.589
     - _BaseNoiseScale: 7.34
+    - _BaseNoiseScaleMax: 25
+    - _BaseNoiseScaleMin: 8
+    - _BaseNoiseSpeed: 0.1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -106,16 +109,16 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _InMarkGaugeEdgeInvisible: 0.95
+    - _InMarkGaugeEdgeInvisible: 1
     - _InMarkGaugeEdgeMax: 0.18
     - _InMarkGaugeEdgeMin: 0
     - _InMarkGaugeEdgeVisible: 0
     - _InMarkGaugeFillAmount: 1
     - _InMarkMinProjectionScale: 2.53
-    - _MarkAlphaClipThreshold: 0.044
+    - _MarkAlphaClipThreshold: 0
     - _MarkNoiseScale: 20
     - _MarkOutlineWidth: 0
-    - _MarkProjectionScale: 0.55
+    - _MarkProjectionScale: 0.88
     - _MarkScale: 1.59
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -138,11 +141,11 @@ Material:
     - _BaseInColor: {r: 0.8075472, g: 0.0042954646, b: 0, a: 1}
     - _BaseInEmissionColor: {r: 0.17899999, g: 0.17899999, b: 0.17899999, a: 1}
     - _BaseNoiseSpeed: {r: 0.4, g: 0.2, b: 0, a: 0}
-    - _BaseOutColor: {r: 2.0981128, g: 0.4552707, b: 0, a: 1}
+    - _BaseOutColor: {r: 2.098113, g: 0.23978172, b: 0, a: 1}
     - _BaseOutEmissionColor: {r: 0.068, g: 0.068, b: 0.068, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _InMarkColor: {r: 28.135859, g: 1.1972705, b: 0, a: 1}
+    - _InMarkColor: {r: 5.992157, g: 0.9449963, b: 0, a: 1}
     - _InMarkEmissionColor: {r: 10.43296, g: 0.5690043, b: 0.1377932, a: 1}
     - _MarkEmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MarkOffset: {r: 0.5, g: 0.5, b: 0, a: 0}
