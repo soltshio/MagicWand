@@ -115,7 +115,7 @@ Material:
     - _InMarkGaugeEdgeVisible: 0
     - _InMarkGaugeFillAmount: 1
     - _InMarkMinProjectionScale: 2.53
-    - _MarkAlphaClipThreshold: 0
+    - _MarkAlphaClipThreshold: 0.339
     - _MarkNoiseScale: 20
     - _MarkOutlineWidth: 0
     - _MarkProjectionScale: 0.88
@@ -145,7 +145,7 @@ Material:
     - _BaseOutEmissionColor: {r: 0.068, g: 0.068, b: 0.068, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _InMarkColor: {r: 5.992157, g: 0.9449963, b: 0, a: 1}
+    - _InMarkColor: {r: 6.1234193, g: 3.3672476, b: 0, a: 1}
     - _InMarkEmissionColor: {r: 10.43296, g: 0.5690043, b: 0.1377932, a: 1}
     - _MarkEmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MarkOffset: {r: 0.5, g: 0.5, b: 0, a: 0}
