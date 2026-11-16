@@ -15361,6 +15361,7 @@ GameObject:
   - component: {fileID: 1244001181}
   - component: {fileID: 1244001180}
   - component: {fileID: 1244001183}
+  - component: {fileID: 1244001184}
   m_Layer: 0
   m_Name: TestSphere
   m_TagString: Untagged
@@ -15377,7 +15378,7 @@ Transform:
   m_GameObject: {fileID: 1244001178}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.16, y: 1.04, z: -0.605}
+  m_LocalPosition: {x: 0.05, y: -0.33, z: -4.89}
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -15483,6 +15484,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1244001184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244001178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af06cbcb997c10e4eb40362402ec8594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController_1
+  _magicSphereMeshRenderer: {fileID: 1244001181}
 --- !u!1001 &1251471945
 PrefabInstance:
   m_ObjectHideFlags: 0

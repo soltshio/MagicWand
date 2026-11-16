@@ -1019,4 +1019,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: SetMarkTexture
+    data: 
+    objectReferenceParameter: {fileID: 2800000, guid: c016c874d6bb1e84ca1726814ce3bb25, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
