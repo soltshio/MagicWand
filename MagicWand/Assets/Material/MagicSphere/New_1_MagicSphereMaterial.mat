@@ -115,7 +115,7 @@ Material:
     - _InMarkGaugeEdgeVisible: 0
     - _InMarkGaugeFillAmount: 1
     - _InMarkMinProjectionScale: 2.53
-    - _MarkAlphaClipThreshold: 0.339
+    - _MarkAlphaClipThreshold: 0
     - _MarkNoiseScale: 20
     - _MarkOutlineWidth: 0
     - _MarkProjectionScale: 0.88
