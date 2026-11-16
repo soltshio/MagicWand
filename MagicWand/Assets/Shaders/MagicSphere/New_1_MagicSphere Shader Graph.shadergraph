@@ -281,6 +281,9 @@
         },
         {
             "m_Id": "2d4f0e9faa8b45ffa952cac3577baffc"
+        },
+        {
+            "m_Id": "6bfa829ae51647eab6c3603d49b20d3b"
         }
     ],
     "m_GroupDatas": [
@@ -737,6 +740,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "6bfa829ae51647eab6c3603d49b20d3b"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "919d309421714aa7ae3e48eae205eca6"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "6fb1ce1e9af342a2a6b4c5a81800c14a"
                 },
                 "m_SlotId": 0
@@ -799,9 +816,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "919d309421714aa7ae3e48eae205eca6"
+                    "m_Id": "6bfa829ae51647eab6c3603d49b20d3b"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 0
             }
         },
         {
@@ -2493,7 +2510,7 @@
     "m_Title": "Sineを利用して、NoiseのScaleを変更している",
     "m_Position": {
         "x": -4704.00048828125,
-        "y": -1603.2000732421875
+        "y": -1603.2001953125
     }
 }
 
@@ -3558,7 +3575,7 @@
     "m_Title": "BaseColor",
     "m_Position": {
         "x": -3274.400146484375,
-        "y": -1648.7999267578125
+        "y": -1648.800048828125
     }
 }
 
@@ -4178,7 +4195,7 @@
     "m_ShaderOutputName": "Edge",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 70.0,
+        "x": 30.0,
         "y": 1.0,
         "z": 1.0,
         "w": 1.0
@@ -4245,9 +4262,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3448.800048828125,
-            "y": 1491.1998291015625,
-            "width": 185.600341796875,
+            "x": -3480.7998046875,
+            "y": 1492.7998046875,
+            "width": 185.60009765625,
             "height": 141.5999755859375
         }
     },
@@ -5039,6 +5056,46 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.OneMinusNode",
+    "m_ObjectId": "6bfa829ae51647eab6c3603d49b20d3b",
+    "m_Group": {
+        "m_Id": "7989c7a7383249b5a16c64d57228ece1"
+    },
+    "m_Name": "One Minus",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2978.400146484375,
+            "y": 1769.60009765625,
+            "width": 208.0,
+            "height": 277.5999755859375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "a6a3862e3a78456bad7f437ccb9ba817"
+        },
+        {
+            "m_Id": "cc1b6750bfaa4e33a7b87a352769bf1b"
+        }
+    ],
+    "synonyms": [
+        "complement",
+        "invert",
+        "opposite"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "6dae9788cc934793a2d56fc9f6f0197c",
     "m_Id": 0,
@@ -5333,8 +5390,8 @@
     "m_ObjectId": "7989c7a7383249b5a16c64d57228ece1",
     "m_Title": "InMarkColor",
     "m_Position": {
-        "x": -4407.19921875,
-        "y": 863.999755859375
+        "x": -4407.19970703125,
+        "y": 864.0
     }
 }
 
@@ -5446,8 +5503,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3009.60009765625,
-            "y": 1768.0,
+            "x": -3260.800048828125,
+            "y": 1769.60009765625,
             "width": 208.0,
             "height": 301.599853515625
         }
@@ -5803,10 +5860,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2570.39990234375,
-            "y": 1023.9999389648438,
-            "width": 140.800048828125,
-            "height": 33.59991455078125
+            "x": -2568.80029296875,
+            "y": 1250.4000244140625,
+            "width": 140.0,
+            "height": 33.60009765625
         }
     },
     "m_Slots": [
@@ -5956,7 +6013,7 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2801.599853515625,
+            "x": -2737.599853515625,
             "y": 924.7999267578125,
             "width": 208.0,
             "height": 301.599853515625
@@ -6711,6 +6768,31 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "a6a3862e3a78456bad7f437ccb9ba817",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0,
+        "w": 1.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "a8b67e9c38fe424ca773295f98975664",
     "m_Id": 1,
     "m_DisplayName": "Out",
@@ -7435,7 +7517,7 @@
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
         "x": 0.0,
-        "y": 1.0
+        "y": 1.0010000467300416
     },
     "m_SliderType": 0,
     "m_SliderPower": 3.0,
@@ -7830,6 +7912,31 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
+    "m_ObjectId": "cc1b6750bfaa4e33a7b87a352769bf1b",
+    "m_Id": 1,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "cc43bbc36e51470598ed541b10313e4a",
     "m_Id": 0,
@@ -8097,7 +8204,7 @@
     "m_Title": "OutlineColor",
     "m_Position": {
         "x": -2601.60009765625,
-        "y": -559.2000122070313
+        "y": -559.199951171875
     }
 }
 
@@ -8505,9 +8612,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3828.000244140625,
-            "y": 1616.0001220703125,
-            "width": 190.400146484375,
+            "x": -3859.999755859375,
+            "y": 1617.599853515625,
+            "width": 212.800048828125,
             "height": 33.5999755859375
         }
     },
@@ -8732,9 +8839,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3831.199951171875,
-            "y": 1665.5999755859375,
-            "width": 193.599853515625,
+            "x": -3863.19970703125,
+            "y": 1667.1998291015625,
+            "width": 204.7998046875,
             "height": 33.5999755859375
         }
     },
@@ -8778,8 +8885,8 @@
     "m_ObjectId": "e58d459658e645bca1d0f6b66f9ed8b6",
     "m_Title": "描画優先度はマーク>アウトライン>ディゾルブ模様",
     "m_Position": {
-        "x": -947.9998779296875,
-        "y": -679.2000122070313
+        "x": -948.0,
+        "y": -679.1998291015625
     }
 }
 
@@ -9097,10 +9204,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3720.0,
-            "y": 1527.9998779296875,
-            "width": 200.0,
-            "height": 33.60009765625
+            "x": -3751.999755859375,
+            "y": 1529.599853515625,
+            "width": 199.199951171875,
+            "height": 33.5999755859375
         }
     },
     "m_Slots": [
@@ -9363,8 +9470,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3603.199951171875,
-            "y": 1598.39990234375,
+            "x": -3635.19970703125,
+            "y": 1599.9998779296875,
             "width": 127.199951171875,
             "height": 100.7999267578125
         }
