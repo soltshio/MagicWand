@@ -89,7 +89,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BaseAlphaClipThreshold: 0.589
+    - _BaseAlphaClipThreshold: 0.606
     - _BaseNoiseScale: 7.34
     - _BaseNoiseScaleMax: 25
     - _BaseNoiseScaleMin: 8
