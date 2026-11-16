@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MarkTexture:
-        m_Texture: {fileID: 2800000, guid: 1dd8620a52f21a9478a19a8eafdd879b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 65d1f85d331e53b4d84b060d4facb320, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -89,7 +89,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BaseAlphaClipThreshold: 0.686
+    - _BaseAlphaClipThreshold: 0.67
     - _BaseNoiseScale: 7.34
     - _BaseNoiseScaleMax: 25
     - _BaseNoiseScaleMin: 8
@@ -109,10 +109,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _InMarkGaugeEdgeInvisible: 1
+    - _InMarkGaugeEdgeInvisible: 0
     - _InMarkGaugeEdgeMax: 0.18
     - _InMarkGaugeEdgeMin: 0
-    - _InMarkGaugeEdgeVisible: 0
+    - _InMarkGaugeEdgeVisible: 1
     - _InMarkGaugeFillAmount: 1
     - _InMarkMinProjectionScale: 2.53
     - _MarkAlphaClipThreshold: 0
@@ -122,7 +122,7 @@ Material:
     - _MarkScale: 1.59
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutLinePower: 6
+    - _OutLinePower: 4
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -138,20 +138,20 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseInColor: {r: 0.7088605, g: 0.007581395, b: 0, a: 1}
+    - _BaseInColor: {r: 0.18398851, g: 0.41960785, b: 0, a: 1}
     - _BaseInEmissionColor: {r: 0.17899999, g: 0.17899999, b: 0.17899999, a: 1}
     - _BaseNoiseSpeed: {r: 0.4, g: 0.2, b: 0, a: 0}
-    - _BaseOutColor: {r: 1.4980394, g: 0.45748252, b: 0, a: 1}
+    - _BaseOutColor: {r: 0.9159309, g: 1.0188681, b: 0, a: 1}
     - _BaseOutEmissionColor: {r: 0.068, g: 0.068, b: 0.068, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _InMarkColor: {r: 6.973585, g: 2.455826, b: 0, a: 1}
+    - _InMarkColor: {r: 10.28196, g: 9.528308, b: 0.5, a: 1}
     - _InMarkEmissionColor: {r: 10.43296, g: 0.5690043, b: 0.1377932, a: 1}
     - _MarkEmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MarkOffset: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _OutMarkColor: {r: 0.017, g: 0.017, b: 0.017, a: 1}
     - _OutMarkEmissionColor: {r: 10.43296, g: 0.5690043, b: 0.1377932, a: 1}
-    - _OutlineColor: {r: 64.28041, g: 3.261929, b: 0, a: 1}
+    - _OutlineColor: {r: 21.907495, g: 23.96863, b: 0, a: 1}
     - _OutlineEmissionColor: {r: 110.130905, g: 6.0064416, b: 1.4545532, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
