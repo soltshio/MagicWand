@@ -3,7 +3,7 @@
 //作成者:杉山
 //魔法球のマテリアルの制御をするクラス
 
-public class MagicSphereMaterialController : MonoBehaviour
+public class MagicSphereMaterialController_DontUse : MonoBehaviour
 {
     [SerializeField]
     Renderer _renderer;

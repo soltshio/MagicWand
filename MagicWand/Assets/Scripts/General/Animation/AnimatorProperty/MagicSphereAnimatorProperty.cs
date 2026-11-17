@@ -8,11 +8,11 @@ public class MagicSphereAnimatorProperty
     //魔法ごとのトリガー
     static readonly Dictionary<EMagic, string> _magicTriggerNameDic = new Dictionary<EMagic, string>
     {
-        { EMagic.Sun,       "Sun"},//太陽
-        { EMagic.Star,      "Star"},//星
+        { EMagic.Sun,       "Sun"    },//太陽
+        { EMagic.Star,      "Star"   },//星
         { EMagic.Thunder,   "Thunder"},//雷
-        { EMagic.Rain,      "Water"},//水
-        { EMagic.Time,      "Time"},//時間
+        { EMagic.Rain,      "Water"  },//水
+        { EMagic.Time,      "Time"   },//時間
     };
 
     public static bool TryGetMagicTriggerName(EMagic magic,out string triggerName)
@@ -26,5 +26,5 @@ public class MagicSphereAnimatorProperty
     public static string HideTriggerName = "Hide";
 
     //通常状態トリガー
-    public static string DefaultTriggerName = "Trigger";
+    public static string DefaultTriggerName = "Default";
 }

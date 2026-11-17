@@ -39,7 +39,7 @@ public class MagicSphereRendererActivator_MagicCircleActiveHandler
 
     void SetAllMagicSpheresBaseAlphaClipThreshold(float newBaseAlphaClipThreshold)
     {
-        var magicSphereMaterialControllers = _magicSphereList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController>();
+        var magicSphereMaterialControllers = _magicSphereList.GetComponentsArrayFromMagicSpheres<MagicSphereMaterialController_DontUse>();
 
         foreach(var magicSphere in magicSphereMaterialControllers)
         {

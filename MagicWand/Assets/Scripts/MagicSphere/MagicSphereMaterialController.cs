@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MagicSphereMaterialController_1 : MonoBehaviour
+public class MagicSphereMaterialController : MonoBehaviour
 {
     [SerializeField]
     MeshRenderer _magicSphereMeshRenderer;

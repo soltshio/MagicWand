@@ -1826,7 +1826,6 @@ MonoBehaviour:
     _magicCircleCenter: {fileID: 1118699960}
     magicInvoker: {fileID: 446498116}
   _activeDuration: 1
-  _deactiveDuration: 0.15
   _magicSpheresList: {fileID: 741445577}
   _magicList: {fileID: 446498117}
   _leadEffectAudioSource: {fileID: 214072087}
@@ -3864,7 +3863,7 @@ MonoBehaviour:
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
   _bigCreatureSleepPlayer: {fileID: 362789704}
-  _bigCreatureMoveOut: {fileID: 0}
+  _bigCreatureMoveOut: {fileID: 1952613957}
   _delayDuration: 0.5
 --- !u!1 &410087039
 GameObject:
@@ -15361,6 +15360,8 @@ GameObject:
   - component: {fileID: 1244001180}
   - component: {fileID: 1244001183}
   - component: {fileID: 1244001184}
+  - component: {fileID: 1244001186}
+  - component: {fileID: 1244001185}
   m_Layer: 0
   m_Name: TestSphere
   m_TagString: Untagged
@@ -15402,7 +15403,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1244001181
 MeshRenderer:
@@ -15496,6 +15497,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereMaterialController_1
   _magicSphereMeshRenderer: {fileID: 1244001181}
+--- !u!114 &1244001185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244001178}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12f8966a05e36b45aca9ea478fbd215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverTouchedReceiver
+  _timeOutDurationToResetIsTouched: 0.1
+  _hoverDuration: 3
+--- !u!114 &1244001186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244001178}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6ee2bc6b4d28b4b892e10b6ed0d068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TouchedReceiver
+  _timeOutDurationToResetIsTouched: 0.1
 --- !u!1001 &1251471945
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class MagicSphereElementColorController : MonoBehaviour
     DefaultMagicSphereMaterialProperty _defaultMaterialProperty;
 
     [SerializeField]
-    MagicSphereMaterialController _magicSphereMaterialController;
+    MagicSphereMaterialController_DontUse _magicSphereMaterialController;
 
     //elementProgress関係
     float _activeProgress = 0;//これが0になるほど無属性に、1になるほど属性の色に近づいているということにする
