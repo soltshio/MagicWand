@@ -41,15 +41,15 @@ public partial class MagicSphereLeadEffectController
         //全ての魔法球を元の色に戻す
         public void PaintDefaultColorToAllMagicSphere()
         {
-            var magicSphereElementColorControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereElementColorController>();
+            var magicSphereAnimators = _magicSpheresList.GetComponentsArrayFromMagicSpheres<Animator>();
 
-            for (int i = 0; i < magicSphereElementColorControllers.Length; i++)
+            for (int i = 0; i < magicSphereAnimators.Length; i++)
             {
-                var controller = magicSphereElementColorControllers[i];
+                var animator = magicSphereAnimators[i];
 
-                if (controller == null) continue;
+                if (animator == null) continue;
 
-                controller.ToDeactiveAsync().Forget();
+                animator.SetTrigger(MagicSphereAnimatorProperty.DefaultTriggerName);
             }
         }
     }
