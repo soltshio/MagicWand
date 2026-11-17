@@ -19,7 +19,7 @@ public class BigCreatureStatus : MonoBehaviour
         {
             return _hp;
         }
-        set
+        private set
         {
             if (value == _hp) return;
 
@@ -30,8 +30,23 @@ public class BigCreatureStatus : MonoBehaviour
 
     public bool IsWakeUp { get { return _hp <= 0; } }//起きたか
 
+    //呼ばれた魔法によってステータスの更新を行う
+    public void UpdateStatus(EMagic invokedMagic)
+    {
+        if (IsCorrectMagic(invokedMagic))//正解の魔法が来た場合にhpを減らす
+        {
+            HP--;
+        }
+    }
+
     void Awake()
     {
         _hp = _maxHp;
+    }
+
+    //正解の魔法かを判定
+    bool IsCorrectMagic(EMagic magic)
+    {
+        return magic == EMagic.Rain || magic == EMagic.Thunder;
     }
 }

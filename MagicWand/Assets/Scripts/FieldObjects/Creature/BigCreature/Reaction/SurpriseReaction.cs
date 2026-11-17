@@ -17,18 +17,21 @@ public class SurpriseReaction : MonoBehaviour
     [SerializeField]
     AnimatorReference _bigCreatureAnimator;
 
+    [SerializeField]
+    BigCreatureStatus _bigCreatureStatus;
+
     //巨大生物に二度寝のモーションをさせる
     public void PlayBigCreatureGoBackToSleepMotion()
     {
         _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName,true);
     }
 
-    public async UniTask TakeSurpriseReactionAsync(BigCreatureStatus updatedBigCreatureStatus,CancellationToken ct)
+    public async UniTask TakeSurpriseReactionAsync(CancellationToken ct)
     {
         PlayableDirector _surpriseReactionDirecter;
 
         //巨大生物が起きているかによって流すタイムラインを変える
-        if(updatedBigCreatureStatus.IsWakeUp)
+        if(_bigCreatureStatus.IsWakeUp)
         {
             _surpriseReactionDirecter = _surprise_WakeUp_ReactionDirector;
         }
