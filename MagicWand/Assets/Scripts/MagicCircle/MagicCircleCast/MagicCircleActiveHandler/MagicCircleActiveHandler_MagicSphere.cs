@@ -29,6 +29,7 @@ public class MagicCircleActiveHandler_MagicSphere
         //アクティブ状態にしてから表示アニメーションを開始
         for(int i=0; i<animators.Length ;i++)
         {
+            animators[i].gameObject.SetActive(true);
             animators[i].SetTrigger(MagicSphereAnimatorProperty.DefaultTriggerName);
         }
     }
