@@ -11,30 +11,30 @@ public partial class MagicSphereLeadEffectController
     class LeadMagicSphereColorController
     {
         MagicSpheresList _magicSpheresList;
-        MagicList _magicList;
 
-        public void Awake(MagicSpheresList magicSpheresList,MagicList magicList)
+        public void Awake(MagicSpheresList magicSpheresList)
         {
             _magicSpheresList = magicSpheresList;
-            _magicList = magicList;
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
-        public void PaintMagicColorToMagicSphere(List<(EMagic magic, int index)> activeSphereIndex_MagicList)
+        public void PaintMagicColorToMagicSphere(int? preActiveSphereIndex,List<(EMagic magic, int index)> activeSphereIndex_MagicList)
         {
+            //TODO:前に色を付けた魔法球をデフォルトの状態に戻す
+
+            //次になぞるべき魔法球に色を付ける
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
                 var index = activeSphereIndex_MagicList[i].index;
                 var magic = activeSphereIndex_MagicList[i].magic;
 
-                var activeMagicSphereMaterialProperty = _magicList.GetComponentFromMagic<ActiveMagicSphereMaterialProperty>(magic);
-                var magicSphereElementColorController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereElementColorController>(index);
+                var magicSphereAnimator = _magicSpheresList.GetComponentFromMagicSphere<Animator>(index);
 
-                if (activeMagicSphereMaterialProperty == null) continue;
-                if (magicSphereElementColorController == null) continue;
+                if (magicSphereAnimator == null) continue;
+                if (!MagicSphereAnimatorProperty.TryGetMagicTriggerName(magic, out string triggerName)) continue;
 
                 //魔法球の色を変える
-                magicSphereElementColorController.ToActiveAsync(activeMagicSphereMaterialProperty.ActiveMaterialProperty).Forget();
+                magicSphereAnimator.SetTrigger(triggerName);
             }
         }
 

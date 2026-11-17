@@ -39,7 +39,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
         _leadEffectController.CreateLeadEffect(preActiveSphereIndex, activeSphereIndex_MagicList,_activeDuration);
 
         //魔法球に色をつける
-        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(activeSphereIndex_MagicList);
+        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(preActiveSphereIndex,activeSphereIndex_MagicList);
     }
 
     public void DeactiveLeadAsync()
@@ -50,7 +50,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
 
     void Awake()
     {
-        _leadMagicSphereColorController.Awake(_magicSpheresList,_magicList);
+        _leadMagicSphereColorController.Awake(_magicSpheresList);
         _leadEffectController.Awake(_magicSpheresList, _magicList);
     }
 
