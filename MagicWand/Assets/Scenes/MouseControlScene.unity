@@ -3864,6 +3864,7 @@ MonoBehaviour:
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
   _bigCreatureSleepPlayer: {fileID: 362789704}
+  _bigCreatureMoveOut: {fileID: 0}
   _delayDuration: 0.5
 --- !u!1 &410087039
 GameObject:
@@ -5491,8 +5492,6 @@ MonoBehaviour:
       value: {fileID: 696876405}
     - key: 4
       value: {fileID: 1417002369}
-  _bigCreatureMoveOut: {fileID: 1952613957}
-  _bigCreatureStatus: {fileID: 623789240}
 --- !u!114 &623789240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17302,6 +17301,7 @@ MonoBehaviour:
   _bigCreatureSleepPlayer: {fileID: 362789704}
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
+  _bigCreatureMoveOut: {fileID: 0}
   _delayDuration: 3
   _lineContents:
   - "\u76EE\u304C\u3055\u3081\u305F\u304B\u306E\uFF5E\uFF1F\uFF1F\n\u308F\u3057\u306E\u9B54\u6CD5\u306B\u304A\u3069\u308D\u3044\u3061\u3083\u3063\u305F\u3093\u3058\u3083\u306A\u3001\u3046\u3093\u3046\u3093"
@@ -20160,6 +20160,7 @@ MonoBehaviour:
   _surprise_StillSleeping_ReactionDirector: {fileID: 394192149}
   _surprise_WakeUp_ReactionDirector: {fileID: 202859453}
   _bigCreatureAnimator: {fileID: 902793720}
+  _bigCreatureStatus: {fileID: 623789240}
 --- !u!1 &1771542476
 GameObject:
   m_ObjectHideFlags: 0

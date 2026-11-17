@@ -31,6 +31,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     [SerializeField]
     BigCreatureSleepPlayer _bigCreatureSleepPlayer;
 
+    [Tooltip("巨大生物の退く演出")] [SerializeField]
+    BigCreatureMoveOut _bigCreatureMoveOut;
+
     [SerializeField]
     float _delayDuration=0.5f;
 
@@ -70,11 +73,22 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             //一度、巨大生物の睡眠演出を止める
             _bigCreatureSleepPlayer.Stop();
 
+            //巨大生物のステータス更新
+            _bigCreatureStatus.UpdateStatus(invokableMagic);
+
             //魔法を発動
             await _magicInvoker.InvokeMagicAsync(invokableMagic);
 
-            //巨大生物の睡眠演出を再度流す
-            if (!_bigCreatureStatus.IsWakeUp) _bigCreatureSleepPlayer.Play();
+            //巨大生物が起きた時は退く演出を行う
+            if (_bigCreatureStatus.IsWakeUp)
+            {
+                await _bigCreatureMoveOut.MoveOutAsync(token);
+            }
+            //まだ起きない場合は巨大生物の睡眠演出を再度流す
+            else
+            {
+                _bigCreatureSleepPlayer.Play();
+            }
 
             //一応少しだけ待つ
             await UniTask.Delay(TimeSpan.FromSeconds(_delayDuration), cancellationToken: token);
