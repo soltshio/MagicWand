@@ -1,7 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 //作成者:杉山
@@ -35,7 +32,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
         //誘導エフェクト効果音を流し始める
         PlaySound();
 
-        //誘導エフェクト(パーティクル)の初期化
+        //誘導エフェクト(パーティクル)の設定＆作成
         _leadEffectController.CreateLeadEffect(preActiveSphereIndex, activeSphereIndex_MagicList,_activeDuration);
 
         //魔法球に色をつける

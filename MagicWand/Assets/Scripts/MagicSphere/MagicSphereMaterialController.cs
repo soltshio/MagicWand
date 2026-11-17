@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+//作成者:杉山
+//魔法球のマテリアルを操作する機能
+
 public class MagicSphereMaterialController : MonoBehaviour
 {
     [SerializeField]

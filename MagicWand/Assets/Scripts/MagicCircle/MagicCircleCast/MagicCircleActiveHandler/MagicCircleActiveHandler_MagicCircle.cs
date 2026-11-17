@@ -4,7 +4,7 @@
 //MagicCircleActiveHandlerの魔法陣の表示・非表示の処理をする
 
 [System.Serializable]
-public class MagicCircleRendererActivator_MagicCircleActiveHandler
+public class MagicCircleActiveHandler_MagicCircle
 {
     [SerializeField]
     Animator _magicCircleAnimator;
