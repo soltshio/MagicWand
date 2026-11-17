@@ -73,6 +73,8 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             //魔法を発動
             await _magicInvoker.InvokeMagicAsync(invokableMagic);
 
+            //TODO:巨大生物が睡眠から起きた時の処理をここに移す
+
             //巨大生物の睡眠演出を再度流す
             if (!_bigCreatureStatus.IsWakeUp) _bigCreatureSleepPlayer.Play();
 
