@@ -1,11 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using System;
 using System.Threading;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.UI;
 
 //作成者:杉山
 //魔法陣の展開の処理をするクラス
