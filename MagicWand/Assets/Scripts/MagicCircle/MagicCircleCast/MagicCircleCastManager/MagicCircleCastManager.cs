@@ -42,18 +42,12 @@ public class MagicCircleCastManager : MonoBehaviour
 
         OnStartToCast?.Invoke();
 
-        //球を全て非アクティブにする
-        _magicSphereLeadEffectController.DeactiveLeadAsync();
-
         //１詠唱に球に触れた回数をリセット
         _touchSphereCount = 0;
 
         //何かしらの魔法が発動可能になるまで待つ
         //発動可能魔法を受け取る
         var invokableMagic = await CastMagicAsync(ct, castPatterns);
-
-        //球を全て非アクティブにする
-        _magicSphereLeadEffectController.DeactiveLeadAsync();
 
         return invokableMagic;
     }
@@ -88,6 +82,9 @@ public class MagicCircleCastManager : MonoBehaviour
 
                 //なぞった球の位置を魔法陣の線の描画機能に伝える
                 _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
+
+                //球を全て非アクティブにする
+                _magicSphereLeadEffectController.DeactiveLeadAsync();
 
                 //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
                 if (invokableMagic != EMagic.None)

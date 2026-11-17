@@ -17384,7 +17384,7 @@ MonoBehaviour:
   _bigCreatureSleepPlayer: {fileID: 362789704}
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
-  _bigCreatureMoveOut: {fileID: 0}
+  _bigCreatureMoveOut: {fileID: 1952613957}
   _delayDuration: 3
   _lineContents:
   - "\u76EE\u304C\u3055\u3081\u305F\u304B\u306E\uFF5E\uFF1F\uFF1F\n\u308F\u3057\u306E\u9B54\u6CD5\u306B\u304A\u3069\u308D\u3044\u3061\u3083\u3063\u305F\u3093\u3058\u3083\u306A\u3001\u3046\u3093\u3046\u3093"

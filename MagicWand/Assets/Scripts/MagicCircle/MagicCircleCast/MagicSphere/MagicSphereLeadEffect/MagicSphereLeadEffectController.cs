@@ -36,7 +36,7 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
         _leadEffectController.CreateLeadEffect(preActiveSphereIndex, activeSphereIndex_MagicList,_activeDuration);
 
         //魔法球に色をつける
-        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(preActiveSphereIndex,activeSphereIndex_MagicList);
+        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(activeSphereIndex_MagicList);
     }
 
     public void DeactiveLeadAsync()

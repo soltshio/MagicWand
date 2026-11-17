@@ -64,8 +64,6 @@ public class TutorialManager : MonoBehaviour
 
             var ct = _singleTaskCancellation.CancelAndReCreateToken(this.GetCancellationTokenOnDestroy());
 
-            //TODO:チュートリアルの内容を実装する
-
             //チュートリアル開始のセリフを流す
             await _tutorialTextPlayer.PlayTextAsync(ct, _startLineContents);
 

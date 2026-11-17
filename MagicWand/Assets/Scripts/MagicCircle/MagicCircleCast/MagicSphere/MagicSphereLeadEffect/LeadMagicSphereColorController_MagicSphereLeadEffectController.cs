@@ -19,12 +19,9 @@ public partial class MagicSphereLeadEffectController
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
-        public void PaintMagicColorToMagicSphere(int? preActiveSphereIndex,List<(EMagic magic, int index)> activeSphereIndex_MagicList)
+        public void PaintMagicColorToMagicSphere(List<(EMagic magic, int index)> activeSphereIndex_MagicList)
         {
-            //前に色を付けた魔法球をデフォルトの状態に戻す
-            PaintDefaultPreActiveSphere(preActiveSphereIndex);
-
-            //次になぞるべき魔法球に色を付ける
+            //次になぞるべき魔法球に色を付ける(TODO:それ以外にはデフォルトに戻す処理を入れる)
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
                 var index = activeSphereIndex_MagicList[i].index;
@@ -53,18 +50,6 @@ public partial class MagicSphereLeadEffectController
 
                 animator.SetTrigger(MagicSphereAnimatorProperty.DefaultTriggerName);
             }
-        }
-
-        //前に色を付けた魔法球をデフォルトの状態に戻す
-        void PaintDefaultPreActiveSphere(int? preActiveSphereIndex)
-        {
-            if (preActiveSphereIndex == null) return;
-
-            var magicSphereAnimator = _magicSpheresList.GetComponentFromMagicSphere<Animator>((int)preActiveSphereIndex);
-
-            if (magicSphereAnimator == null) return;
-
-            magicSphereAnimator.SetTrigger(MagicSphereAnimatorProperty.DefaultTriggerName);
         }
     }
 }
