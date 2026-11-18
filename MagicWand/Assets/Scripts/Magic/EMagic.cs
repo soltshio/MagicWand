@@ -3,7 +3,7 @@
 
 public enum EMagic
 {
-    None = -1,//エラー
+    None = -1,//無し
 
     Thunder,//サンダー
     Rain,//レイン(雨)
