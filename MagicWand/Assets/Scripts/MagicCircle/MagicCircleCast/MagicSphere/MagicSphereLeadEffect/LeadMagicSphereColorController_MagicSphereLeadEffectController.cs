@@ -1,10 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 //作成者:杉山
 //なぞる誘導演出の魔法球の色をコントロールする機能
-//TODO:MagicListから色を取得するようにする
 
 public partial class MagicSphereLeadEffectController
 {
@@ -12,45 +12,43 @@ public partial class MagicSphereLeadEffectController
     class LeadMagicSphereColorController
     {
         MagicSpheresList _magicSpheresList;
-        MagicList _magicList;
 
-        public void Awake(MagicSpheresList magicSpheresList,MagicList magicList)
+        public void Awake(MagicSpheresList magicSpheresList)
         {
             _magicSpheresList = magicSpheresList;
-            _magicList = magicList;
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
         public void PaintMagicColorToMagicSphere(List<(EMagic magic, int index)> activeSphereIndex_MagicList)
         {
+            //次になぞるべき魔法球に色を付ける(TODO:それ以外にはデフォルトに戻す処理を入れる)
             for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
             {
                 var index = activeSphereIndex_MagicList[i].index;
                 var magic = activeSphereIndex_MagicList[i].magic;
 
-                var activeMagicSphereMaterialProperty = _magicList.GetComponentFromMagic<ActiveMagicSphereMaterialProperty>(magic);
-                var magicSphereElementColorController = _magicSpheresList.GetComponentFromMagicSphere<MagicSphereElementColorController>(index);
+                var magicSphereAnimator = _magicSpheresList.GetComponentFromMagicSphere<Animator>(index);
 
-                if (activeMagicSphereMaterialProperty == null) continue;
-                if (magicSphereElementColorController == null) continue;
+                if (magicSphereAnimator == null) continue;
+                if (!MagicSphereAnimatorProperty.TryGetMagicTriggerName(magic, out string triggerName)) continue;
 
                 //魔法球の色を変える
-                magicSphereElementColorController.ToActiveAsync(activeMagicSphereMaterialProperty.ActiveMaterialProperty).Forget();
+                magicSphereAnimator.SetTrigger(triggerName);
             }
         }
 
         //全ての魔法球を元の色に戻す
         public void PaintDefaultColorToAllMagicSphere()
         {
-            var magicSphereElementColorControllers = _magicSpheresList.GetComponentsArrayFromMagicSpheres<MagicSphereElementColorController>();
+            var magicSphereAnimators = _magicSpheresList.GetComponentsArrayFromMagicSpheres<Animator>();
 
-            for (int i = 0; i < magicSphereElementColorControllers.Length; i++)
+            for (int i = 0; i < magicSphereAnimators.Length; i++)
             {
-                var controller = magicSphereElementColorControllers[i];
+                var animator = magicSphereAnimators[i];
 
-                if (controller == null) continue;
+                if (animator == null) continue;
 
-                controller.ToDeactiveAsync().Forget();
+                animator.SetTrigger(MagicSphereAnimatorProperty.DefaultTriggerName);
             }
         }
     }

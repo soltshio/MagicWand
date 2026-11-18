@@ -5,7 +5,7 @@ using UnityEngine;
 //MagicCircleActiveHandlerの通った球をつなぐ線の表示・非表示の処理をする
 
 [System.Serializable]
-public class MagicTrailRendererActivator_MagicCircleActiveHandler
+public class MagicCircleActiveHandler_MagicTrail
 {
     [Tooltip("魔法陣の線")] [SerializeField]
     MagicSphereTrail _magicSphereTrail;

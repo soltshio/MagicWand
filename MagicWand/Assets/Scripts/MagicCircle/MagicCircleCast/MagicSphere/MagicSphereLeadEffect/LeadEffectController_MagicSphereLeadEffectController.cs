@@ -27,13 +27,13 @@ public partial class MagicSphereLeadEffectController
             _magicList = spellCastList;
         }
 
-        //誘導エフェクトを動かす前にする初期化
-        public void InitLeadEffect(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList,float activeDuration)
+        //誘導エフェクトを作成
+        public void CreateLeadEffect(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList,float activeDuration)
         {
             //誘導エフェクトのスタート地点を求める
             Vector3 start = CalcStartPos(preActiveSphereIndex);
 
-            //誘導エフェクトの初期化
+            //誘導エフェクトの実体化
             InstantiateLeadEffect(activeSphereIndex_MagicList, start,activeDuration);
         }
 

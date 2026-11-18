@@ -1,109 +1,72 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
 //作成者:杉山
 //魔法陣の表示・非表示をする
-//TODO:トークンがキャンセルされた場合の挙動を書く
 
 public class MagicCircleActiveHandler : MonoBehaviour
 {
     [Tooltip("表示・非表示にかける時間")] [SerializeField]
-    float _fadeDuration = 1f;
+    float _fadeDuration = 1.5f;
 
     [Header("魔法陣関係")] [SerializeField]
-    MagicCircleRendererActivator_MagicCircleActiveHandler _magicCircleRendererActivator;
+    MagicCircleActiveHandler_MagicCircle _magicCircle;
 
     [Header("魔法陣の球関係")] [SerializeField]
-    MagicSphereRendererActivator_MagicCircleActiveHandler _magicSphereRendererActivator;
+    MagicCircleActiveHandler_MagicSphere _magicSphere;
 
     [Header("魔法陣の線関係")] [SerializeField]
-    MagicTrailRendererActivator_MagicCircleActiveHandler _magicTrailRendererActivator;
+    MagicCircleActiveHandler_MagicTrail _magicTrail;
 
     bool _isProcessing = false;
 
     void Start()
     {
-        //魔法陣は最初に非表示
-        _magicCircleRendererActivator.Start();
+        _magicCircle.Start();
 
-        //魔法陣の球
-        _magicSphereRendererActivator.Start();
+        _magicSphere.Start();
     }
 
-    //魔法陣の表示、トークンがキャンセルされれば非表示にする
     public async UniTask ActivateMagicCircleAsync(CancellationToken ct)
     {
-        try
-        {
-            if (_isProcessing) return;
-            _isProcessing = true;
+        if (_isProcessing) return;
+        _isProcessing = true;
 
-            //魔法陣を表示
-            _magicCircleRendererActivator.Show();
+        //魔法陣を表示
+        _magicCircle.Show();
 
-            ProgressTimer progressTimer = new(_fadeDuration);
+        //魔法陣の球を表示
+        _magicSphere.ShowDefaultAllMagicSpheres();
 
-            while (!progressTimer.IsFinished)
-            {
-                progressTimer.Tick();
-                float progress = progressTimer.CalcProgress();
+        //少し待つ
+        await UniTask.Delay(TimeSpan.FromSeconds(_fadeDuration), cancellationToken: ct);
 
-                //球の表示
-                _magicSphereRendererActivator.ActivateMagicSphere(progress);
-
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
-            }
-
-            //球の当たり判定をオンにする
-            _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(true);
-
-            _isProcessing = false;
-        }
-        catch//キャンセルされれば非表示にする
-        {
-
-        }
+        _isProcessing = false;
     }
 
     //魔法陣の非表示、トークンがキャンセルされれば表示にする
     public async UniTask DeActivateMagicCircleAsync(CancellationToken ct)
     {
-        try
-        {
-            if (_isProcessing) return;
-            _isProcessing = true;
+        if (_isProcessing) return;
+        _isProcessing = true;
 
-            //魔法陣の非表示アニメーションを開始する
-            _magicCircleRendererActivator.StartHide();
+        //魔法陣の非表示アニメーションを開始する
+        _magicCircle.StartHide();
 
-            //球の当たり判定をオフにする
-            _magicSphereRendererActivator.MagicSphereCollidersSwitchEnable(false);
+        //魔法球の非表示処理を開始
+        _magicSphere.HideAllMagicSpheres(ct).Forget();
 
-            //魔法陣の線を非表示にし始める
-            _magicTrailRendererActivator.HideMagicTrail(_fadeDuration);
+        //魔法陣の線を非表示にし始める
+        _magicTrail.HideMagicTrail(_fadeDuration);
 
-            ProgressTimer progressTimer = new(_fadeDuration);
+        //少し待つ
+        await UniTask.Delay(TimeSpan.FromSeconds(_fadeDuration), cancellationToken: ct);
 
-            while (!progressTimer.IsFinished)
-            {
-                progressTimer.Tick();
-                float progress = progressTimer.CalcProgress();
+        //魔法陣を完全に非表示にする
+        _magicCircle.CompleteHide();
 
-                //魔法陣の球
-                _magicSphereRendererActivator.DeactivateMagicSphere(progress);
-
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: ct);
-            }
-
-            //魔法陣を完全に非表示にする
-            _magicCircleRendererActivator.CompleteHide();
-
-            _isProcessing = false;
-        }
-        catch//キャンセルされれば表示に
-        {
-
-        }
+        _isProcessing = false;
     }
 }

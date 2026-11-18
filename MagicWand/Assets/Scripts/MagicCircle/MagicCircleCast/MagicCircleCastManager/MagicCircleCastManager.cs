@@ -35,16 +35,12 @@ public class MagicCircleCastManager : MonoBehaviour
     int _touchSphereCount = 0;//１詠唱に球に触れた回数
 
     //魔法陣の処理、処理が終わったら魔法の内容を返す
-    //TODO:キャストパターンを引数に入れることで指定出来るようにする
     public async UniTask<EMagic> MagicCircleAsync(Dictionary<EMagic, int[]> castPatterns,CancellationToken ct)
     {
         //新しい履歴を作成
         _passedSphereIndexHistory.CreateNewHistory();
 
         OnStartToCast?.Invoke();
-
-        //球を全て非アクティブにする
-        _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
 
         //１詠唱に球に触れた回数をリセット
         _touchSphereCount = 0;
@@ -72,7 +68,7 @@ public class MagicCircleCastManager : MonoBehaviour
                 List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere();
 
                 //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
-                _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList).Forget();
+                _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList);
 
                 //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
                 List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
@@ -88,7 +84,7 @@ public class MagicCircleCastManager : MonoBehaviour
                 _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchedMagicSphereindex].transform.localPosition);
 
                 //球を全て非アクティブにする
-                _magicSphereLeadEffectController.DeactiveLeadAsync().Forget();
+                _magicSphereLeadEffectController.DeactiveLeadAsync();
 
                 //発動可能な魔法があれば、それを返し、魔法陣をなぞる処理を終える
                 if (invokableMagic != EMagic.None)
