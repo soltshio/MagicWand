@@ -39,7 +39,7 @@ public class TutorialManager : MonoBehaviour
     BigCreatureStatus _bigCreatureStatus;
 
     [Tooltip("巨大生物の退く演出")] [SerializeField]
-    BigCreatureMoveOut _bigCreatureMoveOut;
+    BigCreatureMoveOutPlayer _bigCreatureMoveOut;
 
     [Tooltip("魔法が発動した後に次のセリフが流れるまで待つ時間")] [SerializeField]
     float _delayDuration = 2f;

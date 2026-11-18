@@ -30,7 +30,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     BigCreatureSleepPlayer _bigCreatureSleepPlayer;
 
     [Tooltip("巨大生物の退く演出")] [SerializeField]
-    BigCreatureMoveOut _bigCreatureMoveOut;
+    BigCreatureMoveOutPlayer _bigCreatureMoveOut;
 
     [SerializeField]
     float _delayDuration=0.5f;
