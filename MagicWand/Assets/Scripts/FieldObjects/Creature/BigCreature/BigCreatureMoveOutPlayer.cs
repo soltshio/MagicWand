@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 //作成者:杉山
 //巨大生物が道をどく演出
 
-public class BigCreatureMoveOutPlayer : MonoBehaviour
+public class BigCreatureMoveOutPlayer : BigCreatureReactionTypeBase
 {
     [SerializeField]
     PlayableDirector _moveOutDirecter;
@@ -34,8 +34,10 @@ public class BigCreatureMoveOutPlayer : MonoBehaviour
         _splineAnimate.Play();
     }
 
-    public async UniTask MoveOutAsync(CancellationToken ct)
+    public override async UniTask TakeReactionAsync()
     {
+        var ct = this.GetCancellationTokenOnDestroy();
+
         _moveOutDirecter.Play();
 
         await _moveOutDirecter.WaitForStoppedAsync(ct);

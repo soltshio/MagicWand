@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 //作成者:杉山
 //巨大生物が二度寝をする演出
 
-public class BigCreatureGoBackToSleepPlayer : MonoBehaviour
+public class BigCreatureGoBackToSleepPlayer : BigCreatureReactionTypeBase
 {
     [SerializeField]
     PlayableDirector _goBackToSleepDirecter;
@@ -20,8 +20,10 @@ public class BigCreatureGoBackToSleepPlayer : MonoBehaviour
         _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
     }
 
-    public async UniTask GoBackToSleepAsync(CancellationToken ct)
+    public override async UniTask TakeReactionAsync()
     {
+        var ct = this.GetCancellationTokenOnDestroy();
+
         _goBackToSleepDirecter.Play();
 
         await _goBackToSleepDirecter.WaitForStoppedAsync(ct);

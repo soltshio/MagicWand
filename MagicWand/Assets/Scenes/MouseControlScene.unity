@@ -4577,6 +4577,7 @@ GameObject:
   - component: {fileID: 465656552}
   - component: {fileID: 465656553}
   - component: {fileID: 465656554}
+  - component: {fileID: 465656555}
   m_Layer: 0
   m_Name: Thunder
   m_TagString: Untagged
@@ -4611,11 +4612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ff42a759a16574484da0dae9c77de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Thunder
-  _surpriseReaction: {fileID: 1771374252}
+  _thunderReactionDirecter: {fileID: 465656555}
   _shifterBigCreatureSoil: {fileID: 1736635910}
-  _audioSource: {fileID: 465656554}
-  _electricShockSE: {fileID: 8300000, guid: fe082fc6a1f5b4f43b022e7bab01a65a, type: 3}
-  _waitElectricShockDuration: 2.5
   _bigCreatureBodyMeshRenderer: {fileID: 536112499}
   _electricShockMat: {fileID: 2100000, guid: c51d840b8be06184b8a86f904af67c0c, type: 2}
 --- !u!82 &465656554
@@ -4715,6 +4713,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!320 &465656555
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465656551}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 9104638056065154951, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
+    value: {fileID: 1381235190}
+  - key: {fileID: 5220353971771825245, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
+    value: {fileID: 1381235194}
+  - key: {fileID: 6695028895532583714, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
+    value: {fileID: 465656554}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &485933969
 GameObject:
   m_ObjectHideFlags: 0
@@ -18179,7 +18200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589984
+      value: -8.589983
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalRotation.w

@@ -80,7 +80,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             //巨大生物が起きた時は退く演出を行う
             if (_bigCreatureStatus.IsWakeUp)
             {
-                await _bigCreatureMoveOut.MoveOutAsync(token);
+                await _bigCreatureMoveOut.TakeReactionAsync();
             }
             //まだ起きない場合は巨大生物の睡眠演出を再度流す
             else
