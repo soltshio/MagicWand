@@ -1,50 +1,58 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 //作成者:杉山
 //魔法の発動パターンの管理
+//最初の番号が被らないようにしている
+
+[System.Serializable]
+struct CastOrderProperty
+{
+    [Tooltip("魔法の種類")]
+    public EMagic magic;
+
+    [Tooltip("最初の球以降のなぞる順番\n要素数は球の数-1に合わせてください")]
+    public int[] afterTheFirstCastOrder;
+}
 
 public class CastPatternManager : MonoBehaviour
 {
-    [Tooltip("球のアクティブ化の順番(魔法の発動手順)\n発動パターンを何種類か設定可能\nMagicSpheresの要素番号(0～配列の要素数-1)を入力してください")] [SerializeField]
-    SerializableDictionary<EMagic, int[]>[] _castPatternsArray;
+    [Tooltip("最初になぞる球とそれに対応する魔法\n要素数は球の数に合わせてその要素番号を最初になぞるべき球の番号として設定してください")] [SerializeField]
+    CastOrderProperty[] _castPattern;
 
-    [SerializeField]
-    ECastPatternDecideMode _castPatternDecideMode;
-
-    [SerializeField]
-    MagicSpheresList _magicSpheresList;
-
-    //魔法の発動手順を決定(選択)して返す
-    public Dictionary<EMagic, int[]> DecideActiveOrderIndexs()
+    //全ての魔法の発動手順を取得(最初の番号は絶対に被らないようになっている)
+    public Dictionary<EMagic, int[]> CreateAllMagicCastPatterns()
     {
-        int patternNum = Random.Range(0, _castPatternsArray.Length);
+        Dictionary<EMagic, int[]> retCastPatterns = new();
 
-        Dictionary<EMagic, int[]> retCastPatterns = new(_castPatternsArray[patternNum]);
-
-        if(_castPatternDecideMode==ECastPatternDecideMode.Shifting)//Shiftingモードの場合は番号をいくつかずらすようにする
+        for(int i=0;i<_castPattern.Length ;i++)
         {
-            ShiftIndex(ref retCastPatterns);
+            var castOrderProperty = _castPattern[i];
+
+            //魔法が設定されていなければであれば無視
+            if (castOrderProperty.magic == EMagic.None) continue;
+
+            int[] castOrder = CreateCastOrder(i, castOrderProperty.afterTheFirstCastOrder);
+            retCastPatterns.Add(castOrderProperty.magic, castOrder);
         }
 
         return retCastPatterns;
     }
 
-    void ShiftIndex(ref Dictionary<EMagic, int[]> castPatterns)
+    int[] CreateCastOrder(int firstIndex, int[] afterTheFirstCastOrder)
     {
-        int magicSpheresLength = _magicSpheresList.MagicSphereObjects.Length;
+        //順番を作成
+        int[] castOrder = new int[afterTheFirstCastOrder.Length + 1];
 
-        int shiftNum = Random.Range(0,magicSpheresLength);
+        //最初になぞるべき番号を設定
+        castOrder[0] = firstIndex;
 
-        if (shiftNum == 0) return;//ずらさなくていい場合
-
-        foreach(var orderIndexs in castPatterns.Values)
+        //最初以降の番号を設定
+        for(int i=0; i< afterTheFirstCastOrder.Length; i++)
         {
-            for(int i=0; i<orderIndexs.Length; i++)
-            {
-                orderIndexs[i] += shiftNum;
-                orderIndexs[i] %= magicSpheresLength;
-            }
+            castOrder[i + 1] = afterTheFirstCastOrder[i];
         }
+
+        return castOrder;
     }
 }

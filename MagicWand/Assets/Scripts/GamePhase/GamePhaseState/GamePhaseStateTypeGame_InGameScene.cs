@@ -57,7 +57,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
         while (true)
         {
             //詠唱パターン
-            var castPatterns = _castPatternManager.DecideActiveOrderIndexs();
+            var castPatterns = _castPatternManager.CreateAllMagicCastPatterns();
 
             //魔法陣を展開
             await _magicCircleDeploymentManager.DeployAsync(token);
