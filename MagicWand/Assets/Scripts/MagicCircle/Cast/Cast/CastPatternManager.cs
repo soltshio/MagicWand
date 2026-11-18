@@ -5,18 +5,19 @@ using UnityEngine;
 //魔法の発動パターンの管理
 //最初の番号が被らないようにしている
 
-[System.Serializable]
-struct CastOrderProperty
-{
-    [Tooltip("魔法の種類")]
-    public EMagic magic;
-
-    [Tooltip("最初の球以降のなぞる順番\n要素数は球の数-1に合わせてください")]
-    public int[] afterTheFirstCastOrder;
-}
 
 public class CastPatternManager : MonoBehaviour
 {
+    [System.Serializable]
+    struct CastOrderProperty
+    {
+        [Tooltip("魔法の種類")]
+        public EMagic magic;
+
+        [Tooltip("最初の球以降のなぞる順番\n要素数は球の数-1に合わせてください")]
+        public int[] afterTheFirstCastOrder;
+    }
+
     [Tooltip("最初になぞる球とそれに対応する魔法\n要素数は球の数に合わせてその要素番号を最初になぞるべき球の番号として設定してください")] [SerializeField]
     CastOrderProperty[] _castPattern;
 
