@@ -17562,7 +17562,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 255
   m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -18696,7 +18696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589979
+      value: -8.589977
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20936,10 +20936,16 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -1627384985733704994, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1381235190}
-  - key: {fileID: -5137973011407014281, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1381235194}
+  - key: {fileID: 2286170027821235770, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+    value: {fileID: 1381235190}
+  - key: {fileID: 169625491550529059, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+    value: {fileID: 1381235194}
+  - key: {fileID: -5325254515477558624, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+    value: {fileID: 465656554}
   m_ExposedReferences:
     m_References: []
 --- !u!198 &1672727270 stripped
