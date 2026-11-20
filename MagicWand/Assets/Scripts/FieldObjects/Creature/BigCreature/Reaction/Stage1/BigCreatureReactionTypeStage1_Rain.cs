@@ -25,7 +25,7 @@ public class BigCreatureReactionTypeStage1_Rain : BigCreatureReactionTypeBase
     //巨大生物の二度寝のモーションを止める
     public void StopBigCreatureGoBackToSleepMotion()
     {
-        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
+        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, false);
     }
 
     public void RemoveBigCreatureSoil()
