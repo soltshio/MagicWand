@@ -20884,6 +20884,7 @@ GameObject:
   - component: {fileID: 1655082378}
   - component: {fileID: 1655082379}
   - component: {fileID: 1655082380}
+  - component: {fileID: 1655082381}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -20948,6 +20949,66 @@ PlayableDirector:
     value: {fileID: 465656554}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &1655082381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655082377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
+    - {fileID: 11400000, guid: 00c5c15d773a6914b8d52209e40a20eb, type: 2}
+    - {fileID: 11400000, guid: 36aeb4305d01af24e9b767e09b5b163c, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1655082379}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Rain, Assembly-CSharp
+          m_MethodName: PlayBigCreatureGoBackToSleepMotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1655082379}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Rain, Assembly-CSharp
+          m_MethodName: RemoveBigCreatureSoil
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1655082379}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Rain, Assembly-CSharp
+          m_MethodName: StopBigCreatureGoBackToSleepMotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!198 &1672727270 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1715632756043029100, guid: df1998e4aeb77914d84013479e4a9641, type: 3}
