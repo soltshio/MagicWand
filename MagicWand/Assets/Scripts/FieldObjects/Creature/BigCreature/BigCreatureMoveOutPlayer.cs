@@ -5,10 +5,9 @@ using UnityEngine.Playables;
 using UnityEngine.Splines;
 
 //作成者:杉山
-//でか生き物が道をどく演出
-//TODO:タイムライン化させる
+//巨大生物が道をどく演出
 
-public class BigCreatureMoveOut : MonoBehaviour
+public class BigCreatureMoveOutPlayer : BigCreatureReactionTypeBase
 {
     [SerializeField]
     PlayableDirector _moveOutDirecter;
@@ -35,8 +34,10 @@ public class BigCreatureMoveOut : MonoBehaviour
         _splineAnimate.Play();
     }
 
-    public async UniTask MoveOutAsync(CancellationToken ct)
+    public override async UniTask TakeReactionAsync()
     {
+        var ct = this.GetCancellationTokenOnDestroy();
+
         _moveOutDirecter.Play();
 
         await _moveOutDirecter.WaitForStoppedAsync(ct);

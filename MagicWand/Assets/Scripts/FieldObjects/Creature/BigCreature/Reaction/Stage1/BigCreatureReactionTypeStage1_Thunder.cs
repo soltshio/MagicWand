@@ -3,26 +3,18 @@ using System;
 using System.Threading;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.Playables;
 
 //作成者:杉山
 //巨大生物のステージ1の雷魔法に対してのリアクション
 
 public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
 {
-    [Tooltip("でかい生き物の驚き演出")] [SerializeField]
-    SurpriseReaction _surpriseReaction;
+    [SerializeField]
+    PlayableDirector _thunderReactionDirecter;
 
     [Tooltip("でかい生き物の土の量を変更する機能")] [SerializeField]
     ShifterBigCreatureSoilMaterial _shifterBigCreatureSoil;
-
-    [SerializeField]
-    AudioSource _audioSource;
-
-    [SerializeField]
-    AudioClip _electricShockSE;
-
-    [SerializeField] [Tooltip("感電リアクション時間")]
-    float _waitElectricShockDuration = 0.5f;
 
     [SerializeField]
     SkinnedMeshRendererReference _bigCreatureBodyMeshRenderer;
@@ -30,32 +22,49 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     [SerializeField]
     Material _electricShockMat;
 
-    public override async UniTask TakeReactionAsync()
+    [SerializeField]
+    AnimatorReference _bigCreatureAnimator;
+
+    Material _defaultMaterial;//元のマテリアル
+
+    //巨大生物に二度寝のモーションをさせる
+    public void PlayBigCreatureGoBackToSleepMotion()
     {
-        var token = this.GetCancellationTokenOnDestroy();
-
-        //巨大生物の感電リアクション
-        await TakeElectricShockAsync(token);
-
-        _shifterBigCreatureSoil.RemoveSoil();
-
-        //驚き演出
-        await _surpriseReaction.TakeSurpriseReactionAsync(token);
+        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
     }
 
-    async UniTask TakeElectricShockAsync(CancellationToken ct)
+    //巨大生物の二度寝のモーションを止める
+    public void StopBigCreatureGoBackToSleepMotion()
+    {
+        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, false);
+    }
+
+    public void ChangeToElectricShockMaterial()
     {
         //感電マテリアルに変更
-        var defaultMat = _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material;
+        _defaultMaterial = _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material;
         _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.sharedMaterial = _electricShockMat;
+    }
 
-        //感電の効果音
-        _audioSource.PlayOneShot(_electricShockSE);
-
-        //少し待つ
-        await UniTask.Delay(TimeSpan.FromSeconds(_waitElectricShockDuration), cancellationToken: ct);
+    public void BackToDefaultMaterial()
+    {
+        if (_defaultMaterial==null) return;
 
         //元のマテリアルに変更
-        _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material = defaultMat;
+        _bigCreatureBodyMeshRenderer.SkinnedMeshRenderer.material = _defaultMaterial;
+    }
+
+    public void RemoveBigCreatureSoil()
+    {
+        _shifterBigCreatureSoil.RemoveSoil();
+    }
+
+    public override async UniTask TakeReactionAsync()
+    {
+        var ct = this.GetCancellationTokenOnDestroy();
+
+        _thunderReactionDirecter.Play();
+
+        await _thunderReactionDirecter.WaitForStoppedAsync(ct);
     }
 }
