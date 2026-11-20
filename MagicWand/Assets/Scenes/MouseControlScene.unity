@@ -2229,6 +2229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 236339060}
   - component: {fileID: 236339061}
+  - component: {fileID: 236339062}
   m_Layer: 0
   m_Name: Time
   m_TagString: Untagged
@@ -2265,6 +2266,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Time
   _ignoreReaction: {fileID: 1736635916}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+--- !u!320 &236339062
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236339059}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 34cd69cdf2e860346878bf8737ca2caa, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &236575979
 GameObject:
   m_ObjectHideFlags: 0
@@ -6175,6 +6193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696876404}
   - component: {fileID: 696876405}
+  - component: {fileID: 696876406}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -6211,6 +6230,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Star
   _ignoreReaction: {fileID: 1736635916}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+--- !u!320 &696876406
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696876403}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: b3562b62b79be804c894ee9a3a899e77, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &713691836
 GameObject:
   m_ObjectHideFlags: 0
@@ -18085,6 +18121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417002368}
   - component: {fileID: 1417002369}
+  - component: {fileID: 1417002370}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -18121,6 +18158,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Sun
   _ignoreReaction: {fileID: 1736635916}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+--- !u!320 &1417002370
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417002367}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 45fb87d107f21084483124964220f51f, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1001 &1425589348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18267,7 +18321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589982
+      value: -8.589981
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19875,8 +19929,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1655082378}
   - component: {fileID: 1655082379}
+  - component: {fileID: 1655082380}
   m_Layer: 0
-  m_Name: Rain
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19911,6 +19966,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureReactionTypeStage1_Rain
   _surpriseReaction: {fileID: 1771374252}
   _shifterBigCreatureSoil: {fileID: 1736635910}
+--- !u!320 &1655082380
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655082377}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!198 &1672727270 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1715632756043029100, guid: df1998e4aeb77914d84013479e4a9641, type: 3}
