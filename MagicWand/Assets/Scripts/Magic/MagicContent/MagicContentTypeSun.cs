@@ -20,9 +20,6 @@ public class MagicContentTypeSun : MagicContentTypeBase
     AudioSource _sunAudioSource;
 
     [SerializeField]
-    AudioClip _sunSE;
-
-    [SerializeField]
     LensFlareActivator _sunLensActivator;
 
     [SerializeField]
@@ -40,13 +37,14 @@ public class MagicContentTypeSun : MagicContentTypeBase
     public void SunLensActivate()
     {
         _sunLensActivator.ActivateAsync().Forget();
-        _sunAudioSource.PlayOneShot(_sunSE);
+        _sunAudioSource.Play();
         _sunParticle.Play();
     }
 
     public void SunLensDeactivate()
     {
         _sunLensActivator.DeactivateAsync().Forget();
+        _sunAudioSource.Stop();
         _sunParticle.Stop();
     }
 
