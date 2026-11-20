@@ -11,15 +11,6 @@ public class BigCreatureGoBackToSleepPlayer : BigCreatureReactionTypeBase
     [SerializeField]
     PlayableDirector _goBackToSleepDirecter;
 
-    [SerializeField]
-    AnimatorReference _bigCreatureAnimator;
-
-    //巨大生物に二度寝のモーションをさせる
-    public void PlayBigCreatureGoBackToSleepMotion()
-    {
-        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
-    }
-
     //巨大生物のモーションを二度寝から普段のモーションに戻す
 
     public override async UniTask TakeReactionAsync()

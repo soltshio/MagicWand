@@ -2417,7 +2417,11 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: 3489670719410320116, guid: 34cd69cdf2e860346878bf8737ca2caa, type: 2}
+    value: {fileID: 1647558152}
+  - key: {fileID: -5643544638826795493, guid: 34cd69cdf2e860346878bf8737ca2caa, type: 2}
+    value: {fileID: 1647558156}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &236575979
@@ -6518,7 +6522,11 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: 8799236931811448994, guid: b3562b62b79be804c894ee9a3a899e77, type: 2}
+    value: {fileID: 1647558152}
+  - key: {fileID: -5764243623694969592, guid: b3562b62b79be804c894ee9a3a899e77, type: 2}
+    value: {fileID: 1647558156}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &713691836
@@ -15504,7 +15512,6 @@ GameObject:
   - component: {fileID: 1213162049}
   - component: {fileID: 1213162048}
   - component: {fileID: 1213162047}
-  - component: {fileID: 1213162050}
   m_Layer: 0
   m_Name: GoBackToSleep
   m_TagString: Untagged
@@ -15638,9 +15645,7 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -6839475741746127274, guid: b0fec6a68b55ab844a82cb17d2eff9c5, type: 2}
-    value: {fileID: 1213162047}
+  m_SceneBindings: []
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1213162049
@@ -15656,37 +15661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigCreatureGoBackToSleepPlayer
   _goBackToSleepDirecter: {fileID: 1213162048}
-  _bigCreatureAnimator: {fileID: 902793720}
---- !u!114 &1213162050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213162045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1213162049}
-          m_TargetAssemblyTypeName: BigCreatureGoBackToSleepPlayer, Assembly-CSharp
-          m_MethodName: PlayBigCreatureGoBackToSleepMotion
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1213521958
 GameObject:
   m_ObjectHideFlags: 0
@@ -18446,7 +18420,11 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: 1177420940642521568, guid: 45fb87d107f21084483124964220f51f, type: 2}
+    value: {fileID: 1647558152}
+  - key: {fileID: -4851323628383516227, guid: 45fb87d107f21084483124964220f51f, type: 2}
+    value: {fileID: 1647558156}
   m_ExposedReferences:
     m_References: []
 --- !u!1001 &1425589348
@@ -18587,7 +18565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.769994
+      value: -4.7699947
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18595,7 +18573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589981
+      value: -8.58998
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20417,7 +20395,11 @@ PlayableDirector:
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
-  m_SceneBindings: []
+  m_SceneBindings:
+  - key: {fileID: -1627384985733704994, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+    value: {fileID: 1381235190}
+  - key: {fileID: -5137973011407014281, guid: 378c918ebfa49eb46a9f553d4d527f8c, type: 2}
+    value: {fileID: 1381235194}
   m_ExposedReferences:
     m_References: []
 --- !u!198 &1672727270 stripped
