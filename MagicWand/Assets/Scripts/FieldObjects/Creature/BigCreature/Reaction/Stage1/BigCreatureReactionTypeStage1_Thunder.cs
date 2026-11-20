@@ -22,7 +22,22 @@ public class BigCreatureReactionTypeStage1_Thunder : BigCreatureReactionTypeBase
     [SerializeField]
     Material _electricShockMat;
 
+    [SerializeField]
+    AnimatorReference _bigCreatureAnimator;
+
     Material _defaultMaterial;//元のマテリアル
+
+    //巨大生物に二度寝のモーションをさせる
+    public void PlayBigCreatureGoBackToSleepMotion()
+    {
+        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
+    }
+
+    //巨大生物の二度寝のモーションを止める
+    public void StopBigCreatureGoBackToSleepMotion()
+    {
+        _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
+    }
 
     public void ChangeToElectricShockMaterial()
     {
