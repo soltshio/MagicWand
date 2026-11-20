@@ -4919,6 +4919,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4db9c6f09b33db84a9898c6f7737150e, type: 2}
     - {fileID: 11400000, guid: dd3163c39a8061c4f87d5c1f754f438c, type: 2}
     - {fileID: 11400000, guid: 00c5c15d773a6914b8d52209e40a20eb, type: 2}
+    - {fileID: 11400000, guid: 36aeb4305d01af24e9b767e09b5b163c, type: 2}
+    - {fileID: 11400000, guid: 2633d3c0c4a749b45b3c126ebdaffe56, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -4953,6 +4955,34 @@ MonoBehaviour:
         - m_Target: {fileID: 465656553}
           m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Thunder, Assembly-CSharp
           m_MethodName: RemoveBigCreatureSoil
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 465656553}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Thunder, Assembly-CSharp
+          m_MethodName: StopBigCreatureGoBackToSleepMotion
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 465656553}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Thunder, Assembly-CSharp
+          m_MethodName: PlayBigCreatureGoBackToSleepMotion
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
