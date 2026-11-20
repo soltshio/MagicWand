@@ -41,6 +41,9 @@ public class TutorialManager : MonoBehaviour
     [Tooltip("巨大生物の退く演出")] [SerializeField]
     BigCreatureMoveOutPlayer _bigCreatureMoveOut;
 
+    [Tooltip("巨大生物の二度寝をする演出")] [SerializeField]
+    BigCreatureGoBackToSleepPlayer _bigCreatureGoBackToSleep;
+
     [Tooltip("魔法が発動した後に次のセリフが流れるまで待つ時間")] [SerializeField]
     float _delayDuration = 2f;
 
@@ -119,6 +122,7 @@ public class TutorialManager : MonoBehaviour
         //まだ起きない場合は巨大生物の睡眠演出を再度流す
         else
         {
+            await _bigCreatureGoBackToSleep.TakeReactionAsync();
             _bigCreatureSleepPlayer.Play();
         }
 

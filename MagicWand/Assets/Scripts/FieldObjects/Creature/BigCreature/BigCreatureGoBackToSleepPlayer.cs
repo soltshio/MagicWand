@@ -20,6 +20,8 @@ public class BigCreatureGoBackToSleepPlayer : BigCreatureReactionTypeBase
         _bigCreatureAnimator.Animator.SetBool(BigCreatureAnimatorProperty.GoBackToSleepBoolName, true);
     }
 
+    //巨大生物のモーションを二度寝から普段のモーションに戻す
+
     public override async UniTask TakeReactionAsync()
     {
         var ct = this.GetCancellationTokenOnDestroy();

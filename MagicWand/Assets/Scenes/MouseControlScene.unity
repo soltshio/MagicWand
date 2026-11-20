@@ -3927,6 +3927,7 @@ MonoBehaviour:
   _bigCreatureStatus: {fileID: 623789240}
   _bigCreatureSleepPlayer: {fileID: 362789704}
   _bigCreatureMoveOut: {fileID: 1952613957}
+  _bigCreatureGoBackToSleep: {fileID: 1213162049}
   _delayDuration: 0.5
 --- !u!114 &395197798
 MonoBehaviour:
@@ -4578,6 +4579,7 @@ GameObject:
   - component: {fileID: 465656553}
   - component: {fileID: 465656554}
   - component: {fileID: 465656555}
+  - component: {fileID: 465656556}
   m_Layer: 0
   m_Name: Thunder
   m_TagString: Untagged
@@ -4728,14 +4730,74 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 9104638056065154951, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1381235190}
-  - key: {fileID: 5220353971771825245, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1381235194}
   - key: {fileID: 6695028895532583714, guid: 40e736f841e1cab408fe0034a6e79fdc, type: 2}
     value: {fileID: 465656554}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &465656556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465656551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 4db9c6f09b33db84a9898c6f7737150e, type: 2}
+    - {fileID: 11400000, guid: dd3163c39a8061c4f87d5c1f754f438c, type: 2}
+    - {fileID: 11400000, guid: 00c5c15d773a6914b8d52209e40a20eb, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 465656553}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Thunder, Assembly-CSharp
+          m_MethodName: ChangeToElectricShockMaterial
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 465656553}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Thunder, Assembly-CSharp
+          m_MethodName: BackToDefaultMaterial
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 465656553}
+          m_TargetAssemblyTypeName: BigCreatureReactionTypeStage1_Thunder, Assembly-CSharp
+          m_MethodName: RemoveBigCreatureSoil
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &485933969
 GameObject:
   m_ObjectHideFlags: 0
@@ -17669,6 +17731,7 @@ MonoBehaviour:
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
   _bigCreatureMoveOut: {fileID: 1952613957}
+  _bigCreatureGoBackToSleep: {fileID: 1213162049}
   _delayDuration: 3
   _lineContents:
   - "\u76EE\u304C\u3055\u3081\u305F\u304B\u306E\uFF5E\uFF1F\uFF1F\n\u308F\u3057\u306E\u9B54\u6CD5\u306B\u304A\u3069\u308D\u3044\u3061\u3083\u3063\u305F\u3093\u3058\u3083\u306A\u3001\u3046\u3093\u3046\u3093"
@@ -18200,7 +18263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589983
+      value: -8.589982
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalRotation.w

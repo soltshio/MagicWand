@@ -32,6 +32,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     [Tooltip("巨大生物の退く演出")] [SerializeField]
     BigCreatureMoveOutPlayer _bigCreatureMoveOut;
 
+    [Tooltip("巨大生物の二度寝をする演出")] [SerializeField]
+    BigCreatureGoBackToSleepPlayer _bigCreatureGoBackToSleep;
+
     [SerializeField]
     float _delayDuration=0.5f;
 
@@ -85,6 +88,7 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
             //まだ起きない場合は巨大生物の睡眠演出を再度流す
             else
             {
+                await _bigCreatureGoBackToSleep.TakeReactionAsync();
                 _bigCreatureSleepPlayer.Play();
             }
 
