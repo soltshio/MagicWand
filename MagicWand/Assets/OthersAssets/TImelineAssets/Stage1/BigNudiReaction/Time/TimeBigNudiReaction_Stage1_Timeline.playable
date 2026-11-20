@@ -18,7 +18,7 @@ MonoBehaviour:
   m_Muted: 0
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
-  m_Parent: {fileID: 6074540708264554456}
+  m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips:
   - m_Version: 1
@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Version: 0
   m_Tracks:
   - {fileID: 6074540708264554456}
+  - {fileID: -7942524811719017909}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -409,7 +410,6 @@ MonoBehaviour:
   m_Children:
   - {fileID: 3489670719410320116}
   - {fileID: -5643544638826795493}
-  - {fileID: -7942524811719017909}
   m_Clips: []
   m_Markers:
     m_Objects: []
