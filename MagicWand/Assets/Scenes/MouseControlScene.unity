@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9ea2d67d231d042ac7e9dd50c29a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeFire
+  _groundDryController: {fileID: 1531092908}
   _bigCreature: {fileID: 623789239}
   _sunEffectDirecter:
     _eventDirecter: {fileID: 525957}
@@ -306,6 +307,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8b43f826e718c104daa4d873a2df2e6f, type: 2}
     - {fileID: 11400000, guid: 84255bd99e3bd964c834a3f5a4589275, type: 2}
     - {fileID: 11400000, guid: 6c70bcf4a250ccb40af10fcf0fea2d6f, type: 2}
+    - {fileID: 11400000, guid: c9bcd791f6ed2d04c82cd975dbc0ca3d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -382,6 +384,20 @@ MonoBehaviour:
         - m_Target: {fileID: 525954}
           m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
           m_MethodName: SendPlaySunSoundCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 525954}
+          m_TargetAssemblyTypeName: MagicContentTypeSun, Assembly-CSharp
+          m_MethodName: SetGroundDry
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -691,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb67a5a52ce8acf45bd72882b7abe72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeRain
+  _groundDryController: {fileID: 1531092908}
   _bigCreature: {fileID: 623789239}
   _grassesGrowth: {fileID: 236575980}
   _rainEffectDirecter:
@@ -827,6 +844,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3a003bf1cf079e34890c379b589c9d69, type: 2}
     - {fileID: 11400000, guid: 7ca20f831d7b5634a82e25ce8ff58328, type: 2}
     - {fileID: 11400000, guid: ab070011db5877147b2edffefb360733, type: 2}
+    - {fileID: 11400000, guid: c9bcd791f6ed2d04c82cd975dbc0ca3d, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -917,6 +935,20 @@ MonoBehaviour:
         - m_Target: {fileID: 52058000}
           m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
           m_MethodName: SendFinishWaterCommandToMicon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 52058000}
+          m_TargetAssemblyTypeName: MagicContentTypeRain, Assembly-CSharp
+          m_MethodName: SetGroundWet
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -18826,7 +18858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.589975
+      value: -8.589974
       objectReference: {fileID: 0}
     - target: {fileID: 1620755180136774185, guid: d4304c64f629b8447b74fcc9db7cd15a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20116,13 +20148,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531092903}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 938ef0d1b21d5264680c83cfae936307, type: 3}
+  m_Script: {fileID: 11500000, guid: 101621a1c5469a74c888860f7e2377a3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundGrassAlphaController
+  m_EditorClassIdentifier: Assembly-CSharp::GroundDryController
+  _defaultDryRate: 0.5
+  _getWetDelta: 0.5
+  _getDryDelta: 0.5
+  _wetShiftDuration: 2
+  _dryShiftDuration: 2
   _groundRenderer: {fileID: 1531092906}
-  _minAlpha: 0.1
-  _rangeAlpha: 0.613
-  _defaultAlphaRate: 0
 --- !u!1 &1557604840
 GameObject:
   m_ObjectHideFlags: 0
@@ -22421,7 +22455,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1910504418}
   - component: {fileID: 1910504420}
-  - component: {fileID: 1910504426}
   - component: {fileID: 1910504421}
   - component: {fileID: 1910504428}
   - component: {fileID: 1910504429}
@@ -22464,7 +22497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
   _timeEffectDirecter:
     _eventDirecter: {fileID: 1910504424}
-  _groundGrassSetter: {fileID: 1910504426}
   _bigCreature: {fileID: 623789239}
   _grassesGrowth: {fileID: 236575980}
   _clockAudioSource: {fileID: 1910504422}
@@ -22652,19 +22684,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1910504420}
-          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
-          m_MethodName: AffectToGroundGrass
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1910504420}
@@ -22735,21 +22755,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1910504426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910504417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66dd1972aeb4d745b96c5d86653422f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundGrassSetter
-  _groundGrassAlphaController: {fileID: 1531092908}
-  _alphaDeltaRate: 0.429
-  _shiftGrassAmountDuration: 6
 --- !u!114 &1910504428
 MonoBehaviour:
   m_ObjectHideFlags: 0

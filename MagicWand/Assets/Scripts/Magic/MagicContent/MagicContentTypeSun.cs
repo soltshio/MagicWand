@@ -1,15 +1,15 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Playables;
 
 //作成者:杉山
-//炎魔法の内容
+//日魔法の内容
 
 public class MagicContentTypeSun : MagicContentTypeBase
 {
+    [SerializeField]
+    GroundDryController _groundDryController;
+
     [SerializeField]
     BigCreatureReactionManager _bigCreature;
 
@@ -32,6 +32,11 @@ public class MagicContentTypeSun : MagicContentTypeBase
         await UniTask.WaitUntil(() => SendManager.Instance != null, cancellationToken: this.GetCancellationTokenOnDestroy());
 
         _sendManagerInstance = SendManager.Instance;
+    }
+
+    public void SetGroundDry()
+    {
+        _sunEffectDirecter.AddTasks(_groundDryController.SetGroundDryAsync());
     }
 
     public void SunLensActivate()
