@@ -12,11 +12,6 @@ public class MagicContentTypeTime : MagicContentTypeBase
     [SerializeField]
     WaitUntilAllFinishTasksEventDirecter _timeEffectDirecter;
 
-    [Header("地面関係")]
-
-    [SerializeField]
-    GroundGrassSetter _groundGrassSetter;
-
     [Header("でか生き物関係")]
 
     [SerializeField]
@@ -57,12 +52,6 @@ public class MagicContentTypeTime : MagicContentTypeBase
     {
         //草を成長させる
         _timeEffectDirecter.AddTasks(_grassesGrowth.TakeMagicAsync(EMagic.Rain));
-    }
-
-    public void AffectToGroundGrass()
-    {
-        //地面に草を生やす
-        _timeEffectDirecter.AddTasks(_groundGrassSetter.GrowGrassOnGroundAsync());
     }
 
     public void PlayClockSE()

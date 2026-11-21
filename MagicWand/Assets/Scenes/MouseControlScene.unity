@@ -22464,7 +22464,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicContentTypeTime
   _timeEffectDirecter:
     _eventDirecter: {fileID: 1910504424}
-  _groundGrassSetter: {fileID: 1910504426}
   _bigCreature: {fileID: 623789239}
   _grassesGrowth: {fileID: 236575980}
   _clockAudioSource: {fileID: 1910504422}
@@ -22652,19 +22651,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1910504420}
-          m_TargetAssemblyTypeName: MagicContentTypeTime, Assembly-CSharp
-          m_MethodName: AffectToGroundGrass
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1910504420}
