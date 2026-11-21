@@ -8,6 +8,9 @@ using UnityEngine;
 public class MagicContentTypeRain : MagicContentTypeBase
 {
     [SerializeField]
+    GroundDryController _groundDryController;
+
+    [SerializeField]
     BigCreatureReactionManager _bigCreature;
 
     [SerializeField]
@@ -30,6 +33,11 @@ public class MagicContentTypeRain : MagicContentTypeBase
 
         _sendManagerInstance = SendManager.Instance;
     }
+    public void SetGroundWet()
+    {
+        _rainEffectDirecter.AddTasks(_groundDryController.SetGroundWetAsync());
+    }
+
 
     public void StartRaining()
     {
