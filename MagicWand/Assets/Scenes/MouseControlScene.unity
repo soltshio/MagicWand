@@ -2278,9 +2278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd13a9812c7675b449652be5ecd9f7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectMagicSphereEffect
-  _magicSphereMaterialController: {fileID: 0}
-  _hoverTouchReceiver: {fileID: 0}
-  _hoverSE_AudioSource: {fileID: 0}
+  _magicSphereMaterialController: {fileID: 218766212}
+  _hoverTouchReceiver: {fileID: 218766210}
+  _hoverSE_AudioSource: {fileID: 218766218}
 --- !u!1001 &235395816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5826,9 +5826,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd13a9812c7675b449652be5ecd9f7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectMagicSphereEffect
-  _magicSphereMaterialController: {fileID: 0}
-  _hoverTouchReceiver: {fileID: 0}
-  _hoverSE_AudioSource: {fileID: 0}
+  _magicSphereMaterialController: {fileID: 603543119}
+  _hoverTouchReceiver: {fileID: 603543117}
+  _hoverSE_AudioSource: {fileID: 603543125}
 --- !u!1 &605361609
 GameObject:
   m_ObjectHideFlags: 0
@@ -16459,7 +16459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelectMagicSphereEffect
   _magicSphereMaterialController: {fileID: 1244001184}
   _hoverTouchReceiver: {fileID: 1244001185}
-  _hoverSE_AudioSource: {fileID: 0}
+  _hoverSE_AudioSource: {fileID: 1244001187}
 --- !u!1001 &1251471945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18475,9 +18475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd13a9812c7675b449652be5ecd9f7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectMagicSphereEffect
-  _magicSphereMaterialController: {fileID: 0}
-  _hoverTouchReceiver: {fileID: 0}
-  _hoverSE_AudioSource: {fileID: 0}
+  _magicSphereMaterialController: {fileID: 1390243767}
+  _hoverTouchReceiver: {fileID: 1390243765}
+  _hoverSE_AudioSource: {fileID: 1390243773}
 --- !u!1 &1394882907
 GameObject:
   m_ObjectHideFlags: 0
@@ -24314,9 +24314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd13a9812c7675b449652be5ecd9f7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectMagicSphereEffect
-  _magicSphereMaterialController: {fileID: 0}
-  _hoverTouchReceiver: {fileID: 0}
-  _hoverSE_AudioSource: {fileID: 0}
+  _magicSphereMaterialController: {fileID: 2061724709}
+  _hoverTouchReceiver: {fileID: 2061724707}
+  _hoverSE_AudioSource: {fileID: 2061724715}
 --- !u!1001 &2064046300
 PrefabInstance:
   m_ObjectHideFlags: 0
