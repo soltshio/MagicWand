@@ -94,7 +94,7 @@ public class TutorialManager : MonoBehaviour
         _bigCreatureSleepPlayer.Play();
 
         //発動可能な魔法を日魔法だけにする
-        var castPatterns = _castPatternForTutorialManager.CreateAllMagicCastPatterns();
+        var castPatterns = _castPatternForTutorialManager.AllMagicCastPatterns();
 
         //魔法陣展開
         await _magicCircleDeploymentManager.DeployAsync(ct);
