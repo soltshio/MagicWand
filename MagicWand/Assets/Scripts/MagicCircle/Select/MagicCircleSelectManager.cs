@@ -18,12 +18,14 @@ public class MagicCircleSelectManager : MonoBehaviour
         SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray,true);//なぞれるものだけ杖で差した時に反応があるようにする
         //誘導演出
 
-        //いずれかが決定されるまで待つ
+        int selectedIndex=0;//いずれかが決定されるまで待つ
 
         SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray, false);//杖で指しても反応がないようにする
 
         //決定された球番号と魔法の種類を返す
-        return (0,EMagic.None);
+        //TODO:ここを実装する
+        EMagic selectedMagic = magicFirstTraceIndexArray[selectedIndex];
+        return (selectedIndex, selectedMagic);
     }
 
     //選択可能な魔法球の選択時に必要な機能のオンオフを切り替える
