@@ -58,5 +58,8 @@ public class SelectMagicSphereEffect : MonoBehaviour
     void OnTouchedExit()
     {
         _hoverSE_AudioSource.Stop();
+
+        //マークのゲージの表示度をリセットしておく
+        _magicSphereMaterialController.SetInMarkGaugeFillAmount(0f);
     }
 }

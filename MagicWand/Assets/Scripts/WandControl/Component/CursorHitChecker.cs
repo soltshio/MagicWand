@@ -68,10 +68,13 @@ public class CursorHitChecker : MonoBehaviour
 
         if (!hit.collider.CompareTag(TagNameList.RaycastableObject)) return;
 
-        var touchable = hit.collider.GetComponent<ITouchable>();
+        var touchableComponents = hit.collider.GetComponents<ITouchable>();
 
-        if(touchable == null) return;
+        if (touchableComponents == null) return;
 
-        touchable.OnTouched();
+        for (int i=0; i<touchableComponents.Length;i++)
+        {
+            touchableComponents[i].OnTouched();
+        }
     }
 }

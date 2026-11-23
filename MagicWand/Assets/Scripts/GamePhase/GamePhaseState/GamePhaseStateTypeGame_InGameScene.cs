@@ -15,6 +15,9 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
     MagicCircleDeploymentManager _magicCircleDeploymentManager;
 
     [SerializeField]
+    MagicCircleSelectManager _magicCircleSelectManager;
+
+    [SerializeField]
     MagicCircleCastManager _magicCircleCastManager;
 
     [SerializeField]
@@ -61,9 +64,13 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
         {
             //詠唱パターン
             var castPatterns = _castPatternManager.AllMagicCastPatterns();
+            var magicFirstTraceIndexArray = _castPatternManager.MagicFirstTraceIndexArray();
 
             //魔法陣を展開
             await _magicCircleDeploymentManager.DeployAsync(token);
+
+            //魔法を選択
+            await _magicCircleSelectManager.SelectAsync(magicFirstTraceIndexArray, token);
 
             //魔法陣をなぞる
             var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns, token);
