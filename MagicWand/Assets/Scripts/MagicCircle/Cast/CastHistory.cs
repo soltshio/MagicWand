@@ -7,19 +7,16 @@ using UnityEngine;
 //1回分のなぞりの情報
 public class TraceInfo
 {
-    List<(EMagic magic, int sphereIndex)> _selectableMagicSphereIndexList;//選択できた魔法とそれに対応する魔法球の番号
-    (EMagic magic, int sphereIndex) _selectedMagicSphereIndex;//実際に選択した魔法とそれに対応する魔法球の番号
+    EMagic[] _selectableMagic_SphereIndexArray;//要素番号を球の番号として、その番号の球で選ぶことのできた魔法
+    int _selectedSphereIndex;//選んだ球の番号
 
-    //選択できた魔法とそれに対応する魔法球の番号
-    public List<(EMagic magic, int sphereIndex)> SelectableMagicSphereIndexList { get { return _selectableMagicSphereIndexList; } }
+    public EMagic[] SelectableMagic { get { return _selectableMagic_SphereIndexArray; } }
+    public int SelectedSphereIndex { get { return _selectedSphereIndex; } }
 
-    //実際に選択した魔法とそれに対応する魔法球の番号
-    public (EMagic magic, int sphereIndex) SelectedMagicSphereIndex { get { return _selectedMagicSphereIndex; } }
-
-    public TraceInfo(List<(EMagic magic, int sphereIndex)> selectableMagicSphereIndexList, (EMagic magic, int sphereIndex) selectedMagicSphereIndex)
+    public TraceInfo(EMagic[] selectableMagic_SphereIndexArray,int selectedSphereIndex)
     {
-        _selectableMagicSphereIndexList = selectableMagicSphereIndexList;
-        _selectedMagicSphereIndex = selectedMagicSphereIndex;
+        _selectableMagic_SphereIndexArray = selectableMagic_SphereIndexArray;
+        _selectedSphereIndex = selectedSphereIndex;
     }
 }
 
@@ -74,7 +71,7 @@ public class CastHistory : MonoBehaviour
     }
 
     //なぞった時の情報を最新の詠唱の情報に追加
-    public void AddNewTraceInfo(List<(EMagic magic, int sphereIndex)> selectableMagicSphereIndexList, (EMagic magic, int sphereIndex) selectedMagicSphereIndex)
+    public void AddNewTraceInfo(EMagic[] selectableMagic_SphereIndexArray, int selectedSphereIndex)
     {
         if(_castInfos.Count - 1 < 0)
         {
@@ -82,7 +79,7 @@ public class CastHistory : MonoBehaviour
             return;
         }
 
-        TraceInfo newTraceInfo = new(selectableMagicSphereIndexList, selectedMagicSphereIndex);
+        TraceInfo newTraceInfo = new(selectableMagic_SphereIndexArray, selectedSphereIndex);
         _castInfos[_castInfos.Count - 1].AddTraceInfo(newTraceInfo);
     }
 }
