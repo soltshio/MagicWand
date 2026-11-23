@@ -15,17 +15,21 @@ public class MagicCircleSelectManager : MonoBehaviour
     //magicFirstTraceIndexArrayはそれぞれの魔法の最初になぞる魔法球の番号配列(要素番号がそのまま最初になぞる魔法球の番号となっている)
     public async UniTask<(int,EMagic)> SelectAsync(EMagic[] magicFirstTraceIndexArray, CancellationToken ct)
     {
-        SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray,true);//なぞれるものだけ杖で差した時に反応があるようにする
+        //なぞれるものだけ杖で差した時に反応があるようにする
+        SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray,true);
+
         //誘導演出
 
-        int selectedIndex=0;//いずれかが決定されるまで待つ
+        //いずれかが決定されるまで待つ
+        MagicSphereHoverTouchChecker magicSphereHoverTouchChecker = new(_magicSpheresList);
+        int selectedMagocSphereindex = await magicSphereHoverTouchChecker.WaitUntilSubmitAnyMagicSphere(ct);
 
-        SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray, false);//杖で指しても反応がないようにする
+        //杖で指しても反応がないようにする
+        SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray, false);
 
         //決定された球番号と魔法の種類を返す
-        //TODO:ここを実装する
-        EMagic selectedMagic = magicFirstTraceIndexArray[selectedIndex];
-        return (selectedIndex, selectedMagic);
+        EMagic selectedMagic = magicFirstTraceIndexArray[selectedMagocSphereindex];
+        return (selectedMagocSphereindex, selectedMagic);
     }
 
     //選択可能な魔法球の選択時に必要な機能のオンオフを切り替える
@@ -42,6 +46,4 @@ public class MagicCircleSelectManager : MonoBehaviour
             selectMagicSphereEffect.enabled = isEnabled;
         }
     }
-
-
 }
