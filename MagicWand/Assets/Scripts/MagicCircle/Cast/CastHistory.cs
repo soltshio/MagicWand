@@ -7,15 +7,15 @@ using UnityEngine;
 //1回分のなぞりの情報
 public class TraceInfo
 {
-    EMagic[] _selectableMagic_SphereIndexArray;//要素番号を球の番号として、その番号の球で選ぶことのできた魔法
+    EMagic[] _selectableMagics;//要素番号を球の番号として、その番号の球で選ぶことのできた魔法
     int _selectedSphereIndex;//選んだ球の番号
 
-    public EMagic[] SelectableMagic { get { return _selectableMagic_SphereIndexArray; } }
+    public EMagic[] SelectableMagics { get { return _selectableMagics; } }
     public int SelectedSphereIndex { get { return _selectedSphereIndex; } }
 
     public TraceInfo(EMagic[] selectableMagic_SphereIndexArray,int selectedSphereIndex)
     {
-        _selectableMagic_SphereIndexArray = selectableMagic_SphereIndexArray;
+        _selectableMagics = selectableMagic_SphereIndexArray;
         _selectedSphereIndex = selectedSphereIndex;
     }
 }

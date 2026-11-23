@@ -67,7 +67,7 @@ public class MagicCircleCastManager : MonoBehaviour
                 List<(EMagic magic, int index)> activeSphereIndex_MagicList = castableMagics.ActivateNextTraceMagicSphere();
 
                 //最後に触れた球からリストアップした球に誘導演出を行う(一番最初に球に触れる場合は真ん中から誘導演出を行う)
-                _magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList);
+                //_magicSphereLeadEffectController.ActiveLeadAsync(PreActiveSphereIndex(), activeSphereIndex_MagicList);
 
                 //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
                 List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
