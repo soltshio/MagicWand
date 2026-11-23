@@ -19,13 +19,13 @@ public partial class MagicSphereLeadEffectController
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
-        public void PaintMagicColorToMagicSphere(EMagic[] preSelectableMagics, EMagic[] currentSelectableMagics)
+        public void PaintMagicColorToMagicSphere(EMagic[] preTrace_SelectableMagics, EMagic[] currentTrace_SelectableMagics)
         {
             //次になぞるべき魔法球に色を付ける
-            for (int sphereIndex = 0; sphereIndex < currentSelectableMagics.Length; sphereIndex++)
+            for (int sphereIndex = 0; sphereIndex < currentTrace_SelectableMagics.Length; sphereIndex++)
             {
-                EMagic preSelectableMagic = preSelectableMagics[sphereIndex];
-                EMagic currentSelectableMagic = currentSelectableMagics[sphereIndex];
+                EMagic preSelectableMagic = preTrace_SelectableMagics[sphereIndex];
+                EMagic currentSelectableMagic = currentTrace_SelectableMagics[sphereIndex];
 
                 //前のなぞりと今回のなぞりでその魔法球が同じ種類の魔法が選択可能だった場合は球の色を変えない
                 if (currentSelectableMagic == preSelectableMagic) continue;

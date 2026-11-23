@@ -29,13 +29,13 @@ public partial class MagicSphereLeadEffectController
         }
 
         //誘導エフェクトを作成
-        public void CreateLeadEffect(int? preActiveSphereIndex, EMagic[] currentSelectableMagics, float activeDuration)
+        public void CreateLeadEffect(int? preActiveSphereIndex, EMagic[] currentTrace_SelectableMagics, float activeDuration)
         {
             //誘導エフェクトのスタート地点を求める
             Vector3 start = CalcStartPos(preActiveSphereIndex);
 
             //誘導エフェクトの実体化
-            InstantiateLeadEffect(currentSelectableMagics, start,activeDuration);
+            InstantiateLeadEffect(currentTrace_SelectableMagics, start,activeDuration);
         }
 
         Vector3 CalcStartPos(int? preActiveSphereIndex)
