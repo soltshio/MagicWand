@@ -21,8 +21,33 @@ public class CastPatternManager : MonoBehaviour
     [Tooltip("最初になぞる球とそれに対応する魔法\n要素数は球の数に合わせてその要素番号を最初になぞるべき球の番号として設定してください")] [SerializeField]
     CastOrderProperty[] _castPattern;
 
-    //全ての魔法の発動手順を取得(最初の番号は絶対に被らないようになっている)
-    public Dictionary<EMagic, int[]> CreateAllMagicCastPatterns()
+    //それぞれの魔法の最初になぞる魔法球の番号配列(要素番号がそのまま最初になぞる魔法球の番号となっている)
+    public EMagic[] MagicFirstTraceIndexArray()
+    {
+        EMagic[] ret = new EMagic[_castPattern.Length];
+
+        for(int i=0; i<_castPattern.Length ;i++)
+        {
+            ret[i] = _castPattern[i].magic;
+        }
+
+        return ret;
+    }
+
+    //指定した魔法の種類の最初の番号以降の発動手順を取得する(指定した魔法の要素がなければnullを返す)
+    public int[] AfterTheFirstCastOrder(EMagic magic)
+    {
+        for(int i=0; i<_castPattern.Length ;i++)
+        {
+            if (_castPattern[i].magic != magic) continue;
+            return _castPattern[i].afterTheFirstCastOrder;
+        }
+
+        return null;
+    }
+
+    //全ての魔法の発動手順を作成して取得(最初の番号は絶対に被らないようになっている)
+    public Dictionary<EMagic, int[]> AllMagicCastPatterns()
     {
         Dictionary<EMagic, int[]> retCastPatterns = new();
 

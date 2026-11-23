@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using UnityEngine;
 
 //作成者:杉山
 //いずれかの魔法球に振れた際に、どの魔法球に触れたかを判定するクラス
@@ -49,6 +48,7 @@ public class MagicSphereTouchChecker
 
     //いずれかの球に杖が触れるまで待つ
     //触れたら、触れた魔法球のインデックスを返す。
+    //TODO:activeMagicSphereIndexListを消して、全てのものを登録する
     public async UniTask<int> WaitUntilTouchAnyMagicSphere(List<int> activeMagicSphereIndexList,CancellationToken ct)
     {
         _touchedSphereIndex = _defaultTouchedSphereIndex;
