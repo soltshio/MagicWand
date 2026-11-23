@@ -19,18 +19,21 @@ public partial class MagicSphereLeadEffectController
         }
 
         //次になぞるべき魔法球に、魔法に対応した色を塗る
-        public void PaintMagicColorToMagicSphere(List<(EMagic magic, int index)> activeSphereIndex_MagicList)
+        public void PaintMagicColorToMagicSphere(EMagic[] preTrace_SelectableMagics, EMagic[] currentTrace_SelectableMagics)
         {
-            //次になぞるべき魔法球に色を付ける(TODO:それ以外にはデフォルトに戻す処理を入れる)
-            for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
+            //次になぞるべき魔法球に色を付ける
+            for (int sphereIndex = 0; sphereIndex < currentTrace_SelectableMagics.Length; sphereIndex++)
             {
-                var index = activeSphereIndex_MagicList[i].index;
-                var magic = activeSphereIndex_MagicList[i].magic;
+                EMagic preSelectableMagic = preTrace_SelectableMagics[sphereIndex];
+                EMagic currentSelectableMagic = currentTrace_SelectableMagics[sphereIndex];
 
-                var magicSphereAnimator = _magicSpheresList.GetComponentFromMagicSphere<Animator>(index);
+                //前のなぞりと今回のなぞりでその魔法球が同じ種類の魔法が選択可能だった場合は球の色を変えない
+                if (currentSelectableMagic == preSelectableMagic) continue;
+
+                var magicSphereAnimator = _magicSpheresList.GetComponentFromMagicSphere<Animator>(sphereIndex);
 
                 if (magicSphereAnimator == null) continue;
-                if (!MagicSphereAnimatorProperty.TryGetMagicTriggerName(magic, out string triggerName)) continue;
+                if (!MagicSphereAnimatorProperty.TryGetMagicTriggerName(currentSelectableMagic, out string triggerName)) continue;
 
                 //魔法球の色を変える
                 magicSphereAnimator.SetTrigger(triggerName);

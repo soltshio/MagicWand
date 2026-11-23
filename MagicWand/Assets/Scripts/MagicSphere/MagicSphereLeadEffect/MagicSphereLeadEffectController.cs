@@ -27,16 +27,18 @@ public partial class MagicSphereLeadEffectController : MonoBehaviour
     [SerializeField]
     AudioClip _leadSE;
 
-    public void ActiveLeadAsync(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList)
+    //誘導演出を行う
+    //preSelectableMagicsが前のなぞりでの選択可能な魔法、 currentSelectableMagicsが今回のなぞりでの選択可能な魔法(どちらも要素番号は魔法球の番号と対応している)
+    public void ActiveLeadEffect(int? preTracedSphereIndex, EMagic[] preTrace_SelectableMagics, EMagic[] currentTrace_SelectableMagics)
     {
         //誘導エフェクト効果音を流し始める
         PlaySound();
 
         //誘導エフェクト(パーティクル)の設定＆作成
-        _leadEffectController.CreateLeadEffect(preActiveSphereIndex, activeSphereIndex_MagicList,_activeDuration);
+        _leadEffectController.CreateLeadEffect(preTracedSphereIndex, currentTrace_SelectableMagics, _activeDuration);
 
         //魔法球に色をつける
-        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(activeSphereIndex_MagicList);
+        _leadMagicSphereColorController.PaintMagicColorToMagicSphere(preTrace_SelectableMagics,currentTrace_SelectableMagics);
     }
 
     public void DeactiveLeadAsync()

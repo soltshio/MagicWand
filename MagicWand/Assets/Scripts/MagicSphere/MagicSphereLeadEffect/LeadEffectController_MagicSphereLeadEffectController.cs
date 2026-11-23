@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //作成者:杉山
@@ -28,13 +29,13 @@ public partial class MagicSphereLeadEffectController
         }
 
         //誘導エフェクトを作成
-        public void CreateLeadEffect(int? preActiveSphereIndex, List<(EMagic magic, int index)> activeSphereIndex_MagicList,float activeDuration)
+        public void CreateLeadEffect(int? preActiveSphereIndex, EMagic[] currentTrace_SelectableMagics, float activeDuration)
         {
             //誘導エフェクトのスタート地点を求める
             Vector3 start = CalcStartPos(preActiveSphereIndex);
 
             //誘導エフェクトの実体化
-            InstantiateLeadEffect(activeSphereIndex_MagicList, start,activeDuration);
+            InstantiateLeadEffect(currentTrace_SelectableMagics, start,activeDuration);
         }
 
         Vector3 CalcStartPos(int? preActiveSphereIndex)
@@ -54,19 +55,24 @@ public partial class MagicSphereLeadEffectController
             return _magicSpheresList.MagicSphereObjects[nextActiveSphereIndex].transform.position;
         }
 
-        void InstantiateLeadEffect(List<(EMagic magic, int index)> activeSphereIndex_MagicList, Vector3 start,float activeDuration)
+        void InstantiateLeadEffect(EMagic[] currentSelectableMagics, Vector3 start,float activeDuration)
         {
-            for (int i = 0; i < activeSphereIndex_MagicList.Count; i++)
+            for (int sphereIndex = 0; sphereIndex < currentSelectableMagics.Length; sphereIndex++)
             {
+                EMagic selectableMagic = currentSelectableMagics[sphereIndex];
+
+                //選択できる魔法が無ければスキップ
+                if (selectableMagic == EMagic.None) continue;
+
                 //パーティクルのエミッションの色を取得する
-                var leadEffectProperty = _magicList.GetComponentFromMagic<LeadEffectProperty>(activeSphereIndex_MagicList[i].magic);
+                var leadEffectProperty = _magicList.GetComponentFromMagic<LeadEffectProperty>(selectableMagic);
 
                 if (leadEffectProperty == null) continue;
 
                 Color leadEffectEmissionColor = leadEffectProperty.LeadEffectEmissionColor;
 
                 //終点を求める
-                Vector3 end = CalcEndPos(activeSphereIndex_MagicList[i].index);
+                Vector3 end = CalcEndPos(sphereIndex);
 
                 var leadEffectInstance = Instantiate(_leadEffectPrefab);
                 leadEffectInstance.Initialize(activeDuration,start, end,leadEffectEmissionColor,magicInvoker);
