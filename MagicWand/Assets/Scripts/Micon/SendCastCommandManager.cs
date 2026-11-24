@@ -7,7 +7,10 @@ using UnityEngine;
 public class SendCastCommandManager : MonoBehaviour
 {
     [SerializeField]
-    MagicCircleCastManager _magicCircleCastManager;
+    MagicCircleCastManager_New _magicCircleCastManager;
+
+    [SerializeField]
+    MagicCircleSelectManager _magicCircleSelectManager;
 
     SendManager _sendManagerInstance;
 
@@ -22,30 +25,55 @@ public class SendCastCommandManager : MonoBehaviour
 
     void OnEnable()
     {
-        _magicCircleCastManager.OnSuccessToCast += SendCastStateToMicon;
+        _magicCircleCastManager.OnTraceMagicSphere += SendCastStateToMicon;
+        _magicCircleSelectManager.OnSelectMagic += SendSelectMagicToMicon;
     }
 
     void OnDisable()
     {
-        _magicCircleCastManager.OnSuccessToCast -= SendCastStateToMicon;
+        _magicCircleCastManager.OnTraceMagicSphere -= SendCastStateToMicon;
+        _magicCircleSelectManager.OnSelectMagic -= SendSelectMagicToMicon;
+    }
+
+    void SendSelectMagicToMicon(EMagic castMagic)
+    {
+        if (_sendManagerInstance == null) return;
+
+        const int castLevel = 0;
+
+        //魔法の詠唱を始めたことをマイコンに通知した直後に現在の詠唱の進行度(一番最初なのでレベルは０)を送る
+        switch (castMagic)
+        {
+            case EMagic.Sun: 
+                _sendManagerInstance.AddMessage(EMiconCommand.StartSun);
+                _sendManagerInstance.AddMessage(EMiconCommand.CastSun, castLevel);
+                break;
+
+            case EMagic.Star:
+                _sendManagerInstance.AddMessage(EMiconCommand.StartStar);
+                _sendManagerInstance.AddMessage(EMiconCommand.CastStar, castLevel);
+                break;
+
+            case EMagic.Thunder:
+                _sendManagerInstance.AddMessage(EMiconCommand.StartThunder);
+                _sendManagerInstance.AddMessage(EMiconCommand.CastThunder, castLevel);
+                break;
+
+            case EMagic.Rain:
+                _sendManagerInstance.AddMessage(EMiconCommand.StartWater);
+                _sendManagerInstance.AddMessage(EMiconCommand.CastWater, castLevel);
+                break;
+
+            case EMagic.Time:
+                _sendManagerInstance.AddMessage(EMiconCommand.StartTime);
+                _sendManagerInstance.AddMessage(EMiconCommand.CastTime, castLevel);
+                break;
+        }
     }
 
     void SendCastStateToMicon(EMagic castMagic, int touchedMagicSphereindex, int touchSphereCount)
     {
         if(_sendManagerInstance == null) return;
-
-        //１詠唱中の最初に触れた球だった場合、魔法を始めたことをマイコンに通知
-        if(touchSphereCount == _startCastMagicCount)
-        {
-            switch(castMagic)
-            {
-                case EMagic.Sun: _sendManagerInstance.AddMessage(EMiconCommand.StartSun); break;
-                case EMagic.Star: _sendManagerInstance.AddMessage(EMiconCommand.StartStar); break;
-                case EMagic.Thunder: _sendManagerInstance.AddMessage(EMiconCommand.StartThunder); break;
-                case EMagic.Rain: _sendManagerInstance.AddMessage(EMiconCommand.StartWater); break;
-                case EMagic.Time: _sendManagerInstance.AddMessage(EMiconCommand.StartTime); break;
-            }
-        }
 
         //詠唱の状態をマイコンに通知
         int castLevel = touchSphereCount - 1;

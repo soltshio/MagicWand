@@ -24,13 +24,13 @@ public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
 
     private void OnEnable()
     {
-        _magicCircleCastManager.OnSuccessToCast += ChangeRadius;
+        _magicCircleCastManager.OnTraceMagicSphere += ChangeRadius;
         _magicCircleSelectManager.OnSelectMagic += ResetRadius;
     }
 
     private void OnDisable()
     {
-        _magicCircleCastManager.OnSuccessToCast -= ChangeRadius;
+        _magicCircleCastManager.OnTraceMagicSphere -= ChangeRadius;
         _magicCircleSelectManager.OnSelectMagic -= ResetRadius;
     }
 

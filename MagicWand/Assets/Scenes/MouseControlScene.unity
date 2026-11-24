@@ -5127,7 +5127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fc13093ea02504a91a6788b750c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SendCastCommandManager
-  _magicCircleCastManager: {fileID: 1557604846}
+  _magicCircleCastManager: {fileID: 1557604847}
+  _magicCircleSelectManager: {fileID: 2046105795}
 --- !u!114 &485933973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20654,6 +20655,7 @@ GameObject:
   - component: {fileID: 1557604844}
   - component: {fileID: 1557604843}
   - component: {fileID: 1557604842}
+  - component: {fileID: 1557604847}
   m_Layer: 3
   m_Name: Cast
   m_TagString: Untagged
@@ -20688,7 +20690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76505f83cc14544782d6b9cccd9de36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicSphereColliderRadiusChanger_CastNum
-  _magicCircleCastManager: {fileID: 1557604846}
+  _magicCircleCastManager: {fileID: 1557604847}
+  _magicCircleSelectManager: {fileID: 2046105795}
   _magicSphereList: {fileID: 741445577}
   _defaultRadius: 0.8
   _radiusMoreThanTwice: 1.3
@@ -20820,6 +20823,22 @@ MonoBehaviour:
   _magicSphereTrail: {fileID: 241167068}
   _magicList: {fileID: 446498117}
   _magicSphereLeadEffectController: {fileID: 214072086}
+--- !u!114 &1557604847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557604840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d09d126f43141a4cbc77173487d16b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicCircleCastManager_New
+  _magicSpheresList: {fileID: 741445577}
+  _magicSphereTrail: {fileID: 241167068}
+  _magicSphereLeadEffectController: {fileID: 214072086}
+  _castHistory: {fileID: 314308145}
 --- !u!1 &1590766941
 GameObject:
   m_ObjectHideFlags: 0
