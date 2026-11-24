@@ -35,14 +35,14 @@ public class SendCastCommandManager : MonoBehaviour
         _magicCircleSelectManager.OnSelectMagic -= SendSelectMagicToMicon;
     }
 
-    void SendSelectMagicToMicon(EMagic castMagic)
+    void SendSelectMagicToMicon(EMagic selectedMagic,int selectedSphereIndex)
     {
         if (_sendManagerInstance == null) return;
 
         const int castLevel = 0;
 
         //魔法の詠唱を始めたことをマイコンに通知した直後に現在の詠唱の進行度(一番最初なのでレベルは０)を送る
-        switch (castMagic)
+        switch (selectedMagic)
         {
             case EMagic.Sun: 
                 _sendManagerInstance.AddMessage(EMiconCommand.StartSun);

@@ -34,7 +34,7 @@ public class MagicSphereColliderRadiusChanger_CastNum : MonoBehaviour
         _magicCircleSelectManager.OnSelectMagic -= ResetRadius;
     }
 
-    void ResetRadius(EMagic magic)
+    void ResetRadius(EMagic selectedMagic, int selectedSphereIndex)
     {
         SetAllMagicSphereRadius(_defaultRadius);
     }

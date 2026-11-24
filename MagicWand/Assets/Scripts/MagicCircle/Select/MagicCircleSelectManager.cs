@@ -20,7 +20,7 @@ public class MagicCircleSelectManager : MonoBehaviour
 
     EMagic[] _dummyPreTraceSelectableMagics;
 
-    public event Action<EMagic> OnSelectMagic;
+    public event Action<EMagic,int> OnSelectMagic;//魔法を選択したことを通知する(第一引数に選んだ魔法、第二引数に選んだ球の番号を入れる)
 
 
     //魔法選択処理(選択した魔法球の番号と魔法の種類を返す)
@@ -40,7 +40,7 @@ public class MagicCircleSelectManager : MonoBehaviour
         EMagic selectedMagic = magicFirstTraceIndexArray[selectedMagicSphereindex];//決定された魔法の種類
 
         //選択した魔法を通知
-        OnSelectMagic?.Invoke(selectedMagic);
+        OnSelectMagic?.Invoke(selectedMagic,selectedMagicSphereindex);
 
         //詠唱の履歴に追加
         _castHistory.CreateNewCastInfo();
