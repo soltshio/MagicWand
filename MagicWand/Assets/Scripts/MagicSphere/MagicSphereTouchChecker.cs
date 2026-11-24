@@ -49,23 +49,23 @@ public class MagicSphereTouchChecker
     //いずれかの球に杖が触れるまで待つ
     //触れたら、触れた魔法球のインデックスを返す。
     //TODO:activeMagicSphereIndexListを消して、全てのものを登録する
-    public async UniTask<int> WaitUntilTouchAnyMagicSphere(List<int> activeMagicSphereIndexList,CancellationToken ct)
+    public async UniTask<int> WaitUntilTouchAnyMagicSphere(CancellationToken ct)
     {
         _touchedSphereIndex = _defaultTouchedSphereIndex;
 
+        int magicSphereCount = _magicSpheresList.MagicSphereObjects.Length;//魔法球の数
+
         //触れた球の番号を受け取れるようにする
-        MagicSphereTouchedNotifier[] magicSphereTouchedNotifiers = new MagicSphereTouchedNotifier[activeMagicSphereIndexList.Count];
+        MagicSphereTouchedNotifier[] magicSphereTouchedNotifiers = new MagicSphereTouchedNotifier[magicSphereCount];
 
-        for(int i=0; i<activeMagicSphereIndexList.Count ;i++)
+        for(int sphereIndex=0; sphereIndex< magicSphereCount; sphereIndex++)
         {
-            var activeMagicSphereIndex = activeMagicSphereIndexList[i];
-
-            var touchedReceiver = _magicSpheresList.GetComponentFromMagicSphere<TouchedReceiver>(activeMagicSphereIndex);
+            var touchedReceiver = _magicSpheresList.GetComponentFromMagicSphere<TouchedReceiver>(sphereIndex);
 
             if (touchedReceiver == null) continue;
 
-            magicSphereTouchedNotifiers[i] = new(activeMagicSphereIndex,touchedReceiver);
-            magicSphereTouchedNotifiers[i].ReceiveIndexOnTouch += ReceiveTouchedIndex;
+            magicSphereTouchedNotifiers[sphereIndex] = new(sphereIndex,touchedReceiver);
+            magicSphereTouchedNotifiers[sphereIndex].ReceiveIndexOnTouch += ReceiveTouchedIndex;
         }
 
         //触れた球の番号がデフォルトのものから変わるまで待つ

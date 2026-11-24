@@ -71,7 +71,7 @@ public class MagicCircleCastManager : MonoBehaviour
 
                 //杖がいずれかの球に触れるまで待つ&触れた球のインデックスを取得
                 List<int> activeSphereIndexList = activeSphereIndex_MagicList.Select(x => x.index).ToList();
-                int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(activeSphereIndexList, ct);
+                int touchedMagicSphereindex = await _magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(ct);
 
                 //履歴に番号を追加
                 _passedSphereIndexHistory.AddIndex(touchedMagicSphereindex);

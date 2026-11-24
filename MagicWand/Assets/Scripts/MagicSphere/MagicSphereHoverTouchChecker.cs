@@ -56,14 +56,14 @@ public class MagicSphereHoverTouchChecker
         //決定された球の番号を受け取れるようにする
         MagicSphereHoverTouchedNotifier[] magicSphereHoverTouchedNotifiers = new MagicSphereHoverTouchedNotifier[magicSphereCount];
 
-        for (int i = 0; i < magicSphereCount; i++)
+        for (int sphereIndex = 0; sphereIndex < magicSphereCount; sphereIndex++)
         {
-            var hoverTouchedReceiver = _magicSpheresList.GetComponentFromMagicSphere<HoverTouchedReceiver>(i);
+            var hoverTouchedReceiver = _magicSpheresList.GetComponentFromMagicSphere<HoverTouchedReceiver>(sphereIndex);
 
             if (hoverTouchedReceiver == null) continue;
 
-            magicSphereHoverTouchedNotifiers[i] = new(i, hoverTouchedReceiver);
-            magicSphereHoverTouchedNotifiers[i].ReceiveIndexOnHoverTouch += ReceiveTouchedIndex;
+            magicSphereHoverTouchedNotifiers[sphereIndex] = new(sphereIndex, hoverTouchedReceiver);
+            magicSphereHoverTouchedNotifiers[sphereIndex].ReceiveIndexOnHoverTouch += ReceiveTouchedIndex;
         }
 
         //触れた球の番号がデフォルトのものから変わるまで待つ
