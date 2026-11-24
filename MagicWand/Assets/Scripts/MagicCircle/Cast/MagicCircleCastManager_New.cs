@@ -21,7 +21,7 @@ public class MagicCircleCastManager_New : MonoBehaviour
     [SerializeField]
     CastHistory _castHistory;
 
-    //発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックス、第三引数に何回目に球を触れたかを入れている
+    //発動手順が合っていたことの通知、第一引数に魔法の内容、第二引数に触れた球のインデックス、第三引数にこの1詠唱の中で何回目に球を触れたかを入れている
     public event Action<EMagic, int, int> OnSuccessToCast;
     public event Action OnStartToCast;//魔法の発動が始まったことの通知
 
