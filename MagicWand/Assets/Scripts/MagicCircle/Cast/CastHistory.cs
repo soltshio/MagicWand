@@ -7,15 +7,15 @@ using UnityEngine;
 //1回分のなぞりの情報
 public class TraceInfo
 {
-    EMagic[] _selectableMagics;//要素番号を球の番号として、その番号の球で選ぶことのできた魔法
+    EMagic[] _selectableMagicsBySphere;//要素番号を球の番号として、その番号の球で選ぶことのできた魔法
     int _selectedSphereIndex;//選んだ球の番号
 
-    public EMagic[] SelectableMagics { get { return _selectableMagics; } }
+    public EMagic[] SelectableMagics { get { return _selectableMagicsBySphere; } }
     public int SelectedSphereIndex { get { return _selectedSphereIndex; } }
 
-    public TraceInfo(EMagic[] selectableMagic_SphereIndexArray,int selectedSphereIndex)
+    public TraceInfo(EMagic[] selectableMagicsBySphere,int selectedSphereIndex)
     {
-        _selectableMagics = selectableMagic_SphereIndexArray;
+        _selectableMagicsBySphere = selectableMagicsBySphere;
         _selectedSphereIndex = selectedSphereIndex;
     }
 }
@@ -63,6 +63,35 @@ public class CastHistory : MonoBehaviour
         _castInfos = new();
     }
 
+    //最新の詠唱の情報の取得を試みる
+    public bool TryGetLatestCastInfo(out CastInfo latestCastInfo)
+    {
+        latestCastInfo = null;
+
+        //詠唱の履歴情報が何も追加されていなければ弾く
+        if (CastInfos.Count <= 0) return false;
+
+        //現在の詠唱の状況
+        latestCastInfo = CastInfos[CastInfos.Count - 1];
+        return true;
+    }
+
+    //最新のなぞりの情報の取得を試みる
+    public bool TryGetLatestTraceInfo(out TraceInfo latestTraceInfo)
+    {
+        latestTraceInfo = null;
+
+        if (!TryGetLatestCastInfo(out var latestCastInfo)) return false;
+
+        //なぞりの履歴情報が何も追加されていなければ弾く
+        int traceInfosCount = latestCastInfo.TraceInfos.Count;
+
+        if (traceInfosCount <= 0) return false;
+
+        latestTraceInfo = latestCastInfo.TraceInfos[traceInfosCount - 1];
+        return true;
+    }
+
     //新しい詠唱に切り替える
     public void CreateNewCastInfo()
     {
@@ -71,7 +100,7 @@ public class CastHistory : MonoBehaviour
     }
 
     //なぞった時の情報を最新の詠唱の情報に追加
-    public void AddNewTraceInfo(EMagic[] selectableMagic_SphereIndexArray, int selectedSphereIndex)
+    public void AddNewTraceInfo(EMagic[] selectableMagicsBySphere, int selectedSphereIndex)
     {
         if(_castInfos.Count - 1 < 0)
         {
@@ -79,7 +108,7 @@ public class CastHistory : MonoBehaviour
             return;
         }
 
-        TraceInfo newTraceInfo = new(selectableMagic_SphereIndexArray, selectedSphereIndex);
+        TraceInfo newTraceInfo = new(selectableMagicsBySphere, selectedSphereIndex);
         _castInfos[_castInfos.Count - 1].AddTraceInfo(newTraceInfo);
     }
 }

@@ -76,7 +76,7 @@ public class SendCastCommandManager : MonoBehaviour
         if(_sendManagerInstance == null) return;
 
         //詠唱の状態をマイコンに通知
-        int castLevel = touchSphereCount - 1;
+        int castLevel = touchSphereCount;
 
         switch (castMagic)
         {

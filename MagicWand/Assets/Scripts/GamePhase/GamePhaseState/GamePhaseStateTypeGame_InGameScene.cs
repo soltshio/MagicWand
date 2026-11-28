@@ -64,13 +64,13 @@ public class GamePhaseStateTypeGame_InGameScene : GamePhaseStateTypeBase
         {
             //詠唱パターン
             var castPatterns = _castPatternManager.AllMagicCastPatterns();
-            var magicFirstTraceIndexArray = _castPatternManager.MagicFirstTraceIndexArray();
+            var firstTraceMagicBySphereIndex = _castPatternManager.FirstTraceMagicBySphereIndex();
 
             //魔法陣を展開
             await _magicCircleDeploymentManager.DeployAsync(token);
 
             //魔法を選択
-            await _magicCircleSelectManager.SelectAsync(magicFirstTraceIndexArray, token);
+            await _magicCircleSelectManager.SelectAsync(firstTraceMagicBySphereIndex, token);
 
             //魔法陣をなぞる
             var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns, token);

@@ -22,7 +22,7 @@ public class CastPatternManager : MonoBehaviour
     CastOrderProperty[] _castPattern;
 
     //それぞれの魔法の最初になぞる魔法球の番号配列(要素番号がそのまま最初になぞる魔法球の番号となっている)
-    public EMagic[] MagicFirstTraceIndexArray()
+    public EMagic[] FirstTraceMagicBySphereIndex()
     {
         EMagic[] ret = new EMagic[_castPattern.Length];
 

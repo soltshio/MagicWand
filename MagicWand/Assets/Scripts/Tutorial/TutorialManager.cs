@@ -98,13 +98,13 @@ public class TutorialManager : MonoBehaviour
 
         //発動可能な魔法を日魔法だけにする
         var castPatterns = _castPatternForTutorialManager.AllMagicCastPatterns();
-        var magicFirstTraceIndexArray = _castPatternForTutorialManager.MagicFirstTraceIndexArray();
+        var firstTraceMagicBySphereIndex = _castPatternForTutorialManager.FirstTraceMagicBySphereIndex();
 
         //魔法陣展開
         await _magicCircleDeploymentManager.DeployAsync(ct);
 
         //魔法を選択
-        await _magicCircleSelectManager.SelectAsync(magicFirstTraceIndexArray, ct);
+        await _magicCircleSelectManager.SelectAsync(firstTraceMagicBySphereIndex, ct);
 
         //魔法陣をなぞる(詠唱)
         var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns, ct);

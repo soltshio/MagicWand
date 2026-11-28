@@ -25,40 +25,40 @@ public class MagicCircleSelectManager : MonoBehaviour
 
     //魔法選択処理(選択した魔法球の番号と魔法の種類を返す)
     //magicFirstTraceIndexArrayはそれぞれの魔法の最初になぞる魔法球の番号配列(要素番号がそのまま最初になぞる魔法球の番号となっている)
-    public async UniTask<(int,EMagic)> SelectAsync(EMagic[] magicFirstTraceIndexArray, CancellationToken ct)
+    public async UniTask<(int,EMagic)> SelectAsync(EMagic[] firstTraceMagicBySphereIndex, CancellationToken ct)
     {
         //なぞれるものだけ杖で差した時に反応があるようにする
-        SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray,true);
+        SwitchEnableSelectableMagicSphereComponent(firstTraceMagicBySphereIndex,true);
 
         //誘導演出
-        _magicSphereLeadEffectController.ActiveLeadEffect(null, _dummyPreTraceSelectableMagics, magicFirstTraceIndexArray);
+        _magicSphereLeadEffectController.ActiveLeadEffect(null, _dummyPreTraceSelectableMagics, firstTraceMagicBySphereIndex);
 
         //いずれかが決定されるまで待つ
         MagicSphereHoverTouchChecker magicSphereHoverTouchChecker = new(_magicSpheresList);
         int selectedMagicSphereindex = await magicSphereHoverTouchChecker.WaitUntilSubmitAnyMagicSphere(ct);//決定された球番号
 
-        EMagic selectedMagic = magicFirstTraceIndexArray[selectedMagicSphereindex];//決定された魔法の種類
+        EMagic selectedMagic = firstTraceMagicBySphereIndex[selectedMagicSphereindex];//決定された魔法の種類
 
         //選択した魔法を通知
         OnSelectMagic?.Invoke(selectedMagic,selectedMagicSphereindex);
 
         //詠唱の履歴に追加
         _castHistory.CreateNewCastInfo();
-        _castHistory.AddNewTraceInfo(magicFirstTraceIndexArray, selectedMagicSphereindex);
+        _castHistory.AddNewTraceInfo(firstTraceMagicBySphereIndex, selectedMagicSphereindex);
 
         //杖で指しても反応がないようにする
-        SwitchEnableSelectableMagicSphereComponent(magicFirstTraceIndexArray, false);
+        SwitchEnableSelectableMagicSphereComponent(firstTraceMagicBySphereIndex, false);
 
         //決定された球番号と魔法の種類を返す
         return (selectedMagicSphereindex, selectedMagic);
     }
 
     //選択可能な魔法球の選択時に必要な機能のオンオフを切り替える
-    void SwitchEnableSelectableMagicSphereComponent(EMagic[] magicFirstTraceIndexArray,bool isEnabled)
+    void SwitchEnableSelectableMagicSphereComponent(EMagic[] firstTraceMagicBySphereIndex,bool isEnabled)
     {
-        for(int i=0; i<magicFirstTraceIndexArray.Length ;i++)
+        for(int i=0; i<firstTraceMagicBySphereIndex.Length ;i++)
         {
-            if (magicFirstTraceIndexArray[i] == EMagic.None) continue;
+            if (firstTraceMagicBySphereIndex[i] == EMagic.None) continue;
 
             var hoverTouchReceiver = _magicSpheresList.GetComponentFromMagicSphere<HoverTouchedReceiver>(i);
             var selectMagicSphereEffect = _magicSpheresList.GetComponentFromMagicSphere<SelectMagicSphereEffect>(i);
