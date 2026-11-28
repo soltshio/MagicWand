@@ -13,6 +13,7 @@ public class MagicSphereAnimatorProperty
         { EMagic.Thunder,   "Thunder"},//雷
         { EMagic.Rain,      "Water"  },//水
         { EMagic.Time,      "Time"   },//時間
+        { EMagic.None,      "Default"},//何もない場合は通常状態に
     };
 
     public static bool TryGetMagicTriggerName(EMagic magic,out string triggerName)

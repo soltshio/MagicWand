@@ -34,7 +34,7 @@ public class MagicCircleCastManager_New : MonoBehaviour
             int currentTouchCount = GetCurrentTouchCount();
 
             //もうなぞるべき球が無い、もしくは球をなぞった回数の取得に失敗した場合、脱出
-            if (MathfExtension.IsInRange(currentTouchCount,0, afterTheFirstCastOrder.Length-1)) break;
+            if (!MathfExtension.IsInRange(currentTouchCount,0, afterTheFirstCastOrder.Length-1)) break;
 
             //なぞるべき魔法球の番号(なぞるべき魔法球は１なぞりにつき１つまで)
             int touchableMagicSphereIndex = afterTheFirstCastOrder[currentTouchCount];
@@ -42,7 +42,7 @@ public class MagicCircleCastManager_New : MonoBehaviour
             //どの魔法球がどの魔法に対応しているのかの情報を取得する
             var selectableMagicsBySphere = GetSelectableMagicsBySphere(selectedMagic, touchableMagicSphereIndex);
 
-         
+            //TODO:全ての魔法球のマークの表示度を最大にしておく
 
             //なぞるべき魔法球だけアクティブ状態にしておく
             SwitchEnableTouchableMagicSphereComponent(touchableMagicSphereIndex, true);
