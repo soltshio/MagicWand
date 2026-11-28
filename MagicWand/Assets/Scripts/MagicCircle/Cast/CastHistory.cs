@@ -10,7 +10,7 @@ public class TraceInfo
     EMagic[] _selectableMagicsBySphere;//要素番号を球の番号として、その番号の球で選ぶことのできた魔法
     int _selectedSphereIndex;//選んだ球の番号
 
-    public EMagic[] SelectableMagics { get { return _selectableMagicsBySphere; } }
+    public EMagic[] SelectableMagicsBySphere { get { return _selectableMagicsBySphere; } }
     public int SelectedSphereIndex { get { return _selectedSphereIndex; } }
 
     public TraceInfo(EMagic[] selectableMagicsBySphere,int selectedSphereIndex)

@@ -42,19 +42,21 @@ public class MagicCircleCastManager_New : MonoBehaviour
             //どの魔法球がどの魔法に対応しているのかの情報を取得する
             var selectableMagicsBySphere = GetSelectableMagicsBySphere(selectedMagic, touchableMagicSphereIndex);
 
-            //以前、どの球をなぞったか
-            
-
+         
 
             //なぞるべき魔法球だけアクティブ状態にしておく
             SwitchEnableTouchableMagicSphereComponent(touchableMagicSphereIndex, true);
 
             //誘導演出
-            //_magicSphereLeadEffectController.ActiveLeadEffect()
+            ActiveLeadEffct(selectableMagicsBySphere);
+
+
 
             //杖がアクティブ状態のいずれかの球に触れるまで待つ
             MagicSphereTouchChecker magicSphereTouchChecker = new(_magicSpheresList);
             await magicSphereTouchChecker.WaitUntilTouchAnyMagicSphere(ct);//決定された球番号
+
+
 
             //アクティブにしていた球を非アクティブ状態に戻す
             SwitchEnableTouchableMagicSphereComponent(touchableMagicSphereIndex, false);
@@ -68,6 +70,20 @@ public class MagicCircleCastManager_New : MonoBehaviour
             //なぞった球の位置を魔法陣の線の描画機能に伝える
             _magicSphereTrail.Add(_magicSpheresList.MagicSphereObjects[touchableMagicSphereIndex].transform.localPosition);
         }
+    }
+
+    //誘導演出
+    void ActiveLeadEffct(EMagic[] selectableMagicsBySphere)
+    {
+        //前回のなぞりで選べた魔法とそれに対応する球の番号を取得(失敗したら誘導演出はしないようにする)
+        if (!_castHistory.TryGetLatestTraceInfo(out var latestTraceInfo)) return;
+        var preSelectableMagicsBySphere = latestTraceInfo.SelectableMagicsBySphere;
+
+        //前回のなぞりで、どの球をなぞったか
+        var preTouchedSphereIndex = GetPreTouchedSphereIndex();
+
+        //誘導演出開始
+        _magicSphereLeadEffectController.ActiveLeadEffect(preTouchedSphereIndex,preSelectableMagicsBySphere , selectableMagicsBySphere);
     }
 
     //どの魔法球がどの魔法に対応しているのかの情報を取得する
