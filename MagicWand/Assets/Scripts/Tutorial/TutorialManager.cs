@@ -27,7 +27,7 @@ public class TutorialManager : MonoBehaviour
     MagicCircleSelectManager _magicCircleSelectManager;
 
     [SerializeField]
-    MagicCircleCastManager _magicCircleCastManager;
+    MagicCircleCastManager_New _magicCircleCastManager;
 
     [SerializeField]
     MagicCircleCloseManager _magicCircleCloseManager;
@@ -100,26 +100,29 @@ public class TutorialManager : MonoBehaviour
         var castPatterns = _castPatternForTutorialManager.AllMagicCastPatterns();
         var firstTraceMagicBySphereIndex = _castPatternForTutorialManager.FirstTraceMagicBySphereIndex();
 
-        //魔法陣展開
+        //魔法陣を展開
         await _magicCircleDeploymentManager.DeployAsync(ct);
 
-        //魔法を選択
-        await _magicCircleSelectManager.SelectAsync(firstTraceMagicBySphereIndex, ct);
+        //魔法を選択(選んだ魔法の種類を取得)
+        var selectedMagic = await _magicCircleSelectManager.SelectAsync(firstTraceMagicBySphereIndex, ct);
 
-        //魔法陣をなぞる(詠唱)
-        var invokableMagic = await _magicCircleCastManager.MagicCircleAsync(castPatterns, ct);
+        //選んだ魔法の最初のなぞり以降の詠唱手順を取得
+        var afterTheFirstCastOrder = _castPatternForTutorialManager.AfterTheFirstCastOrder(selectedMagic);
+
+        //魔法陣をなぞる
+        await _magicCircleCastManager.CastAsync(selectedMagic, afterTheFirstCastOrder, ct);
 
         //魔法陣を閉じる
-        await _magicCircleCloseManager.CloseAsync(invokableMagic, ct);
+        await _magicCircleCloseManager.CloseAsync(selectedMagic, ct);
 
         //一度、巨大生物の睡眠演出を止める
         _bigCreatureSleepPlayer.Stop();
 
         //巨大生物のステータス更新
-        _bigCreatureStatus.UpdateStatus(invokableMagic);
+        _bigCreatureStatus.UpdateStatus(selectedMagic);
 
         //魔法を発動
-        await _magicInvoker.InvokeMagicAsync(invokableMagic);
+        await _magicInvoker.InvokeMagicAsync(selectedMagic);
 
         //巨大生物が起きた時は退く演出を行う
         if(_bigCreatureStatus.IsWakeUp)

@@ -23,9 +23,9 @@ public class MagicCircleSelectManager : MonoBehaviour
     public event Action<EMagic,int> OnSelectMagic;//魔法を選択したことを通知する(第一引数に選んだ魔法、第二引数に選んだ球の番号を入れる)
 
 
-    //魔法選択処理(選択した魔法球の番号と魔法の種類を返す)
+    //魔法選択処理(選択した魔法の種類を返す)
     //magicFirstTraceIndexArrayはそれぞれの魔法の最初になぞる魔法球の番号配列(要素番号がそのまま最初になぞる魔法球の番号となっている)
-    public async UniTask<(int,EMagic)> SelectAsync(EMagic[] firstTraceMagicBySphereIndex, CancellationToken ct)
+    public async UniTask<EMagic> SelectAsync(EMagic[] firstTraceMagicBySphereIndex, CancellationToken ct)
     {
         //なぞれるものだけ杖で差した時に反応があるようにする
         SwitchEnableSelectableMagicSphereComponent(firstTraceMagicBySphereIndex,true);
@@ -50,7 +50,7 @@ public class MagicCircleSelectManager : MonoBehaviour
         SwitchEnableSelectableMagicSphereComponent(firstTraceMagicBySphereIndex, false);
 
         //決定された球番号と魔法の種類を返す
-        return (selectedMagicSphereindex, selectedMagic);
+        return selectedMagic;
     }
 
     //選択可能な魔法球の選択時に必要な機能のオンオフを切り替える

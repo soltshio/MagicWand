@@ -4182,7 +4182,7 @@ MonoBehaviour:
   _castPatternManager: {fileID: 395197798}
   _magicCircleDeploymentManager: {fileID: 1458048155}
   _magicCircleSelectManager: {fileID: 2046105795}
-  _magicCircleCastManager: {fileID: 1557604846}
+  _magicCircleCastManager: {fileID: 1557604847}
   _magicCircleCloseManager: {fileID: 713691838}
   _magicInvoker: {fileID: 446498116}
   _bigCreatureStatus: {fileID: 623789240}
@@ -18591,7 +18591,7 @@ MonoBehaviour:
   _castPatternForTutorialManager: {fileID: 1394882912}
   _magicCircleDeploymentManager: {fileID: 1458048155}
   _magicCircleSelectManager: {fileID: 2046105795}
-  _magicCircleCastManager: {fileID: 1557604846}
+  _magicCircleCastManager: {fileID: 1557604847}
   _magicCircleCloseManager: {fileID: 713691838}
   _bigCreatureSleepPlayer: {fileID: 362789704}
   _magicInvoker: {fileID: 446498116}
